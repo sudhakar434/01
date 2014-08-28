@@ -1,0 +1,36 @@
+
+texts, words = parsetexts()
+print('\nTexts')
+pp(texts)
+print('\nWords')
+pp(sorted(words))
+ 
+ invindex = {word:set(txt
+                         for txt, wrds in texts.items() if word in wrds)
+             for word in words}
+             print('\nInverted Index')
+             pp({k:sorted(v) for k,v in invindex.items()})
+              
+              terms = ["what", "is", "it"]
+              print('\nTerm Search for: ' + repr(terms))
+              pp(sorted(termsearch(terms)))
+              Sample Output
+              Texts
+              {'T0.txt': ['it', 'is', 'what', 'it', 'is'],
+               'T1.txt': ['what', 'is', 'it'],
+                'T2.txt': ['it', 'is', 'a', 'banana']}
+
+                Words
+                ['a', 'banana', 'is', 'it', 'what']
+
+                Inverted Index
+                {'a': ['T2.txt'],
+                 'banana': ['T2.txt'],
+                  'is': ['T0.txt', 'T1.txt', 'T2.txt'],
+                   'it': ['T0.txt', 'T1.txt', 'T2.txt'],
+                    'what': ['T0.txt', 'T1.txt']}
+
+                    Term Search for: ['what', 'is', 'it']
+                    ['T0.txt', 'T1.txt']
+                    [edit] Full inverted index
+                    There is a re-write of the termsearch function to work off this 
