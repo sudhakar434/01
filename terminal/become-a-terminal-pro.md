@@ -1,5 +1,8 @@
 ### Become a Terminal Pro ##
 
+
+
+
 #### awk - programming language ###
 awk is pattern scanning and processing language
 
@@ -30,23 +33,37 @@ awk is pattern scanning and processing language
     shift + F3 - Move to previous split screen
     shift + F4 - Move to next split screen
 
-#### Cores, Grpahics - CPU
-    nproc - display number of cores in a CPU
-    top -> 1 - show cpu core usage
-    cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu 
-    lscpu  #show cpu architecture 
-    lspci #list all pci connections
-    lspci | grep VGA #show graphic card details 
-    lspci -v -s 00:02.0 #show graphic card details
+#### System Info - Os, CPU, GPU
+     lsb_release -a    #print distribution specific info
+     nproc - display number of cores in a CPU
+     cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu 
+     lscpu  #show cpu architecture 
+     lspci #list all pci connections
+     lspci | grep VGA #show graphic card details 
+     lspci -v -s 00:02.0 #show graphic card details
 
-#### Find size of a directory
-    du -hs #show human readable summary of disk usage
+#### Others
+
+     du -hs #show human readable summary of disk usage
+     top -> 1 - show cpu core usage
+
+
+#### Config
+
+     alias ls='ls -a'
+
     
-#### Find details of Linux OS
-    lsb_release -a
-
 #### Maximum RAM capacity & no of slots
+
     sudo dmidecode -t 16
     sudo dmidecode -t memory
     sudo lshw -C memory
+
+
+#### JOBS
+    &       - run a job in background
+    jobs -l - list jobs will PID
+    fg, bg  - switch jobs from background to foreground
+    disown  - detach a process from terminal
+    nohup   - ignore SIGHUP signal sent by terminal
 
