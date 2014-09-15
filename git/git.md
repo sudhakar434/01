@@ -57,6 +57,12 @@
     lg = !"git lg1"
     
 #### Roll back to specific commit 
+
     git reset --hard <old-commit-id>
     git push -f 
+
+
+#### Git - Check all revisions of a file
+
+     gitk <file>
 
