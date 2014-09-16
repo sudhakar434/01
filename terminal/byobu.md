@@ -1,4 +1,3 @@
-    
 #### byobu
     F2 - Create new window
     F3 - Move to previous window
