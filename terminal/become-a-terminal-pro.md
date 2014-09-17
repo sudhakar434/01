@@ -1,18 +1,5 @@
 ### Become a Terminal Pro ##
 
-
-#### awk - programming language ###
-
-awk is pattern scanning and processing language
-
-    ls -l | awk '{ print $5  }'
-    ls -l | awk '{ print $2, '\t', $1  }'
-    awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
-    cat test.txt | awk '{print NR, NF, $0 }'
-    ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
-
-
-    
 #### System Info - Os, CPU, GPU
 
      lsb_release -a    #print distribution specific info
@@ -43,5 +30,22 @@ awk is pattern scanning and processing language
      grep -rl "django" /path/to/dir/     #search for string in all files
      grep -v 'django'    #grep for non matching lines
      sudo passwd #set a single char password 
+
+    
+#### awk - programming language
+
+    awk is pattern scanning and processing language
+
+    ls -l | awk '{ print $5  }'
+    ls -l | awk '{ print $2, '\t', $1  }'
+    awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
+    cat test.txt | awk '{print NR, NF, $0 }'
+    ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+
+
+#### sed
+    
+    sed -n 5p file          #print line 5 from file
+    sed -n '5,10p' file     #print 5 to 10 lines 
 
     
