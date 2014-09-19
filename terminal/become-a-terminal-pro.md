@@ -30,6 +30,7 @@
      grep -rl "django" /path/to/dir/     #search for string in all files
      grep -v 'django'    #grep for non matching lines
      sudo passwd #set a single char password 
+     wc -L file  #line which is max length in file
 
     
 #### awk - programming language

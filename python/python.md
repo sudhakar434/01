@@ -37,3 +37,10 @@
      os.path.dirname('file or dir')
      os.path.getsize('file or dir')
 
+
+#### others
+
+    inspect.getsource(function)  #print function source code
+    sorted(d.iteritems(), key=operator.itemgetter(1)) #sort dict based on value 
+
+
