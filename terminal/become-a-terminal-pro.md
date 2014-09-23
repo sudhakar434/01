@@ -31,6 +31,7 @@
      grep -v 'django'    #grep for non matching lines
      sudo passwd #set a single char password 
      wc -L file  #line which is max length in file
+     head -n -1 foo.txt #show foo.txt without last line
 
     
 #### awk - programming language
@@ -48,5 +49,5 @@
     
     sed -n 5p file          #print line 5 from file
     sed -n '5,10p' file     #print 5 to 10 lines 
-
+    sed -i '$ d' foo.txt    #delete last line of file
     
