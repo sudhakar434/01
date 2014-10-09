@@ -27,6 +27,13 @@
      print "%2d" % (1,)
      print str(1).zfill(2)
 
+     # list of subclasses
+     vars()['foo_class'].__subclasses__()
+
+     # index of an item in a list
+     ["foo","bar","baz"].index('bar')
+     [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
+
 
 #### itertools
 
@@ -36,5 +43,17 @@
 
      #cartesian product of two sets
      product(A, B)
+
      izip(a, b)
+     islice(iterator, start, end, step)
     
+
+#### str
+
+    'foo'.title()
+
+    
+#### chunker
+
+    def chunker(iter, size): 
+        return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
