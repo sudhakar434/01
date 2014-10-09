@@ -14,6 +14,7 @@
 
               
 #### JOBS
+
     &       - run a job in background
     jobs -l - list jobs will PID
     fg, bg  - switch jobs from background to foreground
@@ -22,9 +23,7 @@
     ps -ef  - list all process
 
 
-#### awk - programming language
-
-    awk is pattern scanning and processing language
+#### awk - programming language - pattern scanning and processing language
 
     ls -l | awk '{ print $5  }'
     ls -l | awk '{ print $2, '\t', $1  }'
@@ -40,14 +39,24 @@
     sed -i '$ d' foo.txt    #delete last line of file
     
 
+#### grep
+     
+     grep -rl "django" /path/to/dir/  # search for string in all files
+     grep -v 'django'  # grep for non matching lines
+     ps -ef | grep '[c]elery'    #grep ps without grep
+
+
+#### usb
+
+     #write permissions for pendrive
+     sudo mount -o remount,rw '/media/SGTL MSCN'
+
+
 #### Others
 
      du -hs #show human readable summary of disk usage
      top -> 1 - show cpu core usage
      alias ls='ls -a'
-
-     grep -rl "django" /path/to/dir/     #search for string in all files
-     grep -v 'django'    #grep for non matching lines
 
      sudo passwd #set a single char password 
      wc -L file  #line which is max length in file
@@ -55,4 +64,4 @@
 
      split -b 1024 big_file small_file_prefix
      split -l 1000 big_file small_file_prefix
-    
+  
