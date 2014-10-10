@@ -1,4 +1,4 @@
-## Learning Python 
+## Learning Python
                         
 #### os
 
@@ -33,7 +33,11 @@
      # index of an item in a list
      ["foo","bar","baz"].index('bar')
      [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
-
+     
+     # create dict from variables
+     dict(((k, globals()[k]) for k in ('foo', 'bar')))
+     def createDict(*args): return dict(((k, eval(k)) for k in args))
+     
 
 #### itertools
 
@@ -57,3 +61,8 @@
 
     def chunker(iter, size): 
         return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
+
+#### __future__
+
+     __future__.all_feature_names
+
