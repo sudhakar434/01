@@ -66,3 +66,9 @@
 
      __future__.all_feature_names
 
+
+#### files
+     
+     # line count
+     sum(1 for line in open('Charts.ipynb')) 
+     len(open('a.txt').read().splitlines())
