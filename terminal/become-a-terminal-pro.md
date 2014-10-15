@@ -21,6 +21,7 @@
     disown  - detach a process from terminal
     nohup   - ignore SIGHUP signal sent by terminal
     ps -ef  - list all process
+    nice -n 19 command - run this command with lowest priority
 
 
 #### awk - programming language - pattern scanning and processing language
