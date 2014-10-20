@@ -1,4 +1,5 @@
 ## Learning Python
+
                         
 #### os
 
@@ -7,6 +8,41 @@
      os.path.exists('file or dir')
      os.path.dirname('file or dir')
      os.path.getsize( 'file or dir')
+
+
+#### itertools
+
+     #nested list to list 
+     new_list = itertools.chain.from_iterable(nested_list)
+     new_list = itertools.chain(*nested_list)
+
+     #cartesian product of two sets
+     product(A, B)
+
+     izip(a, b)
+     islice(iterator, start, end, step)
+    
+
+#### str
+
+    'foo'.title()
+
+    
+#### chunker
+
+    def chunker(iter, size): 
+        return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
+
+#### __future__
+
+     __future__.all_feature_names
+
+
+#### files
+     
+     # line count
+     sum(1 for line in open('Charts.ipynb')) 
+     len(open('a.txt').read().splitlines())
 
 
 #### others
@@ -39,36 +75,3 @@
      def createDict(*args): return dict(((k, eval(k)) for k in args))
      
 
-#### itertools
-
-     #nested list to list 
-     new_list = chain.from_iterable(nested_list)
-     itertools.chain(A, b, C)
-
-     #cartesian product of two sets
-     product(A, B)
-
-     izip(a, b)
-     islice(iterator, start, end, step)
-    
-
-#### str
-
-    'foo'.title()
-
-    
-#### chunker
-
-    def chunker(iter, size): 
-        return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
-
-#### __future__
-
-     __future__.all_feature_names
-
-
-#### files
-     
-     # line count
-     sum(1 for line in open('Charts.ipynb')) 
-     len(open('a.txt').read().splitlines())

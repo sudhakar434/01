@@ -1,5 +1,6 @@
 ### Become a Terminal Pro ##
 
+
 #### System Info - Os, CPU, GPU
 
      lsb_release -a    #print distribution specific info
@@ -22,6 +23,7 @@
     nohup   - ignore SIGHUP signal sent by terminal
     ps -ef  - list all process
     nice -n 19 command - run this command with lowest priority
+    2>/dev/null 1>/dev/null google-chrome &
 
 
 #### awk - programming language - pattern scanning and processing language
@@ -53,16 +55,31 @@
      sudo mount -o remount,rw '/media/SGTL MSCN'
 
 
-#### Others
+#### playing with files
 
-     du -hs #show human readable summary of disk usage
-     top -> 1 - show cpu core usage
-     alias ls='ls -a'
-
-     sudo passwd #set a single char password 
      wc -L file  #line which is max length in file
      head -n -1 foo.txt #show foo.txt without last line
 
      split -b 1024 big_file small_file_prefix
      split -l 1000 big_file small_file_prefix
   
+
+#### network
+
+     #show other computers in lan
+     avahi-browse -tl _workstation._tcp
+
+     ssh user@host
+
+     rsync -a user@host:/path/to/dir /path/to/target
+     options: -avn :: archive, verbose, dry run
+              
+              
+#### Others
+
+     du -hs #show human readable summary of disk usage
+     df -H
+     top -> 1 - show cpu core usage
+     alias ls='ls -a'
+     sudo passwd #set a single char password 
+
