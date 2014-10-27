@@ -62,7 +62,11 @@
 
      split -b 1024 big_file small_file_prefix
      split -l 1000 big_file small_file_prefix
-  
+
+     # run bash as sudo to append file
+     sudo bash -c "cat in_file >> append_file"
+     cat in_file | sudo tee -a append_file
+     
 
 #### network
 

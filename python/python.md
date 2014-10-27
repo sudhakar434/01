@@ -1,5 +1,39 @@
 ## Learning Python
 
+
+#### str
+
+    'foo'.title()
+
+     # Print Numbers with leading zero
+     print str(1).zfill(2)
+     print "%2d" % (1,)
+
+
+#### dict, lists
+
+     # index of an item in a list
+     ["foo","bar","baz"].index('bar')
+     [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
+     
+     # create dict from variables
+     dict(((k, globals()[k]) for k in ('foo', 'bar')))
+     def createDict(*args): return dict(((k, eval(k)) for k in args))
+
+     #sort dict based on value 
+     sorted(d.iteritems(), key=operator.itemgetter(1))
+         
+     # reverse a list
+     my_list[::-1]
+
+
+#### files
+     
+     # line count
+     sum(1 for line in open('Charts.ipynb')) 
+     len(open('a.txt').read().splitlines())
+
+     
                         
 #### os
 
@@ -23,55 +57,19 @@
      islice(iterator, start, end, step)
     
 
-#### str
-
-    'foo'.title()
-
-    
-#### chunker
-
-    def chunker(iter, size): 
-        return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
-
-#### __future__
-
-     __future__.all_feature_names
-
-
-#### files
-     
-     # line count
-     sum(1 for line in open('Charts.ipynb')) 
-     len(open('a.txt').read().splitlines())
-
-
 #### others
 
      #print function source code
      inspect.getsource(function)  
- 
-     #sort dict based on value 
-     sorted(d.iteritems(), key=operator.itemgetter(1))
-    
+
      # nested ternary
      1 if a > b else -1 if a < b else 0
-     
-     # reverse a list
-     my_list[::-1]
-
-     # Print Numbers with leading zero
-     print "%2d" % (1,)
-     print str(1).zfill(2)
 
      # list of subclasses
      vars()['foo_class'].__subclasses__()
+     
+    def chunker(iter, size): 
+        return ( iter[pos:pos+size] for pos in xrange(0, len(iter), size) )
 
-     # index of an item in a list
-     ["foo","bar","baz"].index('bar')
-     [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
-     
-     # create dict from variables
-     dict(((k, globals()[k]) for k in ('foo', 'bar')))
-     def createDict(*args): return dict(((k, eval(k)) for k in args))
-     
+     __future__.all_feature_names
 
