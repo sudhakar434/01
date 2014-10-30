@@ -33,7 +33,6 @@
      sum(1 for line in open('Charts.ipynb')) 
      len(open('a.txt').read().splitlines())
 
-     
                         
 #### os
 
@@ -73,3 +72,5 @@
 
      __future__.all_feature_names
 
+     #get function name inside function
+     print(sys._getframe().f_code.co_name)
