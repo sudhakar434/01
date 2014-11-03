@@ -44,9 +44,6 @@
     git push http://example.com/repo.git
 
 
-#### Where is git installed
-    which git
-
 #### Commit only one file 
     git commit -m 'my message' path/to/file.ext
     
@@ -56,13 +53,22 @@
     lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
     lg = !"git lg1"
     
-#### Roll back to specific commit 
-
-    git reset --hard <old-commit-id>
-    git push -f 
-
 
 #### Git - Check all revisions of a file
 
      gitk <file>
 
+
+#### git stash
+     
+     git stash
+     git stash list
+     git stash applly stash_num
+     git stash pop
+
+
+#### others
+
+     git reset
+     git reset --hard
+     git reset --hard <old-commit-id>    

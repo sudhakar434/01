@@ -22,6 +22,7 @@
     disown  - detach a process from terminal
     nohup   - ignore SIGHUP signal sent by terminal
     ps -ef  - list all process
+    ps x -o  "%p %r %y %x %c "   #process with id & parent id
     nice -n 19 command - run this command with lowest priority
     2>/dev/null 1>/dev/null google-chrome &
 
