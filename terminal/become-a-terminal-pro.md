@@ -66,6 +66,10 @@
      # run bash as sudo to append file
      sudo bash -c "cat in_file >> append_file"
      cat in_file | sudo tee -a append_file
+
+     gzip file
+     bzip2 file
+     zip file.zip file
      
 
 #### network
@@ -82,8 +86,11 @@
 #### Others
 
      du -hs #show human readable summary of disk usage
-     df -H
+     df -h  #show file system disk usage
+
      top -> 1 - show cpu core usage
      alias ls='ls -a'
+
      sudo passwd #set a single char password 
+
 
