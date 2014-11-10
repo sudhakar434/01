@@ -27,6 +27,16 @@
      my_list[::-1]
 
 
+#### incompatible type comparision 
+
+     #numeric type comes first than non numeric type
+     1 < 'a'
+     #incomaptible non numeric types are sorted by name
+     'foo' < ['foo']
+     #exception: old style classes comes always first than new style
+     Foo() < Bar(object)
+    
+
 #### files
      
      # line count
