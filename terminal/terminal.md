@@ -82,6 +82,8 @@
 
      rsync -a user@host:/path/to/dir /path/to/target
      options: -avn :: archive, verbose, dry run
+
+     rfkill list #show status of wireless devices
               
               
 #### Others
@@ -93,5 +95,6 @@
      alias ls='ls -a'
 
      sudo passwd #set a single char password 
+
 
 
