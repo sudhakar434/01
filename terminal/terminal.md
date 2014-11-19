@@ -25,6 +25,7 @@
     ps x -o  "%p %r %y %x %c "   #process with id & parent id
     nice -n 19 command - run this command with lowest priority
     2>/dev/null 1>/dev/null google-chrome &
+    ps axjf  #get process group id
 
 
 #### awk - programming language - pattern scanning and processing language
@@ -86,12 +87,13 @@
               
 #### Others
 
-     du -hs #show human readable summary of disk usage
-     df -h  #show file system disk usage
-
      top -> 1 - show cpu core usage
      alias ls='ls -a'
 
      sudo passwd #set a single char password 
 
-
+     df -h  #show file system disk usage
+     du -ksh /var/lib/mysql/    #mysql data usage
+     du -hs #show human readable summary of disk usage
+     du -d=1  # --max-depth = 1
+     du /var/lib/mysql/ -sh
