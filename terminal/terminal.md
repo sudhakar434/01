@@ -5,15 +5,15 @@
 
      lsb_release -a    #print distribution specific info
      nproc - display number of cores in a CPU
-     cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu 
-     lscpu  #show cpu architecture 
+     cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu
+     lscpu  #show cpu architecture
      lspci #list all pci connections
-     lspci | grep VGA #show graphic card details 
+     lspci | grep VGA #show graphic card details
      lspci -v -s 00:02.0 #show graphic card details
      sudo dmidecode -t 16 #maximum ram supported & available slots
      sudo lshw -C memory  #all hardware memory info
 
-              
+
 #### JOBS
 
     &       - run a job in background
@@ -28,7 +28,7 @@
     ps axjf  #get process group id
 
 
-#### awk - programming language - pattern scanning and processing language
+#### awk
 
     ls -l | awk '{ print $5  }'
     ls -l | awk '{ print $2, '\t', $1  }'
@@ -38,14 +38,14 @@
 
 
 #### sed
-    
+
     sed -n 5p file          #print line 5 from file
-    sed -n '5,10p' file     #print 5 to 10 lines 
+    sed -n '5,10p' file     #print 5 to 10 lines
     sed -i '$ d' foo.txt    #delete last line of file
-    
+
 
 #### grep
-     
+
      grep -rl "django" /path/to/dir/  # search for string in all files
      grep -v 'django'  # grep for non matching lines
      ps -ef | grep '[c]elery'    #grep ps without grep
@@ -69,10 +69,11 @@
      sudo bash -c "cat in_file >> append_file"
      cat in_file | sudo tee -a append_file
 
-     gzip file
-     bzip2 file
-     zip file.zip file
-     
+    bzip2 file  #compress
+    bunzip2 file.bz2 #decompress
+    gzip file
+    zip file.zip file
+
 
 #### network
 
@@ -85,14 +86,15 @@
      options: -avn :: archive, verbose, dry run
 
      rfkill list #show status of wireless devices
-              
-              
+     ifconfig # show ip, mac address
+
+
 #### Others
 
      top -> 1 - show cpu core usage
      alias ls='ls -a'
 
-     sudo passwd #set a single char password 
+     sudo passwd #set a single char password
 
      df -h  #show file system disk usage
      du -ksh /var/lib/mysql/    #mysql data usage

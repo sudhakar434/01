@@ -42,7 +42,12 @@
 
     ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9   
 
-	
+    # run worker from script    
+    from myapp import app           
+    argv = ['worker', '--loglevel=DEBUG',]
+    app.worker_main(argv)	
+
+
 #### canvas
 
      chain, group, chord
