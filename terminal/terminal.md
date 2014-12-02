@@ -91,7 +91,10 @@
 
 #### Others
 
-     top -> 1 - show cpu core usage
+    top -> 1 - show cpu core usage
+        -> n set number of tasks
+        -> W write .toprc config file.
+
      alias ls='ls -a'
 
      sudo passwd #set a single char password
