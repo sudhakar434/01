@@ -93,4 +93,9 @@
     else:
     finally:
 
-    pprint.pprint(dict, width=1)  # pretty print a object 
+    pprint.pprint(dict, width=1)  # pretty print a object.
+
+    #get host name
+    socket.gethostname()
+    platform.node()
+    os.uname()[1]
