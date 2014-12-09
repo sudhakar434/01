@@ -51,6 +51,7 @@
      os.path.exists('file or dir')
      os.path.dirname('file or dir')
      os.path.getsize( 'file or dir')
+     os.system('command')
 
 
 #### itertools
@@ -99,3 +100,10 @@
     socket.gethostname()
     platform.node()
     os.uname()[1]
+
+
+#### packages
+
+    py 2.x reload(module)
+    py 3.3 imp.reload(module)
+    py 3.4 importlib.reload(module)
