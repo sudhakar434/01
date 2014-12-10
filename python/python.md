@@ -9,6 +9,10 @@
      print str(1).zfill(2)
      print "%2d" % (1,)
 
+     # strip all whitespaces
+     pattern = re.complie(r'\s+')
+     pattern.sub('', ' \t foo \n bar \n ')
+
 
 #### dict, lists
 
