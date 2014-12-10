@@ -12,6 +12,7 @@
      # strip all whitespaces
      pattern = re.complie(r'\s+')
      pattern.sub('', ' \t foo \n bar \n ')
+     ''.join(' \n ff \n bar \t '.split())
 
 
 #### dict, lists
