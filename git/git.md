@@ -31,19 +31,13 @@
     git push -f # force update
 
 
-#### Find the size of git repository
+#### Commit
 
-    git bundle create tmp.bundle --all
-    du -sh tmp.bundle
-
-
-#### To count hooks, stashes, config, rerere cache, backups 
-    git gc
-    du -sh .git/
-
-
-#### Commit only one file
+    # to commit only one file
     git commit -m 'my message' path/to/file.ext
+
+    # commit a part of file
+    git commit --patch <file_name>
 
 
 #### Beautiful git logs
@@ -58,7 +52,7 @@
      gitk <file>
 
 
-#### git stash
+#### stash
 
      git stash
      git stash list
@@ -68,10 +62,19 @@
 
 #### others
 
-     git reset
-     git reset --hard
-     git reset --hard <old-commit-id>
-     git branch -f <branch_name> <new_tip_commit> #move a branch to particular commit
+    # git reset
+    git reset
+    git reset --hard
+    git reset --hard <old-commit-id>
+    git branch -f <branch_name> <new_tip_commit> #move a branch to particular commit
+
+    # Find the size of git repository
+    git bundle create tmp.bundle --all
+    du -sh tmp.bundle
+
+    # To count hooks, stashes, config, rerere cache, backups
+    git gc
+    du -sh .git/
 
 
 #### Branch
@@ -83,7 +86,7 @@
 
 #### Patch
 
-    git format-patch -<n> <sha> # last n commits 
+    git format-patch -<n> <sha> # last n commits
     git format-patch --root <sha>
     git apply --stat <patch>
     git apply --check <patch>
