@@ -106,6 +106,9 @@
     platform.node()
     os.uname()[1]
 
+    # get size of object
+    sys.getsizeof(object)
+
 
 #### packages
 
