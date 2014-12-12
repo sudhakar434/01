@@ -31,6 +31,9 @@
      # reverse a list
      my_list[::-1]
 
+     # reverse a list with index also
+     reversed(list(enumerate([1,2,3])))
+
 
 #### incompatible type comparision
 
