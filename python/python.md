@@ -118,3 +118,10 @@
     py 2.x reload(module)
     py 3.3 imp.reload(module)
     py 3.4 importlib.reload(module)
+
+
+#### builtin functions
+
+    #zip, unzip
+    zip(range(5), range(5))
+    zip(*zip(range(5), range(5)))
