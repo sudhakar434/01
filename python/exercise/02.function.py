@@ -1,4 +1,5 @@
-#! usr/bin/ppython
+#! usr/bin/python
+
 
 def repeat(string, exclaim):
     # Returns string thrice, adds exclaimation if it is true
