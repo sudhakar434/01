@@ -1,10 +1,18 @@
 #### Started emacs
 
-#### Began with emacs-starter-kit, a more sane way to get started with
-     emacs
+    # start emacs from terminal
+    emacs
 
-#### Repeat last command
-     C-x z
+    # Repeat last command
+    C-x z repeat
 
-#### Save file
-     C-x C-s
+    # Save file
+    C-x C-s save-buffer
+
+    # show all key binding that start with C-c
+    C-c C-h
+
+    # open file in new buffer
+    C-x 4 f ido-find-file-other-window
+
+    C-h c describe-key-briefly
