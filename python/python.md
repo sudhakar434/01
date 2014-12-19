@@ -75,6 +75,20 @@
      islice(iterator, start, end, step)
 
 
+#### packages
+
+    py 2.x reload(module)
+    py 3.3 imp.reload(module)
+    py 3.4 importlib.reload(module)
+
+
+#### builtin functions
+
+    #zip, unzip
+    zip(range(5), range(5))
+    zip(*zip(range(5), range(5)))
+
+
 #### others
 
      #print function source code
@@ -96,6 +110,8 @@
 
     if x is not y: # never use operators for singleton variable.
     if x is None  # null check
+    is checks for identity
+    == checks for equality
 
     try:
     except:
@@ -111,17 +127,3 @@
 
     # get size of object
     sys.getsizeof(object)
-
-
-#### packages
-
-    py 2.x reload(module)
-    py 3.3 imp.reload(module)
-    py 3.4 importlib.reload(module)
-
-
-#### builtin functions
-
-    #zip, unzip
-    zip(range(5), range(5))
-    zip(*zip(range(5), range(5)))
