@@ -16,3 +16,5 @@
     C-x 4 f ido-find-file-other-window
 
     C-h c describe-key-briefly
+
+    M-!  # run a shell command
