@@ -14,6 +14,18 @@
      pattern.sub('', ' \t foo \n bar \n ')
      ''.join(' \n ff \n bar \t '.split())
 
+    # strip punctuation from string
+    s = 'a.b'
+
+    s.translate(string.maketrans("",""), string.punctuation)
+
+    regex = re.compile('[%s]'.format(re.escape(string.punctuation)))
+    regex.sub('', s)
+
+    ''.join(i for i in s if i not in set(string.punctuation))
+
+    for c in string.punctuation:
+
 
 #### dict, lists
 

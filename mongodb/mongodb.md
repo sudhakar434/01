@@ -7,6 +7,8 @@
     show collections
 
 
+    db.collection.count()
+    db.collection.find(printjson);
     db.collection.insert(doc);
     db.<collection>.find();
     db.<collection>.find().forEach(printjson)
