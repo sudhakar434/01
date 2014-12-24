@@ -3,8 +3,12 @@
     # start emacs in terminal
     emacs -nd
 
-    C-u  # prefix argument
+    # help
     C-h  # display help
+    C-h c  describe-key-briefly
+    C-h k  describe-key
+
+    C-u  # prefix argument
 
     C-x z repeat  # Repeat last command
 
@@ -26,3 +30,6 @@
     C-x ) Stop macro
     C-x e execute a macro
     C-u 5 C-x e  # execute macro 5 times
+
+    C-+  # increase font size
+    C--  # decrease font size
