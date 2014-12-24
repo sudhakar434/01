@@ -10,6 +10,7 @@
     db.collection.insert(doc);
     db.<collection>.find();
     db.<collection>.find().forEach(printjson)
+    db.<collection>.findOne({ <field>: <value> })
     db.<collection>.find({'<field>': '<value>'})
     db.<collection>.find({'<field>': '</.*a.*>'})  #values start with 'a'
 
