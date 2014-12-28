@@ -1,28 +1,36 @@
 ## Mongobd
 
 
+    # basics
     show dbs
     use <db>
     db
     show collections
 
-
-    db.collection.count()
-    db.collection.find(printjson);
-    db.collection.insert(doc);
-    db.<collection>.find();
-    db.<collection>.find().forEach(printjson)
-    db.<collection>.findOne({ <field>: <value> })
-    db.<collection>.find({'<field>': '<value>'})
-    db.<collection>.find({'<field>': '</.*a.*>'})  #values start with 'a'
-
-
-    db.<collection>.insert({ _id : 3})
-    db.<collection>.find()[0]._id.getTimestamp()
-
-
     new Date
     new ObjectId
+
+
+    # queries
+
+    <query>.forEach(printjson)
+
+    db.collection.count()
+
+    db.<collection>.insert(<doc>);
+    db.<collection>.insert({ _id : 3})
+    db.<collection>.insert({"_id": getNextSequence("<collection"), "<field>": "<value>"})
+
+    db.<collection>.find();
+    db.<collection>.find().forEach(printjson)
+    db.<collection>.find({'<field>': '<value>'})
+    db.<collection>.find({'<field>': '</.*a.*>'})  #values start with 'a'
+    db.<collection>.find()[0]._id.getTimestamp()
+
+    db.<collection>.findOne({ <field>: <value> })
+    db.<collection>.findOne({ <field>.<field>: <value> })
+    db.<collection>.findOne({ <field>: <value> }).<field>
+    db.<collection>.findOne({ <field>: <value> }, {<field>: 1, <field>:0 })
 
 
     # auto increment field
@@ -38,4 +46,15 @@
     return ret.seq;
     }
 
-    db.<collection>.insert({"_id": getNextSequence("<collection"), "<field>": "<value>"})
+
+    # import export
+
+    mongo <host>/<db> <file>.js
+
+    mongoimport --db <db> --collection <collection> <file>.json
+
+    mongoimport --db <db> --collection <collection> <file>.json --jsonArray
+
+    mongoexport --db <db> --collection <collection> --out <file>.json
+
+    mongoexport --db <db> --collection <collection> --out <file>.json --jsonArray
