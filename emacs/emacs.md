@@ -16,9 +16,15 @@
     C--  # decrease font size
 
 
+    C-x 0  delete-window
+    C-x 1  delete-other-windows
+    C-x 2  split-window-below
+    C-x 3  split-window-right
+    C-x 4  # prefix to deal with files in other window
+    C-x 4 f ido-find-file-other-window
     C-x z repeat  # Repeat last command
     C-x C-s save-buffer  # Save file
-    C-x 4 f ido-find-file-other-window
+
 
     C-x ( Start a macros
     C-x ) Stop macro
