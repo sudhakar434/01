@@ -6,8 +6,11 @@
     C-h  # display help
     C-h c  describe-key-briefly
     C-h k  describe-key
-    C-c C-h   # show all key binding that start with C-c
+    C-h w  where-is  # which keystrokes invoke given command
+    C-h f  # display documentation for given function
     C-h l  view-lossage  #display last 300 input keystroke
+
+    C-c C-h   # show all key binding that start with C-c
 
 
     C-u  # prefix argument
@@ -46,3 +49,5 @@
     count-words  # word count on current buffer
 
     (defalias 'qrr 'query-replace-regexp)
+
+    (unless (file-exists-p "file.txt") (shell-command "touch file.txt"))
