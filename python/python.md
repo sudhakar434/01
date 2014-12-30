@@ -27,9 +27,16 @@
     for c in string.punctuation:
 
 
-#### dict, lists
+#### dict, lists, tuples
 
-     # index of an item in a list
+    # Tuples are immutable, usually contains heterogeneous sequence of elements
+    # that are accessed by unpacking or indexing.
+    # used as key in dict, slight performance improvement
+
+    # Lists are mutable, usually contain homogeneous sequence of elements
+    # that are accessed by iterating over the list.
+
+    # index of an item in a list
      ["foo","bar","baz"].index('bar')
      [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
 
