@@ -17,6 +17,7 @@
     C-/ (C-_ or C-x u)  undo
     C-+  # increase font size
     C--  # decrease font size
+    C-=  expand-region
 
 
     C-x 0  delete-window
