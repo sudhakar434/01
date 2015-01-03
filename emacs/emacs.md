@@ -26,16 +26,18 @@
     C-x 3  split-window-right
     C-x 4  # prefix to deal with files in other window
     C-x 4 f ido-find-file-other-window
-    C-x z repeat  # Repeat last command
-    C-x C-s save-buffer  # Save file
 
+    C-x z  repeat  # Repeat last command
+    C-x h  mark-whole-buffer
+    C-x g  magit-status
+
+    C-x C-s save-buffer  # Save file
 
     C-x ( Start a macros
     C-x ) Stop macro
     C-x e execute a macro
     C-u 5 C-x e  # execute macro 5 times
 
-    C-x h  mark-whole-buffer
 
     M-!  # run a shell command
     M-g g (M-g M-g)  goto-line
