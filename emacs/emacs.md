@@ -38,6 +38,12 @@
     C-x e execute a macro
     C-u 5 C-x e  # execute macro 5 times
 
+    # narrowing
+    C-x n n  nnarrow-to-region
+    C-x n d  py-narrow-to-defun
+    C-x n p  narrow-to-region
+    C-x n w  widen
+
 
     M-!  # run a shell command
     M-g g (M-g M-g)  goto-line
