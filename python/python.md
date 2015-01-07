@@ -71,28 +71,6 @@
      len(open('a.txt').read().splitlines())
 
 
-#### os
-
-     os.path.isfile('filename')
-     os.path.abspath('filename')
-     os.path.exists('file or dir')
-     os.path.dirname('file or dir')
-     os.path.getsize( 'file or dir')
-     os.system('command')
-
-
-#### itertools
-
-     #nested list to list
-     new_list = itertools.chain.from_iterable(nested_list)
-     new_list = itertools.chain(*nested_list)
-
-     #cartesian product of two sets
-     product(A, B)
-
-     izip(a, b)
-     islice(iterator, start, end, step)
-
 
 #### packages
 
