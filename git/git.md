@@ -80,9 +80,15 @@
 #### Branch
 
     git branch <new name>
+
     git checkout <branch>
+    git checkout -b <branch>  # create & checkout to new branch
+
     git branch -D <branch> #delte
     git branch -M <brnach> #rename
+
+    git merge <branch>  # merge current with another branch
+
 
 #### Patch
 
