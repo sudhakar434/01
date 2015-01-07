@@ -1,4 +1,30 @@
-### Become a Terminal Pro ##
+Terminal
+========
+
+
+rsyslog
+-------
+
+```
+cat /var/log/syslog  # check log messages
+cat /var/log/dmesg  # check error messages
+```
+
+
+ufw
+---
+
+```
+sudo ufw status verbose
+sudo ufw enable
+sudo ufw disable
+
+sudo ufw allow <port no>
+sudo ufw deny <port no>
+sudo ufw delete <port no>
+
+sudo ufw logging [on/off]
+```
 
 
 #### System Info - Os, CPU, GPU

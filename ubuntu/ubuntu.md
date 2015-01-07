@@ -1,4 +1,7 @@
-## Learn Ubuntu
+Linux
+=====
+
+
 
 
 #### Installing screenkey
@@ -14,7 +17,7 @@
      unmout /media/
      dosfsck -a /dev/sdb1
 
-     
+
 ### JOBS & PRIORITY
 
 
@@ -22,7 +25,7 @@ Change priority of jobs
     renice -20(priority) 7448(jobid)
 
 
-### IDENTIFY BOTTLENECK 
+### IDENTIFY BOTTLENECK
     mpstat
     sar
     vmstat -s
@@ -31,5 +34,3 @@ Change priority of jobs
     vmstat
     iotop
     htop
-
-
