@@ -1,4 +1,10 @@
-#### Templates
+Django
+======
+
+
+Templates
+---------
+
 
     from django.template import loader
 	print loader.get_template('home.html')
@@ -50,6 +56,20 @@
 
     # Check for any errors in the construction of your models
     ./manage.py validate
+
+
+sql
+---
+
+```
+django-admin.py sql <app>
+django-admin.py sqlall <app>
+django-admin.py sqlclear <app>
+django-admin.py sqlcustom <app>
+django-admin.py sqlindexes <app>
+django-admin.py sqldropindexes <app>
+django-admin.py sqlflush
+```
 
 
 #### Notes
