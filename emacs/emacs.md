@@ -17,7 +17,6 @@
     C-/ (C-_ or C-x u)  undo
     C-+  # increase font size
     C--  # decrease font size
-    C-=  expand-region
 
 
     C-x 0  delete-window
@@ -43,6 +42,11 @@
     C-x n d  py-narrow-to-defun
     C-x n p  narrow-to-region
     C-x n w  widen
+
+    # bookmarks
+    C-x r m <RET>  bookmark-set
+    C-x r b <bookmark> <RET>  bookmark-jump
+    C-x r l  list-bookmarks
 
 
     M-!  # run a shell command
