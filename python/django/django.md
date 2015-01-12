@@ -58,6 +58,9 @@ Templates
     ./manage.py validate
 
 
+MANAGEMENT COMMANDS
+===================
+
 sql
 ---
 
@@ -69,6 +72,16 @@ django-admin.py sqlcustom <app>
 django-admin.py sqlindexes <app>
 django-admin.py sqldropindexes <app>
 django-admin.py sqlflush
+```
+
+shell
+-----
+
+```
+django-admin.py shell
+django-admin.py shell --plain --no-startup
+django-admin.py shell -i ipython
+django-admin.py shell --interface bpython
 ```
 
 
