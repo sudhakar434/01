@@ -11,6 +11,7 @@ control
     C-/ (C-_ or C-x u)  undo
     C-+  # increase font size
     C--  # decrease font size
+    C-o  open-line
 
     C-x m  eshell  # launch inferior shell
     C-x M-m  shell  # launch default shell
