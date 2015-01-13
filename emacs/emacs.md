@@ -76,15 +76,3 @@ meta
     M-g g (M-g M-g)  goto-line
     M-x  # run command by name
     M-;  # comment/uncomment selected region
-
-
-functions
----------
-
-sort-lines
-delete-trailing-whitespaces
-count-words  # word count on current buffer
-
-(defalias 'qrr 'query-replace-regexp)
-
-(unless (file-exists-p "file.txt") (shell-command "touch file.txt"))

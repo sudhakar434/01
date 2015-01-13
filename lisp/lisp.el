@@ -21,14 +21,3 @@
 
 ;; list - make list from arguments
 (list 'a 'x "asdf" 6)
-
-
-;; check for files & load them
-(defun load-file-if-exists (list)
-  "Check for file & load it."
-  (let (value)
-    (dolist (element list value)
-      (if (file-exists-p element)
-          (load-file (expand-file-name e lement prelude-personal-dir))))))
-
-(load-file-if-exists '("config.el" "kbd.el" "packages.el" "prelude-modules.el"))
