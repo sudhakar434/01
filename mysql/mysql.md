@@ -1,24 +1,42 @@
-#### MySQL
+MySQL
+=====
 
     # Help
     ? RET
     \h RET
 
-    # Filtering MySQL Table
-    SELECT * FROM my_table WHERE <field> LIKE '%query%' LIMIT 10;
+show
+----
 
-    # Show tables begin with b
-    show tables like 'b%';
+    SHOW DATABASES;
 
-    # show all tables, table row count
-    SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables`
-                                  WHERE `table_schema` = '<db name>';
+    SHOW TABLES;
+    SHOW TABLES LIKE 'b%';  # Show tables begin with b
 
     # show status of all tables
     SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
 
 
-#### joins
+select
+------
+
+    # Filtering MySQL Table
+    SELECT * FROM my_table WHERE <field> LIKE '%query%' LIMIT 10;
+
+
+    # show all tables, table row count
+    SELECT TABLE_NAME, TABLE_ROWS FROM `information_schema`.`tables`
+                                  WHERE `table_schema` = '<db name>';
+
+
+update
+-----
+
+    UPDATE <table> SET <field>=<value>, <field2>=<value2> [WHERE clause]
+
+
+join
+----
 
     SELECT * FROM tableA INNER JOIN tableB ON tableA.name = tableB.name
 
