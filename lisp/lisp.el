@@ -21,3 +21,26 @@
 
 ;; list - make list from arguments
 (list 'a 'x "asdf" 6)
+
+;; printing
+(message "Master emacs")
+(message "emacs version %s" "24.3")
+
+;; arithmetic
+(- 9 2 3)
+(expt 2 3)
+
+(integerp 3.)
+(floatp 3.)
+
+;; true false
+(if nil "yes" "no")
+(if () "yes" "no")
+(if '() "yes" "no")
+(if (list) "yes" "no")
+(if t "yes" "no")
+(if 0 "yes" "no")
+(if "" "yes" "no")
+(if [] "yes" "no")
+(and t nil)
+(or t nil)

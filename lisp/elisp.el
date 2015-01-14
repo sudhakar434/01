@@ -1,4 +1,15 @@
+;;; elisp --- simple elisp
+;;; Commentary:
+
+
+;;; code:
+
 ;;; functions
+
+
+;; connect to server sql
+(sql-mysql (setq sql-user "root" sql-password "bacillus123"
+                 sql-database "pearl" sql-server "192.168.0.100"))
 
 
 ;; check for files & load them
@@ -12,6 +23,14 @@
 (load-file-if-exists '("config.el" "kbd.el" "packages.el" "prelude-modules.el"))
 
 
+;; mysql
+(setq sql-mysql-login-params
+      '((user :default "root")
+        (database :default "pearl")
+        (server :default "192.168.0.110")
+        (port :default 5432)))
+
+
 sort-lines
 delete-trailing-whitespaces
 count-words  # word count on current buffer
@@ -23,6 +42,8 @@ count-words  # word count on current buffer
 
 ;;; variables
 package-activate-list  - list of installed packages
+
+
 
 
 ;;; elisp.el ends here
