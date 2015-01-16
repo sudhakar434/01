@@ -28,7 +28,8 @@ configuration
     git config credential.helper store #store credentials
 
 
-#### Push
+push
+----
 
     git push add origin
     git push <remote> <local branch>:<remote branch>
@@ -109,3 +110,11 @@ remote
     git remote add <name> <url>
     git remote set-url <name> <url>
     git remote rename <old> <new>
+
+
+gitignore
+---------
+
+    git rm -r --cached .
+    git add .
+    git commit -m ".gitignore updated"
