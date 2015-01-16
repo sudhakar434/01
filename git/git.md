@@ -1,6 +1,9 @@
-## Git!!! ##
+git
+===
 
-#### Installation
+
+installation
+------------
 
     sudo apt-get install python-software-properties
     sudo add-apt-repository ppa:git-core/ppa
@@ -8,10 +11,11 @@
     sudo apt-get install git
 
 
-#### Configuration
+configuration
+-------------
 
     git config --global user.name "username"
-    git config --global user.email "your.email@gmail.com"
+    git config --local user.email "your.email@gmail.com"
 
     git config --global color.ui true
     git config --global color.status auto
@@ -97,3 +101,11 @@
     git apply --stat <patch>
     git apply --check <patch>
     git am < am
+
+
+remote
+------
+
+    git remote add <name> <url>
+    git remote set-url <name> <url>
+    git remote rename <old> <new>

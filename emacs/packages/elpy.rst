@@ -1,4 +1,4 @@
- Elpy package
+Elpy package
 ==============
 
 
@@ -29,7 +29,8 @@ functions
 
 M-x elpy-config - show current config
 
-    1.
+    1. elpy - elpy rpc backend
+    2. completion - company minimum prefix length
 
 M-x elpy-rpc-restart  - restart all RPC process
 
