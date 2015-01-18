@@ -132,7 +132,8 @@ django-admin.py shell --interface bpython
 
 
 
-#### Models
+models
+------
 
     # print sql query
     print(Mymodel.objects.all().query)
@@ -140,3 +141,7 @@ django-admin.py shell --interface bpython
     # show all sql queries
     from django.db import connection
     connection.queries
+
+    # get model to avoid circular imports
+    from django.db.models import get_model
+    get_model('<app>', '<model>')
