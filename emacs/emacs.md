@@ -23,20 +23,23 @@ control
     C-x C-s save-buffer  # Save file
 
 
-#### help
+help
+----
 
     C-h    help
-    C-h c  describe-key-briefly
-    C-h k  describe-key
-    C-h w  where-is
-    C-h f  display documentation for given function
-    C-h l  view-lossage  display last 300 input keystroke
     C-h A  apropos  patterns matching word
+    C-h c  describe-key-briefly
+    C-h f  display documentation for given functions
+    C-h k  describe-key
+    C-h l  view-lossage  display last 300 input keystroke
+    C-h r  emacs manual
+    C-h w  where-is
 
     C-c C-h   show all key binding that start with C-c
 
 
-#### windows
+windows
+-------
 
     C-x 0  delete-window
     C-x 1  delete-other-windows
@@ -46,7 +49,8 @@ control
     C-x 4 f ido-find-file-other-window
 
 
-#### macros
+macros
+------
 
     C-x ( Start a macros
     C-x ) Stop macro
@@ -54,7 +58,8 @@ control
     C-u 5 C-x e  # execute macro 5 times
 
 
-#### narrowing
+narrowing
+---------
 
     C-x n n  nnarrow-to-region
     C-x n d  py-narrow-to-defun
@@ -62,7 +67,8 @@ control
     C-x n w  widen
 
 
-#### bookmarks
+bookmarks
+---------
 
     C-x r m <RET>  bookmark-set
     C-x r b <bookmark> <RET>  bookmark-jump
@@ -73,6 +79,8 @@ meta
 ----
 
     M-!  # run a shell command
-    M-g g (M-g M-g)  goto-line
-    M-x  # run command by name
     M-;  # comment/uncomment selected region
+
+    M-g g (M-g M-g)  goto-line
+    M-u  uppercase-word
+    M-x  # run command by name
