@@ -3,6 +3,7 @@ Key bindings
 ------------
 
 C-^    prelude-top-join-line
+C-a    prelude-move-beginning-of-line
 
 SUP-j  prelude-top-join-line
 SUP-k  prelude-kill-whole-line

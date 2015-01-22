@@ -2,6 +2,7 @@ key bindings
 ===========
 
     emacs -nd  # start emacs in terminal
+    emacs -q   # start emacs without init file
 
 
 control
