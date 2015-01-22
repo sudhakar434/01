@@ -70,6 +70,61 @@
 (not (equal 3 4))
 
 
+;; group a bunch of expressions
+(message "a") (message "b")
+(progn (message "a") (message "b"))
+(progn 3 4 )
+
+;; iteration
+(setq x 0)
+
+(while (< x 4)
+  (print (format "yay %d" x))
+  (setq x (1+ x)))
+
+
+;; commands
+(defun yay ()
+  "Insert “Yay!” at cursor position."
+    (insert "Yay!"))
+
+(defun yay ()
+  "Insert “Yay!” at cursor position."
+  (interactive)
+  (insert "Yay!"))
+
+(defun myFunction (myArg)
+  "Prints the argument"
+  (interactive "p")
+  (message "Your argument is: %d" myArg))
+
+(defun myFunction (myStart myEnd)
+  "Prints region start and end positions"
+  (interactive "r")
+  (message "Region begin at: %d, end at: %d" myStart myEnd))
+
+(defun add-number (x y)
+  "Add two numbers"
+  (interactive)
+  (message (+ x y)))
+(add-number)
+
+(defun add-number (x y)
+  "…"
+  (interactive "nN1: \n N2: \n")
+  (message "sum is %d" (+ x y))
+  )
+
+
+
+
+
+
+
+
+
+
+
 
 ;;; functions
 

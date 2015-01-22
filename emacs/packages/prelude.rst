@@ -2,6 +2,11 @@
 Key bindings
 ------------
 
+C-^    prelude-top-join-line
+
+SUP-j  prelude-top-join-line
+SUP-k  prelude-kill-whole-line
+
 C-c t  prelude-visit-term-buffer  # create or visit a terminal buffer
 C-c j  ace-jump-word-name
 C-c J  ace-jump-buffer

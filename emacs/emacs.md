@@ -80,6 +80,7 @@ meta
 
     M-!  # run a shell command
     M-;  # comment/uncomment selected region
+    M-^  delete-indentation
 
     M-g g (M-g M-g)  goto-line
     M-u  uppercase-word
