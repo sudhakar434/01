@@ -18,6 +18,18 @@
   (setq b 4)
   (+ a b))
 
+(setq y 2)
+
+(let ((y 1)
+      (z y))
+  (list y z))
+
+(let* ((y 1)
+       (z y))    ; Use the just-established value of y.
+  (list y z))
+
+
+
 
 ;;; list operations
 
@@ -32,6 +44,16 @@
 
 ;; list - make list from arguments
 (list 'a 'x "asdf" 6)
+
+(setq ll '("elisp.el" "test"))
+(remove (buffer-name) ll)
+(message "%s" ll)
+
+
+
+
+
+
 
 ;; printing
 (message "Master emacs")
@@ -83,6 +105,19 @@
   (setq x (1+ x)))
 
 
+;; dolist
+(setq animals '(gazelle giraffe lion tiger))
+
+(defun reverse-list-with-dolist (list)
+  "Reverse elements with dolist"
+  (let (value)
+    (dolist (element list value)
+      (setq value (cons element value)))))
+
+(reverse-list-with-dolist animals)
+
+
+
 ;; commands
 (defun yay ()
   "Insert “Yay!” at cursor position."
@@ -109,11 +144,47 @@
   (message (+ x y)))
 (add-number)
 
+
 (defun add-number (x y)
   "…"
   (interactive "nN1: \n N2: \n")
   (message "sum is %d" (+ x y))
-  )
+)
+
+
+
+
+
+
+(defvar django-nonindenting-tags
+  '("cache" "csrf_token" "cycle" "debug" "extends" "firstof" "include" "load" "now"
+    "regroup" "ssi" "templatetag" "trans" "url" "widthratio")
+  "List of tags that do not imply indentation (or require an end tag).")
+(print django-nonindenting-tags)
+
+(defvar django-indenting-tags
+  '("autoescape" "block" "blocktrans" "comment" "elif" "else" "empty"
+    "filter" "for" "if" "ifchanged" "ifequal" "ifnotequal" "plural" "spaceless" "verbatim" "with")
+  "List of template tags that imply indentation.")
+
+(defvar django-indenting-tags-regexp
+  (regexp-opt pony-indenting-tags)
+  "Regular expression matching a template tag that implies indentation.")
+
+
+(defun sgml-indent-line-num ()
+  "Indent the current line as SGML."
+  (let* ((savep (point))
+         (indent-col
+          (save-excursion
+            (back-to-indentation)
+            (if (>= (point) savep) (setq savep nil))
+            (sgml-calculate-indent))))
+    (if (null indent-col)
+        0
+      (if savep
+          (save-excursion indent-col)
+        indent-col))))
 
 
 

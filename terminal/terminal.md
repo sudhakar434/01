@@ -27,7 +27,8 @@ sudo ufw logging [on/off]
 ```
 
 
-#### System Info - Os, CPU, GPU
+system info - Os, CPU, GPU
+--------------------------
 
      lsb_release -a    #print distribution specific info
      nproc - display number of cores in a CPU
@@ -38,6 +39,15 @@ sudo ufw logging [on/off]
      lspci -v -s 00:02.0 #show graphic card details
      sudo dmidecode -t 16 #maximum ram supported & available slots
      sudo lshw -C memory  #all hardware memory info
+
+
+find
+----
+
+```
+find <path> -name <file name> -type f
+find <path> -iname <file name> -type d
+```
 
 
 #### JOBS
