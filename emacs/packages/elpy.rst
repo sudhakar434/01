@@ -12,16 +12,17 @@ Key bindings
 
    C-c C-c elpy-shell-send-region-or-buffer
 
-   C-u C-c C-c escape __name__ == "__main__" idiom
+       C-u C-c C-c escape __name__ == "__main__" idiom
 
    C-c C-d elpy-doc
 
-   C-d C-t elpy-test
+   C-c C-t elpy-test
 
    C-c C-v elpy-check
 
    C-c C-r elpy-refactor
 
+   C-c RET elpy-import-symbol-at-point
 
 
 functions
