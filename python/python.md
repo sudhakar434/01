@@ -85,6 +85,8 @@
     zip(range(5), range(5))
     zip(*zip(range(5), range(5)))
 
+    getattr(object, property)
+
 
 #### others
 
@@ -124,3 +126,29 @@
 
     # get size of object
     sys.getsizeof(object)
+
+
+locals, globals, vars
+---------------------
+
+Python uses namespaces to keep track of variables.
+
+local-namespace - specific to current func/method. read only
+global-namespace - specific to current module, read/write
+builtin-namespace - global to all modules
+
+If locals() is called inside a function it constructs
+a dictionary of the function namespace as of that moment and returns it.
+Further name assignments are not reflected in the returned dictionary,
+and any assignments to the dictionary are not reflected in the actual local namespace.
+
+If locals() is called outside a function it returns the
+actual dictionary that is the current namespace.
+Further changes to the namespace are reflected in the dictionary,
+and changes to the dictionary are reflected in the namespace.
+
+
+vars([object]) -> dictionary
+
+Without arguments, equivalent to locals().
+With an argument, equivalent to object.__dict__.
