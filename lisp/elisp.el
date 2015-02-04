@@ -12,7 +12,9 @@
 (set 'version "24.3")
 
 ;; assign value to a variable
-(setq version "24.3")
+(setq version 11)
+(setq version (1+ version))
+
 (setq editor "emacs" version "24.3")    ; this is a comment
 
 ;; use let for local variables
@@ -53,7 +55,10 @@
 (message "%s" ll)
 
 
-
+(define-minor-mode esc-mode
+  "Toggle esc-keys mode.
+   A minor mode so that my key settings override annoying major modes."
+  t " esc" 'esc-mode-map)
 
 
 
@@ -155,6 +160,45 @@
 )
 
 
+
+
+;; timers
+(timer-create)
+
+(print timer-list)
+(print timer-idle-list)
+
+;;(get-universal-time)
+(current-time-string)
+(current-time)
+
+
+
+(setq real-auto-save-timer (timer-create))
+(timer-set-time real-auto-save-timer (current-time)
+                real-auto-save-interval)
+
+
+(timer-set-function real-auto-save-timer 'real-auto-save)
+(timer-activate real-auto-save-timer)
+
+
+
+
+(defadvice do-auto-save (around maybe-run-after-save-hooks activate)
+  (let (maybe-auto-save-buffers)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and auto-save-visited-file-name
+                   (recent-auto-save-p)
+                   (buffer-modified-p))
+          (push buf maybe-auto-save-buffers))))
+    ad-do-it
+    (dolist (buf maybe-auto-save-buffers)
+      (with-current-buffer buf
+        (unless (buffer-modified-p)
+          (message "Running after-save-hook in %s" (buffer-name))
+          (run-hooks after-save-hook))))))
 
 
 
