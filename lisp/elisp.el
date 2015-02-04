@@ -6,6 +6,9 @@
 ;;; BASICS
 
 ;; assign value to a symbol
+(defparameter vern 11)
+
+(defvar version 11)
 (set 'version "24.3")
 
 ;; assign value to a variable
