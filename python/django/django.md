@@ -10,14 +10,21 @@ Templates
 	print loader.get_template('home.html')
 
 
-#### Basics
+basics
+------
 
     python -c "import django; print(django.get_version())"
     python -c "import django; print(django.VERSION)"
 
-    #All URL Patterns
-    from django.core.urlresolvers import get_resolver
-    get_resolver(None).reverse_dict.keys()
+
+urlresolvers
+------------
+
+    from django.core.urlresolvers import get_resolver, resolve
+    get_resolver(None).reverse_dict.keys()     #All URL Patterns
+    resolve('/')  # resolving URL paths to the corresponding view functions.
+    reverse('/')  # similar to url template tag
+    reverse_lazy('/')  # lazy version of reverse
 
 
 #### Users
@@ -85,13 +92,29 @@ django-admin.py shell --interface bpython
 ```
 
 
-#### Notes
+models
+------
+
+    # print sql query
+    print(Mymodel.objects.all().query)
+
+    # show all sql queries
+    from django.db import connection
+    connection.queries
+
+    # get model to avoid circular imports
+    from django.db.models import get_model
+    get_model('<app>', '<model>')
+
+
+others
+------
 
     Always use render instead of render_to_response
 
 
-
-#### Imports
+imports
+-------
 
      from django.contrib import admin
 
@@ -103,7 +126,7 @@ django-admin.py shell --interface bpython
      from django.conf.urls import patterns, url
 
      from django.core.mail import send_mail
-     from django.core.urlresolvers import reverse
+     from django.core.urlresolvers import reverse, resolver, reverse_lazy
 
      from django.db import models
      from django.db.models import signals
@@ -129,19 +152,3 @@ django-admin.py shell --interface bpython
      from django.views.generic.edit import FormView
 
      from django.utils import timezone
-
-
-
-models
-------
-
-    # print sql query
-    print(Mymodel.objects.all().query)
-
-    # show all sql queries
-    from django.db import connection
-    connection.queries
-
-    # get model to avoid circular imports
-    from django.db.models import get_model
-    get_model('<app>', '<model>')
