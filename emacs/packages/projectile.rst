@@ -18,3 +18,9 @@ C-c p F    - Find file in known projects
 C-c p b    - projectile-switch-to-bufferx
 
 C-c p s g  - helm-projectile-grep
+
+
+functions
+---------
+
+projectile-find-file-dwim
