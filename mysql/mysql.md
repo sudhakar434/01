@@ -41,7 +41,8 @@ join
     SELECT * FROM tableA INNER JOIN tableB ON tableA.name = tableB.name
 
 
-#### Backup MySQL
+backup
+------
 
     mysqldump -u root -p database > database.sql
     mysqldump -u root -p database table > table.sql

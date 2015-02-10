@@ -3,6 +3,8 @@
 
 ;;; code:
 
+
+
 ;;; BASICS
 
 ;; assign value to a symbol
@@ -35,7 +37,6 @@
 
 
 
-
 ;;; list operations
 
 ;; list is a sequence of zero or more lisp exp enclosed in parens
@@ -53,13 +54,6 @@
 (setq ll '("elisp.el" "test"))
 (remove (buffer-name) ll)
 (message "%s" ll)
-
-
-(define-minor-mode esc-mode
-  "Toggle esc-keys mode.
-   A minor mode so that my key settings override annoying major modes."
-  t " esc" 'esc-mode-map)
-
 
 
 
@@ -85,6 +79,7 @@
 (if [] "yes" "no")
 (and t nil)
 (or t nil)
+
 
 
 ;; conditioanls
@@ -156,9 +151,7 @@
 (defun add-number (x y)
   "…"
   (interactive "nN1: \n N2: \n")
-  (message "sum is %d" (+ x y))
-)
-
+  (message "sum is %d" (+ x y)))
 
 
 
@@ -172,7 +165,118 @@
 (current-time-string)
 (current-time)
 
+((symbol-at-point))
 
+(defun django-jump-to-template ()
+  (interactive)
+  (let ((fname (replace-regexp-in-string django-template-regexp "\\2"
+                                         (thing-at-point 'line))))
+    (let ((projfname (concat (django-root) "templates/" fname))
+          (appfname (concat default-directory "templates/" fname)))
+      (if (file-exists-p appfname)
+          (find-file appfname)
+        (find-file projfname)))))
+
+
+(defun xx ()
+  "print current word."
+  (interactive)
+  (message "%s" (thing-at-point 'word)))
+
+(defun xx2 ()
+  "print current word."
+  (interactive)
+  (let (p1 p2)
+    (save-excursion
+      (skip-chars-backward "-a-z0-9./")
+      (setq p1 (point))
+      (skip-chars-forward "-a-z0-9./")
+      (setq p2 (point))
+      (message "%s" (buffer-substring-no-properties p1 p2)))))
+
+"(or (> (nth 0 (syntax-ppss)) 0) (nth 3 (syntax-ppss)))"
+(syntax-ppss '(193, 12))
+(nthcdr 3 '(1 2  3 4 5))
+(cdr '(1 2  3 4 5))
+(nth 3 '(1 2 3 4 5))
+
+
+(defun point-in-string-or-comment ()
+  "This is it."
+  (interactive)
+  (let ((ppss (syntax-ppss)))
+    (or (car (setq ppss (nthcdr 3 ppss)))
+        (car (setq ppss (cdr ppss)))
+        (nth 3 ppss))))
+
+(defun elpy-doc--symbol-at-point ()
+  "Return the Python symbol at point, including dotted paths."
+  (with-syntax-table python-dotty-syntax-table
+    (let ((symbol (symbol-at-point)))
+      (if symbol
+          (symbol-name symbol)
+        nil))))
+
+(elpy-doc--symbol-at-point)
+
+
+(defun test-inside-curly-braces ()
+  (interactive)
+  (when (and (looking-back "'\\(.*?\\)") (looking-at "\\(.*?\\)'"))
+    (message "inside curly braces")))
+
+
+(defun beginning-of-string ()
+  "Moves to the beginning of a syntactic string"
+  (interactive)
+  (unless (point-in-string-p (point))
+    (error "You must be in a string for this command to work"))
+  (while (point-in-string-p (point))
+    (forward-char -1))
+  (point))
+
+(defun qq ()
+  "Moves to the beginning of a syntactic string"
+  (interactive)
+  (unless (point-in-string-p (point))
+    (error "You must be in a string for this command to work"))
+  (while (point-in-string-p (point))
+    (forward-char -1))
+  (progn
+    (point)
+    (point)))
+
+(defun swap-quotes ()
+  "Swaps the quote symbols in a \\[python-mode] string"
+  (interactive)
+  (save-excursion
+    (let ((bos (save-excursion
+                 (beginning-of-string)))
+          (eos (save-excursion
+                 (beginning-of-string)
+                 (forward-sexp)
+                 (point)))
+          (replacement-char ?\'))
+      (goto-char bos)
+      ;; if the following character is a single quote then the
+      ;; `replacement-char' should be a double quote.
+      (when (eq (following-char) ?\')
+        (setq replacement-char ?\"))
+      (delete-char 1)
+      (insert replacement-char)
+      (goto-char eos)
+      (delete-char -1)
+      (insert replacement-char))))
+
+
+
+(point)
+(mark)
+(current-buffer)
+
+""
+''
+{ "(test-inside-curly-braces)" }
 
 (setq real-auto-save-timer (timer-create))
 (timer-set-time real-auto-save-timer (current-time)
@@ -182,6 +286,17 @@
 (timer-set-function real-auto-save-timer 'real-auto-save)
 (timer-activate real-auto-save-timer)
 
+
+(defun shell-command-to-string (command)
+  "Execute shell command COMMAND and return its output as a string."
+  (with-output-to-string
+    (with-current-buffer standard-output
+      (call-process shell-file-name nil t nil shell-command-switch command))))
+
+(defun goto-file ()
+  "open file under cursor"
+  (interactive)
+  (find-file (shell-command-to-string (concat "locate " (current-word) "|head -c -1" )) ))
 
 
 
@@ -282,6 +397,27 @@ count-words  # word count on current buffer
 
 ;;; variables
 package-activate-list  - list of installed packages
+
+
+(defvar elpy-config--get-config "import json
+import sys
+
+try:
+    import xmlrpclib
+except ImportError:
+    import xmlrpc.client as xmlrpclib
+
+from distutils.version import LooseVersion
+
+config = {}
+json.dump(config, sys.stdout)
+")
+
+
+(define-minor-mode esc-mode
+  "Toggle esc-keys mode.
+   A minor mode so that my key settings override annoying major modes."
+  t " esc" 'esc-mode-map)
 
 
 

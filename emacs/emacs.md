@@ -86,3 +86,7 @@ meta
     M-g g (M-g M-g)  goto-line
     M-u  uppercase-word
     M-x  # run command by name
+
+
+functions
+=========
