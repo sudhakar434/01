@@ -100,6 +100,14 @@ gitignore
     git commit -m ".gitignore updated"
 
 
+rm
+--
+
+```
+git rm $(git ls-files --deleted)
+```
+
+
 others
 ------
 
@@ -118,3 +126,5 @@ others
     du -sh .git/
 
     gitk <file>  # Git - Check all revisions of a file
+
+    git ls-files -d  # show deleted files
