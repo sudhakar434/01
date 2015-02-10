@@ -87,10 +87,18 @@ find <path> -iname <file name> -type d
      ps -ef | grep '[c]elery'    #grep ps without grep
 
 
-#### usb
+drives
+------
 
-     #write permissions for pendrive
-     sudo mount -o remount,rw '/media/SGTL MSCN'
+```
+sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pendrive
+
+fdisk -l  # list partition table
+
+lsblk  # list block devices
+
+sudo lshw -class disk -short  # list disks
+```
 
 
 #### playing with files
