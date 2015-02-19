@@ -30,15 +30,18 @@ sudo ufw logging [on/off]
 system info - Os, CPU, GPU
 --------------------------
 
-     lsb_release -a    #print distribution specific info
-     nproc - display number of cores in a CPU
-     cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu
-     lscpu  #show cpu architecture
-     lspci #list all pci connections
-     lspci | grep VGA #show graphic card details
-     lspci -v -s 00:02.0 #show graphic card details
-     sudo dmidecode -t 16 #maximum ram supported & available slots
-     sudo lshw -C memory  #all hardware memory info
+```
+lsb_release -a    #print distribution specific info
+nproc - display number of cores in a CPU
+cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu
+lscpu  #show cpu architecture
+lspci #list all pci connections
+lspci | grep VGA #show graphic card details
+lspci -v -s 00:02.0 #show graphic card details
+sudo dmidecode -t 16 #maximum ram supported & available slots
+sudo lshw -C memory  #all hardware memory info
+free  # display amount of used/free memory in system
+```
 
 
 find
