@@ -41,15 +41,19 @@ join
     SELECT * FROM tableA INNER JOIN tableB ON tableA.name = tableB.name
 
 
+delete
+-----
+
 backup
-------
+======
 
     mysqldump -u root -p database > database.sql
     mysqldump -u root -p database table > table.sql
     mysqldump -h 192.168.0.100 -u root -p pearl paypal_ipn > paypal_ipn.sql
 
 
-### Pager
+pager
+=====
 
     # show page by page
     pager less
