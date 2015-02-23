@@ -53,18 +53,21 @@ find <path> -iname <file name> -type d
 ```
 
 
-#### JOBS
+jobs
+----
 
-    &       - run a job in background
-    jobs -l - list jobs will PID
-    fg, bg  - switch jobs from background to foreground
-    disown  - detach a process from terminal
-    nohup   - ignore SIGHUP signal sent by terminal
-    ps -ef  - list all process
-    ps x -o  "%p %r %y %x %c "   #process with id & parent id
-    nice -n 19 command - run this command with lowest priority
-    2>/dev/null 1>/dev/null google-chrome &
-    ps axjf  #get process group id
+```
+&       - run a job in background
+jobs -l - list jobs will PID
+fg, bg  - switch jobs from background to foreground
+disown  - detach a process from terminal
+nohup   - ignore SIGHUP signal sent by terminal
+ps -ef  - list all process
+ps x -o  "%p %r %y %x %c "   #process with id & parent id
+nice -n 19 command - run this command with lowest priority
+2>/dev/null 1>/dev/null google-chrome &
+ps axjf  #get process group id
+```
 
 
 #### awk
@@ -134,6 +137,16 @@ sudo lshw -class disk -short  # list disks
 
      rfkill list #show status of wireless devices
      ifconfig # show ip, mac address
+
+
+services
+--------
+
+```
+sudo service <name> start/stop/status/restart
+
+sudo start/stop/status/restart <service>
+```
 
 
 #### Others
