@@ -27,7 +27,8 @@ urlresolvers
     reverse_lazy('/')  # lazy version of reverse
 
 
-#### Users
+users
+-----
 
     ./manage.py changepassword admin
     ./manage.py createsuperuser
@@ -45,7 +46,8 @@ urlresolvers
     usr.save()
 
 
-#### South
+south
+-----
 
     ./manage.py schemamigration my-app --initial
     ./manage.py migrate my-app
@@ -105,6 +107,23 @@ models
     # get model to avoid circular imports
     from django.db.models import get_model
     get_model('<app>', '<model>')
+
+
+templates
+---------
+
+```
+from django.conf import settings
+from django.template.loaders.app_directories import app_template_dirs
+
+import os
+
+template_files = []
+for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
+    for dir, dirnames, filenames in os.walk(template_dir):
+        for filename in filenames:
+        template_files.append(os.path.join(dir, filename))
+```
 
 
 others
