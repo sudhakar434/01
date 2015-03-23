@@ -8,13 +8,14 @@ MySQL
 show
 ----
 
-    SHOW DATABASES;
+```
+SHOW DATABASES;
+SHOW TABLES;
+SHOW TABLES LIKE 'b%';  # Show tables begin with b
 
-    SHOW TABLES;
-    SHOW TABLES LIKE 'b%';  # Show tables begin with b
-
-    # show status of all tables
-    SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
+# show status of all tables
+SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
+```
 
 
 select
@@ -44,10 +45,11 @@ join
 delete
 -----
 
+
 backup
 ======
 
-    mysqldump -u root -p database > database.sql
+     mysqldump -u root -p database > database.sql
     mysqldump -u root -p database table > table.sql
     mysqldump -h 192.168.0.100 -u root -p pearl paypal_ipn > paypal_ipn.sql
 

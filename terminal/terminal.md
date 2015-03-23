@@ -1,9 +1,7 @@
-Terminal
-========
+### terminal commands
 
 
-rsyslog
--------
+#### rsyslog
 
 ```
 cat /var/log/syslog  # check log messages
@@ -11,8 +9,7 @@ cat /var/log/dmesg  # check error messages
 ```
 
 
-ufw
----
+#### ufw
 
 ```
 sudo ufw status verbose
@@ -27,8 +24,7 @@ sudo ufw logging [on/off]
 ```
 
 
-system info - Os, CPU, GPU
---------------------------
+#### system info - Os, CPU, GPU
 
 ```
 lsb_release -a    #print distribution specific info
@@ -149,18 +145,30 @@ sudo start/stop/status/restart <service>
 ```
 
 
+#### top
+
+```
+1 - show cpu core usage
+n - set number of tasks
+W - write .toprc config file
+```
+
+
+#### alias
+
+```
+alias  # show all alias
+alias ls='ls -a'
+```
+
+
 #### Others
 
-    top -> 1 - show cpu core usage
-        -> n set number of tasks
-        -> W write .toprc config file.
-
-     alias ls='ls -a'
-
-     sudo passwd #set a single char password
-
-     df -h  #show file system disk usage
-     du -ksh /var/lib/mysql/    #mysql data usage
-     du -hs #show human readable summary of disk usage
-     du -d=1  # --max-depth = 1
-     du /var/lib/mysql/ -sh
+```
+sudo passwd #set a single char password
+df -h  #show file system disk usage
+du -ksh /var/lib/mysql/    #mysql data usage
+du -hs #show human readable summary of disk usage
+du -d=1  # --max-depth = 1
+du /var/lib/mysql/ -sh
+```

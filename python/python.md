@@ -1,57 +1,58 @@
-## Learning Python
+### python
+
+
+#### iterator
+
+```
+my_list[::-1]       # reverse a list
+```
 
 
 #### str
 
-    'foo'.title()
+```
+'foo'.title()
 
-     # Print Numbers with leading zero
-     print str(1).zfill(2)
-     print "%2d" % (1,)
+print(str(1).zfill(2))  # Print Numbers with leading zero
+print("%2d" % (1,))
 
-     # strip all whitespaces
-     pattern = re.complie(r'\s+')
-     pattern.sub('', ' \t foo \n bar \n ')
-     ''.join(' \n ff \n bar \t '.split())
+''.join(' \n ff \n bar \t '.split())  # strip all spaces
 
-    # strip punctuation from string
-    s = 'a.b'
-
-    s.translate(string.maketrans("",""), string.punctuation)
-
-    regex = re.compile('[%s]'.format(re.escape(string.punctuation)))
-    regex.sub('', s)
-
-    ''.join(i for i in s if i not in set(string.punctuation))
-
-    for c in string.punctuation:
+'test.py'.startswith('test')
+'test.py'.endswith('.py')
+```
 
 
-#### dict, lists, tuples
+#### dict
 
-    # Tuples are immutable, usually contains heterogeneous sequence of elements
-    # that are accessed by unpacking or indexing.
-    # used as key in dict, slight performance improvement
+```
+dict(((k, globals()[k]) for k in ('foo', 'bar')))  # create dict from variables
+def createDict(*args): return dict(((k, eval(k)) for k in args))
 
-    # Lists are mutable, usually contain homogeneous sequence of elements
-    # that are accessed by iterating over the list.
+sorted(d.iteritems(), key=operator.itemgetter(1)) #sort dict based on value
+```
 
-    # index of an item in a list
-     ["foo","bar","baz"].index('bar')
-     [i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
 
-     # create dict from variables
-     dict(((k, globals()[k]) for k in ('foo', 'bar')))
-     def createDict(*args): return dict(((k, eval(k)) for k in args))
+#### lists
 
-     #sort dict based on value
-     sorted(d.iteritems(), key=operator.itemgetter(1))
+```
+Lists are mutable, usually contain homogeneous sequence of elements
+that are accessed by iterating over the list.
 
-     # reverse a list
-     my_list[::-1]
+["foo","bar","baz"].index('bar')  # index of an item in a list
+[i for i, j in enumerate(['foo', 'bar', 'baz']) if j == 'foo']
 
-     # reverse a list with index also
-     reversed(list(enumerate([1,2,3])))
+reversed(list(enumerate([1,2,3])))  # reverse a list with index also
+```
+
+
+#### tuples
+```
+Tuples are immutable, usually contains heterogeneous sequence of elements
+that are accessed by unpacking or indexing.
+used as key in dict, slight performance improvement
+
+```
 
 
 #### incompatible type comparision
@@ -69,6 +70,8 @@
      # line count
      sum(1 for line in open('Charts.ipynb'))
      len(open('a.txt').read().splitlines())
+     
+     data = open('a.txt').read()  # read file into string
 
 
 
