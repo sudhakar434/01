@@ -90,3 +90,5 @@ meta
 
 functions
 =========
+
+    browse-url  # open url

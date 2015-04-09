@@ -82,6 +82,8 @@
 
 
 
+
+
 ;; conditioanls
 (if (not (require 'elpy))
     (message "elpy is not installed")
@@ -118,6 +120,19 @@
       (setq value (cons element value)))))
 
 (reverse-list-with-dolist animals)
+
+
+
+
+;; try catch
+(condition-case nil
+    (progn
+      (asaa)
+      (message "running try "))
+  (error
+   (message "catched error")))
+   
+
 
 
 
