@@ -132,8 +132,12 @@
   (error
    (message "catched error")))
    
+(setq real-auto-save-alist '("a"))
 
 
+(if (get-buffer "a")
+    (message "a")
+  (message "b"))
 
 
 ;; commands

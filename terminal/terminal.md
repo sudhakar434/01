@@ -103,36 +103,46 @@ sudo lshw -class disk -short  # list disks
 ```
 
 
-#### playing with files
+files
+-----
 
-     wc -L file  #line which is max length in file
-     head -n -1 foo.txt #show foo.txt without last line
+    wc -L file  #line which is max length in file
+    head -n -1 foo.txt #show foo.txt without last line
 
-     split -b 1024 big_file small_file_prefix
-     split -l 1000 big_file small_file_prefix
+    split -b 1024 big_file small_file_prefix
+    split -l 1000 big_file small_file_prefix
 
-     # run bash as sudo to append file
-     sudo bash -c "cat in_file >> append_file"
-     cat in_file | sudo tee -a append_file
+    # run bash as sudo to append file
+    sudo bash -c "cat in_file >> append_file"
+    cat in_file | sudo tee -a append_file
 
     bzip2 file  #compress
     bunzip2 file.bz2 #decompress
     gzip file
     zip file.zip file
+    zip -r file.zip file  # recursive zip
 
 
-#### network
 
-     #show other computers in lan
-     avahi-browse -tl _workstation._tcp
+network
+-------
 
-     ssh user@host
+    #show other computers in lan
+    avahi-browse -tl _workstation._tcp
 
-     rsync -a user@host:/path/to/dir /path/to/target
-     options: -avn :: archive, verbose, dry run
+    ssh user@host
 
-     rfkill list #show status of wireless devices
-     ifconfig # show ip, mac address
+    # ssh using keys
+    ssh-keygen -t rsa
+    ssh user@host mkdir -p .ssh
+    cat .ssh/id_rsa.pub | ssh user@host 'cat >> .ssh/authorized_keys'
+    
+    rsync -a user@host:/path/to/dir /path/to/target
+    options: -avn :: archive, verbose, dry run
+
+    rfkill list #show status of wireless devices
+    ifconfig # show ip, mac address
+
 
 
 services

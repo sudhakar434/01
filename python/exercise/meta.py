@@ -12,7 +12,7 @@ class UpperAttrMetaclass(type):
         return super(UpperAttrMetaclass, cls).__new__(cls, clsname, bases, uppercase_attr)
 
 
-class Test(object):
+class Test:
     a = 1
 
     __metaclass__ = UpperAttrMetaclass
@@ -21,8 +21,21 @@ class Test(object):
         pass
 
 
-class Normal(object):
+class Field:
     a = 1
 
+    def __init__(self, x):
+        self.x = x
+    
     def nn(self):
         pass
+
+
+Dclass = type('Dynamic', (Field, ), {'foo': 'bar'})
+
+
+d = Dclass(2)
+print(vars(d))
+print(d.foo)
+
+

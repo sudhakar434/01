@@ -15,6 +15,8 @@ SHOW TABLES LIKE 'b%';  # Show tables begin with b
 
 # show status of all tables
 SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
+
+SHOW FULL PROCESSLIST;  # show process
 ```
 
 
