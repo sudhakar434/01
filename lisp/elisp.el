@@ -47,6 +47,8 @@
 
 ;; cdr returns first element of the list.
 (cdr '(a b c d))
+(cdr '(a b))
+(car (cdr '(a b)))
 
 ;; list - make list from arguments
 (list 'a 'x "asdf" 6)
@@ -112,6 +114,17 @@
 
 ;; dolist
 (setq animals '(gazelle giraffe lion tiger))
+
+(defun print-list (list)
+  (dolist (element list)
+    (message "%s" element)))
+
+(print-list animals)
+
+(let (value)
+  (dolist (element animals value)
+    (message "%s" value)
+    (message "%s" animals)))
 
 (defun reverse-list-with-dolist (list)
   "Reverse elements with dolist"
