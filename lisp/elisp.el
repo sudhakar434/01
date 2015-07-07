@@ -199,6 +199,21 @@
 
 ((symbol-at-point))
 
+;; helm
+(helm :sources (let ((cmds  ()))
+                 (mapatoms (lambda (s) (when (commandp s) (push s cmds))))
+                 cmds))
+
+(helm
+ :sources '(helm-source-dired-recent-dirs)
+ :buffer buf)
+
+(helm
+ :sources '(1 2 3)
+ :buffer buf)
+
+
+
 (defun django-jump-to-template ()
   (interactive)
   (let ((fname (replace-regexp-in-string django-template-regexp "\\2"
@@ -306,8 +321,19 @@
 (mark)
 (current-buffer)
 
-""
-''
+(defvar helm-source-commands-history
+  (helm-build-sync-source "Emacs commands history"
+    :candidates (lambda ()
+                  (let ((cmds))
+                    (dolist (elem extended-command-history)
+                      (push (intern elem) cmds))
+                    cmds))
+    :coerce #'intern-soft
+    :action #'command-execute)
+  "Emacs commands history")
+
+(helm :sources helm-source-commands-history)
+
 { "(test-inside-curly-braces)" }
 
 (setq real-auto-save-timer (timer-create))
