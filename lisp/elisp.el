@@ -144,16 +144,13 @@
       (message "running try "))
   (error
    (message "catched error")))
-   
-(setq real-auto-save-alist '("a"))
-
 
 (if (get-buffer "a")
     (message "a")
   (message "b"))
 
 
-;; commands
+;; functions
 (defun yay ()
   "Insert “Yay!” at cursor position."
     (insert "Yay!"))
@@ -184,6 +181,14 @@
   "…"
   (interactive "nN1: \n N2: \n")
   (message "sum is %d" (+ x y)))
+
+(defun add-numbers (x y &optional z)
+  (if z
+      (+ x y z))
+  (+ x y)
+  )
+(add-numbers 1 2 3)
+(add-numbers 1 2)
 
 
 
