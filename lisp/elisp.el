@@ -321,7 +321,14 @@
       (insert replacement-char))))
 
 
+(search-forward-regexp ".")
+(buffer-file-name)
+(setq test-str )
+(string-match "eliz" buffer-file-name)
+(string-match tramp-file-name-regexp buffer-file-name)
 
+(goto-char (nth 8 (syntax-ppss)))
+           
 (point)
 (mark)
 (current-buffer)

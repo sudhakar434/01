@@ -68,33 +68,38 @@ ps axjf  #get process group id
 
 #### awk
 
-    ls -l | awk '{ print $5  }'
-    ls -l | awk '{ print $2, '\t', $1  }'
-    awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
-    cat test.txt | awk '{print NR, NF, $0 }'
-    ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+```
+ls -l | awk '{ print $5  }'
+ls -l | awk '{ print $2, '\t', $1  }'
+awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
+cat test.txt | awk '{print NR, NF, $0 }'
+ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+```
 
 
 #### sed
 
-    sed -n 5p file          #print line 5 from file
-    sed -n '5,10p' file     #print 5 to 10 lines
-    sed -i '$ d' foo.txt    #delete last line of file
+```
+sed -n 5p file          #print line 5 from file
+sed -n '5,10p' file     #print 5 to 10 lines
+sed -i '$ d' foo.txt    #delete last line of file
+sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
+```
 
 
 #### grep
 
-     grep -rl "django" /path/to/dir/  # search for string in all files
-     grep -v 'django'  # grep for non matching lines
-     ps -ef | grep '[c]elery'    #grep ps without grep
+```
+grep -rl "django" /path/to/dir/  # search for string in all files
+grep -v 'django'  # grep for non matching lines
+ps -ef | grep '[c]elery'    #grep ps without grep
+```
 
 
 drives
 ------
 
 ```
-sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pendrive
-
 fdisk -l  # list partition table
 
 lsblk  # list block devices
@@ -182,3 +187,23 @@ du -hs #show human readable summary of disk usage
 du -d=1  # --max-depth = 1
 du /var/lib/mysql/ -sh
 ```
+
+
+#### usb 
+
+     dosfsck -a /dev/sdb1  # write permissions
+
+     sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pen drive
+
+
+### Tools to identify bottleneck
+    mpstat
+    sar
+    vmstat -s
+    vmstat -m | head -5
+    vmstat -f
+    vmstat
+    iotop
+    htop
+
+
