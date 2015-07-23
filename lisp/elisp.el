@@ -190,8 +190,16 @@
 (add-numbers 1 2 3)
 (add-numbers 1 2)
 
+(forward-line 1)
+(forward-line 0)
+(forward-line)
+(forward-line -1)
+
+(beginning-of-line)
+(goto-char end)
 
 
+(push-mark )
 ;; timers
 (timer-create)
 
