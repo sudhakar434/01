@@ -44,7 +44,7 @@ find
 ----
 
 ```
-find <path> -name <file name> -type f
+find <path> -name <file name> -type
 find <path> -iname <file name> -type d
 ```
 

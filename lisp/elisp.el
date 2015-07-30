@@ -100,9 +100,8 @@
 
 
 ;; group a bunch of expressions
-(message "a") (message "b")
 (progn (message "a") (message "b"))
-(progn 3 4 )
+
 
 ;; iteration
 (setq x 0)
@@ -135,8 +134,6 @@
 (reverse-list-with-dolist animals)
 
 
-
-
 ;; try catch
 (condition-case nil
     (progn
@@ -145,15 +142,45 @@
   (error
    (message "catched error")))
 
-(if (get-buffer "a")
-    (message "a")
-  (message "b"))
+(eql "r" "ar")
+(eql "r" "r")
+(eq "r" "r")
+(string-equal "r" "r")
+
+
+
+;; functions inbuilt
+(defun cr (choice)
+
+  ;; (interactive "c(C)hoose (A)n (O)ption")
+  ;; (interactive "cBuffer to rename: \nsRename buffer %s to: ")
+  (interactive "c[a]: a [b]:b")
+  (require 'cl)
+  ;; (interactive)
+  ;; (read-char "(C)hoose (A)n (O)ption")
+  ;; (if (= choice 97)
+  ;;     (message "foo")
+  ;;   (message "bar")
+  ;;   )
+
+
+  (case (char-to-string 114)
+    ("r"
+     (message "r"))
+    ("i"
+     (message "i"))
+    (otherwise
+     "Something else"))
+  )
+
+
+
 
 
 ;; functions
 (defun yay ()
   "Insert “Yay!” at cursor position."
-    (insert "Yay!"))
+  (insert "Yay!"))
 
 (defun yay ()
   "Insert “Yay!” at cursor position."
