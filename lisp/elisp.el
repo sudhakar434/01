@@ -25,6 +25,9 @@
   (setq b 4)
   (+ a b))
 
+(let ((a "3"))
+  a)
+
 (setq y 2)
 
 (let ((y 1)
@@ -47,6 +50,15 @@
 
 ;; cdr returns first element of the list.
 (cdr '(a b c d))
+
+;; append items
+(append '(1 2 3) '(a b c d))
+(append '(1 2 3) )
+
+(setq list1 '(1 2 3))
+(add-to-list list1 4)
+
+
 
 ;; list - make list from arguments
 (list 'a 'x "asdf" 6)
@@ -81,6 +93,49 @@
 (or t nil)
 
 
+(defun im-is-markdown-bufferp ()
+  "return t if opened buffer is markdown"
+  (member (downcase (file-name-extension (buffer-file-name)))
+          '("md", "markdown")))
+
+(call-process-shell-command
+ 
+ 
+ 
+ )
+
+(call-process "/bin/bash" nil t nil "-c" "ls -t ~/test.el *.txt | head -5")
+
+(with-temp-buffer foo)
+(call-process "/bin/bash" nil t nil "-c" 
+              "pandoc -o test.html test.md")
+
+
+(shell-command (format "%s -o %s %s"
+                       "pandoc"
+                       "test.html"
+                       "test.md"
+                       )
+               )
+
+(get-buffer-process (buffer-file-name))
+
+
+(defun im-serve-file (file)
+  (with-current-buffer (get-buffer file)
+    (httpd-start)
+    (impatient-mode)
+    (browse-url (concat im-server-url temp-file))))
+
+(im-serve-file "/home/anand/projects/lisp/impatient-markdown/test.html")
+
+(get-buffer-create "/home/anand/projects/lisp/impatient-markdown/test.html")
+
+
+
+(concat im-server-url "ff")
+
+(browse-url "http://127.0.0.1:8080/imp/")
 
 ;; conditioanls
 (if (not (require 'elpy))
@@ -90,6 +145,23 @@
 (when (not (require 'elpy))
   (message "elpy is not installed")
   (message "go for next package."))
+
+(cond 
+ (1 2aa)
+ (2 2))
+
+(defun changed (&rest args)
+  (message "changed"))
+
+(add-hook 'after-change-functions 'changed nil t)
+
+(dolist (buf impatient-markup-buffers-list)
+  (shell-command (format "%s -o %s %s"
+                         impatient-markup-pandoc
+                         (impatient-markup-make-html-file buf)
+                         (buffer-file-name buf)))
+  (message "updated")
+  )
 
 (equal "abc" "abc")
 (not (equal 3 4))
@@ -119,12 +191,31 @@
 
 (reverse-list-with-dolist animals)
 
+(unless (< 2 3)
+  (message "body execute"))
+
+(unless nil
+  (message "body execute"))
+
+(unless t
+  (message "body execute"))
+
+(while nil
+  (message "body execute"))
+
+(defun imp--notify-clients ()
+  (interactive)
+  (while imp-client-list
+    (imp--send-state-ignore-errors (pop imp-client-list))))
+
+(unless t
+  (message "body execute"))
 
 
 ;; commands
 (defun yay ()
   "Insert “Yay!” at cursor position."
-    (insert "Yay!"))
+  (insert "Yay!"))
 
 (defun yay ()
   "Insert “Yay!” at cursor position."
@@ -153,6 +244,41 @@
   (interactive "nN1: \n N2: \n")
   (message "sum is %d" (+ x y)))
 
+(progn 
+  (setq function "foo")
+
+  (save-excursion
+    (with-help-window (help-buffer)
+      (prin1 function)
+      ;; Use " is " instead of a colon so that
+      ;; it is easier to get out the function name using forward-sexp.
+      (princ " is ")
+      (describe-function-1 function)  
+      (with-current-buffer standard-output
+        ;; Return the text we displayed.
+        (buffer-string)))))
+
+(describe-function-1 'describe-function)
+(describe-function-1 describe-function)
+(describe-function)
+
+(defun foo ()
+  "fffffffff"
+(message "%s" "aa"))
+(message "%s" (find-lisp-object-file-name function 'foo))
+(message "%s" (find-lisp-object-file-name 'foo function))
+(message "%s" (find-lisp-object-file-name function #'describe-function))
+
+(find-lisp-object-file-name #'describe-function function)
+(find-lisp-object-file-name #'describe-function "elpy")
+(find-lisp-object-file-name #'describe-function "elpy")
+
+
+(help-make-xrefs "*Help*")
+(help-make-xrefs "elisp.el")
+
+
+
 
 
 ;; timers
@@ -165,7 +291,106 @@
 (current-time-string)
 (current-time)
 
+
+
+
+(defvar helm-source-commands-history
+  
+  )
+
+
+(defvar helm-source-commands-history
+  (helm-build-sync-source "Emacs commands history"
+    :candidates (lambda ()
+                  (let ((cmds))
+                    (dolist (elem extended-command-history)
+                      (push (intern elem) cmds))
+                    cmds))
+    :coerce #'intern-soft
+    :action #'command-execute)
+  "Emacs commands history")
+(helm :sources helm-source-commands-history)
+
+(current-frame-configuration) 
+
+
+(defun strip-text-properties(txt)
+  (set-text-properties 0 (length txt) nil txt)
+  txt)
+
+(setq auto-capitalize-words '(1))
+
+(defun add-to-autocapitalize-words ()
+  "Add word at point to auto-capitalize-words list."
+  (interactive)
+  (add-to-list 'auto-capitalize-words 
+               (strip-text-properties (thing-at-point 'word))))
+
+
+
+
+(defun tap ()
+  "Add word at point to auto-capitalize-words list."
+  (interactive)
+  (thing-at-point 'word))
+
+
+(defun foo ()
+  (message "foo"))
+
+(add-hook 'buffer-list-update-hook 'foo)
+
+
+(helm :sources helm-source-emacs-commands)
+(defvar helm-source-emacs-commands
+  (helm-build-sync-source "Emacs commands"
+    :candidates (lambda ()
+                  (let ((cmds) (h-cmds))
+                    (mapatoms
+                     (lambda (elt) (when (commandp elt) (push elt cmds))))
+                    (dolist (elem extended-command-history)
+                      (push (intern elem) h-cmds))
+                    (append h-cmds cmds)))
+    :coerce #'intern-soft
+    :action #'command-execute)
+  "A simple helm source for Emacs commands.")
+
+(commandp 'gnus-score-mode)
+
+
+(setq elem "foo")
+(setq helm-commands-history-source nil)
+(setq helm-commands-history-source (append '(intern elem) helm-commands-history-source))
+
+
+()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ((symbol-at-point))
+
+
+
+
+
+
+
+
+
 
 (defun django-jump-to-template ()
   (interactive)
@@ -246,6 +471,19 @@
     (point)
     (point)))
 
+(defun foo ()
+  (interactive)
+  (let ((beg (python-nav-beginning-of-statement))
+        (end (python-nav-end-of-statement)))
+    (elpy-shell-get-or-create-process)
+    (python-shell-send-string (buffer-substring beg end)))
+  ;; (python-shell-send-string "print('a')")
+  )
+
+(defun bar()
+  (interactive)
+  (python-shell-send-string (buffer-string) "print('a')"))
+
 (defun swap-quotes ()
   "Swaps the quote symbols in a \\[python-mode] string"
   (interactive)
@@ -268,8 +506,35 @@
       (delete-char -1)
       (insert replacement-char))))
 
+(defun ff ()
+  (interactive)
+  (let ((indent (current-indentation)))
+    (while (eq indent (current-indentation))
+      (previous-line))
+    (next-line)
+    (beginning-of-line)
+    (set-mark-command nil)
+    (while (eq indent (current-indentation))
+      (next-line))
+    (previous-line)
+    (end-of-line)
+    (setq deactivate-mark nil))
+  )
 
+(next-line -1)
+(previous-line -1)
 
+(* 2 3)
+
+(defun move ()
+  (interactive)
+  (let  (indent (current-indentation))
+    (while (eq indent (current-indentation))
+      (next-line)))
+  (previous-line))
+
+(while 
+    )a a()
 (point)
 (mark)
 (current-buffer)
@@ -282,16 +547,22 @@
 (timer-set-time real-auto-save-timer (current-time)
                 real-auto-save-interval)
 
+(buffer-string)
 
 (timer-set-function real-auto-save-timer 'real-auto-save)
 (timer-activate real-auto-save-timer)
 
 
-(defun shell-command-to-string (command)
-  "Execute shell command COMMAND and return its output as a string."
-  (with-output-to-string
-    (with-current-buffer standard-output
-      (call-process shell-file-name nil t nil shell-command-switch command))))
+
+(shell-command-to-string (concat "locate " (current-word) "|head -c -1" ))
+
+(shell-command (format "%s"  "ls") "*scratch*")
+
+
+(get-buffer-create  (concat (downcase (file-name-sans-extension buf)) ".html"))
+
+(setq buf "/home/anand/projects/lisp/impatient-markup/README.md")
+
 
 (defun goto-file ()
   "open file under cursor"
@@ -399,6 +670,7 @@ count-words  # word count on current buffer
 package-activate-list  - list of installed packages
 
 
+
 (defvar elpy-config--get-config "import json
 import sys
 
@@ -421,5 +693,6 @@ json.dump(config, sys.stdout)
 
 
 
-
+(recenter-top-bottom 0)  
+(set-window-start (selected-window) (point))
 ;;; elisp.el ends here
