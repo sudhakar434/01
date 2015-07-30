@@ -15,6 +15,8 @@ SHOW TABLES LIKE 'b%';  # Show tables begin with b
 
 # show status of all tables
 SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
+
+SHOW FULL PROCESSLIST;  # show process
 ```
 
 
@@ -49,7 +51,7 @@ delete
 backup
 ======
 
-     mysqldump -u root -p database > database.sql
+    mysqldump -u root -p database > database.sql
     mysqldump -u root -p database table > table.sql
     mysqldump -h 192.168.0.100 -u root -p pearl paypal_ipn > paypal_ipn.sql
 

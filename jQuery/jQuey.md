@@ -14,3 +14,21 @@ Disable button
     $('select item').disabled = true;
 
     change vs click
+
+
+find element type
+-----------------
+
+```
+$('#target').is('input')
+
+$('#target').get(0).tagName.toLowerCase()
+```
+
+
+selectors
+---------
+
+
+
+

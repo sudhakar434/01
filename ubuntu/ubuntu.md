@@ -3,7 +3,6 @@ Linux
 
 
 
-
 #### Installing screenkey
 
     # Screenkey shows the keys pressed while screencasting
@@ -21,8 +20,7 @@ Linux
 ### JOBS & PRIORITY
 
 
-Change priority of jobs
-    renice -20(priority) 7448(jobid)
+    renice -20(priority) 7448(jobid) # Change priority of jobs
 
 
 ### IDENTIFY BOTTLENECK
@@ -34,3 +32,11 @@ Change priority of jobs
     vmstat
     iotop
     htop
+
+
+### create new user
+
+    sudo useradd <username>
+    sudo passwd <username>
+    sudo adduser <username> sudo
+

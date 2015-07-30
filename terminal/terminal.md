@@ -44,7 +44,7 @@ find
 ----
 
 ```
-find <path> -name <file name> -type f
+find <path> -name <file name> -type
 find <path> -iname <file name> -type d
 ```
 
@@ -68,33 +68,38 @@ ps axjf  #get process group id
 
 #### awk
 
-    ls -l | awk '{ print $5  }'
-    ls -l | awk '{ print $2, '\t', $1  }'
-    awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
-    cat test.txt | awk '{print NR, NF, $0 }'
-    ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+```
+ls -l | awk '{ print $5  }'
+ls -l | awk '{ print $2, '\t', $1  }'
+awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
+cat test.txt | awk '{print NR, NF, $0 }'
+ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+```
 
 
 #### sed
 
-    sed -n 5p file          #print line 5 from file
-    sed -n '5,10p' file     #print 5 to 10 lines
-    sed -i '$ d' foo.txt    #delete last line of file
+```
+sed -n 5p file          #print line 5 from file
+sed -n '5,10p' file     #print 5 to 10 lines
+sed -i '$ d' foo.txt    #delete last line of file
+sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
+```
 
 
 #### grep
 
-     grep -rl "django" /path/to/dir/  # search for string in all files
-     grep -v 'django'  # grep for non matching lines
-     ps -ef | grep '[c]elery'    #grep ps without grep
+```
+grep -rl "django" /path/to/dir/  # search for string in all files
+grep -v 'django'  # grep for non matching lines
+ps -ef | grep '[c]elery'    #grep ps without grep
+```
 
 
 drives
 ------
 
 ```
-sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pendrive
-
 fdisk -l  # list partition table
 
 lsblk  # list block devices
@@ -103,36 +108,46 @@ sudo lshw -class disk -short  # list disks
 ```
 
 
-#### playing with files
+files
+-----
 
-     wc -L file  #line which is max length in file
-     head -n -1 foo.txt #show foo.txt without last line
+    wc -L file  #line which is max length in file
+    head -n -1 foo.txt #show foo.txt without last line
 
-     split -b 1024 big_file small_file_prefix
-     split -l 1000 big_file small_file_prefix
+    split -b 1024 big_file small_file_prefix
+    split -l 1000 big_file small_file_prefix
 
-     # run bash as sudo to append file
-     sudo bash -c "cat in_file >> append_file"
-     cat in_file | sudo tee -a append_file
+    # run bash as sudo to append file
+    sudo bash -c "cat in_file >> append_file"
+    cat in_file | sudo tee -a append_file
 
     bzip2 file  #compress
     bunzip2 file.bz2 #decompress
     gzip file
     zip file.zip file
+    zip -r file.zip file  # recursive zip
 
 
-#### network
 
-     #show other computers in lan
-     avahi-browse -tl _workstation._tcp
+network
+-------
 
-     ssh user@host
+    #show other computers in lan
+    avahi-browse -tl _workstation._tcp
 
-     rsync -a user@host:/path/to/dir /path/to/target
-     options: -avn :: archive, verbose, dry run
+    ssh user@host
 
-     rfkill list #show status of wireless devices
-     ifconfig # show ip, mac address
+    # ssh using keys
+    ssh-keygen -t rsa
+    ssh user@host mkdir -p .ssh
+    cat .ssh/id_rsa.pub | ssh user@host 'cat >> .ssh/authorized_keys'
+    
+    rsync -a user@host:/path/to/dir /path/to/target
+    options: -avn :: archive, verbose, dry run
+
+    rfkill list #show status of wireless devices
+    ifconfig # show ip, mac address
+
 
 
 services
@@ -172,3 +187,23 @@ du -hs #show human readable summary of disk usage
 du -d=1  # --max-depth = 1
 du /var/lib/mysql/ -sh
 ```
+
+
+#### usb 
+
+     dosfsck -a /dev/sdb1  # write permissions
+
+     sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pen drive
+
+
+### Tools to identify bottleneck
+    mpstat
+    sar
+    vmstat -s
+    vmstat -m | head -5
+    vmstat -f
+    vmstat
+    iotop
+    htop
+
+

@@ -50,6 +50,8 @@
 
 ;; cdr returns first element of the list.
 (cdr '(a b c d))
+(cdr '(a b))
+(car (cdr '(a b)))
 
 ;; append items
 (append '(1 2 3) '(a b c d))
@@ -137,6 +139,8 @@
 
 (browse-url "http://127.0.0.1:8080/imp/")
 
+
+
 ;; conditioanls
 (if (not (require 'elpy))
     (message "elpy is not installed")
@@ -168,9 +172,8 @@
 
 
 ;; group a bunch of expressions
-(message "a") (message "b")
 (progn (message "a") (message "b"))
-(progn 3 4 )
+
 
 ;; iteration
 (setq x 0)
@@ -182,6 +185,17 @@
 
 ;; dolist
 (setq animals '(gazelle giraffe lion tiger))
+
+(defun print-list (list)
+  (dolist (element list)
+    (message "%s" element)))
+
+(print-list animals)
+
+(let (value)
+  (dolist (element animals value)
+    (message "%s" value)
+    (message "%s" animals)))
 
 (defun reverse-list-with-dolist (list)
   "Reverse elements with dolist"
@@ -211,8 +225,50 @@
 (unless t
   (message "body execute"))
 
+;; try catch
+(condition-case nil
+    (progn
+      (asaa)
+      (message "running try "))
+  (error
+   (message "catched error")))
 
-;; commands
+(eql "r" "ar")
+(eql "r" "r")
+(eq "r" "r")
+(string-equal "r" "r")
+
+
+
+;; functions inbuilt
+(defun cr (choice)
+
+  ;; (interactive "c(C)hoose (A)n (O)ption")
+  ;; (interactive "cBuffer to rename: \nsRename buffer %s to: ")
+  (interactive "c[a]: a [b]:b")
+  (require 'cl)
+  ;; (interactive)
+  ;; (read-char "(C)hoose (A)n (O)ption")
+  ;; (if (= choice 97)
+  ;;     (message "foo")
+  ;;   (message "bar")
+  ;;   )
+
+
+  (case (char-to-string 114)
+    ("r"
+     (message "r"))
+    ("i"
+     (message "i"))
+    (otherwise
+     "Something else"))
+  )
+
+
+
+
+
+;; functions
 (defun yay ()
   "Insert “Yay!” at cursor position."
   (insert "Yay!"))
@@ -243,6 +299,7 @@
   "…"
   (interactive "nN1: \n N2: \n")
   (message "sum is %d" (+ x y)))
+
 
 (progn 
   (setq function "foo")
@@ -278,9 +335,24 @@
 (help-make-xrefs "elisp.el")
 
 
+(defun add-numbers (x y &optional z)
+  (if z
+      (+ x y z))
+  (+ x y)
+  )
+(add-numbers 1 2 3)
+(add-numbers 1 2)
+
+(forward-line 1)
+(forward-line 0)
+(forward-line)
+(forward-line -1)
+
+(beginning-of-line)
+(goto-char end)
 
 
-
+(push-mark )
 ;; timers
 (timer-create)
 
@@ -363,33 +435,17 @@
 (setq helm-commands-history-source (append '(intern elem) helm-commands-history-source))
 
 
-()
+(helm :sources (let ((cmds  ()))
+                 (mapatoms (lambda (s) (when (commandp s) (push s cmds))))
+                 cmds))
 
+(helm
+ :sources '(helm-source-dired-recent-dirs)
+ :buffer buf)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-((symbol-at-point))
-
-
-
-
-
-
-
-
+(helm
+ :sources '(1 2 3)
+ :buffer buf)
 
 
 (defun django-jump-to-template ()
@@ -534,13 +590,32 @@
   (previous-line))
 
 (while 
-    )a a()
+    )
+(search-forward-regexp ".")
+(buffer-file-name)
+(setq test-str )
+(string-match "eliz" buffer-file-name)
+(string-match tramp-file-name-regexp buffer-file-name)
+
+(goto-char (nth 8 (syntax-ppss)))
+
 (point)
 (mark)
 (current-buffer)
 
-""
-''
+(defvar helm-source-commands-history
+  (helm-build-sync-source "Emacs commands history"
+    :candidates (lambda ()
+                  (let ((cmds))
+                    (dolist (elem extended-command-history)
+                      (push (intern elem) cmds))
+                    cmds))
+    :coerce #'intern-soft
+    :action #'command-execute)
+  "Emacs commands history")
+
+(helm :sources helm-source-commands-history)
+
 { "(test-inside-curly-braces)" }
 
 (setq real-auto-save-timer (timer-create))
@@ -618,20 +693,6 @@
       (if savep
           (save-excursion indent-col)
         indent-col))))
-
-
-
-
-
-
-
-
-
-
-
-
-;;; functions
-
 
 ;; connect to server sql
 (sql-mysql (setq sql-user "root" sql-password "bacillus123"

@@ -2,7 +2,7 @@ Django
 ======
 
 
-Templates
+templates
 ---------
 
 
@@ -10,15 +10,8 @@ Templates
 	print loader.get_template('home.html')
 
 
-basics
-------
-
-    python -c "import django; print(django.get_version())"
-    python -c "import django; print(django.VERSION)"
-
-
-urlresolvers
-------------
+urls
+----
 
     from django.core.urlresolvers import get_resolver, resolve
     get_resolver(None).reverse_dict.keys()     #All URL Patterns
@@ -83,6 +76,10 @@ django-admin.py sqldropindexes <app>
 django-admin.py sqlflush
 ```
 
+```
+
+```
+
 shell
 -----
 
@@ -138,6 +135,12 @@ others
 ------
 
     Always use render instead of render_to_response
+
+
+    python -c "import django; print(django.get_version())"
+    python -c "import django; print(django.VERSION)"
+
+
 
 
 imports
