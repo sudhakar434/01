@@ -65,12 +65,13 @@ used as key in dict, slight performance improvement
      Foo() < Bar(object)
 
 
-#### files
+Files
+------
 
      # line count
-     sum(1 for line in open('Charts.ipynb'))
+     sum(1 for line in open('foo.py'))
      len(open('a.txt').read().splitlines())
-     
+
      data = open('a.txt').read()  # read file into string
 
 

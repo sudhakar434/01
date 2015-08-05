@@ -144,9 +144,16 @@
 
 (eql "r" "ar")
 (eql "r" "r")
+
 (eq "r" "r")
 (string-equal "r" "r")
 
+(defun double-space-cleanup  ()
+  (interactive)
+  (goto-char (point-min))
+  (while (/= (point) (point-max))
+    (just-one-space)
+    (forward-word)))
 
 
 ;; functions inbuilt

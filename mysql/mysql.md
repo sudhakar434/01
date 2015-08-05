@@ -69,3 +69,12 @@ pager
     # disable pager
     nopager RET
     \n RET
+
+
+truncate
+---------
+
+```
+truncate <table name>; # make table empty
+```
+
