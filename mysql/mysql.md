@@ -17,6 +17,8 @@ SHOW TABLES LIKE 'b%';  # Show tables begin with b
 SHOW TABLE STATUS [FROM <database>] [LIKE <pattern> | WHERE <expression>]
 
 SHOW FULL PROCESSLIST;  # show process
+
+SHOW TABLE STATUS WHERE Name = <table>; # show engine type
 ```
 
 
