@@ -133,6 +133,27 @@
 
 (get-buffer-create "/home/anand/projects/lisp/impatient-markdown/test.html")
 
+(forward-block 2)
+
+(defun forward-block (&optional n)
+  (interactive "p")
+  (let ((n (if (null n) 1 n)))
+    (search-forward-regexp "\n[\t\n ]*\n+" nil "NOERROR" n)))
+
+
+
+
+(defun elpy-shell-send-current-block ()
+  "Send current statement to Python shell."
+  (interactive)
+  (beginning-of-line)
+  (push-mark)
+  (forward-block)
+  (elpy-shell-send-region-or-buffer)
+  (display-buffer (process-buffer (elpy-shell-get-or-create-process))
+                  nil
+                  'visible)
+  )
 
 
 (concat im-server-url "ff")

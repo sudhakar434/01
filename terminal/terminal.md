@@ -105,6 +105,12 @@ fdisk -l  # list partition table
 lsblk  # list block devices
 
 sudo lshw -class disk -short  # list disks
+
+# mount new hdd
+sudo fdisk /dev/sdb
+sudo mkfs -t ext4 /dev/sdb1
+
+https://help.ubuntu.com/community/InstallingANewHardDrive
 ```
 
 

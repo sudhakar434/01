@@ -1,5 +1,5 @@
-key bindings
-===========
+launch emacs
+------------
 
     emacs -nd  # start emacs in terminal
     emacs -q   # start emacs without init file
