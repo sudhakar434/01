@@ -77,13 +77,15 @@ ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
 ```
 
 
-#### sed
+sed
+---
 
 ```
 sed -n 5p file          #print line 5 from file
 sed -n '5,10p' file     #print 5 to 10 lines
 sed -i '$ d' foo.txt    #delete last line of file
 sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
+
 ```
 
 
@@ -141,13 +143,13 @@ network
     #show other computers in lan
     avahi-browse -tl _workstation._tcp
 
-    ssh user@host
-
     # ssh using keys
     ssh-keygen -t rsa
-    ssh user@host mkdir -p .ssh
     cat .ssh/id_rsa.pub | ssh user@host 'cat >> .ssh/authorized_keys'
-    
+    ssh-copy-id user@host
+    ssh user@host
+
+    # copy files
     rsync -a user@host:/path/to/dir /path/to/target
     options: -avn :: archive, verbose, dry run
 
@@ -195,7 +197,7 @@ du /var/lib/mysql/ -sh
 ```
 
 
-#### usb 
+#### usb
 
      dosfsck -a /dev/sdb1  # write permissions
 
@@ -211,5 +213,3 @@ du /var/lib/mysql/ -sh
     vmstat
     iotop
     htop
-
-
