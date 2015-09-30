@@ -95,6 +95,18 @@
 (or t nil)
 
 
+;; testing
+
+(defun  add (x y)
+  (+ x y))
+
+(add 3 4)
+
+(ert-deftest add-test ()
+  (should (= 7 (add 3 4))))
+
+
+
 (defun im-is-markdown-bufferp ()
   "return t if opened buffer is markdown"
   (member (downcase (file-name-extension (buffer-file-name)))

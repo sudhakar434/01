@@ -213,3 +213,12 @@ du /var/lib/mysql/ -sh
     vmstat
     iotop
     htop
+
+
+FTP
+----
+
+```
+ftp <ip>
+put <source> <target>
+```

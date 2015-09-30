@@ -19,8 +19,8 @@ rvm use ruby --default
 
 
 # install ruby gems
- rvm rubygems current
+rvm rubygems current
 
 
- # install rails
- gem install rails
+# install rails
+gem install rails
