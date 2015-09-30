@@ -219,6 +219,7 @@ FTP
 ----
 
 ```
-ftp <ip>
-put <source> <target>
+$ ftp <ip>
+ftp> open <ip>
+ftp> put <source> <target>
 ```
