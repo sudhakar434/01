@@ -98,21 +98,29 @@ ps -ef | grep '[c]elery'    #grep ps without grep
 ```
 
 
-drives
+disks
 ------
 
 ```
-fdisk -l  # list partition table
-
 lsblk  # list block devices
 
 sudo lshw -class disk -short  # list disks
 
+fdisk -l  # list partition table
+
+Df -T  # list disks with fs type
+
+
 # mount new hdd
-sudo fdisk /dev/sdb
+sudo fdisk /dev/sd*
+
+# n -> primary -> number 1 -> w
+
 sudo mkfs -t ext4 /dev/sdb1
 
-https://help.ubuntu.com/community/InstallingANewHardDrive
+sudo mount /dev/sd* </some/path/>
+
+[More](https://help.ubuntu.com/community/InstallingANewHardDrive)
 ```
 
 
