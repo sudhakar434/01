@@ -128,6 +128,32 @@ sudo ntfsfix /dev/sdXX
 ```
 
 
+nfs
+----
+
+```
+# Install package:
+sudo apt-get install nfs-kernel-server nfs-common
+
+
+# Mount:
+sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
+
+
+# Find firmware version:
+cat /etc/version  # in nfs after ssh
+
+
+# links:
+
+https://help.ubuntu.com/community/SettingUpNFSHowTo
+
+http://community.wd.com/t5/WD-My-Cloud/bd-p/mycloud
+
+http://community.wd.com/t5/WD-My-Cloud/NFS-broken-after-firmware-4-00/td-p/792069/highlight/true
+```
+
+
 files
 -----
 
