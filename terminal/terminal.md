@@ -121,6 +121,10 @@ sudo mkfs -t ext4 /dev/sdb1
 sudo mount /dev/sd* </some/path/>
 
 [More](https://help.ubuntu.com/community/InstallingANewHardDrive)
+
+# mount ntfs external hdd
+sudo apt-get install ntfs-3g
+sudo ntfsfix /dev/sdXX
 ```
 
 
