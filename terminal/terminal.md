@@ -36,7 +36,7 @@ lspci | grep VGA #show graphic card details
 lspci -v -s 00:02.0 #show graphic card details
 sudo dmidecode -t 16 #maximum ram supported & available slots
 sudo lshw -C memory  #all hardware memory info
-free  # display amount of used/free memory in system
+free -h  # display amount of used/free memory in system  ram
 ```
 
 
@@ -260,4 +260,17 @@ FTP
 $ ftp <ip>
 ftp> open <ip>
 ftp> put <source> <target>
+```
+
+users
+------
+
+```
+sudo adduser <foo>
+
+sudo adduser <username> sudo  # add user to sudo
+
+grep -Po '^sudo.+:\K.*$' /etc/group  # show all sudo users
+
+sudo deluser <username> sudo  # remove username from sudoers list
 ```
