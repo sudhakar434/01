@@ -253,8 +253,7 @@ du /var/lib/mysql/ -sh
     htop
 
 
-FTP
-----
+### FTP
 
 ```
 $ ftp <ip>
@@ -262,8 +261,7 @@ ftp> open <ip>
 ftp> put <source> <target>
 ```
 
-users
-------
+### users
 
 ```
 sudo adduser <foo>
