@@ -232,6 +232,8 @@ du -ksh /var/lib/mysql/    #mysql data usage
 du -hs #show human readable summary of disk usage
 du -d=1  # --max-depth = 1
 du /var/lib/mysql/ -sh
+
+sudo dpkg-reconfigure tzdata  # set timezone
 ```
 
 
