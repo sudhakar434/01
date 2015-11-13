@@ -258,6 +258,8 @@ sudo dpkg-reconfigure tzdata  # set timezone
 ### FTP
 
 ```
+wget --user='user' --password='password' ftp://foo.com/bar  # download ftp file
+
 $ ftp <ip>
 ftp> open <ip>
 ftp> put <source> <target>
