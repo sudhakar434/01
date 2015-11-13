@@ -92,6 +92,9 @@ sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
 #### grep
 
 ```
+grep -A 5 -B 5 'foo' bar
+grep -C 10 'foo' bar
+
 grep -rl "django" /path/to/dir/  # search for string in all files
 grep -v 'django'  # grep for non matching lines
 ps -ef | grep '[c]elery'    #grep ps without grep
@@ -157,6 +160,11 @@ http://community.wd.com/t5/WD-My-Cloud/NFS-broken-after-firmware-4-00/td-p/79206
 files
 -----
 
+    tail -n+100 <file> | head -n1  # print 100th line
+    sed '100q;d' <file>    # print 100th line
+
+    base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
+
     wc -L file  #line which is max length in file
     head -n -1 foo.txt #show foo.txt without last line
 
@@ -166,6 +174,9 @@ files
     # run bash as sudo to append file
     sudo bash -c "cat in_file >> append_file"
     cat in_file | sudo tee -a append_file
+
+zip
+----
 
     bzip2 file  #compress
     bunzip2 file.bz2 #decompress
