@@ -165,6 +165,16 @@ files
 
     base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
 
+
+
+    find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
+
+    shopt -s extglob
+    rm *.!(txt) Or in  # delete all files EXCEPT *.txt
+    
+    rm *~*.txt(.) # zsh
+
+
     wc -L file  #line which is max length in file
     head -n -1 foo.txt #show foo.txt without last line
 
@@ -287,3 +297,22 @@ grep -Po '^sudo.+:\K.*$' /etc/group  # show all sudo users
 
 sudo deluser <username> sudo  # remove username from sudoers list
 ```
+
+
+#### GPU/CUDA DRIVERS:
+
+Find graphic car version:
+
+```
+lspci | grep VGA
+```
+
+Process:
+http://askubuntu.com/questions/338907/how-to-install-cuda-5-5-under-ubuntu-12-04-lts-64-bit
+
+nvidia docs:: run file install:
+http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html
+
+run ubuntu in text mode: 
+http://askubuntu.com/questions/16371/how-do-i-disable-x-at-boot-time-so-that-the-system-boots-in-text-mode
+
