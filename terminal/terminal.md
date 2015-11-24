@@ -286,6 +286,30 @@ ftp> open <ip>
 ftp> put <source> <target>
 ```
 
+### ftp server
+
+```
+# Install: 
+sudo apt-get install vsftpd -y
+
+
+# Conf file:
+/etc/vsftpd.conf
+
+
+# Create New User:
+sudo adduser <user>
+sudo mkdir /home/<user>/
+sudo usermod -d /home/ftpuser/<user> <user>
+sudo usermod -s /sbin/nologin <user>
+sudo chown -R ftpuser:ftpgroup /home/ftpuser/<user>
+```
+
+
+
+
+
+
 ### users
 
 ```
