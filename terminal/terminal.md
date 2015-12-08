@@ -44,8 +44,10 @@ find
 ----
 
 ```
-find <path> -name <file name> -type
-find <path> -iname <file name> -type d
+find <path> -name <filename/pattern> -type
+find <path> -iname <filename> -type d
+find . -name "*.py" -type f -delete  # delete all txt files
+find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
 ```
 
 
@@ -165,9 +167,6 @@ files
 
     base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
 
-
-
-    find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
 
     shopt -s extglob
     rm *.!(txt) Or in  # delete all files EXCEPT *.txt
