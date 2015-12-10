@@ -4,6 +4,8 @@
 ;;; code:
 
 
+(make-button 1 50 'action (lambda(x) (find-file "~/test.py")))
+
 
 ;;; BASICS
 
@@ -39,11 +41,16 @@
   (list y z))
 
 
+(list-buffers)
+(list-processes)
+
+
 
 ;;; list operations
 
 ;; list is a sequence of zero or more lisp exp enclosed in parens
 ()
+'( (1 2 3))
 
 ;; car returns first element of the list.
 (car '(a b c d))
@@ -134,6 +141,7 @@
 
 (get-buffer-process (buffer-file-name))
 
+(current-dired)
 
 (defun im-serve-file (file)
   (with-current-buffer (get-buffer file)
@@ -171,6 +179,8 @@
 (concat im-server-url "ff")
 
 (browse-url "http://127.0.0.1:8080/imp/")
+
+
 
 
 
@@ -223,7 +233,17 @@
   (dolist (element list)
     (message "%s" element)))
 
-(print-list animals)
+(defun efoo ()
+  (interactive)
+  (dolist (buf (list-buffers))
+    (with-current-buffer buf
+      (dolist (mod minor-mode-alist)
+        (member elpy-mode (car mod))))))
+
+(describe-mode (current-buffer))
+(member lispy-mode minor-mode-list)
+(member lispy-mode minor-mode-alist)
+(member elpy-mode minor-mode-alist)
 
 (let (value)
   (dolist (element animals value)
@@ -279,33 +299,73 @@
     (just-one-space)
     (forward-word)))
 
+(case (char-to-string 114)
+  ("r"
+   (message "r"))
+  ("i"
+   (message "i"))
+  (otherwise
+   "Something else"))
 
 ;; functions inbuilt
 (defun cr (choice)
-
-  ;; (interactive "c(C)hoose (A)n (O)ption")
-  ;; (interactive "cBuffer to rename: \nsRename buffer %s to: ")
-  (interactive "c[a]: a [b]:b")
-  (require 'cl)
-  ;; (interactive)
-  ;; (read-char "(C)hoose (A)n (O)ption")
-  ;; (if (= choice 97)
-  ;;     (message "foo")
-  ;;   (message "bar")
-  ;;   )
-
-
-  (case (char-to-string 114)
-    ("r"
-     (message "r"))
-    ("i"
-     (message "i"))
-    (otherwise
-     "Something else"))
+  (interactive "c[a]: a  [b]:b")
+  (cond
+   ((string-equal choice "i")
+    (message "i"))
+   (t
+    (message "foo")))
   )
 
 
+(cl-letf (((symbol-function 'message) (lambda (&rest _) nil)))
+  (message "hello"))
 
+(defun test (&optional foo)
+  (interactive "P")
+  (if foo
+      (message "foo")
+    (message "bar")))
+
+(insert-button "fsf"
+               'action (lambda (x) (browse-url (button-get x 'url)))
+               'url "http://www.fsf.org")
+
+(defun position-to-kill-ring ()
+  "Copy to the kill ring a string in the format \"file-name:line-number\"
+for the current buffer's file name, and the line number at point."
+  (interactive)
+  (kill-new
+   (format "%s:%d" (buffer-file-name) (save-restriction
+                                        (widen) (line-number-at-pos)))))
+(position-to-kill-ring)
+
+
+(push (cons "pyml" "*.py *.htm *.html") grep-files-aliases)
+
+
+
+(use-package stickyfunc-enhance
+  :init
+  (require 'stickyfunc-enhance)
+  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+  :config
+  (defun me/enable-semantic-maybe ()
+    "Maybe enable `semantic-mode'."
+    (interactive)
+    (if (derived-mode-p 'python-mode)
+        (semantic-mode 1)
+      (semantic-mode -1)))
+  (add-hook 'change-major-mode-hook #'me/enable-semantic-maybe))
+
+(defun save-buffer-without-message (&optional arg)
+  (interactive "p")
+  (let ((modp (buffer-modified-p))
+	(make-backup-files (or (and make-backup-files (not (eq arg 0)))
+			       (memq arg '(16 64)))))
+    (and modp (memq arg '(16 64)) (setq buffer-backed-up nil))
+    (basic-save-buffer)
+    (and modp (memq arg '(4 64)) (setq buffer-backed-up nil))))
 
 
 ;; functions
@@ -394,10 +454,49 @@
 
 (push-mark )
 ;; timers
+(defun foo ()
+  (interactive)
+  (message "foo"))
+
 (timer-create)
 
 (print timer-list)
 (print timer-idle-list)
+
+(setq test-timer
+      (run-with-idle-timer 5 t 'foo))
+(setq test-timer
+      (run-with-idle-timer 5 t 'foo))
+
+(cancel-timer test-timer)
+
+(seconds-to-time (nth 2 'test-timer))
+
+(helm-elisp--format-timer test-timer)
+
+(defun helm-elisp--format-timer (timer)
+  (format "%s repeat=%s %s(%s)"
+          (let ((time (timer--time timer)))
+            (if (timer--idle-delay timer)
+                (format-time-string "idle-for=%5s" time)
+              (format-time-string "%m/%d %T" time)))
+          (or (timer--repeat-delay timer) "nil")
+          (mapconcat 'identity (split-string
+                                (prin1-to-string (timer--function timer))
+                                "\n") " ")
+          (mapconcat 'prin1-to-string (timer--args timer) " ")))
+
+(defclass helm-idle-time-timers-class (helm-source-sync helm-type-timers)
+  ((candidates :initform timer-idle-list)
+   (allow-dups :initform t)
+   (volatile :initform t)
+   (filtered-candidate-transformer
+    :initform
+    (lambda (candidates _source)
+      (cl-loop for timer in candidates
+               collect (cons (helm-elisp--format-timer timer) timer))))))
+
+
 
 ;;(get-universal-time)
 (current-time-string)
@@ -405,11 +504,7 @@
 
 
 
-
-(defvar helm-source-commands-history
-  
-  )
-
+;; helm
 
 (defvar helm-source-commands-history
   (helm-build-sync-source "Emacs commands history"
@@ -422,8 +517,21 @@
     :action #'command-execute)
   "Emacs commands history")
 (helm :sources helm-source-commands-history)
+(setq helm-echo-input-in-header-line t)
 
-(current-frame-configuration) 
+(defun hello ()
+  (message "hello"))
+
+(defun helm-selection-user-choice (orig &rest args)
+  (let ((result (apply orig args)))
+    (when result
+      (hello))
+    result))
+
+(advice-add 'helm-comp-read--move-to-first-real-candidate :around #'helm-selection-user-choice)
+(advice-add 'helm-after-update-hook :around #'helm-selection-user-choice)
+
+(setq f-loc1 "/foo/bar" f-loc2 f-loc1)
 
 
 (defun strip-text-properties(txt)
