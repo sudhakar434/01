@@ -1,5 +1,7 @@
+#+BEGIN_SRC translate :src en
+hello
+#+END_SRC
 
-| english | telugu | kannada | tamil |
-|---------+--------+---------+-------|
-|ok       |        |         |       |
 
+#+BEGIN_SRC translate :dest it,fr
+#+END_SRC
