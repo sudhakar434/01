@@ -1,3 +1,7 @@
+Data structures
+------------------
+
+
 install package
 ---------------
 
@@ -21,4 +25,3 @@ write df to file
 ```
 write.csv(df, 'foo.csv')
 ```
-
