@@ -1,6 +1,16 @@
 ### terminal commands
 
 
+#### date
+
+```
+date  # show time/date
+sudo date --set "25 Sep 2013 15:00:00"  # set date
+sudo dpkg-reconfigure tzdata  # set timezone
+```
+
+
+
 #### rsyslog
 
 ```
@@ -170,7 +180,7 @@ files
 
     shopt -s extglob
     rm *.!(txt) Or in  # delete all files EXCEPT *.txt
-    
+
     rm *~*.txt(.) # zsh
 
 
@@ -288,7 +298,7 @@ ftp> put <source> <target>
 ### ftp server
 
 ```
-# Install: 
+# Install:
 sudo apt-get install vsftpd -y
 
 
@@ -336,6 +346,5 @@ http://askubuntu.com/questions/338907/how-to-install-cuda-5-5-under-ubuntu-12-04
 nvidia docs:: run file install:
 http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html
 
-run ubuntu in text mode: 
+run ubuntu in text mode:
 http://askubuntu.com/questions/16371/how-do-i-disable-x-at-boot-time-so-that-the-system-boots-in-text-mode
-
