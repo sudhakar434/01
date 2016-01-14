@@ -128,3 +128,12 @@ others
     gitk <file>  # Git - Check all revisions of a file
 
     git ls-files -d  # show deleted files
+
+
+clean
+------
+
+```
+git clean -f -n # dry run
+git clean -f -d  # delete files
+```
