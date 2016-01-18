@@ -1,25 +1,21 @@
-### terminal commands
+## Terminal Commands
 
 
-#### date
+#### time/date
 
 ```
-date  # show time/date
+# show time/date
+date
+
+# set time/date
 sudo date --set "25 Sep 2013 15:00:00"  # set date
+
+# set timezone
 sudo dpkg-reconfigure tzdata  # set timezone
 ```
 
 
-
-#### rsyslog
-
-```
-cat /var/log/syslog  # check log messages
-cat /var/log/dmesg  # check error messages
-```
-
-
-#### ufw
+#### firewall
 
 ```
 sudo ufw status verbose
@@ -37,20 +33,20 @@ sudo ufw logging [on/off]
 #### system info - Os, CPU, GPU
 
 ```
-lsb_release -a    #print distribution specific info
-nproc - display number of cores in a CPU
-cat /proc/cpuinfo | grep processor | wc -l #show no. of cpu
-lscpu  #show cpu architecture
-lspci #list all pci connections
-lspci | grep VGA #show graphic card details
-lspci -v -s 00:02.0 #show graphic card details
-sudo dmidecode -t 16 #maximum ram supported & available slots
-sudo lshw -C memory  #all hardware memory info
+lsb_release -a   # print distribution specific info
+nproc  # display number of cores in a CPU
+cat /proc/cpuinfo | grep processor | wc -l  # show no. of cpu
+lscpu  # show cpu architecture
+lspci  # list all pci connections
+lspci | grep VGA  # show graphic card details
+lspci -v -s 00:02.0  # show graphic card details
+sudo dmidecode -t 16  # maximum ram supported & available slots
+sudo lshw -C memory  # all hardware memory info
 free -h  # display amount of used/free memory in system  ram
 ```
 
 
-find
+#### find
 ----
 
 ```
@@ -61,7 +57,7 @@ find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
 ```
 
 
-jobs
+#### jobs
 ----
 
 ```
@@ -348,3 +344,11 @@ http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html
 
 run ubuntu in text mode:
 http://askubuntu.com/questions/16371/how-do-i-disable-x-at-boot-time-so-that-the-system-boots-in-text-mode
+
+
+#### logs
+
+```
+cat /var/log/syslog  # check log messages
+cat /var/log/dmesg  # check error messages
+```
