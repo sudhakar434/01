@@ -3,7 +3,7 @@
 
 #### time/date
 
-```
+```shell
 # show time/date
 date
 
