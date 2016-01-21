@@ -14,6 +14,40 @@ sudo date --set "25 Sep 2013 15:00:00"  # set date
 sudo dpkg-reconfigure tzdata  # set timezone
 ```
 
+#### system info
+
+```shell
+# print distribution specific info
+lsb_release -a
+
+# display number of cores in a CPU
+nproc
+cat /proc/cpuinfo | grep processor | wc -l  # show no. of cpu
+
+# display amount of used/free memory in system (ram)
+free -h
+
+# show cpu architecture
+lscpu
+
+# list all pci connections
+lspci
+lspci -v
+
+# show graphic card details
+lspci | grep VGA
+
+# show specific slot details
+lspci -v -s 00:02.0
+
+# all hardware memory info
+sudo lshw -C memory
+
+# maximum ram supported & available slots
+sudo dmidecode -t memory
+sudo dmidecode -t 16
+```
+
 
 #### firewall
 
@@ -30,20 +64,6 @@ sudo ufw logging [on/off]
 ```
 
 
-#### system info - Os, CPU, GPU
-
-```
-lsb_release -a   # print distribution specific info
-nproc  # display number of cores in a CPU
-cat /proc/cpuinfo | grep processor | wc -l  # show no. of cpu
-lscpu  # show cpu architecture
-lspci  # list all pci connections
-lspci | grep VGA  # show graphic card details
-lspci -v -s 00:02.0  # show graphic card details
-sudo dmidecode -t 16  # maximum ram supported & available slots
-sudo lshw -C memory  # all hardware memory info
-free -h  # display amount of used/free memory in system  ram
-```
 
 
 #### find
