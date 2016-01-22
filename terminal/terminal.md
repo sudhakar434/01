@@ -51,11 +51,15 @@ sudo dmidecode -t 16
 
 #### firewall
 
-```
+```shell
+# show firewall status
 sudo ufw status verbose
+
+# enable/disable
 sudo ufw enable
 sudo ufw disable
 
+# allow/deny ports
 sudo ufw allow <port no>
 sudo ufw deny <port no>
 sudo ufw delete <port no>
