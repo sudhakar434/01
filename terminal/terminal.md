@@ -85,6 +85,15 @@ sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
 ```
 
 
+#### git
+
+```shell
+# squash last n commits
+git reset --soft HEAD~n
+git commit -m "Commit message"
+```
+
+
 
 #### find
 ----
