@@ -68,6 +68,22 @@ sudo ufw logging [on/off]
 ```
 
 
+#### usb
+
+```shell
+# write permissions for pen drive
+sudo mount -o remount,rw '/media/SGTL MSCN'
+
+# write permissions for a drive
+dosfsck -a /dev/sdb1
+
+# bootable usb
+# list block devices
+lsblk
+# write to that device
+sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
+```
+
 
 
 #### find
@@ -285,13 +301,6 @@ du /var/lib/mysql/ -sh
 
 sudo dpkg-reconfigure tzdata  # set timezone
 ```
-
-
-#### usb
-
-     dosfsck -a /dev/sdb1  # write permissions
-
-     sudo mount -o remount,rw '/media/SGTL MSCN' # write permissions for pen drive
 
 
 ### Tools to identify bottleneck
