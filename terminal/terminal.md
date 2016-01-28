@@ -1,6 +1,40 @@
 ## Terminal Commands
 
 
+
+#### process
+
+```shell
+# run a job in background
+emacs &
+
+# list all jobs with PID
+jobs -l
+
+# switch jobs from background to foreground
+fg
+bg
+
+# detach a process from terminal
+disown
+
+# ignore SIGHUP signal sent by terminal
+nohup
+
+# list all process
+ps -ef
+
+# kill process
+kill -9 <PID>
+pkill emacs
+
+# run this command with lowest priority
+nice -n 19 command
+```
+
+-----------------------------------------------------------
+
+
 #### time/date
 
 ```shell
@@ -128,21 +162,6 @@ find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
 ```
 
 
-#### jobs
-----
-
-```
-&       - run a job in background
-jobs -l - list jobs will PID
-fg, bg  - switch jobs from background to foreground
-disown  - detach a process from terminal
-nohup   - ignore SIGHUP signal sent by terminal
-ps -ef  - list all process
-ps x -o  "%p %r %y %x %c "   #process with id & parent id
-nice -n 19 command - run this command with lowest priority
-2>/dev/null 1>/dev/null google-chrome &
-ps axjf  #get process group id
-```
 
 
 #### awk
