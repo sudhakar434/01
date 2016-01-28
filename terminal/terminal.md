@@ -14,6 +14,7 @@ sudo date --set "25 Sep 2013 15:00:00"  # set date
 sudo dpkg-reconfigure tzdata  # set timezone
 ```
 
+
 #### system info
 
 ```shell
@@ -94,6 +95,27 @@ git commit -m "Commit message"
 ```
 
 
+#### grep
+
+```shell
+# grep for matching lines
+grep 'foo' bar.txt
+# grep for non matching lines
+grep -v 'foo' bar.txt
+
+# grep with context
+grep -C 10 'foo' bar.txt
+grep -A 5 -B 5 'foo' bar.txt
+
+# search for string in all files
+grep --recursive --files-with-matches 'foo' /path
+grep -rl "foo" /path/to/dir/
+
+#grep ps without grep
+ps -ef | grep '[c]elery'
+```
+
+
 
 #### find
 ----
@@ -145,17 +167,6 @@ sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
 
 ```
 
-
-#### grep
-
-```
-grep -A 5 -B 5 'foo' bar
-grep -C 10 'foo' bar
-
-grep -rl "django" /path/to/dir/  # search for string in all files
-grep -v 'django'  # grep for non matching lines
-ps -ef | grep '[c]elery'    #grep ps without grep
-```
 
 
 disks
