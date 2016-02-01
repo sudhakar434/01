@@ -154,6 +154,9 @@ sudo apt-add-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install --yes git
 
+# store git credentials
+git config credential.helper store
+
 
 # squash last n commits
 git reset --soft HEAD~n
