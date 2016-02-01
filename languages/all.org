@@ -18,7 +18,7 @@ congratulations
 
 
 good luck
-Gu: saara naseeb 
+Gu: saara naseeb
 
 good job
 
@@ -45,7 +45,7 @@ its raining
 
 | English(en)    | te | kn  |   |
 |----------------+----+-----+---|
-| dont tell lies |    |     |   |
+| dont tell lies |      |     |   |
 | after          |    | ಹಿ೦ದೆ |   |
 |                |    |     |   |
 |                |    |     |   |
@@ -54,20 +54,3 @@ its raining
 |                |    |     |   |
 |                |    |     |   |
 |                |    |     |   |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
