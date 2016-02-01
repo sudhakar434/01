@@ -89,6 +89,12 @@ sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
 #### git
 
 ```shell
+# update git
+sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install --yes git
+
+
 # squash last n commits
 git reset --soft HEAD~n
 git commit -m "Commit message"
@@ -115,10 +121,11 @@ grep -rl "foo" /path/to/dir/
 ps -ef | grep '[c]elery'
 ```
 
+----------------------------------------------------
 
 
 #### find
-----
+
 
 ```
 find <path> -name <filename/pattern> -type
