@@ -1,6 +1,66 @@
 ## Terminal Commands
 
 
+#### networking
+
+```shell
+# show ip, mac address
+ifconfig
+
+# show other computers in lan
+avahi-browse -tl _workstation._tcp
+
+# ssh using keys
+ssh-keygen -t rsa
+
+chmod 700 .ssh
+chmod 644 authorized_keys
+
+cat .ssh/id_rsa.pub | ssh user@host 'cat >> .ssh/authorized_keys'
+
+ssh-copy-id user@host
+
+ssh user@host
+
+# copy files
+rsync -raz --progress user@host:/path/to/dir /path/to/target
+
+# show status of wireless devices
+rfkill list
+```
+
+
+#### process
+
+```shell
+# run a job in background
+emacs &
+
+# list all jobs with PID
+jobs -l
+
+# switch jobs from background to foreground
+fg
+bg
+
+# detach a process from terminal
+disown
+
+# ignore SIGHUP signal sent by terminal
+nohup
+
+# list all process
+ps -ef
+
+# kill process
+kill -9 <PID>
+pkill emacs
+
+# run this command with lowest priority
+nice -n 19 command
+```
+
+
 #### time/date
 
 ```shell
@@ -135,21 +195,6 @@ find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
 ```
 
 
-#### jobs
-----
-
-```
-&       - run a job in background
-jobs -l - list jobs will PID
-fg, bg  - switch jobs from background to foreground
-disown  - detach a process from terminal
-nohup   - ignore SIGHUP signal sent by terminal
-ps -ef  - list all process
-ps x -o  "%p %r %y %x %c "   #process with id & parent id
-nice -n 19 command - run this command with lowest priority
-2>/dev/null 1>/dev/null google-chrome &
-ps axjf  #get process group id
-```
 
 
 #### awk
