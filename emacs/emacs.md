@@ -5,6 +5,13 @@ launch emacs
     emacs -q   # start emacs without init file
 
 
+### key bindings
+
+```cl
+;; set global key binding
+(global-set-key (kbd "C-x C-t") 'sh-send-line-or-region)
+```
+
 control
 -------
 

@@ -156,3 +156,34 @@ vars([object]) -> dictionary
 
 Without arguments, equivalent to locals().
 With an argument, equivalent to object.__dict__.
+
+
+
+
+---------------------------------------------------------------
+
+
+## standard library
+
+```python
+
+os.listdir('/path/')
+
+os.path.isfile('filename')
+os.path.abspath('filename')
+os.path.exists('file or dir')
+os.path.dirname('file or dir')
+os.path.getsize( 'file or dir')
+
+os.system('command')
+```
+
+
+## third pary libraries
+
+```python
+with open(file_name) as fh:
+soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
+for link in soup:
+    print(link)
+```
