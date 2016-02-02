@@ -11,6 +11,14 @@ sudo freshclam
 sudo clamscan -r -i /home
 ```
 
+#### packages
+
+```shell
+# upgrade a single package
+sudo apt-get install --only-upgrade tree
+```
+
+
 #### networking
 
 ```shell
