@@ -27,6 +27,13 @@ rsync -raz --progress user@host:/path/to/dir /path/to/target
 
 # show status of wireless devices
 rfkill list
+
+# which process is listening on which port
+sudo netstat -peanut
+
+# check port 8000
+sudo netstat -peant | grep ":8000 "
+lsof -i :8000
 ```
 
 
