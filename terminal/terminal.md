@@ -34,6 +34,15 @@ sudo netstat -peanut
 # check port 8000
 sudo netstat -peant | grep ":8000 "
 lsof -i :8000
+
+# what ports are open on any machine
+sudo apt-get install --yes nmap
+nmap 192.168.1.33
+namp localhost
+
+# local machine
+sudo netstat -tulpn
+sudo netstat -tulpn | grep LISTEN
 ```
 
 
