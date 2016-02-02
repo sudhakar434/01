@@ -1,5 +1,15 @@
 ## Terminal Commands
 
+#### anti virus
+```shell
+sudo apt-get install clamav
+
+# update virus database
+sudo freshclam
+
+# scan dir & list infected files
+sudo clamscan -r -i /home
+```
 
 #### networking
 
