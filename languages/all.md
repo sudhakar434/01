@@ -3,6 +3,9 @@
 | English           | Telugu           | Kannada        |
 | ----------------- |:----------------:| --------------:|
 | approximately| సుమారు  | ಸುಮಾರು|
+|place/put||ಹಾಕಿದ್ದಿಯಾ?|
+||||
+
 
 # sentences
 | English           | Telugu           | Kannada        |
