@@ -181,9 +181,18 @@ os.system('command')
 
 ## third pary libraries
 
+### beautifulsoup
+
 ```python
 with open(file_name) as fh:
 soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
 for link in soup:
     print(link)
+```
+
+### gunicorn
+
+```sh
+# running a server
+gunicorn project.wsgi --bind 0.0.0.0:8008 --log-level debug --preload --env DJANGO_SETTINGS_MODULE=pearl.settings.production2 --log-file=-
 ```
