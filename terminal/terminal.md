@@ -320,6 +320,11 @@ http://community.wd.com/t5/WD-My-Cloud/NFS-broken-after-firmware-4-00/td-p/79206
 # show files in tree format
 tree -Cfhpu
 
+# number of columns with delimiter ;
+awk -F';' '{print NF; exit}' foo.txt
+head -1 foo.txt | tr ';' '\n' | wc -l
+
+
 tail -n+100 <file> | head -n1  # print 100th line
 sed '100q;d' <file>    # print 100th line
 
