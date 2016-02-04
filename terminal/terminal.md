@@ -314,39 +314,46 @@ http://community.wd.com/t5/WD-My-Cloud/NFS-broken-after-firmware-4-00/td-p/79206
 ```
 
 
-files
------
+#### files
 
-    tail -n+100 <file> | head -n1  # print 100th line
-    sed '100q;d' <file>    # print 100th line
+```shell
+# show files in tree format
+tree -Cfhpu
 
-    base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
+tail -n+100 <file> | head -n1  # print 100th line
+sed '100q;d' <file>    # print 100th line
 
-
-    shopt -s extglob
-    rm *.!(txt) Or in  # delete all files EXCEPT *.txt
-
-    rm *~*.txt(.) # zsh
+base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
 
 
-    wc -L file  #line which is max length in file
-    head -n -1 foo.txt #show foo.txt without last line
+shopt -s extglob
+rm *.!(txt) Or in  # delete all files EXCEPT *.txt
 
-    split -b 1024 big_file small_file_prefix
-    split -l 1000 big_file small_file_prefix
+rm *~*.txt(.) # zsh
 
-    # run bash as sudo to append file
-    sudo bash -c "cat in_file >> append_file"
-    cat in_file | sudo tee -a append_file
+wc -L file  #line which is max length in file
+head -n -1 foo.txt #show foo.txt without last line
 
-zip
-----
+split -b 1024 big_file small_file_prefix
+split -l 1000 big_file small_file_prefix
 
-    bzip2 file  #compress
-    bunzip2 file.bz2 #decompress
-    gzip file
-    zip file.zip file
-    zip -r file.zip file  # recursive zip
+# run bash as sudo to append file
+sudo bash -c "cat in_file >> append_file"
+cat in_file | sudo tee -a append_file
+
+
+#### zip
+
+```shell
+bzip2 file  #compress
+bunzip2 file.bz2 #decompress
+
+gzip file
+
+zip file.zip file
+zip -r file.zip file  # recursive zip
+```
+
 
 
 
