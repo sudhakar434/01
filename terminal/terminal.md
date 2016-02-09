@@ -11,6 +11,21 @@ sudo freshclam
 sudo clamscan -r -i /home
 ```
 
+
+#### logs
+
+```shell
+# log stdout stderr to file
+command >> log_file 2>&1
+command >> log_file 2>> err_file
+
+# check system log messages
+sudo cat /var/log/syslog
+# check error messages
+sudo cat /var/log/dmesg
+```
+
+
 #### packages
 
 ```shell
@@ -166,15 +181,16 @@ sudo ufw logging [on/off]
 #### usb
 
 ```shell
-# write permissions for pen drive
-sudo mount -o remount,rw '/media/SGTL MSCN'
-
-# write permissions for a drive
-dosfsck -a /dev/sdb1
-
-# bootable usb
 # list block devices
 lsblk
+
+# write permissions for a pendrive
+dosfsck -a /dev/sdb1
+
+# write permissions for pen drive
+sudo mount -o remount,rw /media/foo/usb-drive
+
+# bootable usb
 # write to that device
 sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
 ```
@@ -345,6 +361,7 @@ split -l 1000 big_file small_file_prefix
 # run bash as sudo to append file
 sudo bash -c "cat in_file >> append_file"
 cat in_file | sudo tee -a append_file
+```
 
 
 #### zip
@@ -498,11 +515,3 @@ http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html
 
 run ubuntu in text mode:
 http://askubuntu.com/questions/16371/how-do-i-disable-x-at-boot-time-so-that-the-system-boots-in-text-mode
-
-
-#### logs
-
-```
-cat /var/log/syslog  # check log messages
-cat /var/log/dmesg  # check error messages
-```
