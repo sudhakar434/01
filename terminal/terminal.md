@@ -12,6 +12,17 @@ sudo clamscan -r -i /home
 ```
 
 
+#### cron
+
+```shell
+# run job every minute
+*/1 * * * * foo
+
+# check cron log
+grep CRON /var/log/syslog
+```
+
+
 #### logs
 
 ```shell
