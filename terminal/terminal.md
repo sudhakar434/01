@@ -124,6 +124,12 @@ sudo apt-get install clamav
 sudo freshclam
 # scan dir & list infected files
 sudo clamscan -r -i /home
+
+
+# root kit checker
+sudo apt-get install -y rkhunter
+# rkhunter check & report warnings only
+sudo rkhunter -c --rwo
 ```
 
 
