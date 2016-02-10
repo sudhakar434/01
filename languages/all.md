@@ -5,7 +5,8 @@
 | approximately| సుమారు  | ಸುಮಾರು|
 |place/put||ಹಾಕಿದ್ದಿಯಾ?|
 |will give| ఇస్తాను |ಕೊಡುತ್ತೀನಿ|
-||||
+|no/not|కాదు |ಅಲ್ಲ/ಇಲ್ಲ|
+
 
 
 # sentences
