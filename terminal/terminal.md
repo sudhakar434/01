@@ -278,6 +278,12 @@ grep -Po '^sudo.+:\K.*$' /etc/group
 # recovery mode -> root ->
 mount -rw -o remount /
 sudo passwd <user>
+
+
+# remove password prompt for a user
+sudo visudo
+# add this at the *end*
+<username> ALL=(ALL) NOPASSWD: ALL
 ```
 
 
