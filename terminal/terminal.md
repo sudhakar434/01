@@ -1,15 +1,5 @@
 ## Terminal Commands
 
-#### anti virus
-```shell
-sudo apt-get install clamav
-
-# update virus database
-sudo freshclam
-
-# scan dir & list infected files
-sudo clamscan -r -i /home
-```
 
 
 #### cron
@@ -118,6 +108,22 @@ pkill emacs
 
 # run this command with lowest priority
 nice -n 19 command
+```
+
+#### security
+
+```shell
+# enable automatic security updates
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+
+# anti virus
+sudo apt-get install clamav
+# update virus database
+sudo freshclam
+# scan dir & list infected files
+sudo clamscan -r -i /home
 ```
 
 
