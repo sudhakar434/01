@@ -99,3 +99,14 @@ functions
 =========
 
     browse-url  # open url
+
+
+#### org mode
+
+```cl
+# align table at point based on vertical bars.
+org-table-align
+
+# delete column
+org-table-delete-column
+```
