@@ -13,6 +13,33 @@ grep CRON /var/log/syslog
 ```
 
 
+
+#### ftp
+
+```shell
+# download sftp file
+wget --user='user' --password='password' ftp://foo.com/bar
+
+ftp <ip>
+ftp> open <ip>
+ftp> put <source> <target>
+
+
+# ftp server
+
+# install
+sudo apt-get install vsftpd -y
+# update config
+sudo vim /etc/vsftpd.conf
+
+# create new user
+sudo adduser <user>
+sudo usermod -d /home/<user> <user>
+sudo usermod -s /sbin/nologin <user>
+```
+
+
+
 #### logs
 
 ```shell
@@ -505,33 +532,3 @@ sudo dpkg-reconfigure tzdata  # set timezone
     vmstat
     iotop
     htop
-
-
-### FTP
-
-```
-wget --user='user' --password='password' ftp://foo.com/bar  # download ftp file
-
-$ ftp <ip>
-ftp> open <ip>
-ftp> put <source> <target>
-```
-
-### ftp server
-
-```
-# Install:
-sudo apt-get install vsftpd -y
-
-
-# Conf file:
-/etc/vsftpd.conf
-
-
-# Create New User:
-sudo adduser <user>
-sudo mkdir /home/<user>/
-sudo usermod -d /home/ftpuser/<user> <user>
-sudo usermod -s /sbin/nologin <user>
-sudo chown -R ftpuser:ftpgroup /home/ftpuser/<user>
-```
