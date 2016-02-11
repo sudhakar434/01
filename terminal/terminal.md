@@ -2,6 +2,15 @@
 
 
 
+#### alias
+
+```
+alias  # show all alias
+alias ls='ls -a'
+```
+
+
+
 #### cron
 
 ```shell
@@ -10,6 +19,107 @@
 
 # check cron log
 grep CRON /var/log/syslog
+```
+
+
+
+#### disks
+
+```
+# list block devices
+lsblk
+
+# list drives
+sudo lshw -class disk -short
+
+# show file system
+df
+# show file system type
+df -T
+# show human readable summary of disk usage
+du -hs
+# size of folder
+du -hs /var/lib/mysql/
+
+
+# mount new hdd
+sudo fdisk /dev/sd*
+# n -> primary -> number 1 -> w
+sudo mkfs -t ext4 /dev/sdb1
+sudo mount /dev/sd* </some/path/>
+
+https://help.ubuntu.com/community/InstallingANewHardDrive
+
+
+# mount ntfs external hdd
+sudo apt-get install ntfs-3g
+sudo ntfsfix /dev/sdXX
+
+
+# nfs
+# install package
+sudo apt-get install nfs-kernel-server nfs-common
+# mount
+sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
+
+# find firmware version
+ssh user@ip
+cat /etc/version
+
+https://help.ubuntu.com/community/SettingUpNFSHowTo
+```
+
+
+
+#### files
+
+```shell
+# number of columns with delimiter ;
+awk -F';' '{print NF; exit}' foo.txt
+head -1 foo.txt | tr ';' '\n' | wc -l
+
+# print 100th line
+tail -n+100 <file> | head -n1
+sed '100q;d' <file>
+
+# show foo.txt without last line
+head -n -1 foo.txt
+
+# line which is max length in file
+wc -L file
+
+# awk
+ls -l | awk '{ print $5  }'
+ls -l | awk '{ print $2, '\t', $1  }'
+awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
+cat test.txt | awk '{print NR, NF, $0 }'
+ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
+
+# print line 5 from file
+sed -n 5p file
+# print 5 to 10 lines
+sed -n '5,10p' file
+# delete last line of file
+sed -i '$ d' foo.txt
+# delete from foo to bar in 1 and store in 2
+sed '/foo/,/bar/d' 1 > 2
+
+
+# generate 1mb random file
+base64 /dev/urandom | head -c 10000000 > random4.txt
+
+# split file
+split -b 1024 big_file small_file_prefix
+split -l 1000 big_file small_file_prefix
+
+
+# show files in tree format
+tree
+tree -Cfhpu
+
+# run bash as sudo to append file
+sudo bash -c "cat in_file >> append_file"
+cat in_file | sudo tee -a append_file
 ```
 
 
@@ -285,6 +395,17 @@ ps -ef | grep '[c]elery'
 ```
 
 
+services
+--------
+
+```shell
+sudo service <name> start/stop/status/restart
+
+sudo start/stop/status/restart <service>
+```
+
+
+
 ### users
 
 ```shell
@@ -300,6 +421,8 @@ sudo deluser <username> sudo
 # show all sudo users
 grep -Po '^sudo.+:\K.*$' /etc/group
 
+# change user password
+sudo passwd test
 
 # change admin passwd
 # recovery mode -> root ->
@@ -327,176 +450,4 @@ gzip file
 bunzip2 file.bz2
 # zsh
 x <any zipped file>
-```
-
-
-----------------------------------------------------
-
-
-#### find
-
-
-```
-find <path> -name <filename/pattern> -type
-find <path> -iname <filename> -type d
-find . -name "*.py" -type f -delete  # delete all txt files
-find . -type f ! -name '*.txt' -delete  #     delete all files EXCEPT *.txt
-```
-
-
-
-
-#### awk
-
-```
-ls -l | awk '{ print $5  }'
-ls -l | awk '{ print $2, '\t', $1  }'
-awk 'BEGIN { print "Last \t Job"  } { print $2, '\t', $4  }'
-cat test.txt | awk '{print NR, NF, $0 }'
-ls -l | awk '{ if ( NF >= 9  ) { print $9  }  }'
-```
-
-
-sed
----
-
-```
-sed -n 5p file          #print line 5 from file
-sed -n '5,10p' file     #print 5 to 10 lines
-sed -i '$ d' foo.txt    #delete last line of file
-sed '/foo/,/bar/d' 1 > 2 # delete from foo to bar in 1 and store in 2
-
-```
-
-
-
-disks
-------
-
-```
-lsblk  # list block devices
-
-sudo lshw -class disk -short  # list disks
-
-fdisk -l  # list partition table
-
-Df -T  # list disks with fs type
-
-
-# mount new hdd
-sudo fdisk /dev/sd*
-
-# n -> primary -> number 1 -> w
-
-sudo mkfs -t ext4 /dev/sdb1
-
-sudo mount /dev/sd* </some/path/>
-
-[More](https://help.ubuntu.com/community/InstallingANewHardDrive)
-
-# mount ntfs external hdd
-sudo apt-get install ntfs-3g
-sudo ntfsfix /dev/sdXX
-```
-
-
-nfs
-----
-
-```
-# Install package:
-sudo apt-get install nfs-kernel-server nfs-common
-
-
-# Mount:
-sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
-
-
-# Find firmware version:
-cat /etc/version  # in nfs after ssh
-
-
-# links:
-
-https://help.ubuntu.com/community/SettingUpNFSHowTo
-
-http://community.wd.com/t5/WD-My-Cloud/bd-p/mycloud
-
-http://community.wd.com/t5/WD-My-Cloud/NFS-broken-after-firmware-4-00/td-p/792069/highlight/true
-```
-
-
-#### files
-
-```shell
-# show files in tree format
-tree -Cfhpu
-
-# number of columns with delimiter ;
-awk -F';' '{print NF; exit}' foo.txt
-head -1 foo.txt | tr ';' '\n' | wc -l
-
-
-tail -n+100 <file> | head -n1  # print 100th line
-sed '100q;d' <file>    # print 100th line
-
-base64 /dev/urandom | head -c 10000000 > random4.txt  # generate 1mb random file
-
-
-shopt -s extglob
-rm *.!(txt) Or in  # delete all files EXCEPT *.txt
-
-rm *~*.txt(.) # zsh
-
-wc -L file  #line which is max length in file
-head -n -1 foo.txt #show foo.txt without last line
-
-split -b 1024 big_file small_file_prefix
-split -l 1000 big_file small_file_prefix
-
-# run bash as sudo to append file
-sudo bash -c "cat in_file >> append_file"
-cat in_file | sudo tee -a append_file
-```
-
-#### zip
-
-```shell
-bzip2 file  #compress
-bunzip2 file.bz2 #decompress
-
-gzip file
-
-zip file.zip file
-zip -r file.zip file  # recursive zip
-```
-
-
-services
---------
-
-```
-sudo service <name> start/stop/status/restart
-
-sudo start/stop/status/restart <service>
-```
-
-
-#### alias
-
-```
-alias  # show all alias
-alias ls='ls -a'
-```
-
-
-#### Others
-
-```
-sudo passwd #set a single char password
-df -h  #show file system disk usage
-du -ksh /var/lib/mysql/    #mysql data usage
-du -hs #show human readable summary of disk usage
-du -d=1  # --max-depth = 1
-du /var/lib/mysql/ -sh
 ```
