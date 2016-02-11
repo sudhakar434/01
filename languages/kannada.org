@@ -1,24 +1,26 @@
-| English fonts   | English pronounciation | Kannada fonts(kn) |
-|-----------------+------------------------+-------------------|
-| approximately   | shumaaru               | ಸುಮಾರು            |
-| placed?         | haakidhiya?            | ಹಾಕಿದ್ದಿಯಾ?          |
-| will give       |                        | ಕೊಡುತ್ತೀನಿ          |
-| no/not          |                        | ಅಲ್ಲ/ಇಲ್ಲ           |
-| congratulations |                        | ಅಭಿನಂದನೆಗಳು         |
-| after           |                        | ಹಿ೦ದೆ               |
-| how             |                        | ಹೇಗೆ               |
-| why             |                        | ಏಕೆ                |
-| where           |                        | ಎಲ್ಲಿ               |
-| ours            |                        | ನಮ್ಮದು             |
-| festival        |                        | ಹಬ್ಬ               |
-| parrot          |                        | ಗಿಳಿ                |
-|                 |                        |                   |
+| English         | Kenglish      | Kannada   |
+|-----------------+---------------+-----------|
+| approximately   | sumaaru       | ಸುಮಾರು    |
+| placed?         | haakidhiya?   | ಹಾಕಿದ್ದಿಯಾ?  |
+| will give       | koduthini     | ಕೊಡುತ್ತೀನಿ  |
+| no              | illa          | ಇಲ್ಲ       |
+| not             | alla          | ಅಲ್ಲ       |
+| congratulations | abhinandagalu | ಅಭಿನಂದನೆಗಳು |
+| after           | hinde         | ಹಿ೦ದೆ       |
+| how             | hege          | ಹೇಗೆ       |
+| why             | yake          | ಏಕೆ        |
+| where           | yelli         | ಎಲ್ಲಿ       |
+| ours            | nammadu       | ನಮ್ಮದು     |
+| festival        | habba         | ಹಬ್ಬ       |
+| parrot          | gili          | ಗಿಳಿ        |
+| nope/don't need | beda          | ಬೇಡ       |
+| waste           | kachada       | ಕಚಡ       |
+|                 |               |           |
 
 
 
-
-| English(en)            | Telugu(te)          |
-|------------------------+---------------------|
-| whose book is this?    | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |
-| until it finishes, sit | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |
-| dont tell lies         |                     |
+| English                | Kannada             | Kenglish |
+|------------------------+---------------------+----------|
+| whose book is this?    | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |          |
+| until it finishes, sit | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |          |
+| dont tell lies         |                     |          |
