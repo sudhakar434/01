@@ -123,6 +123,25 @@ cat in_file | sudo tee -a append_file
 ```
 
 
+#### firewall
+
+```shell
+# show firewall status
+sudo ufw status verbose
+
+# enable/disable
+sudo ufw enable
+sudo ufw disable
+
+# allow/deny ports
+sudo ufw allow <port no>
+sudo ufw deny <port no>
+sudo ufw delete <port no>
+
+sudo ufw logging [on/off]
+```
+
+
 
 #### ftp
 
@@ -163,13 +182,6 @@ sudo cat /var/log/syslog
 sudo cat /var/log/dmesg
 ```
 
-
-#### packages
-
-```shell
-# upgrade a single package
-sudo apt-get install --only-upgrade tree
-```
 
 
 #### networking
@@ -215,6 +227,16 @@ namp localhost
 sudo netstat -tulpn
 sudo netstat -tulpn | grep LISTEN
 ```
+
+
+
+#### packages
+
+```shell
+# upgrade a single package
+sudo apt-get install --only-upgrade tree
+```
+
 
 
 #### process
@@ -270,19 +292,6 @@ sudo rkhunter -c --rwo
 ```
 
 
-#### time/date
-
-```shell
-# show time/date
-date
-
-# set time/date
-sudo date --set "25 Sep 2013 15:00:00"  # set date
-
-# set timezone
-sudo dpkg-reconfigure tzdata  # set timezone
-```
-
 
 #### system info
 
@@ -319,23 +328,19 @@ sudo dmidecode -t 16
 ```
 
 
-#### firewall
+#### time/date
 
 ```shell
-# show firewall status
-sudo ufw status verbose
+# show time/date
+date
 
-# enable/disable
-sudo ufw enable
-sudo ufw disable
+# set time/date
+sudo date --set "25 Sep 2013 15:00:00"  # set date
 
-# allow/deny ports
-sudo ufw allow <port no>
-sudo ufw deny <port no>
-sudo ufw delete <port no>
-
-sudo ufw logging [on/off]
+# set timezone
+sudo dpkg-reconfigure tzdata  # set timezone
 ```
+
 
 
 #### usb
@@ -395,8 +400,7 @@ ps -ef | grep '[c]elery'
 ```
 
 
-services
---------
+#### services
 
 ```shell
 sudo service <name> start/stop/status/restart
@@ -406,7 +410,7 @@ sudo start/stop/status/restart <service>
 
 
 
-### users
+#### users
 
 ```shell
 # create new user
