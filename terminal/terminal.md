@@ -313,8 +313,21 @@ sudo visudo
 <username> ALL=(ALL) NOPASSWD: ALL
 ```
 
+#### zip
+
+```shell
+# compress
+bzip2 file
+zip file.zip <file>
+zip -r file.zip <path>
+gzip file
 
 
+#decompress
+bunzip2 file.bz2
+# zsh
+x <any zipped file>
+```
 
 
 ----------------------------------------------------
@@ -459,29 +472,6 @@ zip -r file.zip file  # recursive zip
 ```
 
 
-
-
-network
--------
-
-    #show other computers in lan
-    avahi-browse -tl _workstation._tcp
-
-    # ssh using keys
-    ssh-keygen -t rsa
-    cat .ssh/id_rsa.pub | ssh user@host 'cat >> .ssh/authorized_keys'
-    ssh-copy-id user@host
-    ssh user@host
-
-    # copy files
-    rsync -a user@host:/path/to/dir /path/to/target
-    options: -avn :: archive, verbose, dry run
-
-    rfkill list #show status of wireless devices
-    ifconfig # show ip, mac address
-
-
-
 services
 --------
 
@@ -489,15 +479,6 @@ services
 sudo service <name> start/stop/status/restart
 
 sudo start/stop/status/restart <service>
-```
-
-
-#### top
-
-```
-1 - show cpu core usage
-n - set number of tasks
-W - write .toprc config file
 ```
 
 
@@ -518,17 +499,4 @@ du -ksh /var/lib/mysql/    #mysql data usage
 du -hs #show human readable summary of disk usage
 du -d=1  # --max-depth = 1
 du /var/lib/mysql/ -sh
-
-sudo dpkg-reconfigure tzdata  # set timezone
 ```
-
-
-### Tools to identify bottleneck
-    mpstat
-    sar
-    vmstat -s
-    vmstat -m | head -5
-    vmstat -f
-    vmstat
-    iotop
-    htop
