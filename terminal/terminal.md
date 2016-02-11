@@ -426,7 +426,7 @@ sudo deluser <username> sudo
 grep -Po '^sudo.+:\K.*$' /etc/group
 
 # change user password
-sudo passwd test
+sudo passwd <username>
 
 # change admin passwd
 # recovery mode -> root ->
