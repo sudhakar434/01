@@ -108,6 +108,9 @@ sed '/foo/,/bar/d' 1 > 2
 # generate 1mb random file
 base64 /dev/urandom | head -c 10000000 > random4.txt
 
+# find & replace in file
+sed -i 's/original/new/g' file.txt
+
 # split file
 split -b 1024 big_file small_file_prefix
 split -l 1000 big_file small_file_prefix
