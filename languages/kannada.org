@@ -24,3 +24,10 @@
 | whose book is this?    | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |          |
 | until it finishes, sit | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |          |
 | dont tell lies         |                     |          |
+
+
+# Slang
+
+| Kannada | Kenglish | Literal meaning | Actual meaning                     |
+|---------+----------+-----------------+------------------------------------|
+| ಹೊಗೆ     | hoge     | smoke           | screwed; get in a big problem; die |
