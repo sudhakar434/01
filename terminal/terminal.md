@@ -379,6 +379,13 @@ git config credential.helper store
 # squash last n commits
 git reset --soft HEAD~n
 git commit -m "Commit message"
+
+# remove untracked files
+git clean -fnd
+git clean -fd
+
+# unstage all chages
+git reset
 ```
 
 
