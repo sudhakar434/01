@@ -1,4 +1,4 @@
-questions
+* questions
 
 | english | kenglish | pronounciation | kannada |
 |---------+----------+----------------+---------|
@@ -6,12 +6,13 @@ questions
 | why     | yake     |                | ಏಕೆ      |
 | where   | yelli    |                | ಎಲ್ಲಿ     |
 | when    | yaavaaga | yāvāga         | ಯಾವಾಗ   |
+| what    | yenu     | Ēnu               | ಏನು     |
 | who     | yaaru    | yāru           | ಯಾರು    |
 |         |          |                |         |
 
 
 
-words
+* words
 
 | english         | kenglish      | kannada   |
 |-----------------+---------------+-----------|
@@ -22,9 +23,6 @@ words
 | not             | alla          | ಅಲ್ಲ       |
 | congratulations | abhinandagalu | ಅಭಿನಂದನೆಗಳು |
 | after           | hinde         | ಹಿ೦ದೆ       |
-| how             | hege          | ಹೇಗೆ       |
-| why             | yake          | ಏಕೆ        |
-| where           | yelli         | ಎಲ್ಲಿ       |
 | ours            | nammadu       | ನಮ್ಮದು     |
 | festival        | habba         | ಹಬ್ಬ       |
 | parrot          | gili          | ಗಿಳಿ        |
@@ -34,7 +32,7 @@ words
 
 
 
-sentences
+* sentences
 
 | english                | kenglish                     |                         | kannada             |
 |------------------------+------------------------------+-------------------------+---------------------|
@@ -43,11 +41,23 @@ sentences
 | dont tell lies         |                              |                         |                     |
 | come, lets go for tea  | tea ge hogona, banni         | ṭī ge hōgōṇa, banni     | ಟೀ ಗೆ ಹೋಗೋಣ, ಬನ್ನಿ     |
 | my sister is studying  | nanna tangi oduththidhdhalhe | nanna taṅgi ōduttiddāḷe | ನನ್ನ ತಂಗಿ ಓದುತ್ತಿದ್ದಾಳೆ   |
-|                        |                              |                         |                     |
+| its closed             | adu muchchithu               | adu muccitu             | ಅದು ಮುಚ್ಚಿತು          |
 
 
 
-slang
+* Library Converstation
+
+| english           | kenglish                | phonetics                | kannada              |
+|-------------------+-------------------------+--------------------------+----------------------|
+| I went to library | nanu librarikke hogidde | nānu laibrarikke hōgidde | ನಾನು ಲೈಬ್ರರಿಕ್ಕೆ   ಹೋಗಿದ್ದೆ |
+
+
+
+
+
+
+
+* slang
 
 | kannada | kenglish | literal meaning | actual meaning                     |
 |---------+----------+-----------------+------------------------------------|
