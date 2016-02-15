@@ -1,4 +1,19 @@
-| English         | Kenglish      | Kannada   |
+questions
+
+| english | kenglish | pronounciation | kannada |
+|---------+----------+----------------+---------|
+| how     | hege     |                | ಹೇಗೆ     |
+| why     | yake     |                | ಏಕೆ      |
+| where   | yelli    |                | ಎಲ್ಲಿ     |
+| when    | yaavaaga | yāvāga         | ಯಾವಾಗ   |
+| who     | yaaru    | yāru           | ಯಾರು    |
+|         |          |                |         |
+
+
+
+words
+
+| english         | kenglish      | kannada   |
 |-----------------+---------------+-----------|
 | approximately   | sumaaru       | ಸುಮಾರು    |
 | placed?         | haakidhiya?   | ಹಾಕಿದ್ದಿಯಾ?  |
@@ -19,17 +34,21 @@
 
 
 
-| English                | Kenglish             |                     | Kannada             |
-|------------------------+----------------------+---------------------+---------------------|
-| whose book is this?    |                      |                     | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |
-| until it finishes, sit |                      |                     | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |
-| dont tell lies         |                      |                     |                     |
-| come, lets go for tea  | tea ge hogona, banni | Ṭī ge hōgōṇa, banni | ಟೀ ಗೆ ಹೋಗೋಣ, ಬನ್ನಿ     |
-|                        |                      |                     |                     |
+sentences
+
+| english                | kenglish                     |                         | kannada             |
+|------------------------+------------------------------+-------------------------+---------------------|
+| whose book is this?    |                              |                         | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |
+| until it finishes, sit |                              |                         | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |
+| dont tell lies         |                              |                         |                     |
+| come, lets go for tea  | tea ge hogona, banni         | ṭī ge hōgōṇa, banni     | ಟೀ ಗೆ ಹೋಗೋಣ, ಬನ್ನಿ     |
+| my sister is studying  | nanna tangi oduththidhdhalhe | nanna taṅgi ōduttiddāḷe | ನನ್ನ ತಂಗಿ ಓದುತ್ತಿದ್ದಾಳೆ   |
+|                        |                              |                         |                     |
 
 
-# Slang
 
-| Kannada | Kenglish | Literal meaning | Actual meaning                     |
+slang
+
+| kannada | kenglish | literal meaning | actual meaning                     |
 |---------+----------+-----------------+------------------------------------|
 | ಹೊಗೆ     | hoge     | smoke           | screwed; get in a big problem; die |
