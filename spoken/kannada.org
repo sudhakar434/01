@@ -19,11 +19,13 @@
 
 
 
-| English                | Kannada             | Kenglish |
-|------------------------+---------------------+----------|
-| whose book is this?    | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |          |
-| until it finishes, sit | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |          |
-| dont tell lies         |                     |          |
+| English                | Kenglish             |                     | Kannada             |
+|------------------------+----------------------+---------------------+---------------------|
+| whose book is this?    |                      |                     | ಈ ಪುಸ್ತಕವು ಯಾರದು?    |
+| until it finishes, sit |                      |                     | ಅದು ಮುಗಿಯೋತನಕ ಕೂತುಕೋ |
+| dont tell lies         |                      |                     |                     |
+| come, lets go for tea  | tea ge hogona, banni | Ṭī ge hōgōṇa, banni | ಟೀ ಗೆ ಹೋಗೋಣ, ಬನ್ನಿ     |
+|                        |                      |                     |                     |
 
 
 # Slang
