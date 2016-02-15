@@ -488,3 +488,47 @@ S + F3 - Move to previous split screen
 S + F4 - Move to next split screen
 S + Arrows - To move along splits
 ```
+
+
+
+#### tmux
+
+```shell
+ctrl + b % - split vertically
+ctrl + b " - split window horizontally
+ctrl + b arrow keys - switch panes
+ctrl + b c - create new window in existing session
+```
+
+
+
+#### screen
+
+```shell
+screen      # enter to screen
+C + a ?     # display help
+CTRL + a c  # create new window
+C + a k     # kill current window
+C + a w     # list all windows
+C + a 0 -9  # switch windows
+C + a C + a # toggle windows
+```
+
+
+#### terminator
+
+```shell
+ctrl + shift + o - split screen horizontally
+ctrl + shift + e - split screen vertically
+ctrl + tab       - cycle through tabs
+```
+
+
+
+#### salt  stack
+
+
+```
+# install
+sudo apt-get --yes -q install python-software-properties
+```
