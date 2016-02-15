@@ -525,10 +525,25 @@ ctrl + tab       - cycle through tabs
 
 
 
-#### salt  stack
+#### salt stack
 
 
 ```
 # install
 sudo apt-get --yes -q install python-software-properties
+
+# states
+sudo salt '*' state.apply <state1>
+sudo salt '*' state.apply <state2> saltenv=<env1> --state-output=mixed
+sudo salt '*' state.highstate saltenv=<env1>
+sudo salt <minion1> state.highstate saltenv=<env2>
+
+# jobs
+# Return the data on all running salt processes on the minion
+sudo salt '*' saltutil.running
+sudo salt-run jobs.active
+# find a running job with jid
+sudo salt '*' saltutil.find_job <jid>
+# kill a running job with jid
+sudo salt '*' saltutil.kill_job <jid>
 ```
