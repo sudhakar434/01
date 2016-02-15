@@ -1,4 +1,4 @@
-* questions
+**** questions
 
 | english | kenglish | pronounciation | kannada |
 |---------+----------+----------------+---------|
@@ -42,6 +42,16 @@
 | come, lets go for tea  | tea ge hogona, banni         | ṭī ge hōgōṇa, banni     | ಟೀ ಗೆ ಹೋಗೋಣ, ಬನ್ನಿ     |
 | my sister is studying  | nanna tangi oduththidhdhalhe | nanna taṅgi ōduttiddāḷe | ನನ್ನ ತಂಗಿ ಓದುತ್ತಿದ್ದಾಳೆ   |
 | its closed             | adu muchchithu               | adu muccitu             | ಅದು ಮುಚ್ಚಿತು          |
+
+
+
+* Guest Converstation
+
+| english            | kenglish           | phonetics          | kannada       |
+|--------------------+--------------------+--------------------+---------------|
+| What is your name? | nimma hesaru yenu? | Nim'ma hesaru ēnu? | ನಿಮ್ಮ ಹೆಸರು ಏನು? |
+| sit                | koothuko           | kūtukō             | ಕೂತುಕೋ        |
+| Come in            | olhage banni       | oḷage banni        | ಒಳಗೆ ಬನ್ನಿ       |
 
 
 
