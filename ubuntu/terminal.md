@@ -267,6 +267,8 @@ ps -ef
 # kill process
 kill -9 <PID>
 pkill emacs
+# kill process by some identifier
+ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
 # run this command with lowest priority
 nice -n 19 command
@@ -292,6 +294,10 @@ sudo clamscan -r -i /home
 sudo apt-get install -y rkhunter
 # rkhunter check & report warnings only
 sudo rkhunter -c --rwo
+
+
+# generate csr for ssl
+openssl req -new -newkey rsa:2048 -nodes -keyout foo.com.key -out foo.com.csr
 ```
 
 
