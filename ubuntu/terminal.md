@@ -241,6 +241,7 @@ sudo apt-get install --only-upgrade <package name>
 
 # show available versions of a package
 sudo apt-cache policy <package name>
+sudo apt-cache show <package name> | grep Version
 ```
 
 
