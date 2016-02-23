@@ -237,7 +237,10 @@ sudo netstat -tulpn | grep LISTEN
 
 ```shell
 # upgrade a single package
-sudo apt-get install --only-upgrade tree
+sudo apt-get install --only-upgrade <package name>
+
+# show available versions of a package
+sudo apt-cache policy <package name>
 ```
 
 
