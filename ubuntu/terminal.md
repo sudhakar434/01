@@ -74,6 +74,9 @@ https://help.ubuntu.com/community/SettingUpNFSHowTo
 #### files
 
 ```shell
+# delete all directories but not files in pwd
+rm -r */
+
 # number of columns with delimiter ;
 awk -F';' '{print NF; exit}' foo.txt
 head -1 foo.txt | tr ';' '\n' | wc -l
