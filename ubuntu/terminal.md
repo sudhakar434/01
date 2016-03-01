@@ -25,7 +25,7 @@ grep CRON /var/log/syslog
 
 #### disks
 
-```
+```shell
 # list block devices
 lsblk
 
@@ -422,6 +422,19 @@ grep -rl "foo" /path/to/dir/
 #grep ps without grep
 ps -ef | grep '[c]elery'
 ```
+
+
+#### simple http server
+
+```shell
+# python 2
+python -m SimpleHTTPServer
+# python 3
+python3 -m http.server
+# twistd
+twistd -n web --path .
+```
+
 
 
 #### services
