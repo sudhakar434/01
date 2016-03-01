@@ -542,7 +542,7 @@ ctrl + tab       - cycle through tabs
 #### salt stack
 
 
-```
+```shell
 # install
 sudo apt-get --yes -q install python-software-properties
 
@@ -560,4 +560,42 @@ sudo salt-run jobs.active
 sudo salt '*' saltutil.find_job <jid>
 # kill a running job with jid
 sudo salt '*' saltutil.kill_job <jid>
+```
+
+
+
+#### nginx
+
+```apacheconf
+server {
+
+        listen 8002;
+
+        # deny illegal host headers
+        if ($host !~* ^(foo.com|www.foo.com)$ ) {
+              return 444;
+        }
+
+        proxy_set_header Host $http_host;
+        server_name foo.com;
+
+        # force https redirection
+        return 301 https://$server_name$request_uri;
+
+        location  /static {
+                include       /etc/nginx/mime.types;
+                autoindex on;
+                alias /opt/foo/collect_static;
+        }
+
+        location  /media {
+                include       /etc/nginx/mime.types;
+                autoindex on;
+                alias /opt/foo/media;
+        }
+
+        location / {
+                proxy_pass http://0.0.0.0:8001;
+        }
+}
 ```
