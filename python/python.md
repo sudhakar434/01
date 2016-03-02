@@ -192,7 +192,58 @@ for link in soup:
 
 ### gunicorn
 
-```sh
+```shell
 # running a server
 gunicorn project.wsgi --bind 0.0.0.0:8008 --log-level debug --preload --env DJANGO_SETTINGS_MODULE=pearl.settings.production2 --log-file=-
 ```
+
+
+#### celery
+
+```python
+from datetime import datetime
+result = tasks.add.apply_async(args=[1,2], eta=datetime(2014, 06, 12, 0, 0))
+result = tasks.add.apply_async(args=[1,2], countdown=10)
+r = tasks.add.delay()
+
+
+# celery inspect
+celery status
+
+celery inspect active
+
+celery purge
+
+from celery.task.control import revoke
+revoke(id)
+revoke(id, terminate=True)
+
+from celery.task.control import inspect
+i = inspect()
+i.scheduled()
+i.active()
+i.registered()
+
+
+# task result
+result = my_task.apply_async(args=[1,2])
+result.ready()
+result.state
+
+
+
+#### workers
+
+    celery -A apps.project.tasks worker -l info
+
+    ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+
+    # run worker from script
+    from myapp import app
+    argv = ['worker', '--loglevel=DEBUG',]
+    app.worker_main(argv)
+
+
+#### canvas
+
+     chain, group, chord

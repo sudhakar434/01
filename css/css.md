@@ -1,7 +1,7 @@
-selectors
-=========
+#### selectors
 
-```
+
+```css
 p::after {
     content: " - Remember this";
 }
@@ -34,4 +34,14 @@ allow other elements to sit to their left and right
 respect top & bottom margins and padding
 respect height and width
 
+```
+
+
+#### bootstrap
+
+```css
+alert
+alert-error
+alert-success
+alert-info
 ```
