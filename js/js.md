@@ -1,5 +1,45 @@
-#### Simple Autocomplete
+### jQuery
 
+
+#### selectors
+
+```js
+$('#category option[value="blog_list?category=TECH"]').prop('selected', true);
+```
+
+
+
+#### Disable button
+
+```js
+$("input[value='vcf']").click(writeData);
+function writeData() {
+jQuery("input[value=vcf]").attr('disabled',true);
+}
+
+// disable by default
+$('select item').disabled = true;
+
+# change vs click
+```
+
+#### find element type
+
+```js
+$('#target').is('input')
+
+$('#target').get(0).tagName.toLowerCase()
+```
+
+
+# set select to an option
+$('#category option[value="blog_list?category=TECH"]').prop('selected', true);
+
+
+
+#### jquery autocomplete plugin
+
+```js
 var tissues = [
     {"label": "taaaa 1"},
     {"label": "tbbbb 2"},
@@ -23,3 +63,4 @@ $('input#id_tissue').autocomplete({
         response(startsWith.concat(contains));
     }
 });
+```
