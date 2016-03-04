@@ -91,6 +91,9 @@ head -n -1 foo.txt
 # line which is max length in file
 wc -L file
 
+# diff of files
+diff <file1> <file2>
+
 # awk
 ls -l | awk '{ print $5  }'
 ls -l | awk '{ print $2, '\t', $1  }'
@@ -470,11 +473,13 @@ sudo passwd <username>
 mount -rw -o remount /
 sudo passwd <user>
 
-
 # remove password prompt for a user
 sudo visudo
 # add this at the *end*
 <username> ALL=(ALL) NOPASSWD: ALL
+
+# show who is logged on and what they are doing
+w
 ```
 
 #### zip
@@ -663,4 +668,12 @@ docker pull
 sudoedit /etc/default/grub
 GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
 sudo update-grub && shutdown -r 0
+```
+
+
+#### gunicorn
+
+```shell
+# run gunicorn & lot to terminal
+gunicorn foo.wsgi -c g.py --log-file=-
 ```
