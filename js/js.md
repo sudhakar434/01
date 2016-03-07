@@ -64,3 +64,13 @@ $('input#id_tissue').autocomplete({
     }
 });
 ```
+
+
+#### bootstrap
+
+```js
+# make navbar link active
+$(document).ready(function() {
+    $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+});
+```

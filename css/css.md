@@ -44,4 +44,10 @@ alert
 alert-error
 alert-success
 alert-info
+
+
+# navbar fixed top overlapping site
+body { padding-top: 70px; }
+
+
 ```
