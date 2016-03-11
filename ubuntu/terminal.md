@@ -389,6 +389,15 @@ sudo apt-add-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install --yes git
 
+# configuration
+git config --global user.name "username"
+git config --local user.email "your.email@gmail.com"
+
+git config --global color.ui true
+git config --global color.status auto
+git config --global color.branch auto
+git config --global core.editor vim
+git config --list
 # store git credentials
 git config credential.helper store
 
@@ -403,6 +412,27 @@ git clean -fd
 
 # unstage all chages
 git reset
+
+
+# to commit only one file
+git commit -m 'my message' path/to/file.ext
+# commit a part of file
+git commit --patch <file_name>
+
+# push
+git push master origin
+git push -f master origin
+
+# stash
+git stash
+git stash list
+git stash apply <stash_num>
+git stash pop
+
+
+# alias
+lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 ```
 
 
