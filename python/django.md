@@ -7,7 +7,7 @@ templates
 
 
     from django.template import loader
-	print loader.get_template('home.html')
+    print loader.get_template('home.html')
 
 
 urls
@@ -19,6 +19,8 @@ urls
     reverse('/')  # similar to url template tag
     reverse_lazy('/')  # lazy version of reverse
 
+# link to admin
+"{% url 'admin:index' %}"
 
 users
 -----

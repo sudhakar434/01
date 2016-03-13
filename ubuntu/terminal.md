@@ -235,6 +235,11 @@ namp localhost
 # local machine
 sudo netstat -tulpn
 sudo netstat -tulpn | grep LISTEN
+
+# dns queries
+nslookup avilpage.com
+nslookup -querytype=mx bbc.co.uk
+dig avilpage
 ```
 
 
