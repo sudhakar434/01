@@ -231,19 +231,93 @@ result.ready()
 result.state
 
 
+# workers
 
-#### workers
+celery -A apps.project.tasks worker -l info
 
-    celery -A apps.project.tasks worker -l info
+ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
-    ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
-
-    # run worker from script
-    from myapp import app
-    argv = ['worker', '--loglevel=DEBUG',]
-    app.worker_main(argv)
+# run worker from script
+from myapp import app
+argv = ['worker', '--loglevel=DEBUG',]
+app.worker_main(argv)
 
 
-#### canvas
+# canvas
 
-     chain, group, chord
+chain, group, chord
+```
+
+### django
+
+```python
+
+# templates
+from django.template import loader
+print(loader.get_template('home.html'))
+
+# show all templates
+from django.template.loaders.app_directories import app_template_dirs
+template_files = []
+for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
+    for dir, dirnames, filenames in os.walk(template_dir):
+        for filename in filenames:
+        template_files.append(os.path.join(dir, filename))
+
+# urls
+from django.core.urlresolvers import get_resolver, resolve
+get_resolver(None).reverse_dict.keys()     #All URL Patterns
+resolve('/')  # resolving URL paths to the corresponding view functions.
+reverse('/')  # get view
+reverse_lazy('/')  # lazy version of reverse
+
+# admin
+"{% url 'admin:index' %}"
+
+# cli
+python manage.py changepassword admin
+python manage.py createsuperuser
+
+#Reset south migrations - delete ghost migrations
+rm <app-dir>/migrations/*
+python manage.py schemamigration <app-name> --initial
+python manage.py migrate <app-name> 0001 --fake  --delete-ghost-migrations
+# Check for any errors in the construction of your models
+python manage.py validate
+
+# models
+# print sql query
+print(Mymodel.objects.all().query)
+
+# show all sql queries
+from django.db import connection
+connection.queries
+
+# get model to avoid circular imports
+from django.db.models import get_model
+get_model('<app>', '<model>')
+
+# manually select databse
+Book.objects.using('test_db').all()
+
+# queryset database
+book._state.db
+```
+
+
+### pandas
+
+```python
+# on spot averages
+In [24]: df
+Out[24]:
+              a        b
+0   XLOC_012018     0.00
+1   XLOC_012018     1.00
+
+In [25]: df.groupby(['a'])['b'].mean()
+Out[25]:
+a
+XLOC_012018        0.50
+Name: b, dtype: float64
+```
