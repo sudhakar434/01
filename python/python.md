@@ -320,4 +320,7 @@ Out[25]:
 a
 XLOC_012018        0.50
 Name: b, dtype: float64
+
+# drop index while saving
+df.to_csv('output.tsv', index=False)
 ```
