@@ -193,6 +193,9 @@ files
     # run bash as sudo to append file
     sudo bash -c "cat in_file >> append_file"
     cat in_file | sudo tee -a append_file
+    
+    #move files from current directory to subdirectory
+    sudo mv  !(pearl) pearl
 
 zip
 ----
