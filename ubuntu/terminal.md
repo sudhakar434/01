@@ -350,6 +350,9 @@ sudo lshw -C memory
 # maximum ram supported & available slots
 sudo dmidecode -t memory
 sudo dmidecode -t 16
+
+# change brightness
+echo 100 > /sys/class/backlight/foo/brightness
 ```
 
 
