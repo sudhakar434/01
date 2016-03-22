@@ -2,7 +2,7 @@
 
 
 
-#### alias
+### alias
 
 ```
 alias  # show all alias
@@ -11,7 +11,7 @@ alias ls='ls -a'
 
 
 
-#### cron
+### cron
 
 ```shell
 # run job every minute
@@ -23,7 +23,7 @@ grep CRON /var/log/syslog
 
 
 
-#### disks
+### disks
 
 ```shell
 # list block devices
@@ -70,8 +70,7 @@ https://help.ubuntu.com/community/SettingUpNFSHowTo
 ```
 
 
-
-#### files
+### files
 
 ```shell
 # delete all directories but not files in pwd
@@ -132,7 +131,10 @@ cat in_file | sudo tee -a append_file
 ```
 
 
-#### firewall
+
+
+
+### firewall
 
 ```shell
 # show firewall status
@@ -152,7 +154,7 @@ sudo ufw logging [on/off]
 
 
 
-#### ftp
+### ftp
 
 ```shell
 # download sftp file
@@ -174,6 +176,70 @@ sudo vim /etc/vsftpd.conf
 sudo adduser <user>
 sudo usermod -d /home/<user> <user>
 sudo usermod -s /sbin/nologin <user>
+```
+
+
+
+### git
+
+```shell
+# update git
+sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install --yes git
+
+# configuration
+git config --global user.name "username"
+git config --local user.email "your.email@gmail.com"
+
+git config --global color.ui true
+git config --global color.status auto
+git config --global color.branch auto
+git config --global core.editor vim
+git config --list
+# store git credentials
+git config credential.helper store
+
+
+# squash last n commits
+git reset --soft HEAD~n
+git commit -m "Commit message"
+
+# remove untracked files
+git clean -fnd
+git clean -fd
+
+# unstage all chages
+git reset
+
+
+# to commit only one file
+git commit -m 'my message' path/to/file.ext
+# commit a part of file
+git commit --patch <file_name>
+
+
+# show all remotes
+git remote -v
+
+# create github remote
+curl -u 'chillaranand' https://api.gitlab.com/user/repos -d '{"name":"foo"}'
+
+# push
+git push master origin
+git push -f master origin
+
+
+# stash
+git stash
+git stash list
+git stash apply <stash_num>
+git stash pop
+
+
+# alias
+lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 ```
 
 
@@ -386,61 +452,6 @@ sudo mount -o remount,rw /media/foo/usb-drive
 # bootable usb
 # write to that device
 sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
-```
-
-
-#### git
-
-```shell
-# update git
-sudo apt-add-repository ppa:git-core/ppa
-sudo apt-get update
-sudo apt-get install --yes git
-
-# configuration
-git config --global user.name "username"
-git config --local user.email "your.email@gmail.com"
-
-git config --global color.ui true
-git config --global color.status auto
-git config --global color.branch auto
-git config --global core.editor vim
-git config --list
-# store git credentials
-git config credential.helper store
-
-
-# squash last n commits
-git reset --soft HEAD~n
-git commit -m "Commit message"
-
-# remove untracked files
-git clean -fnd
-git clean -fd
-
-# unstage all chages
-git reset
-
-
-# to commit only one file
-git commit -m 'my message' path/to/file.ext
-# commit a part of file
-git commit --patch <file_name>
-
-# push
-git push master origin
-git push -f master origin
-
-# stash
-git stash
-git stash list
-git stash apply <stash_num>
-git stash pop
-
-
-# alias
-lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 ```
 
 
