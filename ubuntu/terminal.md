@@ -539,10 +539,10 @@ x <any zipped file>
 
 --------------------------------
 
-### packages
+## third party packages
 
 
-#### byobu
+### byobu
 
 ```shell
 # help
@@ -561,66 +561,40 @@ S + Arrows - To move along splits
 
 
 
-#### tmux
+###  docker
 
 ```shell
-ctrl + b % - split vertically
-ctrl + b " - split window horizontally
-ctrl + b arrow keys - switch panes
-ctrl + b c - create new window in existing session
+docker images
+docker ps
+docker ps -a
+docker ps -aq # list only container ids
+docker commit <name>
+docker start <id>
+docker stop <id>
+docker attach <id>
+docker build
+docker run -ditp 8001:8001 <image>
+docker inspect <id>
+docker history <image>
+docker search <image name>
+docker pull
+
+# suppress warning: no swap limit support
+sudoedit /etc/default/grub
+GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
+sudo update-grub && shutdown -r 0
+```
+
+### gunicorn
+
+```shell
+# run gunicorn & lot to terminal
+gunicorn foo.wsgi -c g.py --log-file=-
 ```
 
 
 
-#### screen
-
-```shell
-screen      # enter to screen
-C + a ?     # display help
-CTRL + a c  # create new window
-C + a k     # kill current window
-C + a w     # list all windows
-C + a 0 -9  # switch windows
-C + a C + a # toggle windows
-```
-
-
-#### terminator
-
-```shell
-ctrl + shift + o - split screen horizontally
-ctrl + shift + e - split screen vertically
-ctrl + tab       - cycle through tabs
-```
-
-
-
-#### salt stack
-
-
-```shell
-# install
-sudo apt-get --yes -q install python-software-properties
-
-# states
-sudo salt '*' state.apply <state1>
-sudo salt '*' state.apply <state2> saltenv=<env1> --state-output=mixed
-sudo salt '*' state.highstate saltenv=<env1>
-sudo salt <minion1> state.highstate saltenv=<env2>
-
-# jobs
-# Return the data on all running salt processes on the minion
-sudo salt '*' saltutil.running
-sudo salt-run jobs.active
-# find a running job with jid
-sudo salt '*' saltutil.find_job <jid>
-# kill a running job with jid
-sudo salt '*' saltutil.kill_job <jid>
-```
-
-
-
-#### nginx
+### nginx
 
 ```apacheconf
 server {
@@ -658,7 +632,18 @@ server {
 
 
 
-#### rabbitmq
+### notedown
+
+```shell
+# https://github.com/aaren/notedown
+pip install notedown
+
+# convert markdown to ipython notebook
+notedown python.md > python.ipynb
+```
+
+
+### rabbitmq
 
 ```shell
 sudo apt-get install rabbitmq-server
@@ -684,34 +669,57 @@ sudo rabbitmq-plugins list
 sudo rabbitmq-plugins enable rabbitmq_management
 ```
 
-####  docker
+
+### salt stack
 
 ```shell
-docker images
-docker ps
-docker ps -a
-docker ps -aq # list only container ids
-docker commit <name>
-docker start <id>
-docker stop <id>
-docker attach <id>
-docker build
-docker run -ditp 8001:8001 <image>
-docker inspect <id>
-docker history <image>
-docker search <image name>
-docker pull
+# install
+sudo apt-get --yes -q install python-software-properties
 
-# suppress warning: no swap limit support
-sudoedit /etc/default/grub
-GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
-sudo update-grub && shutdown -r 0
+# states
+sudo salt '*' state.apply <state1>
+sudo salt '*' state.apply <state2> saltenv=<env1> --state-output=mixed
+sudo salt '*' state.highstate saltenv=<env1>
+sudo salt <minion1> state.highstate saltenv=<env2>
+
+# jobs
+# Return the data on all running salt processes on the minion
+sudo salt '*' saltutil.running
+sudo salt-run jobs.active
+# find a running job with jid
+sudo salt '*' saltutil.find_job <jid>
+# kill a running job with jid
+sudo salt '*' saltutil.kill_job <jid>
 ```
 
 
-#### gunicorn
+### screen
 
 ```shell
-# run gunicorn & lot to terminal
-gunicorn foo.wsgi -c g.py --log-file=-
+screen      # enter to screen
+C + a ?     # display help
+CTRL + a c  # create new window
+C + a k     # kill current window
+C + a w     # list all windows
+C + a 0 -9  # switch windows
+C + a C + a # toggle windows
+```
+
+
+### terminator
+
+```shell
+ctrl + shift + o - split screen horizontally
+ctrl + shift + e - split screen vertically
+ctrl + tab       - cycle through tabs
+```
+
+
+### tmux
+
+```shell
+ctrl + b % - split vertically
+ctrl + b " - split window horizontally
+ctrl + b arrow keys - switch panes
+ctrl + b c - create new window in existing session
 ```
