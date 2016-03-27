@@ -681,6 +681,25 @@ sudo rabbitmq-plugins enable rabbitmq_management
 ```
 
 
+
+### redis
+
+```shell
+# start server
+redis-server
+
+# ping redis
+redis-cli ping
+
+# shutdown
+redis-cli shutdown
+
+# interactive redis
+redis-cli
+```
+
+
+
 ### salt stack
 
 ```shell
