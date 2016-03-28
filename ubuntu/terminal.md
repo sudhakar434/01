@@ -734,3 +734,11 @@ ctrl + b " - split window horizontally
 ctrl + b arrow keys - switch panes
 ctrl + b c - create new window in existing session
 ```
+### xbacklight
+
+```shell
+sudo apt-get install xbacklight - install x backlight 
+xbacklight -set 10  -set backlight brighness to 10
+xbacklight -help -xbacklighthelp
+```
+ 
