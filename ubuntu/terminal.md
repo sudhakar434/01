@@ -265,8 +265,12 @@ sudo cat /var/log/dmesg
 # show ip, mac address
 ifconfig
 
-# show other computers in lan
+# show other linux in lan
 avahi-browse -tl _workstation._tcp
+
+# show ip, mac of all devices in network
+sudo arp-scan -I wlan0 -l
+sudo arp-scan --interface=eth0 --localnet
 
 # ssh using keys
 ssh-keygen -t rsa
@@ -753,11 +757,17 @@ ctrl + b " - split window horizontally
 ctrl + b arrow keys - switch panes
 ctrl + b c - create new window in existing session
 ```
+
+
 ### xbacklight
 
 ```shell
-sudo apt-get install xbacklight - install x backlight 
-xbacklight -set 10  -set backlight brighness to 10
-xbacklight -help -xbacklighthelp
+# install x backlight
+sudo apt-get install xbacklight
+
+# xbacklighthelp
+xbacklight -help
+
+# set backlight brighness to 10
+xbacklight -set 10
 ```
- 
