@@ -334,6 +334,12 @@ sudo apt-cache madison <package name>
 # run a job in background
 emacs &
 
+# don't show output
+emacs > /dev/null
+
+# suppress error messages
+emacs 2&>1 >/dev/null
+
 # list all jobs with PID
 jobs -l
 
