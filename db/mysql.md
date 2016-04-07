@@ -80,3 +80,19 @@ truncate
 truncate <table name>; # make table empty
 ```
 
+### reset root password
+
+```sh
+sudo service mysql stop
+
+mysqld_safe --skip-grant-tables
+
+mysql -u root
+```
+
+```sql
+mysql> use mysql;
+mysql> update user set password=PASSWORD("foo") where User='root';
+mysql> flush privileges;
+mysql> quit
+```
