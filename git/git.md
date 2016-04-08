@@ -70,6 +70,6 @@ others
 
 branch not visible after new clone
 ----------------------------------
-    ```
+    
     git branch tasks origin/tasks
-    ```
+    
