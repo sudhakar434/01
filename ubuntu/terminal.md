@@ -209,8 +209,11 @@ git commit -m "Commit message"
 git clean -fnd
 git clean -fd
 
-# unstage all chages
+# unstage all staged changes
 git reset
+
+# discard unstaged changes
+git checkout -- .
 
 
 # to commit only one file
