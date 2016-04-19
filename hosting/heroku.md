@@ -4,5 +4,8 @@
 ```sh
 heroku login
 
-Heroku create
+heroku create
+
+# set env
+heroku config:set DEBUG_COLLECTSTATIC=1
 ```
