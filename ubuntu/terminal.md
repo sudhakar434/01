@@ -131,6 +131,14 @@ cat in_file | sudo tee -a append_file
 
 # generate etags - emacs
 find . -name '*.py' -exec etags -a {} \;
+
+
+# increase inotify watches limit
+
+# temp
+echo 16384 > /proc/sys/fs/inotify/max_user_watches
+# permanent, add this to /etc/sysctl.conf
+fs.inotify.max_user_watches=16384
 ```
 
 
