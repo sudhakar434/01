@@ -37,6 +37,8 @@ SELECT datname FROM pg_database;
 # describe table
 \d+ <tablename>
 
+# drop database
+drop database <foo>;
 ```
 
 ### tables

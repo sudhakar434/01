@@ -11,8 +11,10 @@ heroku create
 heroku git:remote -a projectchalam
 
 
-# set env
-heroku config:set DEBUG_COLLECTSTATIC=1
+# env variables
+# show all
+heroku config
 
+# set env
 heroku config:set DEBUG_COLLECTSTATIC=1
 ```
