@@ -799,3 +799,12 @@ xbacklight -help
 # set backlight brighness to 10
 xbacklight -set 10
 ```
+
+
+### xsel
+
+```sh
+# copy between files & clipboard
+xsel --clipboard < new-clipboard-contents.txt
+xsel --clipboard > current-clipboard-contents.txt
+```
