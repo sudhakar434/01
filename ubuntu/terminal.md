@@ -378,11 +378,20 @@ nohup
 # list all process
 ps -ef
 
-# kill process
+# kill process by id
 kill -9 <PID>
+kill -KILL <PID>
+kill -SIGKILL <PID
+
+# kill processes by name
 pkill emacs
+
 # kill process by some identifier
 ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+
+# show all kill signals
+kill -l
+
 
 # run this command with lowest priority
 nice -n 19 command
