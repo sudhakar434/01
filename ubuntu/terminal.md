@@ -232,6 +232,13 @@ git commit -m 'my message' path/to/file.ext
 # commit a part of file
 git commit --patch <file_name>
 
+# generate a git patch for a specific commit
+git format-patch -1 <sha>
+git format-patch -1 HEAD
+
+# apply patch
+patch -p1 < file.patch
+
 
 # show all remotes
 git remote -v
@@ -289,8 +296,10 @@ ifconfig
 
 # show other linux in lan
 avahi-browse -tl _workstation._tcp
+avahi-browse -attr
 
 # show ip, mac of all devices in network
+arp
 sudo arp-scan -I wlan0 -l
 sudo arp-scan --interface=eth0 --localnet
 
@@ -816,4 +825,15 @@ xbacklight -set 10
 # copy between files & clipboard
 xsel --clipboard < new-clipboard-contents.txt
 xsel --clipboard > current-clipboard-contents.txt
+```
+
+
+### REST
+
+```sh
+# curl post with form data
+curl -d "username=chillaranand&password=foo" http://192.168.0.152:8000/api/token/new.json
+
+# httpie post with form data
+http POST 192.168.0.152:8000/api/token/new.json username=chillaranand password=foo -f
 ```

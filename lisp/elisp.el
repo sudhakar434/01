@@ -120,15 +120,15 @@
           '("md", "markdown")))
 
 (call-process-shell-command
- 
- 
- 
+
+
+
  )
 
 (call-process "/bin/bash" nil t nil "-c" "ls -t ~/test.el *.txt | head -5")
 
 (with-temp-buffer foo)
-(call-process "/bin/bash" nil t nil "-c" 
+(call-process "/bin/bash" nil t nil "-c"
               "pandoc -o test.html test.md")
 
 
@@ -193,7 +193,7 @@
   (message "elpy is not installed")
   (message "go for next package."))
 
-(cond 
+(cond
  (1 2aa)
  (2 2))
 
@@ -290,7 +290,10 @@
 (eql "r" "r")
 
 (eq "r" "r")
+
 (string-equal "r" "r")
+
+(replace-regexp-in-string "\n$" "" "a \n b \n")
 
 (defun double-space-cleanup  ()
   (interactive)
@@ -361,8 +364,8 @@ for the current buffer's file name, and the line number at point."
 (defun save-buffer-without-message (&optional arg)
   (interactive "p")
   (let ((modp (buffer-modified-p))
-	(make-backup-files (or (and make-backup-files (not (eq arg 0)))
-			       (memq arg '(16 64)))))
+        (make-backup-files (or (and make-backup-files (not (eq arg 0)))
+                               (memq arg '(16 64)))))
     (and modp (memq arg '(16 64)) (setq buffer-backed-up nil))
     (basic-save-buffer)
     (and modp (memq arg '(4 64)) (setq buffer-backed-up nil))))
@@ -401,7 +404,7 @@ for the current buffer's file name, and the line number at point."
   (message "sum is %d" (+ x y)))
 
 
-(progn 
+(progn
   (setq function "foo")
 
   (save-excursion
@@ -410,7 +413,7 @@ for the current buffer's file name, and the line number at point."
       ;; Use " is " instead of a colon so that
       ;; it is easier to get out the function name using forward-sexp.
       (princ " is ")
-      (describe-function-1 function)  
+      (describe-function-1 function)
       (with-current-buffer standard-output
         ;; Return the text we displayed.
         (buffer-string)))))
@@ -543,7 +546,7 @@ for the current buffer's file name, and the line number at point."
 (defun add-to-autocapitalize-words ()
   "Add word at point to auto-capitalize-words list."
   (interactive)
-  (add-to-list 'auto-capitalize-words 
+  (add-to-list 'auto-capitalize-words
                (strip-text-properties (thing-at-point 'word))))
 
 
@@ -737,7 +740,7 @@ for the current buffer's file name, and the line number at point."
       (next-line)))
   (previous-line))
 
-(while 
+(while
     )
 (search-forward-regexp ".")
 (buffer-file-name)
@@ -902,6 +905,6 @@ json.dump(config, sys.stdout)
 
 
 
-(recenter-top-bottom 0)  
+(recenter-top-bottom 0)
 (set-window-start (selected-window) (point))
 ;;; elisp.el ends here

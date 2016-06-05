@@ -1,10 +1,31 @@
 ## PSQL
 
 
+### install
+```
+# uninstall
+sudo apt-get --purge remove postgresql postgresql-doc postgresql-common
+
+# install
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
+```
+
 
 ### login
 
 ```
+# change to "postgres" Linux user
+sudo su - postgres
+
+# start the psql shell
+psql
+
+# check connection
+postgres-# \conninfo
+
 # for password less login
 sudo -u user_name psql db_name
 
