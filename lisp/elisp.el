@@ -4,22 +4,19 @@
 ;;; code:
 
 
-(make-button 1 50 'action (lambda(x) (find-file "~/test.py")))
-
-
 ;;; BASICS
 
 ;; assign value to a symbol
 (defparameter vern 11)
 
 (defvar version 11)
+
 (set 'version "24.3")
 
-;; assign value to a variable
 (setq version 11)
-(setq version (1+ version))
 
 (setq editor "emacs" version "24.3")    ; this is a comment
+
 
 ;; use let for local variables
 (let (a b)
@@ -50,6 +47,7 @@
 
 ;; list is a sequence of zero or more lisp exp enclosed in parens
 ()
+
 '( (1 2 3))
 
 ;; car returns first element of the list.
@@ -102,6 +100,16 @@
 (or t nil)
 
 
+;; hash
+(make-hash-table)
+(setq h (make-hash-table :test #'equal))
+(puthash "foo" "bar" h)
+(puthash "python" "elpy" h)
+(puthash "p" "q" h)
+(dolist (k (hash-table-keys h))
+  (message k))
+
+
 ;; testing
 
 (defun  add (x y)
@@ -113,17 +121,19 @@
   (should (= 7 (add 3 4))))
 
 
+;; order
+(defun x ()
+    (x))
 
-(defun im-is-markdown-bufferp ()
-  "return t if opened buffer is markdown"
-  (member (downcase (file-name-extension (buffer-file-name)))
-          '("md", "markdown")))
-
-(call-process-shell-command
+(defun test(x y)
+  (if (= x 0)
+      0
+    y))
 
 
+(test 0 (x))
 
- )
+
 
 (call-process "/bin/bash" nil t nil "-c" "ls -t ~/test.el *.txt | head -5")
 
@@ -143,6 +153,11 @@
 
 (current-dired)
 
+(defun im-is-markdown-bufferp ()
+  "return t if opened buffer is markdown"
+  (member (downcase (file-name-extension (buffer-file-name)))
+          '("md", "markdown")))
+
 (defun im-serve-file (file)
   (with-current-buffer (get-buffer file)
     (httpd-start)
@@ -160,28 +175,9 @@
   (let ((n (if (null n) 1 n)))
     (search-forward-regexp "\n[\t\n ]*\n+" nil "NOERROR" n)))
 
-
-
-
-(defun elpy-shell-send-current-block ()
-  "Send current statement to Python shell."
-  (interactive)
-  (beginning-of-line)
-  (push-mark)
-  (forward-block)
-  (elpy-shell-send-region-or-buffer)
-  (display-buffer (process-buffer (elpy-shell-get-or-create-process))
-                  nil
-                  'visible)
-  )
-
-
 (concat im-server-url "ff")
 
 (browse-url "http://127.0.0.1:8080/imp/")
-
-
-
 
 
 ;; conditioanls
@@ -228,6 +224,8 @@
 
 ;; dolist
 (setq animals '(gazelle giraffe lion tiger))
+(dolist (element animals)
+  (message "%s" element))
 
 (defun print-list (list)
   (dolist (element list)
@@ -317,8 +315,7 @@
    ((string-equal choice "i")
     (message "i"))
    (t
-    (message "foo")))
-  )
+    (message "foo"))))
 
 
 (cl-letf (((symbol-function 'message) (lambda (&rest _) nil)))
@@ -334,32 +331,8 @@
                'action (lambda (x) (browse-url (button-get x 'url)))
                'url "http://www.fsf.org")
 
-(defun position-to-kill-ring ()
-  "Copy to the kill ring a string in the format \"file-name:line-number\"
-for the current buffer's file name, and the line number at point."
-  (interactive)
-  (kill-new
-   (format "%s:%d" (buffer-file-name) (save-restriction
-                                        (widen) (line-number-at-pos)))))
-(position-to-kill-ring)
-
-
 (push (cons "pyml" "*.py *.htm *.html") grep-files-aliases)
 
-
-
-(use-package stickyfunc-enhance
-  :init
-  (require 'stickyfunc-enhance)
-  (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-  :config
-  (defun me/enable-semantic-maybe ()
-    "Maybe enable `semantic-mode'."
-    (interactive)
-    (if (derived-mode-p 'python-mode)
-        (semantic-mode 1)
-      (semantic-mode -1)))
-  (add-hook 'change-major-mode-hook #'me/enable-semantic-maybe))
 
 (defun save-buffer-without-message (&optional arg)
   (interactive "p")
@@ -402,21 +375,6 @@ for the current buffer's file name, and the line number at point."
   "…"
   (interactive "nN1: \n N2: \n")
   (message "sum is %d" (+ x y)))
-
-
-(progn
-  (setq function "foo")
-
-  (save-excursion
-    (with-help-window (help-buffer)
-      (prin1 function)
-      ;; Use " is " instead of a colon so that
-      ;; it is easier to get out the function name using forward-sexp.
-      (princ " is ")
-      (describe-function-1 function)
-      (with-current-buffer standard-output
-        ;; Return the text we displayed.
-        (buffer-string)))))
 
 (describe-function-1 'describe-function)
 (describe-function-1 describe-function)
@@ -599,17 +557,6 @@ for the current buffer's file name, and the line number at point."
  :buffer buf)
 
 
-(defun django-jump-to-template ()
-  (interactive)
-  (let ((fname (replace-regexp-in-string django-template-regexp "\\2"
-                                         (thing-at-point 'line))))
-    (let ((projfname (concat (django-root) "templates/" fname))
-          (appfname (concat default-directory "templates/" fname)))
-      (if (file-exists-p appfname)
-          (find-file appfname)
-        (find-file projfname)))))
-
-
 (defun xx ()
   "print current word."
   (interactive)
@@ -641,13 +588,6 @@ for the current buffer's file name, and the line number at point."
         (car (setq ppss (cdr ppss)))
         (nth 3 ppss))))
 
-(defun elpy-doc--symbol-at-point ()
-  "Return the Python symbol at point, including dotted paths."
-  (with-syntax-table python-dotty-syntax-table
-    (let ((symbol (symbol-at-point)))
-      (if symbol
-          (symbol-name symbol)
-        nil))))
 
 (elpy-doc--symbol-at-point)
 
@@ -691,43 +631,6 @@ for the current buffer's file name, and the line number at point."
   (interactive)
   (python-shell-send-string (buffer-string) "print('a')"))
 
-(defun swap-quotes ()
-  "Swaps the quote symbols in a \\[python-mode] string"
-  (interactive)
-  (save-excursion
-    (let ((bos (save-excursion
-                 (beginning-of-string)))
-          (eos (save-excursion
-                 (beginning-of-string)
-                 (forward-sexp)
-                 (point)))
-          (replacement-char ?\'))
-      (goto-char bos)
-      ;; if the following character is a single quote then the
-      ;; `replacement-char' should be a double quote.
-      (when (eq (following-char) ?\')
-        (setq replacement-char ?\"))
-      (delete-char 1)
-      (insert replacement-char)
-      (goto-char eos)
-      (delete-char -1)
-      (insert replacement-char))))
-
-(defun ff ()
-  (interactive)
-  (let ((indent (current-indentation)))
-    (while (eq indent (current-indentation))
-      (previous-line))
-    (next-line)
-    (beginning-of-line)
-    (set-mark-command nil)
-    (while (eq indent (current-indentation))
-      (next-line))
-    (previous-line)
-    (end-of-line)
-    (setq deactivate-mark nil))
-  )
-
 (next-line -1)
 (previous-line -1)
 
@@ -753,17 +656,6 @@ for the current buffer's file name, and the line number at point."
 (point)
 (mark)
 (current-buffer)
-
-(defvar helm-source-commands-history
-  (helm-build-sync-source "Emacs commands history"
-    :candidates (lambda ()
-                  (let ((cmds))
-                    (dolist (elem extended-command-history)
-                      (push (intern elem) cmds))
-                    cmds))
-    :coerce #'intern-soft
-    :action #'command-execute)
-  "Emacs commands history")
 
 (helm :sources helm-source-commands-history)
 
@@ -795,55 +687,6 @@ for the current buffer's file name, and the line number at point."
   (interactive)
   (find-file (shell-command-to-string (concat "locate " (current-word) "|head -c -1" )) ))
 
-
-
-(defadvice do-auto-save (around maybe-run-after-save-hooks activate)
-  (let (maybe-auto-save-buffers)
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (when (and auto-save-visited-file-name
-                   (recent-auto-save-p)
-                   (buffer-modified-p))
-          (push buf maybe-auto-save-buffers))))
-    ad-do-it
-    (dolist (buf maybe-auto-save-buffers)
-      (with-current-buffer buf
-        (unless (buffer-modified-p)
-          (message "Running after-save-hook in %s" (buffer-name))
-          (run-hooks after-save-hook))))))
-
-
-
-
-(defvar django-nonindenting-tags
-  '("cache" "csrf_token" "cycle" "debug" "extends" "firstof" "include" "load" "now"
-    "regroup" "ssi" "templatetag" "trans" "url" "widthratio")
-  "List of tags that do not imply indentation (or require an end tag).")
-(print django-nonindenting-tags)
-
-(defvar django-indenting-tags
-  '("autoescape" "block" "blocktrans" "comment" "elif" "else" "empty"
-    "filter" "for" "if" "ifchanged" "ifequal" "ifnotequal" "plural" "spaceless" "verbatim" "with")
-  "List of template tags that imply indentation.")
-
-(defvar django-indenting-tags-regexp
-  (regexp-opt pony-indenting-tags)
-  "Regular expression matching a template tag that implies indentation.")
-
-
-(defun sgml-indent-line-num ()
-  "Indent the current line as SGML."
-  (let* ((savep (point))
-         (indent-col
-          (save-excursion
-            (back-to-indentation)
-            (if (>= (point) savep) (setq savep nil))
-            (sgml-calculate-indent))))
-    (if (null indent-col)
-        0
-      (if savep
-          (save-excursion indent-col)
-        indent-col))))
 
 ;; connect to server sql
 (sql-mysql (setq sql-user "root" sql-password "bacillus123"
@@ -907,4 +750,7 @@ json.dump(config, sys.stdout)
 
 (recenter-top-bottom 0)
 (set-window-start (selected-window) (point))
+
+
+(make-button 1 50 'action (lambda(x) (find-file "~/test.py")))
 ;;; elisp.el ends here
