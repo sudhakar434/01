@@ -42,6 +42,9 @@ psql
 ### databases
 
 ```
+# create
+create database <foo>;
+
 # show databases
 \l
 SELECT datname FROM pg_database;
