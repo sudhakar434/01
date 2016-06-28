@@ -1,7 +1,6 @@
 ## Terminal Commands
 
 
-
 ### alias
 
 ```
@@ -341,6 +340,20 @@ sudo netstat -tulpn | grep LISTEN
 nslookup avilpage.com
 nslookup -querytype=mx bbc.co.uk
 dig avilpage
+
+
+# connect to wifi from cli
+# show available wifi networks
+nmcli dev wifi
+
+# connect to a wifi
+nmcli dev wifi connect 'foo bar' password 'baz'
+
+# connect to a wifi and name it
+nmcli dev wifi connect 'foo bar' password 'baz' name 'wifi1'
+
+# connect to previous network
+nmcli con up id 'wifi1'
 ```
 
 
@@ -603,6 +616,27 @@ x <any zipped file>
 ## third party packages
 
 
+### aws cli
+
+```shell
+# install
+pip install awscli
+
+# configure
+aws configure
+
+# usage
+aws s3 ls
+aws --endpoint-url http://localhost:9000 s3 ls
+
+aws s3 cp s3://foo/bar ./aws/sherlock-test
+aws s3 sync s3://foo s3://bar
+aws s3 sync s3://foo ./aws/foo
+
+# get bucket size
+aws s3 ls --summarize --human-readable --recursive s3://bucket
+```
+
 ### byobu
 
 ```shell
@@ -784,6 +818,17 @@ C + a w     # list all windows
 C + a 0 -9  # switch windows
 C + a C + a # toggle windows
 ```
+
+
+### stress
+
+```shell
+sudo apt-get install stress
+
+# 3 cpu 100% usage for 10 seconds
+stress -c 3 -t 10
+```
+
 
 
 ### terminator
