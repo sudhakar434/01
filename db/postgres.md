@@ -14,9 +14,12 @@ sudo apt-get install postgresql postgresql-contrib
 ```
 
 
-### login
+### users
 
 ```
+# for password less login
+sudo -u user_name psql db_name
+
 # change to "postgres" Linux user
 sudo su - postgres
 
@@ -26,17 +29,14 @@ psql
 # check connection
 postgres-# \conninfo
 
-# for password less login
-sudo -u user_name psql db_name
-
 # to reset the password if you have forgotten
 ALTER USER "user_name" WITH PASSWORD 'new_password';
 
 # give permissions to createdb
 sudo -u postgres psql -c 'alter user kuser with createdb' postgres
 
-# start psql
-psql
+#upgrade a user to be a superuser
+ALTER USER myuser WITH SUPERUSER;
 ```
 
 ### databases
