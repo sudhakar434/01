@@ -515,6 +515,11 @@ sudo mount -o remount,rw /media/foo/usb-drive
 # bootable usb
 # write to that device
 sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
+
+# format usb pendrive
+sudo fdisk /dev/sdb
+o -> n -> w
+sudo mkfs.vfat /dev/sdb1
 ```
 
 
