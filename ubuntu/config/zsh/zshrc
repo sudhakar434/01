@@ -44,7 +44,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=~/.os/config/zsh
+ZSH_CUSTOM=~/.01/ubuntu/config/zsh
 
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -128,7 +128,7 @@ export PATH="$HOME/.os/bin:$PATH"
 # autoenv
 source /usr/local/bin/activate.sh
 
-workon mycroft
+workon 35
 
 # Load pyenv automatically
 # export PATH="/home/anand/.pyenv/bin:$PATH"

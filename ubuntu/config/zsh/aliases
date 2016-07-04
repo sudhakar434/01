@@ -105,8 +105,7 @@ alias n='nautilus .'
 alias re='sudo shutdown -r 0'
 alias rf='rm -rf'
 
-alias us='sudo bash ~/.os/start.sh'
-
+alias us='sudo bash ~/.01/ubuntu/bin/start.sh'
 alias sc='~/.os/bin/space2ctrl.sh'
 
 alias s=sudo
@@ -126,7 +125,7 @@ alias wp='workon pearl'
 alias yd='youtube-dl '
 
 alias lh='http://127.0.0.1:8000'
-alias ak='appknox --username admin --password 123123 --host 127.0.0.1:8000 --no-secure'
+alias ak='appknox --username f --password f --host 127.0.0.1:8000 --no-secure'
 alias akh='appknox --help'
 
 alias bm="tmux new-session -d -s mycroft;

@@ -38,10 +38,10 @@ echo "git is configured"
 if [ ! -d ~/.oh-my-zsh/ ]; then
     install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
-    rm ~/.zshrc
-    ln -s ~/.os/config/zsh/zshrc .zshrc
     chsh -s /usr/bin/zsh $(whoami)
 fi
+rm ~/.zshrc
+ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
 echo "zsh is configured"
 
 
