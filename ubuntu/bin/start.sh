@@ -53,7 +53,7 @@ echo "os is cloned"
 
 # other config
 rm -rf ~/.config/autostart/
-ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart/
+ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 # shell
 install_package byobu byobu/ppa
