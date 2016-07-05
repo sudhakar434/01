@@ -7,7 +7,8 @@ install_package()
 
     if dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null;
     then
-        echo "$package is already installed"
+        :
+        # echo "$package is already installed"
     else
        if [ "$2" != "" ]; then
            sudo bash -c "add-apt-repository --yes ppa:$ppa > /tmp/foo"
@@ -35,31 +36,29 @@ git config --global user.name 'chillaranand'
 git config --global user.email 'anand21nanda@gmail.com'
 echo "git is configured"
 
+if [ ! -d ~/.os/ ]; then
+    git clone https://github.com/ChillarAnand/os.git ~/.os
+    echo "os is cloned"
+fi
+
+
+
 if [ ! -d ~/.oh-my-zsh/ ]; then
     install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
     chsh -s /usr/bin/zsh $(whoami)
 fi
-rm ~/.zshrc
-ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
+rm ~/.zshrc && ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
 echo "zsh is configured"
 
 
-if [ ! -d ~/.os/ ]; then
-    git clone https://github.com/ChillarAnand/os.git ~/.os
-fi
-echo "os is cloned"
-
-
 # other config
-rm -rf ~/.config/autostart/
-ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
+rm -rf ~/.config/autostart && ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 # shell
 install_package byobu byobu/ppa
 install_package tmuxinator
-rm -rf ~/.tmuxinator
-ln -s ~/.01/ubuntu/config/tmuxinator/ ~/.tmuxinator
+rm -rf ~/.tmuxinator && ln -s ~/.01/ubuntu/config/tmuxinator/ ~/.tmuxinator
 echo "os is configured"
 
 
