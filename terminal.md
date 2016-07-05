@@ -301,6 +301,7 @@ avahi-browse -attr
 sudo apt-get install arp-scan
 sudo arp-scan -I wlan0 -l
 sudo arp-scan --interface=eth0 --localnet
+sudo arp-scan --interface=wlan0 --localnet | grep 192 | sort -V
 
 # ssh using keys
 ssh-keygen -t rsa

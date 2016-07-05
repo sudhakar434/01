@@ -55,9 +55,8 @@ alias dn='python manage.py shell_plus --notebook'
 
 alias du='du -hs'
 alias e='emacs 2&>1 >/dev/null &'
-alias f='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-# alias f='thefuck'
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+alias f='fuck '
+eval "$(thefuck --alias)"
 
 
 alias h='history'

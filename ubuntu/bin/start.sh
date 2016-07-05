@@ -1,6 +1,5 @@
 #! /bin/sh
 
-echo "Setting up your system. Please wait..."
 install_package()
 {
     package=$1
@@ -18,16 +17,17 @@ install_package()
     fi
 }
 
+echo "Setting up your system. Please wait..."
 
 if [ ! -f /usr/sbin/apt-fast ]; then
     echo "Installing apt-fast..."
     # apt-fast
-    sudo add-apt-repository --yes ppa:saiarcot895/myppa > /tmp/foo
-    sudo apt-get -qq update
-    sudo apt-get -qq install --yes apt-fast
-    # sudo dpkg-reconfigure apt-fast  # configure
+    # sudo add-apt-repository --yes ppa:saiarcot895/myppa > /tmp/foo
+    # sudo apt-get -qq update
+    # sudo apt-get -qq install --yes apt-fast
+    install_package apt-fast saiarcot895/myppa
+    sudo dpkg-reconfigure apt-fast  # configure
 fi
-
 
 
 install_package git
@@ -51,13 +51,20 @@ fi
 echo "os is cloned"
 
 
-# salt setup
-# python salt/start/setup.py
+# other config
+rm -rf ~/.config/autostart/
+ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart/
 
 # shell
 install_package byobu byobu/ppa
 install_package tmuxinator
-# ln -s ~/.
+rm -rf ~/.tmuxinator
+ln -s ~/.01/ubuntu/config/tmuxinator/ ~/.tmuxinator
+echo "os is configured"
+
+
+# salt setup
+# python salt/start/setup.py
 
 # install packages
 install_package unzip
@@ -127,6 +134,7 @@ install_package python-dev
 install_package python3-dev
 # echo "Updating pip and python packages..."
 # sudo pip install --upgrade pip -q
+# sudo pip install virtualenvwrapper thefuck -q
 # sudo pip install virtualenvwrapper -q
 # sudo pip install pandas numpy jupyter matplotlib scipy
 
@@ -141,10 +149,6 @@ install_package python3-dev
 # gsettings reset org.gnome.desktop.wm.preferences theme
 # gsettings set org.gnome.desktop.interface gtk-theme "Paper"
 # gsettings set org.gnome.desktop.wm.preferences theme "Paper"
-
-# other config
-rm -rf ~/.config/autostart/
-ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart/
 
 # other packages
 # install_package arp-scan
