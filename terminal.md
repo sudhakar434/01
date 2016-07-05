@@ -298,7 +298,7 @@ avahi-browse -tl _workstation._tcp
 avahi-browse -attr
 
 # show ip, mac of all devices in network
-arp
+sudo apt-get install arp-scan
 sudo arp-scan -I wlan0 -l
 sudo arp-scan --interface=eth0 --localnet
 

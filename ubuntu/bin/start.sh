@@ -142,5 +142,9 @@ install_package python3-dev
 # gsettings set org.gnome.desktop.interface gtk-theme "Paper"
 # gsettings set org.gnome.desktop.wm.preferences theme "Paper"
 
+# other config
 rm -rf ~/.config/autostart/
-ln -s ~/.os/config/autostart/ ~/.config/autostart/
+ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart/
+
+# other packages
+# install_package arp-scan
