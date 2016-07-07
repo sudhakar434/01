@@ -127,6 +127,8 @@ alias lh='http://127.0.0.1:8000'
 
 alias akh='appknox --help'
 alias ak='appknox --username f --password f --host 127.0.0.1:8000 --no-secure'
+alias akn='appknox --username g --password g --host 127.0.0.1:8000 --no-secure'
+alias aku='appknox --username f --password f --host 127.0.0.1:8000 --no-secure upload test.apk'
 alias akp=appknox --username f --password f --host 127.0.0.1:8000 --no-secuure payment '{"number": "4242424242424242", "exp_month": 12, "exp_year": 2016, "cvc": "123"}'
 
 alias bm="tmux new-session -d -s mycroft;

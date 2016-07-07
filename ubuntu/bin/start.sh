@@ -138,6 +138,9 @@ install_package python3-dev
 # sudo pip install pandas numpy jupyter matplotlib scipy
 
 
+
+
+
 # paper theme
 # sudo rf /usr/share/themes/Paper
 # sudo rf ~/.local/share/themes/Paper
@@ -151,3 +154,25 @@ install_package python3-dev
 
 # other packages
 # install_package arp-scan
+
+# tuxcut
+# install_package dsniff
+# install_package arptables
+# install_package wondershaper
+# install_package python-qt4
+
+# ulogme
+# sudo apt-get install xdotool wmctrl
+# git clone https://github.com/karpathy/ulogme.git ~/sandbox/ulogme
+# cd ~/sandbox/ulogme/
+# cp render/render_settings_example.js render/render_settings.js
+# ./ulogme.sh
+
+
+# arbtt
+# sudo apt-get install arbtt
+# cp /usr/share/doc/arbtt/examples/arbtt-capture.desktop ~/.config/autostart/
+
+# flux
+# sudo apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1 -y
+# sudo pip install https://github.com/xflux-gui/xflux-gui/archive/master.zip
