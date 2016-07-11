@@ -8,6 +8,7 @@ alias js='cd ~/sandbox'
 alias b='byobu'
 alias ag='sudo apt-get'
 alias ai='sudo apt-get install --yes'
+alias i='sudo apt-get install --yes'
 alias au='sudo apt-get update -qq'
 alias c='cat'
 alias cf='clementine -f'
@@ -64,7 +65,7 @@ alias hg='history | grep'
 alias hgi='history | grep -i'
 alias ht='htop'
 
-alias i='ping 8.8.8.8'
+alias p='ping 8.8.8.8'
 
 
 alias jobs='jobs -l'
