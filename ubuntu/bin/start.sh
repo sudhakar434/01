@@ -48,7 +48,8 @@ if [ ! -d ~/.oh-my-zsh/ ]; then
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
     chsh -s /usr/bin/zsh $(whoami)
 fi
-rm ~/.zshrc && ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
+rm ~/.zshrc
+ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
 echo "zsh is configured"
 
 
@@ -152,7 +153,11 @@ install_package python3-dev
 # gsettings set org.gnome.desktop.interface gtk-theme "Paper"
 # gsettings set org.gnome.desktop.wm.preferences theme "Paper"
 
+
+
+
 # other packages
+
 # install_package arp-scan
 
 # tuxcut
@@ -173,6 +178,11 @@ install_package python3-dev
 # sudo apt-get install arbtt
 # cp /usr/share/doc/arbtt/examples/arbtt-capture.desktop ~/.config/autostart/
 
+
 # flux
 # sudo apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1 -y
 # sudo pip install https://github.com/xflux-gui/xflux-gui/archive/master.zip
+
+
+# digikam
+install_package digikam
