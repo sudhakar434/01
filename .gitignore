@@ -1,3 +1,10 @@
 *.pyc
 *~
 *.ipynb_checkpoints*
+/ubuntu/config/emacs/.private.el
+/ubuntu/config/emacs/custom.el
+/ubuntu/config/emacs/elpa/
+/ubuntu/config/emacs/recentf
+/ubuntu/config/emacs/projectile-bookmarks.eld
+/ubuntu/config/emacs/history
+/ubuntu/config/emacs/async-bytecomp.log

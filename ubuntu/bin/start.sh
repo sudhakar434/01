@@ -53,7 +53,8 @@ rm -rf ~/.config/autostart && ln -s ~/.01/ubuntu/config/autostart/ ~/.config/aut
 # shell
 install_package byobu byobu/ppa
 install_package tmuxinator
-rm -rf ~/.tmuxinator && ln -s ~/.01/ubuntu/config/tmuxinator/ ~/.tmuxinator
+rm -rf ~/.tmuxinator
+ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 echo "os is configured"
 
 
@@ -94,7 +95,12 @@ if [ ! -f /usr/bin/emacs ]; then
     sudo apt-fast -qq --yes install emacs-snapshot emacs-snapshot-el
     git clone https://github.com/chillaranand/.emacs.d.git
 fi
-echo "emacs is installed"
+if [ ! -d ~/.emacs.d ]; then
+    ln -s ~/.01/ubuntu/config/emacs ~/.emacs.d
+fi
+touch ~/.private.el
+touch ~/custom.el
+echo "emacs is configured"
 
 
 # usual software
