@@ -36,15 +36,9 @@ git config --global user.name 'chillaranand'
 git config --global user.email 'anand21nanda@gmail.com'
 echo "git is configured"
 
-if [ ! -d ~/.os/ ]; then
-    git clone https://github.com/ChillarAnand/os.git ~/.os
-    echo "os is cloned"
-fi
 
-
-
+install_package zsh
 if [ ! -d ~/.oh-my-zsh/ ]; then
-    install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
     chsh -s /usr/bin/zsh $(whoami)
 fi
