@@ -1070,3 +1070,17 @@ SET column1 = value1,
 WHERE
  condition;
 ```
+
+
+### pip
+
+```sh
+# pip
+
+# install from github
+pip install https://github.com/user/repository/archive/branch.zip
+pip install https://github.com/chillaranand/fadata/archive/master.zip
+
+# dev install
+pip install -e /package/path
+```
