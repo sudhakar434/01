@@ -89,6 +89,8 @@ alias gn="git clone"
 
 
 alias m=mux
+alias mm='mux mycroft'
+
 alias tk='tmux kill-session -t '
 alias tkm='tmux kill-session -t mycroft'
 
@@ -133,10 +135,5 @@ alias aku='appknox --username f --password f --host 127.0.0.1:8000 --no-secure u
 alias akp=appknox --username f --password f --host 127.0.0.1:8000 --no-secure payment '{"number": "4242424242424242", "exp_month": 12, "exp_year": 2016, "cvc": "123"}'
 alias aks='appknox --username f --password f --host 127.0.0.1:8000 --no-secure submit_url "https://play.google.com/store/apps/details?id=com.wFinalZen"'
 
-alias bm="tmux new-session -d -s mycroft;
-tmux new-window -t mycroft:1 -n 'server' -c ~/sandbox/appknox/mycroft './scripts/start_server';
-tmux new-window -t mycroft:2 -n 'ls'  -c ~/sandbox/appknox/mycroft 'ls';
-
-tmux -2 attach-session -t mycroft;"
 
 alias ct='crontab '
