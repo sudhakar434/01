@@ -73,6 +73,15 @@
 ;; (setq mouse-drag-copy-region t)
 
 
+
+;; (setq temporary-file-directory "/tmp")
+;; (setq backup-directory-alist
+;;       `((".*" . ,temporary-file-directory)))
+;; (setq auto-save-file-name-transforms
+;;       `((".*" ,temporary-file-directory t)))
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ui config
 
@@ -311,6 +320,10 @@
   :config
   ;; (setq projectile-enable-caching t)
   ;; (setq projectile-cache-file (expand-file-name  "projectile.cache" root-dir))
+  (projectile-ignore-global ".DS_Store" ".gitmodules" ".gitignore")
+  (setq projectile-ignored-files (append projectile-ignored-files '("node_modules" "bower_components")))
+
+
   (setq projectile-indexing-method 'native))
 
 
@@ -475,6 +488,12 @@
 
   (bind-key "C-c C-i" 'web-mode-buffer-indent)
   (bind-key "C-c C-l" 'web-mode-fold-or-unfold))
+
+
+(use-package ember-mode
+  :config
+  (add-hook 'js-mode-hook (lambda () (ember-mode t)))
+  (add-hook 'web-mode-hook (lambda () (ember-mode t))))
 
 
 (use-package company-quickhelp
@@ -909,6 +928,12 @@
 
 
 (use-package restclient)
+
+
+(use-package wakatime-mode
+  :config
+  (setq wakatime-python-bin "/usr/local/bin/wakatime")
+  (global-wakatime-mode))
 
 
 

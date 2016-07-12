@@ -184,5 +184,14 @@ install_package python3-dev
 # sudo pip install https://github.com/xflux-gui/xflux-gui/archive/master.zip
 
 
-# digikam
-install_package digikam
+# install_package digikam
+
+
+# install_package automake
+# install_package autoconf
+# git clone https://github.com/facebook/watchman.git /tmp/watchman
+# cd /tmp/watchman
+# ./autogen.sh
+# ./configure
+# make
+# sudo make install

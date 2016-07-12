@@ -1,4 +1,10 @@
-### jQuery
+## js
+
+### string format
+
+
+
+## jQuery
 
 
 #### selectors
@@ -66,7 +72,8 @@ $('input#id_tissue').autocomplete({
 ```
 
 
-#### bootstrap
+
+## bootstrap
 
 ```js
 # make navbar link active

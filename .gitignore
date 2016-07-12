@@ -8,3 +8,6 @@
 /ubuntu/config/emacs/projectile-bookmarks.eld
 /ubuntu/config/emacs/history
 /ubuntu/config/emacs/async-bytecomp.log
+/ubuntu/config/emacs/projectile.cache
+/ubuntu/config/emacs/semanticdb/*
+/ubuntu/config/emacs/session*

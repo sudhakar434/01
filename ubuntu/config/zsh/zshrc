@@ -141,5 +141,8 @@ workon 35
 # Load pyenv automatically
 # export PATH="/home/anand/.pyenv/bin:$PATH"
 
+export NODEENV_HOME=$HOME/.nodeenv
+source ~/sandbox/nodeenvwrapper/nodeenvwrapper.sh
+
 
 echo "---------------------- sourced zsh ------------------------"
