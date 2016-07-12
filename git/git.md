@@ -66,3 +66,10 @@ others
     gitk <file>  # Git - Check all revisions of a file
 
     git ls-files -d  # show deleted files
+    
+
+branch not visible after new clone
+----------------------------------
+    
+    git branch tasks origin/tasks
+    
