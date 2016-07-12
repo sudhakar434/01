@@ -55,7 +55,11 @@ alias dn='python manage.py shell_plus --notebook'
 
 
 alias du='du -hs'
-alias e='emacs 2&>1 >/dev/null &'
+
+alias e='ember '
+alias es='ember server'
+
+alias em='emacs 2&>1 >/dev/null &'
 alias f='fuck '
 eval "$(thefuck --alias)"
 
@@ -108,7 +112,7 @@ alias re='sudo shutdown -r 0'
 alias rf='rm -rf'
 
 alias us='sudo bash ~/.01/ubuntu/bin/start.sh'
-alias sc='~/.os/bin/space2ctrl.sh'
+alias sc='~/.01/ubuntu/bin/space2ctrl.sh'
 
 alias s=sudo
 alias si='sudo -i'

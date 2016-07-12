@@ -930,6 +930,9 @@
 (use-package restclient)
 
 
+(use-package coffee-mode)
+
+
 (use-package wakatime-mode
   :config
   (setq wakatime-python-bin "/usr/local/bin/wakatime")
