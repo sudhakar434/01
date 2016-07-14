@@ -2,6 +2,11 @@
 
 ### string format
 
+```js
+#list the properties of a JavaScript object
+var keys = Object.keys(myObject);
+```
+
 
 
 ## jQuery

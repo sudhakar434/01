@@ -36,7 +36,8 @@ windows:
         - wo mycroft && ./scripts/start_celery.sh
         - wo mycroft && dn
         - cd ../irene && . ~/ENV/appknox/irene/bin/activate && ember serve
-        - wo mycroft && dsp
         - ls
+        - wo mycroft && dsp
+
 
   - shell: ls

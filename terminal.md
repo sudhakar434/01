@@ -1087,3 +1087,12 @@ pip install https://github.com/chillaranand/fadata/archive/master.zip
 # dev install
 pip install -e /package/path
 ```
+
+
+### mitmproxy
+
+```sh
+sudo apt-get install python-pyasn1 python-flask python-urwid python-dev libxml2-dev libxslt-dev libffi-dev
+sudo pip install mitmproxy
+mitmproxy
+```

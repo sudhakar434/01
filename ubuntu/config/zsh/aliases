@@ -58,6 +58,7 @@ alias du='du -hs'
 
 alias e='ember '
 alias es='ember server'
+alias eg='ember generate '
 
 alias em='emacs 2&>1 >/dev/null &'
 alias f='fuck '

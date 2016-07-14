@@ -933,10 +933,11 @@
 (use-package coffee-mode)
 
 
-(use-package wakatime-mode
-  :config
-  (setq wakatime-python-bin "/usr/local/bin/wakatime")
-  (global-wakatime-mode))
+;; (use-package wakatime-mode
+;;   :config
+;;   (setq wakatime-python-bin "/usr/bin/python")
+;;   (setq wakatime-python-bin "/usr/local/bin/wakatime")
+;;   (global-wakatime-mode))
 
 
 
