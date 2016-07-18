@@ -553,19 +553,6 @@ ps -ef | grep '[c]elery'
 ```
 
 
-#### simple http server
-
-```shell
-# python 2
-python -m SimpleHTTPServer
-# python 3
-python3 -m http.server
-# twistd
-twistd -n web --path .
-```
-
-
-
 #### services
 
 ```shell
@@ -991,6 +978,14 @@ installation screencasts old: http://hadoopscreencasts.com/episodes/5
 
 
 
+### python stuff
+
+```sh
+# upload package to pypi
+python setup.py register -r pypi
+python setup.py sdist upload -r pypi
+```
+
 ### pip
 
 ```sh
@@ -1003,6 +998,22 @@ pip install https://github.com/chillaranand/fadata/archive/master.zip
 # dev install
 pip install -e /package/path
 ```
+
+
+#### simple http server
+
+```sh
+# python 2
+python -m SimpleHTTPServer
+
+# python 3
+python3 -m http.server
+
+# twistd
+twistd -n web --path .
+```
+
+
 
 
 ### mitmproxy
