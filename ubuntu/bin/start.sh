@@ -98,8 +98,8 @@ fi
 if [ ! -d ~/.emacs.d ]; then
     ln -s ~/.01/ubuntu/config/emacs ~/.emacs.d
 fi
-touch ~/.private.el
-touch ~/custom.el
+touch ~/.emacs.d/custom.el
+touch ~/.emacs.d/.private.el
 echo "emacs is configured"
 
 
