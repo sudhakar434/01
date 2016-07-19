@@ -47,7 +47,7 @@ ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
 echo "zsh is configured"
 
 
-# other config
+# config
 rm -rf ~/.config/autostart && ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 # shell
@@ -58,16 +58,29 @@ ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 echo "os is configured"
 
 
+
 # salt setup
 # python salt/start/setup.py
 
-# install packages
+# install utils
 install_package unzip
 install_package tree
 install_package htop
 install_package synapse synapse-core/ppa
 # rm ~/.config/synapse/config.json
 # ln -s ~/projects/ubuntu/os/config/synapse/config.json config.json
+# manage clipboards
+install_package clipit
+
+# music player
+install_package clementine
+# install_package banshee banshee-team/ppa
+
+install_package compizconfig-settings-manager
+install_package compiz-plugins-extra
+install_package dconf-tools
+
+
 
 
 # dropbox
@@ -103,21 +116,12 @@ touch ~/.emacs.d/.private.el
 echo "emacs is configured"
 
 
+
 # usual software
 
 # android connect
-install_package mtpfs
+# install_package mtpfs
 
-# manage clipboards
-install_package clipit
-
-# music player
-install_package clementine
-# install_package banshee banshee-team/ppa
-
-install_package compizconfig-settings-manager
-install_package compiz-plugins-extra
-install_package dconf-tools
 
 # essentials
 # sudo apt-get install --yes -qq build-essential libevent-dev
@@ -130,8 +134,8 @@ install_package dconf-tools
 
 
 # python
-install_package python-dev
-install_package python3-dev
+# install_package python-dev
+# install_package python3-dev
 # echo "Updating pip and python packages..."
 # sudo pip install --upgrade pip -q
 # sudo pip install virtualenvwrapper thefuck -q
@@ -195,3 +199,6 @@ install_package python3-dev
 # ./configure
 # make
 # sudo make install
+
+
+# install_package libimobiledevice-dev pmcenery/ppa

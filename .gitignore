@@ -11,3 +11,4 @@
 /ubuntu/config/emacs/projectile.cache
 /ubuntu/config/emacs/semanticdb/*
 /ubuntu/config/emacs/session*
+/ubuntu/config/emacs/.mc-lists.el
