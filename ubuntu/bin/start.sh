@@ -22,10 +22,6 @@ echo "Setting up your system. Please wait..."
 
 if [ ! -f /usr/sbin/apt-fast ]; then
     echo "Installing apt-fast..."
-    # apt-fast
-    # sudo add-apt-repository --yes ppa:saiarcot895/myppa > /tmp/foo
-    # sudo apt-get -qq update
-    # sudo apt-get -qq install --yes apt-fast
     install_package apt-fast saiarcot895/myppa
     sudo dpkg-reconfigure apt-fast  # configure
 fi
@@ -55,7 +51,7 @@ install_package byobu byobu/ppa
 install_package tmuxinator
 rm -rf ~/.tmuxinator
 ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
-echo "os is configured"
+
 
 
 
@@ -114,6 +110,10 @@ fi
 touch ~/.emacs.d/custom.el
 touch ~/.emacs.d/.private.el
 echo "emacs is configured"
+
+
+
+
 
 
 
@@ -202,3 +202,24 @@ echo "emacs is configured"
 
 
 # install_package libimobiledevice-dev pmcenery/ppa
+
+
+# android studio
+
+# sudo apt-add-repository ppa:maarten-fonville/android-studio
+# sudo apt-get update
+# sudo apt-get install android-studio
+
+# install_package ubuntu-make
+# umake android
+
+# install java
+# sudo add-apt-repository ppa:webupd8team/java
+# sudo apt-get update
+# sudo apt-get install oracle-java7-installer
+# sudo apt-get install oracle-java8-installer
+
+
+
+# configure locales
+# sudo dpkg-reconfigure locales
