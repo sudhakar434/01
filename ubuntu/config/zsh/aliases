@@ -94,7 +94,7 @@ alias gn="git clone"
 
 
 alias m=mux
-alias ma='mux appknox'
+alias ma='mux ak'
 
 alias tk='tmux kill-session -t '
 alias tkm='tmux kill-session -t mycroft'
