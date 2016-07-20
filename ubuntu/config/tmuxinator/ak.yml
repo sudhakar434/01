@@ -1,7 +1,7 @@
 # ~/.tmuxinator/mycroft.yml
 
-name: mycroft
-root: ~/projects/appknox/mycroft/
+name: ak
+root: ~/projects/appknox/
 
 # Optional tmux socket
 # socket_name: foo
@@ -32,12 +32,14 @@ windows:
       # layout: dd9c,149x42,0,0{74x42,0,0[74x21,0,0,19,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       layout: e07f,149x42,0,0{74x42,0,0[74x10,0,0,4,74x10,0,11,10,74x10,0,22,6,74x9,0,33,9],74x42,75,0[74x21,75,0,7,74x20,75,22,8]}
       panes:
-        - wo mycroft && ./scripts/start_server.sh
-        - wo mycroft && ./scripts/start_celery.sh
-        - wo mycroft && dn
-        - cd ../irene && . ~/ENV/appknox/irene/bin/activate && ember serve
-        - ls
+        - wo mycroft && cd mycroft && ./scripts/start_server.sh
+        - wo mycroft && cd mycroft && ./scripts/start_celery.sh
         - wo mycroft && dsp
+        - cd irene && . ~/.nodeenv/appknox/irene/bin/activate && ember serve
+        - ls
+        - wo mycroft && cd mycroft && dsp
 
 
-  - shell: ls
+
+  - mycroft: ls
+  - irene: ls
