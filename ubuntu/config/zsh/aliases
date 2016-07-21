@@ -97,7 +97,8 @@ alias m=mux
 alias ma='mux ak'
 
 alias tk='tmux kill-session -t '
-alias tkm='tmux kill-session -t mycroft'
+alias tka='tmux kill-session -t ak'
+
 
 
 # alias ma=man

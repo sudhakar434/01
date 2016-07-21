@@ -1023,3 +1023,28 @@ sudo apt-get install python-pyasn1 python-flask python-urwid python-dev libxml2-
 sudo pip install mitmproxy
 mitmproxy
 ```
+
+
+### root
+
+```
+# enable developer options
+# enable OEM unlock
+
+# go to fastboot
+fastboot devices
+fastboot oem get_unlock_data
+
+# use data, get key from vendor
+fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
+
+# download recovery-twrp.img, supersu.zip
+# move supersu.zip to phone
+
+#reboot phone
+fastboot boot ~/Downloads/twrp-otus-3.0.2-r1.img
+
+
+# get key here
+https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-a
+```
