@@ -160,3 +160,11 @@ function search {
         --exclude-dir="uploads" \
         --color "$*" .
 }
+
+
+# ad
+alias ad='python /home/chillaranand/projects/appknox/python-adb/adb.zip '
+alias add='python /home/chillaranand/projects/appknox/python-adb/adb.zip devices'
+alias ad1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
+alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
+alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
