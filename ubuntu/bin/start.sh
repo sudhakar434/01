@@ -61,6 +61,7 @@ ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 # install utils
 install_package unzip
 install_package tree
+install_package xcape
 install_package htop
 install_package synapse synapse-core/ppa
 # rm ~/.config/synapse/config.json

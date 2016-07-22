@@ -2,15 +2,15 @@ cd ~/projects/ubuntu
 
 
 # install xcape
-if [ ! -f xcape/xcape ]; then
-    sudo apt-get install --yes git gcc make pkg-config libx11-dev libxtst-dev libxi-dev
-    git clone https://github.com/alols/xcape.git
-    cd xcape
-    make
-    sudo make install
-    cd ..
-    echo "xcape installed"
-fi
+# if [ ! -f xcape/xcape ]; then
+#     sudo apt-get install --yes git gcc make pkg-config libx11-dev libxtst-dev libxi-dev
+#     git clone https://github.com/alols/xcape.git
+#     cd xcape
+#     make
+#     sudo make install
+#     cd ..
+#     echo "xcape installed"
+# fi
 
 
 # reset kbd, xcape

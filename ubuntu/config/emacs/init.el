@@ -27,7 +27,7 @@
 (load-file (expand-file-name ".private.el" root-dir))
 
 ;; Always load newest byte code
-(setq load-prefer-newer t)
+;;(setq load-prefer-newer t)
 
 ;; turn on debug
 ;; (toggle-debug-on-error)
@@ -317,14 +317,12 @@
 (use-package projectile
   :init
   (projectile-global-mode)
-  :config
-  ;; (setq projectile-enable-caching t)
-  ;; (setq projectile-cache-file (expand-file-name  "projectile.cache" root-dir))
-  (projectile-ignore-global ".DS_Store" ".gitmodules" ".gitignore")
-  (setq projectile-ignored-files (append projectile-ignored-files '("node_modules" "bower_components")))
-
-
-  (setq projectile-indexing-method 'native))
+  (setq projectile-enable-caching t)
+  (setq projectile-cache-file (expand-file-name  ".projectile.cache" root-dir))
+  ;; (projectile-ignore-global ".DS_Store" ".gitmodules" ".gitignore")
+  ;; (setq projectile-ignored-files (append projectile-ignored-files '("node_modules" "bower_components")))
+  ;; (setq projectile-indexing-method 'native)
+  )
 
 
 (use-package flycheck
@@ -914,10 +912,11 @@
 ;; (load-file "~/.emacs.d/vendor/htmlize.el")
 (use-package htmlize)
 
-(require 'org)
-(setq org-agenda-span 30)
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+(use-package org
+  :config
+  (setq org-agenda-span 30)
+  (setq org-todo-keywords
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
 
 
 (use-package ox-reveal
