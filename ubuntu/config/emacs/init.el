@@ -27,7 +27,7 @@
 (load-file (expand-file-name ".private.el" root-dir))
 
 ;; Always load newest byte code
-;;(setq load-prefer-newer t)
+;; (setq load-prefer-newer t)
 
 ;; turn on debug
 ;; (toggle-debug-on-error)
@@ -1414,13 +1414,14 @@ With a prefix argument N, (un)comment that many sexps."
 
 (message "Successfully loaded config... ")
 
-(defun byte-compile-current-buffer ()
-  "`byte-compile' current buffer if it's emacs-lisp-mode and compiled file exists."
-  (interactive)
-  (when (and (eq major-mode 'emacs-lisp-mode)
-             (file-exists-p (byte-compile-dest-file buffer-file-name)))
-    (byte-compile-file buffer-file-name)))
+;; (defun byte-compile-current-buffer ()
+;;   "`byte-compile' current buffer if it's emacs-lisp-mode and compiled file exists."
+;;   (interactive)
+;;   (when (and (eq major-mode 'emacs-lisp-mode)
+;;              (file-exists-p (byte-compile-dest-file buffer-file-name)))
+;;     (byte-compile-file buffer-file-name)))
 
+;; (byte-recompile-directory package-user-dir nil 'force)
 
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
