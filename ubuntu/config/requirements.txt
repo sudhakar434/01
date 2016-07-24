@@ -1,3 +1,4 @@
+pytest
 nikola
 importmagic
 jedi
