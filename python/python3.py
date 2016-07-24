@@ -3,29 +3,22 @@ import sys
 print(sys.version)
 
 
-
-
 # float
 x = float('inf')
 print(x)
 print(x+1)
 
 
-
-
 # str
 print('foo'.title())
 
-#print Numbers with leading zero
+# print Numbers with leading zero
 print(str(1).zfill(2))
 
 # strip all spaces
 ''.join(' \n ff \n bar \t '.split())
-
 'test.py'.startswith('test')
 'test.py'.endswith('.py')
-
-
 
 
 # dict
@@ -35,24 +28,22 @@ bar = 2
 # create dict from variables
 d = dict(((k, globals()[k]) for k in ('foo', 'bar')))
 
-#sort dict based on value
+# sort dict based on value
 # import operator
-#sorted(d.iteritems(), key=operator.itemgetter(1))
-
-
+# sorted(d.iteritems(), key=operator.itemgetter(1))
 
 
 # lists
 
 # reverse a list
-l = ["foo","bar","baz"]
+l = ["foo", "bar", "baz"]
 print(l[::-1])
 
 # index of an item in a list
 print(l.index('bar'))
 
 # reverse a list with index also
-list(reversed(list(enumerate([1,2,3]))))
+list(reversed(list(enumerate(l))))
 
 # list comprehension doesn't leak variable
 x = 2
@@ -60,56 +51,34 @@ y = [x for x in l]
 print(x)
 
 
-
-
 # tuples
 # Tuples are immutable and usually contains heterogeneous sequence of elements
 
 
-
-
-
 # files
-
-# In[11]:
 
 # line count
 test_file = './exercise/foo.txt'
 print(sum(1 for line in open(test_file)))
 print(len(open(test_file).read().splitlines()))
 
-
-# In[12]:
-
 # read file into string
 data = open(test_file).read()
 print(data)
 
 
-# In[ ]:
+# builtin functions
 
-
-
-
-# # builtin functions
-
-# In[13]:
-
-#zip, unzip
+# zip, unzip
 print(list(zip('asdf', range(4))))
 
-
-# In[2]:
-
-#print function source code
+# print function source code
 def foo():
     return 'foo'
 
 import inspect
 print(inspect.getsource(foo))
 
-
-# In[5]:
 
 # property
 class Author:
@@ -121,29 +90,15 @@ class Author:
     def fullname(self):
         return '{} {}'.format(self.firstname, self.lastname)
 
-
-# In[6]:
-
 a = Author('john', 'doe')
 a.fullname
 
-
-# In[2]:
 
 # use print with repr
 x, y = 5, '5'
 print(x, y)
 print(repr(x), repr(y))
 
-
-# In[ ]:
-
-
-
-
-# # others
-
-# In[15]:
 
 # nested ternary
 a, b = 3, 4
@@ -153,13 +108,9 @@ a, b = 3, 3
 print(1 if a > b else -1 if a < b else 0)
 
 
-# In[16]:
-
 # list of subclasses
-#vars()['foo_class'].__subclasses__()
+# vars()['foo_class'].__subclasses__()
 
-
-# In[17]:
 
 def chunker(iterator, size):
     return (iterator[pos:pos+size] for pos in range(0, len(iterator), size))
@@ -168,33 +119,21 @@ for chunk in chunker('foobar', size=2):
     print(chunk)
 
 
-# In[18]:
-
 x, y = 3, 31
 # never use operators for singleton variable.
 print(x is not y)
 
 
-# In[19]:
-
 # null check
 print(x is None)
-
-
-# In[20]:
 
 # identity check
 print(x is y)
 
 
-# In[21]:
-
 # equality check
 print(x == y)
 print(id(x), id(y))
-
-
-# In[22]:
 
 try:
     1 / 0
@@ -206,81 +145,58 @@ finally:
     print('done')
 
 
-# In[ ]:
+# locals, globals, vars
+"""
+Python uses namespaces to keep track of variables.
+
+local-namespace - specific to current func/method. read only
+
+global-namespace - specific to current module, read/write
+
+builtin-namespace - global to all modules
+
+If locals() is called inside a function it constructs
+a dictionary of the function namespace as of that moment and returns it.
+Further name assignments are not reflected in the returned dictionary,
+and any assignments to the dictionary are not reflected
+in the actual local namespace.
+
+If locals() is called outside a function it returns the
+actual dictionary that is the current namespace.
+Further changes to the namespace are reflected in the dictionary,
+and changes to the dictionary are reflected in the namespace.
 
 
+vars([object]) -> dictionary
 
+Without arguments, equivalent to locals().
+With an argument, equivalent to object.__dict__.
+"""
 
-# ## locals, globals, vars
-#
-#
-# Python uses namespaces to keep track of variables.
-#
-# local-namespace - specific to current func/method. read only
-#
-# global-namespace - specific to current module, read/write
-#
-# builtin-namespace - global to all modules
-#
-# If locals() is called inside a function it constructs
-# a dictionary of the function namespace as of that moment and returns it.
-# Further name assignments are not reflected in the returned dictionary,
-# and any assignments to the dictionary are not reflected in the actual local namespace.
-#
-# If locals() is called outside a function it returns the
-# actual dictionary that is the current namespace.
-# Further changes to the namespace are reflected in the dictionary,
-# and changes to the dictionary are reflected in the namespace.
-#
-#
-# vars([object]) -> dictionary
-#
-# Without arguments, equivalent to locals().
-# With an argument, equivalent to object.__dict__.
-#
-#
-#
-
-# ## unicode
-
-# In[23]:
+# unicode
 
 t_string = "python"
 print(type(t_string))
 
-
-# In[24]:
-
 t_bytes = b'python'
 print(type(t_bytes))
-
-
-# In[1]:
 
 t_unicode = u'python'
 print(type(t_unicode))
 
 
-# In[2]:
-
 for i in range(0xC00, 0xC7F):
     print(chr(i))
 
-
-# In[4]:
 
 s = 'café'
 print(len(s))
 
 
-# In[5]:
-
 b = s.encode('utf8')
 print(b)
 print(len(b))
 
-
-# In[13]:
 
 # U+00E1
 s = 'Ω'
@@ -288,9 +204,7 @@ s.encode('utf-8')
 s.encode('ascii')
 
 
-#  ## builtins
-
-# In[23]:
+# builtins
 
 # convert dec to hex & vice versa
 print(hex(122))
@@ -299,21 +213,11 @@ print(int('0x7a', base=16))
 print(int('0x7a', base=0))
 
 
-# In[ ]:
-
-
-
-
-# # standard library
-
-# In[10]:
+# standard library
 
 # list standard libary modules
 import sys
 print(sys.builtin_module_names[30:35])
-
-
-# In[12]:
 
 # list standard libary modules
 from stdlib_list import stdlib_list
@@ -321,22 +225,13 @@ libraries = stdlib_list("3.5")
 print(libraries[4:10])
 
 
-# ## collections
-
-# In[26]:
-
+# collections
 import collections
+
 isinstance(dict, collections.Hashable)
 
 
-# In[ ]:
-
-
-
-
-# ## copy
-
-# In[27]:
+# copy
 
 # shallow copy
 # content is not copied by value, but just creating a new reference.
@@ -494,47 +389,30 @@ pprint(d, width=1)
 
 
 
-# ## re
-
-# In[2]:
-
+# re
 import re
 
 # strip all whitespaces
 pattern = re.compile(r'\s+')
-pattern.sub('', ' \t foo \n bar \n ')
+print(pattern.sub('', ' \t foo \n bar \n '))
+
+print(re.findall(r'\d+', 'hello 42 I\'m a 32 string 30'))
+
+pattern = re.compile('(?P<year>\d{4})')
+match = pattern.search('may 2013')
+print(match.group('year'))
 
 
-# In[3]:
-
-re.findall(r'\d+', 'hello 42 I\'m a 32 string 30')
 
 
-# ## string
-
-# ## sys
-
-# In[42]:
-
+# sys
 import sys
 
 x = [1, 2, 3]
-
-# get size of object
-sys.getsizeof(x)
-
-
-# In[43]:
+print(sys.getsizeof(x))
 
 print(sys._getframe().f_code.co_name)
 
-
-# In[ ]:
-
-
-
-
-# In[17]:
 
 class Cheese:
     def __init__(self, kind):
@@ -543,7 +421,7 @@ class Cheese:
         return 'Cheese(%r)' % self.kind
 
 
-# In[18]:
+
 
 import weakref
 stock = weakref.WeakValueDictionary()
