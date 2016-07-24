@@ -66,10 +66,8 @@ install_package htop
 install_package synapse synapse-core/ppa
 # rm ~/.config/synapse/config.json
 # ln -s ~/projects/ubuntu/os/config/synapse/config.json config.json
-# manage clipboards
 install_package clipit
-
-# music player
+install_package arpon
 install_package clementine
 # install_package banshee banshee-team/ppa
 
@@ -92,7 +90,7 @@ echo "dropbox is already installed"
 # chrome
 if [ ! -f /usr/bin/google-chrome ]; then
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+    sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list'
     install_package google-chrome-stable
     echo "chrome is installed"
 fi
@@ -135,28 +133,31 @@ echo "emacs is configured"
 
 
 # python
-# install_package python-dev
-# install_package python3-dev
-# echo "Updating pip and python packages..."
-# sudo pip install --upgrade pip -q
-# sudo pip install virtualenvwrapper thefuck -q
-# sudo pip install virtualenvwrapper -q
+install_package python-dev
+install_package python3-dev
+install_package python-pip
+echo "Updating pip and python packages..."
+sudo pip install --upgrade pip -q
+sudo pip install --upgrade virtualenvwrapper -q
+sudo pip install --upgrade thefuck -q
 # sudo pip install pandas numpy jupyter matplotlib scipy
 
-
+install_package libxml2-dev
+install_package libxslt1-dev
+# sudo pip install pillow
 
 
 
 # paper theme
-# sudo rf /usr/share/themes/Paper
-# sudo rf ~/.local/share/themes/Paper
-# git clone https://github.com/snwh/paper-gtk-theme.git ~/sandbox/paper-gtk-theme
-# cd ~/sandbox/paper-gtk-theme/
-# ./install-gtk-theme.sh
-# gsettings reset org.gnome.desktop.interface gtk-theme
-# gsettings reset org.gnome.desktop.wm.preferences theme
-# gsettings set org.gnome.desktop.interface gtk-theme "Paper"
-# gsettings set org.gnome.desktop.wm.preferences theme "Paper"
+sudo rm -rf /usr/share/themes/Paper
+sudo rm -rf ~/.local/share/themes/Paper
+git clone https://github.com/snwh/paper-gtk-theme.git ~/sandbox/paper-gtk-theme
+cd ~/sandbox/paper-gtk-theme/
+./install-gtk-theme.sh
+gsettings reset org.gnome.desktop.interface gtk-theme
+gsettings reset org.gnome.desktop.wm.preferences theme
+gsettings set org.gnome.desktop.interface gtk-theme "Paper"
+gsettings set org.gnome.desktop.wm.preferences theme "Paper"
 
 
 
@@ -227,3 +228,13 @@ echo "emacs is configured"
 
 # configure locales
 # sudo dpkg-reconfigure locales
+
+# install_package calibre
+
+crontab < ~/.01/ubuntu/config/cron_jobs.txt
+
+
+# gui
+# all settings -> keyboard -> auto hide the launcher
+# terminal -> edit -> preferences -> shortcuts -> Ctrl + V
+# clip it settings

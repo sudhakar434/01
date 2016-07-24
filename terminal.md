@@ -1048,3 +1048,19 @@ fastboot boot ~/Downloads/twrp-otus-3.0.2-r1.img
 # get key here
 https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-a
 ```
+
+
+
+### nikola
+
+```sh
+pip install nikola
+
+nikola plugin -i import_blogger
+nikola import_blogger ~/Downloads/blog-07-23-2016.xml
+
+nikola theme -i base-jinja
+
+nikola auto
+nikola serve
+```

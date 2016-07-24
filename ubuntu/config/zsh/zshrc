@@ -144,5 +144,7 @@ workon 35
 export NODEENV_HOME=$HOME/.nodeenv
 source ~/sandbox/nodeenvwrapper/nodeenvwrapper.sh
 
+export NIKOLA_MONO=true
+
 
 echo "---------------------- sourced zsh ------------------------"

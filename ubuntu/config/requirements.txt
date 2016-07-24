@@ -1,0 +1,8 @@
+nikola
+importmagic
+jedi
+rope
+flake8
+cookiecutter
+jinja2
+jupyter
