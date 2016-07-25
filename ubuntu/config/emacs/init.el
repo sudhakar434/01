@@ -494,13 +494,18 @@
   (add-hook 'web-mode-hook (lambda () (ember-mode t))))
 
 
+(use-package slim-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.emblem\\'" . slim-mode)))
+
+
 (use-package company-quickhelp
   :config
   (company-quickhelp-mode 1))
 
 
 (use-package nyan-mode
-  :init
+  :config
   (nyan-mode))
 
 

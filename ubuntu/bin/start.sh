@@ -74,6 +74,7 @@ install_package clementine
 install_package compizconfig-settings-manager
 install_package compiz-plugins-extra
 install_package dconf-tools
+install_package unity-tweak-tool freyja-dev/unity-tweak-tool-daily
 
 
 
@@ -141,23 +142,25 @@ sudo pip install --upgrade pip -q
 sudo pip install --upgrade virtualenvwrapper -q
 sudo pip install --upgrade thefuck -q
 # sudo pip install pandas numpy jupyter matplotlib scipy
-
 install_package libxml2-dev
 install_package libxslt1-dev
 # sudo pip install pillow
+install_package libffi-dev
+# sudo pip install cairocffi
+
 
 
 
 # paper theme
-sudo rm -rf /usr/share/themes/Paper
-sudo rm -rf ~/.local/share/themes/Paper
-git clone https://github.com/snwh/paper-gtk-theme.git ~/sandbox/paper-gtk-theme
-cd ~/sandbox/paper-gtk-theme/
-./install-gtk-theme.sh
-gsettings reset org.gnome.desktop.interface gtk-theme
-gsettings reset org.gnome.desktop.wm.preferences theme
-gsettings set org.gnome.desktop.interface gtk-theme "Paper"
-gsettings set org.gnome.desktop.wm.preferences theme "Paper"
+# sudo rm -rf /usr/share/themes/Paper
+# sudo rm -rf ~/.local/share/themes/Paper
+# git clone https://github.com/snwh/paper-gtk-theme.git ~/sandbox/paper-gtk-theme
+# cd ~/sandbox/paper-gtk-theme/
+# ./install-gtk-theme.sh
+# gsettings reset org.gnome.desktop.interface gtk-theme
+# gsettings reset org.gnome.desktop.wm.preferences theme
+# gsettings set org.gnome.desktop.interface gtk-theme "Paper"
+# gsettings set org.gnome.desktop.wm.preferences theme "Paper"
 
 
 
@@ -224,6 +227,8 @@ gsettings set org.gnome.desktop.wm.preferences theme "Paper"
 # sudo update-alternatives --config java
 
 
+sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib
 
 
 # configure locales

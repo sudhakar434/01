@@ -223,6 +223,9 @@ psql
 # check connection
 postgres-# \conninfo
 
+# create user
+CREATE USER mycroft WITH PASSWORD 'mycroft';
+
 # to reset the password if you have forgotten
 ALTER USER "user_name" WITH PASSWORD 'new_password';
 
