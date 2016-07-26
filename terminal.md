@@ -245,9 +245,12 @@ git remote -v
 # create github remote
 curl -u 'chillaranand' https://api.gitlab.com/user/repos -d '{"name":"foo"}'
 
+# delete remote branch
+git push origin :master
+
 
 # checkout github pull requests locally
-
+# add this to .git/config -> remote -> fetch
     fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 
 git fetch origin
