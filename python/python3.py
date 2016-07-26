@@ -213,6 +213,35 @@ print(int('0x7a', base=16))
 print(int('0x7a', base=0))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # standard library
 
 # list standard libary modules
@@ -225,10 +254,16 @@ libraries = stdlib_list("3.5")
 print(libraries[4:10])
 
 
+
+
+
+
 # collections
 import collections
 
 isinstance(dict, collections.Hashable)
+
+
 
 
 # copy
@@ -241,9 +276,6 @@ print(a, b)
 a[1].append(4)
 print(a, b)
 
-
-# In[28]:
-
 import copy
 c = copy.deepcopy(a)
 print(a, c)
@@ -251,22 +283,30 @@ a[1].append(5)
 print(a, c)
 
 
-# In[ ]:
 
 
 
 
-# ## gc
+# datetime
+import datetime
 
-# In[7]:
+now = datetime.datetime.now()
+print(now)
 
+month = datetime.timedelta(days=31)
+after_month = now + month
+print(after_month)
+
+
+# gc
 import gc
 objects = gc.get_objects()
 print(len(objects))
 
 
-# In[12]:
 
+
+# tracemalloc
 import tracemalloc
 tracemalloc.start(5)
 snap1 = tracemalloc.take_snapshot()
@@ -279,20 +319,10 @@ for i in stats[:3]:
     print(i)
 
 
-# In[ ]:
 
 
 
-
-# In[ ]:
-
-
-
-
-# ## itertools
-
-# In[29]:
-
+# itertools
 import itertools
 
 #nested list to list
