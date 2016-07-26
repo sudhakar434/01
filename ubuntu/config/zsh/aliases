@@ -32,6 +32,7 @@ alias pirr='pip install -r requirements.txt'
 alias piu='pip install --upgrade'
 alias piup='pip install --upgrade pip'
 alias pu='pip uninstall --yes'
+alias pd='pir ~/.01/ubuntu/config/requirements.txt'
 
 alias psi='python setup.py install'
 
@@ -61,7 +62,9 @@ alias es='ember server'
 alias eg='ember generate '
 
 alias em='emacs 2&>1 >/dev/null &'
-alias f='fuck '
+alias f='flash '
+
+alias fk='fuck '
 eval "$(thefuck --alias)"
 
 
@@ -107,7 +110,10 @@ alias me='chmod +x '
 
 alias ms="mysql"
 
-alias n='nautilus .'
+alias nt='nautilus .'
+
+alias n='nikola'
+alias na='rf output && nikola auto'
 
 
 alias re='sudo shutdown -r 0'

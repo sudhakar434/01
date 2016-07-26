@@ -63,6 +63,7 @@ install_package unzip
 install_package tree
 install_package xcape
 install_package htop
+install_package vlc
 install_package synapse synapse-core/ppa
 # rm ~/.config/synapse/config.json
 # ln -s ~/projects/ubuntu/os/config/synapse/config.json config.json
@@ -147,6 +148,9 @@ install_package libxslt1-dev
 # sudo pip install pillow
 install_package libffi-dev
 # sudo pip install cairocffi
+
+# fix gtk bug
+install_package gtk2-engines-pixbuf
 
 
 

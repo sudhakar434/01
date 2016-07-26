@@ -330,61 +330,33 @@ logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 
 
-# ## os
-
-# In[33]:
-
+# os
 import os
-
 os.listdir('.')
 
+test_file = '/tmp/foo.txt'
 
-# In[34]:
+print(os.path.split(test_file))
 
+print(os.path.splitext(test_file))
+
+os.rename('foo', 'bar')
 os.path.isfile(test_file)
-
-
-# In[35]:
-
 os.path.abspath(test_file)
-
-
-# In[36]:
-
 os.path.exists(test_file)
-
-
-# In[37]:
-
 os.path.dirname(test_file)
-
-
-# In[38]:
-
 os.path.getsize(test_file)
-
-
-# In[39]:
-
 os.system('ls')
 
 
-# In[ ]:
 
-
-
-
-# ## pprint
-
-# In[40]:
+# pprint
 
 # pretty print a object.
 from pprint import pprint
 d = {1:2, 3:4}
 pprint(d, width=1)
 
-
-# In[ ]:
 
 
 
@@ -402,6 +374,27 @@ pattern = re.compile('(?P<year>\d{4})')
 match = pattern.search('may 2013')
 print(match.group('year'))
 
+
+
+
+
+
+import shutil
+
+# move files even between disks
+shutil.move('foo.py', '/home/chillaranand/')
+
+
+
+
+# subprocess
+import subprocess
+print(subprocess.check_output(['ls', '-la']))
+
+# hide output
+FNULL = open(os.devnull, 'w')
+x = subprocess.check_output(['ls', '-la'], stderr=FNULL)
+print()
 
 
 

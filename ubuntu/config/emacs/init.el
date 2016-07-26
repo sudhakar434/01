@@ -531,7 +531,7 @@
   (defun git-sync ()
     (interactive)
     (message "Syncing repo...")
-    (async-shell-command "git pull origin master && git push origin master")
+    (async-shell-command "git pull && git push")
     (magit-refresh))
 
   (setq magit-status-buffer-switch-function 'switch-to-buffer)
