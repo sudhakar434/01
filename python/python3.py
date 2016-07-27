@@ -266,6 +266,7 @@ isinstance(dict, collections.Hashable)
 
 
 
+
 # copy
 
 # shallow copy
@@ -298,10 +299,14 @@ after_month = now + month
 print(after_month)
 
 
+
+
+
 # gc
 import gc
 objects = gc.get_objects()
 print(len(objects))
+
 
 
 
@@ -327,42 +332,31 @@ import itertools
 
 #nested list to list
 n = [[1, 2], [3, 4]]
-list(itertools.chain.from_iterable(n))
-
-
-# In[30]:
-
-list(itertools.chain(*n))
-
-
-# In[31]:
+print(list(itertools.chain.from_iterable(n)))
+print(list(itertools.chain(*n)))
 
 a, b = [1, 2], [3, 4]
 list(itertools.product(a, b))
 
 
-# In[ ]:
 
 
 
-
-# ## logging
-
-# In[32]:
+# logging
 
 # set log level
 import logging
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 
-# In[ ]:
 
 
 
 
 # os
 import os
-os.listdir('.')
+
+print(os.listdir('.'))
 
 test_file = '/tmp/foo.txt'
 
@@ -377,6 +371,8 @@ os.path.exists(test_file)
 os.path.dirname(test_file)
 os.path.getsize(test_file)
 os.system('ls')
+
+
 
 
 
