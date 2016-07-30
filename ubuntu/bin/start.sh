@@ -231,8 +231,8 @@ install_package gtk2-engines-pixbuf
 # sudo update-alternatives --config java
 
 
-sudo apt-get update
-sudo apt-get install postgresql postgresql-contrib
+# sudo apt-get update
+# sudo apt-get install postgresql postgresql-contrib
 
 
 # configure locales
@@ -247,3 +247,8 @@ crontab < ~/.01/ubuntu/config/cron_jobs.txt
 # all settings -> keyboard -> auto hide the launcher
 # terminal -> edit -> preferences -> shortcuts -> Ctrl + V
 # clip it settings
+
+
+# android adb, fastboot
+# sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update
+# sudo apt-get install android-tools-adb android-tools-fastboot

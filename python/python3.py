@@ -294,6 +294,8 @@ import datetime
 now = datetime.datetime.now()
 print(now)
 
+print(datetime.datetime.strftime(now))
+
 month = datetime.timedelta(days=31)
 after_month = now + month
 print(after_month)

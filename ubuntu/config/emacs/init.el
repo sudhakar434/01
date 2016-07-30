@@ -362,9 +362,10 @@
 (use-package highlight-indentation)
 (use-package yasnippet)
 (use-package company)
-(use-package elpy)
-;; (add-to-list 'load-path "~/projects/lisp/elpy")
-;; (load "elpy" nil t)
+
+;; (use-package elpy)
+(add-to-list 'load-path "~/projects/lisp/elpy")
+(load "elpy" nil t)
 (elpy-enable)
 (setq python-indent-offset 4)
 (setq elpy-test-runner 'elpy-test-pytest-runner)
@@ -469,6 +470,7 @@
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tmpl?\\'" . web-mode))
   (setq web-mode-engines-alist '(("django" . "\\.html\\'")))
 
   (setq-default indent-tabs-mode nil)

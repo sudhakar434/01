@@ -27,6 +27,7 @@ alias ipy='ipython'
 
 alias pf='pip freeze | sort'
 alias pi='pip install'
+alias pie='pip install -e .'
 alias pir='pip install -r'
 alias pirr='pip install -r requirements.txt'
 alias piu='pip install --upgrade'

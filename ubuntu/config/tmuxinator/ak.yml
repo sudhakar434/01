@@ -10,7 +10,8 @@ root: ~/projects/appknox/mycroft/
 # pre: sudo /etc/rc.d/mysqld start
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-pre_window: wo mycroft && eval $(./scripts/env_converter.py)
+pre_window: wo mycroft && eval $(./scripts/env_converter.py) && export DJANGO_SETTINGS_MODULE='mycroft.settings.dev'
+
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -29,14 +30,13 @@ tmux_command: byobu
 
 windows:
   - process:
-      layout: e07f,149x42,0,0{74x42,0,0[74x10,0,0,4,74x10,0,11,10,74x10,0,22,6,74x9,0,33,9],74x42,75,0[74x21,75,0,7,74x20,75,22,8]}
+      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
         - ./scripts/start_server.sh
         - ./scripts/start_celery.sh
-        - dsp
         - deactivate && cd ../irene && . ~/.nodeenvs/irene/bin/activate && ember serve
         - ls
-        - ls
+
 
   - mycroft: ls
   - irene: ls

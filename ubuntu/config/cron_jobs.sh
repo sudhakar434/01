@@ -1,8 +1,14 @@
+# test
+*/1 * * * * touch  ~/cron_jobs
+
+
 # update git repos
-*/1 * * * * cd ~/.01/ && git pull origin master && git push origin master
+*/1 * * * * cd  /home/chillaranand/.01/ && git pull && git push
 
 
+# project from netcut
 @reboot sudo arpon -o -D
+
 
 # sar
 # Collect measurements at 10-minute intervals
