@@ -21,6 +21,18 @@ grep CRON /var/log/syslog
 ```
 
 
+### xargs
+
+```sh
+ls | xargs ls
+
+# on mac
+ls | xargs -I {} ls {}
+
+# ignore empty
+ls | xargs -I {} cat {} -r
+```
+
 
 ### disks
 

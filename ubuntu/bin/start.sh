@@ -252,3 +252,12 @@ crontab < ~/.01/ubuntu/config/cron_jobs.txt
 # android adb, fastboot
 # sudo add-apt-repository ppa:phablet-team/tools && sudo apt-get update
 # sudo apt-get install android-tools-adb android-tools-fastboot
+
+
+# sound wire
+# install_package pavucontrol
+# install_package libasound-dev
+# install_package portaudio19-dev
+# install_package libcurl4-openssl-dev
+# install_package pulseaudio
+# install_package gstreamer0.10-pulseaudio
