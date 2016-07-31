@@ -1299,7 +1299,7 @@ With a prefix argument N, (un)comment that many sexps."
 (defun start-space-to-ctrl ()
   "Active space2cctl."
   (interactive)
-  (async-shell-command "~/projects/ubuntu/os/space2ctrl.sh"))
+  (async-shell-command "~/.01/ubuntu/bin/space2ctrl.sh"))
 
 (start-space-to-ctrl)
 

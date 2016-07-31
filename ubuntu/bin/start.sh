@@ -114,6 +114,35 @@ echo "emacs is configured"
 
 
 
+# python
+install_package python-dev
+install_package python3-dev
+install_package python-pip
+sudo pip install --upgrade pip -q
+sudo pip install --upgrade virtualenvwrapper -q
+sudo pip install --upgrade thefuck -q
+# sudo pip install pandas numpy jupyter matplotlib scipy
+install_package libxml2-dev
+install_package libxslt1-dev
+# sudo pip install pillow
+install_package libffi-dev
+# sudo pip install cairocffi
+echo "pip and python packages updated"
+
+# fix gtk bug
+install_package gtk2-engines-pixbuf
+
+
+
+crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.txt
+
+
+
+
+
+
+
+
 
 
 
@@ -134,25 +163,6 @@ echo "emacs is configured"
 # sudo apt-get install -y -qq postgresql postgresql-contrib
 
 
-# python
-install_package python-dev
-install_package python3-dev
-install_package python-pip
-echo "Updating pip and python packages..."
-sudo pip install --upgrade pip -q
-sudo pip install --upgrade virtualenvwrapper -q
-sudo pip install --upgrade thefuck -q
-# sudo pip install pandas numpy jupyter matplotlib scipy
-install_package libxml2-dev
-install_package libxslt1-dev
-# sudo pip install pillow
-install_package libffi-dev
-# sudo pip install cairocffi
-
-# fix gtk bug
-install_package gtk2-engines-pixbuf
-
-
 
 
 # paper theme
@@ -165,7 +175,6 @@ install_package gtk2-engines-pixbuf
 # gsettings reset org.gnome.desktop.wm.preferences theme
 # gsettings set org.gnome.desktop.interface gtk-theme "Paper"
 # gsettings set org.gnome.desktop.wm.preferences theme "Paper"
-
 
 
 
@@ -222,11 +231,14 @@ install_package gtk2-engines-pixbuf
 # install_package ubuntu-make
 # umake android
 
+
+
 # install java
 # sudo add-apt-repository ppa:webupd8team/java
 # sudo apt-get update
-# sudo apt-get install oracle-java7-installer
 # sudo apt-get install oracle-java8-installer
+# sudo apt-get install oracle-java7-installer
+
 # set java version
 # sudo update-alternatives --config java
 
@@ -240,7 +252,6 @@ install_package gtk2-engines-pixbuf
 
 # install_package calibre
 
-crontab < ~/.01/ubuntu/config/cron_jobs.txt
 
 
 # gui
@@ -261,3 +272,11 @@ crontab < ~/.01/ubuntu/config/cron_jobs.txt
 # install_package libcurl4-openssl-dev
 # install_package pulseaudio
 # install_package gstreamer0.10-pulseaudio
+
+
+
+
+# install atom
+# install_package atom webupd8team/atom
+# install atom package
+# apm install atom-pair
