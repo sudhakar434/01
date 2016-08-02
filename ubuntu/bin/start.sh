@@ -118,23 +118,27 @@ echo "emacs is configured"
 install_package python-dev
 install_package python3-dev
 install_package python-pip
-sudo pip install --upgrade pip -q
-sudo pip install --upgrade virtualenvwrapper -q
-sudo pip install --upgrade thefuck -q
-# sudo pip install pandas numpy jupyter matplotlib scipy
+# sudo pip install --upgrade pip -q
+# sudo pip install --upgrade virtualenvwrapper -q
+# sudo pip install --upgrade thefuck -q
+
+
 install_package libxml2-dev
 install_package libxslt1-dev
 # sudo pip install pillow
+
 install_package libffi-dev
 # sudo pip install cairocffi
-echo "pip and python packages updated"
 
 # fix gtk bug
 install_package gtk2-engines-pixbuf
 
+echo "pip and python packages updated"
 
 
-crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.txt
+
+
+# crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.sh
 
 
 
@@ -162,6 +166,9 @@ crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.txt
 # posgres
 # sudo apt-get install -y -qq postgresql postgresql-contrib
 
+
+# mysql
+# install_package mysql-server
 
 
 

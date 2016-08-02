@@ -1049,6 +1049,10 @@ mitmproxy
 # enable developer options
 # enable OEM unlock
 
+
+# reboot into fastboot mode
+adb reboot bootloader
+
 # go to fastboot
 fastboot devices
 fastboot oem get_unlock_data
@@ -1060,7 +1064,7 @@ fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 # move supersu.zip to phone
 
 #reboot phone
-fastboot boot ~/Downloads/twrp-otus-3.0.2-r1.img
+fastboot flash ~/Downloads/twrp-otus-3.0.2-r1.img
 
 
 # get key here

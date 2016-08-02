@@ -132,9 +132,11 @@ alias sp='sudo du -hs *'
 alias sudo='sudo '
 
 alias se='source .env'
+alias sz='source ~/.zshrc'
+alias sd='source ~/Dropbox/env'
 
 alias sy='rsync -raz --progress'
-alias sz='source ~/.zshrc'
+
 alias t='tree -Cfh'
 alias we='workon exp'
 alias wi='whereis'

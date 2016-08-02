@@ -111,12 +111,21 @@ delete
 -----
 
 
-backup
-======
+### backup & restore
 
-    mysqldump -u root -p database > database.sql
-    mysqldump -u root -p database table > table.sql
-    mysqldump -h 192.168.0.100 -u root -p pearl paypal_ipn > paypal_ipn.sql
+
+```sh
+mysqldump -u root -p database > database.sql
+mysqldump -u root -p database table > table.sql
+
+
+mysqldump -u root -p <database> < database.sql
+
+
+mysql> create database mydb;
+mysql> use mydb;
+mysql> source db_backup.dump;
+```
 
 
 pager

@@ -536,16 +536,21 @@
     (async-shell-command "git pull && git push")
     (magit-refresh))
 
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+
   (setq magit-status-buffer-switch-function 'switch-to-buffer)
   (setq magit-last-seen-setup-instructions "1.4.0")
   (global-git-commit-mode)
 
   (bind-key "C-c C-s" 'git-sync)
   (define-key magit-mode-map (kbd "M-p") nil))
+;;   :config
+;;   (global-git-gutter-mode +1))
 
 
 (use-package diff-hl
   :config
+  (global-diff-hl-mode 1)
   (diff-hl-flydiff-mode)
   (diff-hl-dired-mode))
 
