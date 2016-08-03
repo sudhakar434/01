@@ -490,6 +490,12 @@
   (bind-key "C-c C-l" 'web-mode-fold-or-unfold))
 
 
+
+(use-package js2-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+
 (use-package ember-mode
   :config
   (add-hook 'js-mode-hook (lambda () (ember-mode t)))

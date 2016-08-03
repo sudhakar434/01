@@ -90,6 +90,7 @@ emacs -q   # start emacs without init file
     M-g g (M-g M-g)  goto-line
     M-u  uppercase-word
     M-x  # run command by name
+    M-t  # transpose words
 
 
 # functions

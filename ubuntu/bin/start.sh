@@ -133,6 +133,10 @@ install_package libffi-dev
 # fix gtk bug
 install_package gtk2-engines-pixbuf
 
+# mitmproxy
+# install_package libevent-dev
+
+
 echo "pip and python packages updated"
 
 

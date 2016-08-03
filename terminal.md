@@ -1043,12 +1043,23 @@ mitmproxy
 ```
 
 
-### root
+### android
+
+```sh
+adb devices
+adb install test.apk
+```
+
+#### root
 
 ```
 # enable developer options
 # enable OEM unlock
 
+# download supersu and move to phone
+adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
+
+# download twrp recovery
 
 # reboot into fastboot mode
 adb reboot bootloader
@@ -1057,18 +1068,20 @@ adb reboot bootloader
 fastboot devices
 fastboot oem get_unlock_data
 
-# use data, get key from vendor
+# use that and get key from vendor
+# https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-b
+
+# after getting key from vendor
 fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 
-# download recovery-twrp.img, supersu.zip
-# move supersu.zip to phone
+# reboot
 
 #reboot phone
-fastboot flash ~/Downloads/twrp-otus-3.0.2-r1.img
+sudo fastboot flash recovery recovery-twrp.img
+
+# go to recovery -> install -> select supersu -> install -> reboot
 
 
-# get key here
-https://motorola-global-portal.custhelp.com/app/standalone/bootloader/unlock-your-device-a
 ```
 
 

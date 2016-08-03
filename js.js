@@ -100,3 +100,35 @@ $(document).ready(function() {
     $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
 });
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  ember
+
+//  Logs the arguments to the console.
+var foo = 1;
+Ember.Logger.log('log value of foo:', foo);

@@ -26,6 +26,7 @@ alias pgi='ps -ef | grep -i'
 alias py='python'
 alias ipy='ipython'
 
+alias da='deactivate '
 alias pf='pip freeze | sort'
 alias pi='pip install'
 alias pie='pip install -e .'
@@ -115,7 +116,7 @@ alias ms="mysql"
 alias nt='nautilus .'
 
 alias n='nikola'
-alias na='rf output && rf cache && nikola auto'
+alias na='rf output cache && rf cache && nikola auto'
 alias ng='nikola github_deploy'
 alias nn='nikola new_post'
 
@@ -180,3 +181,5 @@ alias add='python /home/chillaranand/projects/appknox/python-adb/adb.zip devices
 alias ad1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
+
+alias fb='sudo fastboot '
