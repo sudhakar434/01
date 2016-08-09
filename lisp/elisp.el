@@ -1,7 +1,5 @@
 ;;; elisp --- simple elisp
-;;; Commentary:
 
-;;; code:
 
 
 ;;; BASICS
@@ -38,8 +36,6 @@
   (list y z))
 
 
-(list-buffers)
-(list-processes)
 
 
 
@@ -100,6 +96,7 @@
 (or t nil)
 
 
+
 ;; hash
 (make-hash-table)
 (setq h (make-hash-table :test #'equal))
@@ -108,6 +105,18 @@
 (puthash "p" "q" h)
 (dolist (k (hash-table-keys h))
   (message k))
+
+
+
+
+
+;; strings
+(string-equal "r" "r")
+
+(format "%s - %s" "foo" "bar")
+
+
+
 
 
 ;; testing
@@ -289,6 +298,9 @@
 
 (eq "r" "r")
 
+
+
+;; strings
 (string-equal "r" "r")
 
 (replace-regexp-in-string "\n$" "" "a \n b \n")

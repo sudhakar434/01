@@ -176,6 +176,14 @@ sudo ufw logging [on/off]
 
 
 
+### ffmpeg
+
+```sh
+# extract audio from video
+ffmpeg -i foo.mp4 adandada.mp3
+
+```
+
 ### ftp
 
 ```shell

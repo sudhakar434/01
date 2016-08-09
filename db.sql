@@ -198,7 +198,7 @@ sqlite> drop table test;
 ```
 
 
-## postgres
+-- postgres / psql
 
 
 ### install
@@ -243,6 +243,9 @@ sudo -u postgres psql -c 'alter user kuser with createdb' postgres
 
 #upgrade a user to be a superuser
 ALTER USER myuser WITH SUPERUSER;
+
+# delete user
+DROP USER <USER>;
 ```
 
 ### databases

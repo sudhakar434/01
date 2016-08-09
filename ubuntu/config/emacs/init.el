@@ -296,7 +296,15 @@
 ;;   :config
 ;;   (global-set-key [f8] 'neotree-toggle))
 
-(use-package dired-subtree)
+(use-package dired-subtree
+  :config
+  (define-key dired-mode-map "i" 'dired-subtree-insert)
+  (define-key dired-mode-map ";" 'dired-subtree-remove))
+
+
+(use-package direx
+  :config
+  (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory))
 
 
 ;; (use-package dirtree
@@ -1315,6 +1323,13 @@ With a prefix argument N, (un)comment that many sexps."
 (start-space-to-ctrl)
 
 
+(defun tidy-current-buffer ()
+  ""
+  (interactive)
+  (async-shell-command
+   (format "tidy -i -m -w 160 -ashtml -utf8 %s"
+           (buffer-file-name (current-buffer)))))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1440,6 +1455,7 @@ With a prefix argument N, (un)comment that many sexps."
 ;;     (byte-compile-file buffer-file-name)))
 
 ;; (byte-recompile-directory package-user-dir nil 'force)
+
 
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
