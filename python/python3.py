@@ -9,16 +9,31 @@ print(x)
 print(x+1)
 
 
-# str
+
+
+
+
+# string
+
 print('foo'.title())
 
 # print Numbers with leading zero
 print(str(1).zfill(2))
+print(['{i:04d}'.format(i=i) for i in range(10)])
+
 
 # strip all spaces
 ''.join(' \n ff \n bar \t '.split())
 'test.py'.startswith('test')
 'test.py'.endswith('.py')
+
+# generate random string of given `length`.
+print(''.join(random.choice(string.ascii_letters) for _ in range(length)))
+
+
+
+
+
 
 
 # dict
@@ -487,14 +502,21 @@ def rm(filename):
     os.remove(filename)
 
 
-# In[ ]:
 
 
 
 
-# # Third Party Libraries
 
-# In[44]:
+
+
+
+
+
+
+
+
+# third party libraries
+
 
 # reloading a module
 
@@ -505,19 +527,10 @@ def rm(filename):
 #imp.reload(module)
 
 
-# In[ ]:
 
 
 
-
-# In[ ]:
-
-
-
-
-# ## beautifulsoup
-
-# In[45]:
+# beautifulsoup
 
 with open(file_name) as fh:
     soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
@@ -525,11 +538,62 @@ with open(file_name) as fh:
         print(link)
 
 
-#
 
-#
 
-# ## celery
+
+
+
+
+
+# boto - aws
+import boto
+
+s3 = boto.connect_s3('foo', 'bar')
+bucket_name = 'sherlock-test'
+file_name = '/home/chillaranand/.01/python/foo.txt'
+
+# buckets
+bucket = s3.create_bucket(bucket_name)
+bucket = s3.get_bucket(bucket_name)
+
+bucket.copy_key(src_key_name='foo', new_key_name='bar', src_bucket_name='sherlock-test')
+
+# list all key objects
+bucket.list()
+# to get the top level directories:
+bucket.list("", "/")
+
+# to get the subdirectories of files
+bucket.list("files/", "/")
+
+# to check for a key
+bucket.lookup('foo')
+
+
+# keys
+k = bucket.get_key('foo')
+k = Key(b, 'foo.txt')
+k = bucket.new_key('foo')
+
+k.set_contents_from_filename('foo.txt')
+k.get_contents_to_filename('f.py')
+
+
+# upload file to s3
+key = bucket.new_key(file_name)
+key.set_contents_from_filename(file_name)
+key.set_acl('public-read')
+
+# download file from s3
+key = bucket.get_key('foo.foo')
+key.get_contents_to_filename('foo.foo')
+
+
+
+
+
+
+# celery
 
 # celery status
 #
@@ -537,7 +601,17 @@ with open(file_name) as fh:
 #
 # celery purge
 
-# In[2]:
+from celery import Celery
+
+app = Celery(broker='amqp://guest@localhost//')
+
+@app.task
+def hello(name=None):
+    if name:
+        return 'hello world {}'.format(name)
+    else:
+        return 'foo'
+
 
 from datetime import datetime
 result = tasks.add.apply_async(args=[1,2], eta=datetime(2014, 6, 12, 0, 0))
@@ -564,10 +638,8 @@ result.state
 
 
 # workers
-
-celery -A apps.project.tasks worker -l info
-
-ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+# celery -A apps.project.tasks worker -l info
+# ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
 # run worker from script
 from myapp import app
@@ -576,15 +648,19 @@ app.worker_main(argv)
 
 
 # canvas
+# chain, group, chord
 
-chain, group, chord
 
 
-# ## django
 
-# ### forms
 
-# In[ ]:
+
+
+
+
+# django
+
+# forms
 
 # make all form fields not required
 def __init__(self, *args, **kwargs):
@@ -594,23 +670,14 @@ def __init__(self, *args, **kwargs):
         self.field.required = False
 
 
-# In[ ]:
-
-
-
-
-# ### models
-
-# In[ ]:
+# models
 
 # all users where pk < 5
 User.objects.filter(pk__lt=5)
 User.objects.filter(pk__lte=5)
 
 
-# ### templates
-
-# In[ ]:
+# templates
 
 from django.template import loader
 print(loader.get_template('home.html'))
@@ -636,15 +703,15 @@ reverse_lazy('/')  # lazy version of reverse
 
 
 # cli
-python manage.py changepassword admin
-python manage.py createsuperuser
+# python manage.py changepassword admin
+# python manage.py createsuperuser
 
 #Reset south migrations - delete ghost migrations
-rm <app-dir>/migrations/*
-python manage.py schemamigration <app-name> --initial
-python manage.py migrate <app-name> 0001 --fake  --delete-ghost-migrations
+# rm <app-dir>/migrations/*
+# python manage.py schemamigration <app-name> --initial
+# python manage.py migrate <app-name> 0001 --fake  --delete-ghost-migrations
 # Check for any errors in the construction of your models
-python manage.py validate
+# python manage.py validate
 
 # models
 # print sql query
@@ -943,12 +1010,62 @@ print(d3.columns)
 
 
 
-# ## scrapy
 
-# In[ ]:
+
+
+
+
+
+
+# sendgrid
+
+from sendgrid import Mail, SendGridClient
+
+
+def get_template_id_by_name(template_name):
+    response = sg.client.templates.get()
+    data = json.loads(response.response_body.decode())
+    t_groups = data['templates']
+
+    for t_group in t_groups:
+        templates = t_group['versions']
+        for template in templates:
+            if template['name'] == template_name:
+                return t_group['id']
+
+
+template_id = get_template_id_by_name(template_name)
+
+message = Mail()
+message.add_filter('templates', 'enable', '1')
+message.add_filter('templates', 'template_id', template_id)
+message.set_subject(None)
+for to_addr in to_addrs:
+    message.add_to(to_addr)
+for key, value in context.items():
+    message.add_substitution("%{}%".format(key), value)
+message.set_from('Foo <foo@bar.com>')
+message.set_html('  ')
+message.set_text('  ')
+message.set_subject('  ')
+
+
+
+
+
+
+
+
+
+
+
+
+# scrapy
 
 # xpath selection
+
 # find td with `dc.identifier.uri` as text and get text of its sibling
 url = response.xpath('//td[contains(., "dc.identifier.uri")]/following-sibling::td/text()')
+
 # find element with class `file-link` and get `href` of `a` inside it
 pdf = response.xpath('//*[contains(@class, "file-link")]//a/@href')

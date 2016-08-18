@@ -130,6 +130,11 @@ install_package libxslt1-dev
 install_package libffi-dev
 # sudo pip install cairocffi
 
+install_package graphviz
+install_package libgraphviz-dev
+install_package pkg-config
+# sudo pip install pygraphviz
+
 # fix gtk bug
 install_package gtk2-engines-pixbuf
 

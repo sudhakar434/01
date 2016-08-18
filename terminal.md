@@ -18,6 +18,12 @@ alias ls='ls -a'
 
 # check cron log
 grep CRON /var/log/syslog
+
+# timings
+# every minute
+*/1 * * * * echo "job every minute"
+# twice a day at 6, 18 hrs
+* 6,18 * * * echo "foo"
 ```
 
 
@@ -94,6 +100,9 @@ head -1 foo.txt | tr ';' '\n' | wc -l
 # print 100th line
 tail -n+100 <file> | head -n1
 sed '100q;d' <file>
+
+# find and replace text in files recursively
+find /home/anand -name \*.py -exec sed -i "s/foo/bar/g" {} \;
 
 # show foo.txt without last line
 head -n -1 foo.txt
@@ -783,6 +792,14 @@ sudo rabbitmqctl stop_app
 sudo rabbitmqctl reset
 sudo rabbitmqctl start_app
 
+# purge a queue
+sudo rabbitmqctl purge_queue <queue_name>
+
+# purge all queues
+rabbitmqctl stop_app
+rabbitmqctl reset    # Be sure you really want to do this!
+rabbitmqctl start_app
+
 # rabbitmq-plugins
 sudo rabbitmq-plugins list
 sudo rabbitmq-plugins enable rabbitmq_management
@@ -1088,10 +1105,15 @@ fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 sudo fastboot flash recovery recovery-twrp.img
 
 # go to recovery -> install -> select supersu -> install -> reboot
-
-
 ```
 
+#### recover from bootloop
+
+```sh
+# boot to recovery mode
+# advanced -> enable sideload
+adb sideload UPDATE-SuperSU-v2.46.zip
+```
 
 
 ### nikola
@@ -1106,4 +1128,16 @@ nikola theme -i base-jinja
 
 nikola auto
 nikola serve
+```
+
+
+### deis
+
+```
+sudo mv deis /usr/local/bin
+
+curl -sSL https://get.helm.sh | bash
+sudo mv helmc /usr/local/bin
+
+Install_package vagrant
 ```
