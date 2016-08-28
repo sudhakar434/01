@@ -53,24 +53,27 @@ rm -rf ~/.tmuxinator
 ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 
 
-
-
 # salt setup
 # python salt/start/setup.py
 
+
+
 # install utils
-install_package unzip
-install_package tree
-install_package xcape
-install_package htop
-install_package vlc
-install_package synapse synapse-core/ppa
-# rm ~/.config/synapse/config.json
-# ln -s ~/projects/ubuntu/os/config/synapse/config.json config.json
-install_package clipit
 install_package arpon
-install_package clementine
 # install_package banshee banshee-team/ppa
+install_package clementine
+install_package clipit
+install_package htop
+install_package nmap
+install_package npm
+install_package synapse synapse-core/ppa
+install_package tree
+install_package unzip
+install_package vlc
+install_package xcape
+install_package xclip
+
+
 
 install_package compizconfig-settings-manager
 install_package compiz-plugins-extra
@@ -143,6 +146,10 @@ install_package gtk2-engines-pixbuf
 
 
 echo "pip and python packages updated"
+
+
+# npm packages
+
 
 
 
@@ -240,9 +247,7 @@ echo "pip and python packages updated"
 
 # android studio
 
-# sudo apt-add-repository ppa:maarten-fonville/android-studio
-# sudo apt-get update
-# sudo apt-get install android-studio
+install_package android-studio maarten-fonville/android-studio
 
 # install_package ubuntu-make
 # umake android

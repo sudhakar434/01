@@ -8,7 +8,6 @@ alias js='cd ~/sandbox'
 
 alias b='byobu'
 alias ag='sudo apt-get'
-alias ai='sudo apt-get install --yes'
 alias i='sudo apt-get install --yes'
 alias au='sudo apt-get update -qq'
 alias c='cat'
@@ -175,11 +174,14 @@ function search {
 }
 
 
-# ad
-alias ad='python /home/chillaranand/projects/appknox/python-adb/adb.zip '
-alias add='python /home/chillaranand/projects/appknox/python-adb/adb.zip devices'
-alias ad1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
-alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
-alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
-
+# adb
+# alias ad='python /home/chillaranand/projects/appknox/python-adb/adb.zip '
+# alias add='python /home/chillaranand/projects/appknox/python-adb/adb.zip devices'
+# alias ad1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
+# alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
+# alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
 alias fb='sudo fastboot '
+alias ai='adb install '
+alias ad='adb devices '
+
+alias wifi='nmcli dev wifi '

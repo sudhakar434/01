@@ -1,7 +1,7 @@
 # ~/.tmuxinator/mycroft.yml
 
 name: ak
-root: ~/projects/appknox/mycroft/
+root: ~/projects/appknox/
 
 # Optional tmux socket
 # socket_name: foo
@@ -29,14 +29,27 @@ tmux_command: byobu
 # post: tmux -CC attach -t mycroft
 
 windows:
-  - process:
+
+  - irene:
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
-        - ./scripts/start_server.sh
-        - ./scripts/start_celery.sh
-        - deactivate && cd ../irene && . ~/.nodeenvs/irene/bin/activate && ember serve
-        - ls
+        - deactivate && cd irene && . ~/.nodeenvs/irene/bin/activate && ember serve
+        - l
+        - l
+        - l
 
+  - mycroft:
+      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
+      panes:
+        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && dr
+        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && ./scripts/start_celery.sh
+        - minio server /tmp
+        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && dsp
 
-  - mycroft: ls
-  - irene: ls
+  - moriarty:
+      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
+      panes:
+        - cd moriarty
+        -
+        -
+        -

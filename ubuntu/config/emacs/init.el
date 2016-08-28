@@ -24,7 +24,9 @@
 (setq package-user-dir (expand-file-name "elpa" root-dir))
 (setq package-vendor-dir (expand-file-name "vendor" root-dir))
 (setq recent-files-dir (expand-file-name "recentf" root-dir))
-(load-file (expand-file-name ".private.el" root-dir))
+
+;; load secret variables
+(load-file "~/Dropbox/tech/private.el")
 
 ;; Always load newest byte code
 ;; (setq load-prefer-newer t)
@@ -150,7 +152,12 @@
 (run-at-time nil (* 5 60) 'recentf-save-list)
 (run-with-idle-timer 5  nil 'recentf-cleanup)
 
-;; Automatically save and restore sessions
+
+;; save cursor positions
+(save-place-mode 1)
+
+
+;;Automatically save and restore sessions
 ;; (require 'desktop)
 ;; (setq desktop-dirname             "~/.emacs.d/desktop/"
 ;;       desktop-base-file-name      "emacs.desktop"
@@ -375,14 +382,19 @@
 (add-to-list 'load-path "~/projects/lisp/elpy")
 (load "elpy" nil t)
 (elpy-enable)
+
+(append grep-find-ignored-files "flycheck_*")
+
+(setq python-shell-prompt-detect-failure-warning nil)
 (setq python-indent-offset 4)
+
 (setq elpy-test-runner 'elpy-test-pytest-runner)
 (setq elpy-rpc-timeout nil)
 (setq elpy-rgrep-file-pattern "*.py *.html")
+(setq elpy-rpc-backend "jedi")
 
 ;; (setq elpy-rpc-python-command "python3")
-(append grep-find-ignored-files "flycheck_*")
-(setq python-shell-prompt-detect-failure-warning nil)
+
 
 (defun elpy-install-requirements ()
   (interactive)
@@ -1324,7 +1336,7 @@ With a prefix argument N, (un)comment that many sexps."
 
 
 (defun tidy-current-buffer ()
-  ""
+  "Tidy html"
   (interactive)
   (async-shell-command
    (format "tidy -i -m -w 160 -ashtml -utf8 %s"

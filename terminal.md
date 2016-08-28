@@ -366,7 +366,7 @@ lsof -i :8000
 # what ports are open on any machine
 sudo apt-get install --yes nmap
 nmap 192.168.1.33
-namp localhost
+nmap localhost
 
 # local machine
 sudo netstat -tulpn
@@ -924,7 +924,7 @@ xsel --clipboard > current-clipboard-contents.txt
 curl -d "username=chillaranand&password=foo" http://192.168.0.152:8000/api/token/new.json
 
 # httpie post with form data
-http POST 192.168.0.152:8000/api/token/new.json username=chillaranand password=foo -f
+http POST 0.0.0.0:8000/api/token/new.json username=f password=f -f
 ```
 
 

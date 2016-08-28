@@ -46,3 +46,7 @@ div::after {
 body {
     padding-top: 70px;
 }
+
+
+/* flush nav bar to bottom */
+<div class="navbar navbar-fixed-bottom"></div>

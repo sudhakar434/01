@@ -248,9 +248,10 @@ ALTER USER myuser WITH SUPERUSER;
 DROP USER <USER>;
 ```
 
+
+
 ### databases
 
-```psql
 # create
 create database <foo>;
 
@@ -272,7 +273,9 @@ SELECT datname FROM pg_database;
 
 # drop database
 drop database <foo>;
-```
+
+
+
 
 ### tables
 

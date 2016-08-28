@@ -12,3 +12,4 @@
 /ubuntu/config/emacs/semanticdb/*
 /ubuntu/config/emacs/session*
 /ubuntu/config/emacs/.mc-lists.el
+/ubuntu/config/emacs/places

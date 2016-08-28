@@ -318,6 +318,20 @@ print(after_month)
 
 
 
+# enum
+from enum import IntEnum
+
+class Shape(IntEnum):
+    circle = 1
+    square = 2
+
+print(Shape.circle.name)
+print(Shape.circle.value)
+
+
+
+
+
 
 # gc
 import gc
@@ -549,7 +563,7 @@ with open(file_name) as fh:
 import boto
 
 s3 = boto.connect_s3('foo', 'bar')
-bucket_name = 'sherlock-test'
+bucket_name = 'test-bucket'
 file_name = '/home/chillaranand/.01/python/foo.txt'
 
 # buckets
@@ -560,6 +574,7 @@ bucket.copy_key(src_key_name='foo', new_key_name='bar', src_bucket_name='sherloc
 
 # list all key objects
 bucket.list()
+
 # to get the top level directories:
 bucket.list("", "/")
 
