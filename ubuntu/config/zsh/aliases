@@ -185,3 +185,5 @@ alias ai='adb install '
 alias ad='adb devices '
 
 alias wifi='nmcli dev wifi '
+
+alias ram='s ps_mem'

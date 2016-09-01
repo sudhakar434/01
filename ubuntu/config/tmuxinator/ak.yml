@@ -10,7 +10,7 @@ root: ~/projects/appknox/
 # pre: sudo /etc/rc.d/mysqld start
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-pre_window: wo mycroft && eval $(./scripts/env_converter.py)
+# pre_window:
 
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
@@ -26,7 +26,7 @@ tmux_command: byobu
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t mycroft
+post: tmux -CC attach -t mycroft
 
 windows:
 
@@ -39,17 +39,19 @@ windows:
         - l
 
   - mycroft:
+      root: ~/projects/appknox/mycroft/
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
-        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && dr
-        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && ./scripts/start_celery.sh
-        - minio server /tmp
-        - cd mycroft && wo mycroft && eval $(./scripts/env_converter.py) && dsp
+        - ./scripts/start_server.sh
+        - wo mycroft && eval $(./scripts/env_converter.py) && dsp
+        -
+        - ./scripts/start_celery.sh
 
   - moriarty:
+      root: ~/projects/appknox/moriarty/
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
-        - cd moriarty
-        -
-        -
-        -
+        - ./scripts/start_services.sh
+        - wo moriarty && celery worker -l info -A moriarty
+        - wo moriarty && dj devices
+        - wo moriarty

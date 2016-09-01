@@ -3,6 +3,8 @@ import sys
 print(sys.version)
 
 
+
+
 # float
 x = float('inf')
 print(x)
@@ -48,6 +50,10 @@ d = dict(((k, globals()[k]) for k in ('foo', 'bar')))
 # sorted(d.iteritems(), key=operator.itemgetter(1))
 
 
+
+
+
+
 # lists
 
 # reverse a list
@@ -66,11 +72,22 @@ y = [x for x in l]
 print(x)
 
 
+
+
+
+
 # tuples
 # Tuples are immutable and usually contains heterogeneous sequence of elements
 
 
+
+
+
+
 # files
+
+# path and name of current file
+os.path.realpath(__file__)
 
 # line count
 test_file = './exercise/foo.txt'
@@ -80,6 +97,13 @@ print(len(open(test_file).read().splitlines()))
 # read file into string
 data = open(test_file).read()
 print(data)
+
+
+
+
+
+
+
 
 
 # builtin functions
@@ -160,6 +184,13 @@ finally:
     print('done')
 
 
+
+
+
+
+
+
+
 # locals, globals, vars
 """
 Python uses namespaces to keep track of variables.
@@ -187,6 +218,15 @@ vars([object]) -> dictionary
 Without arguments, equivalent to locals().
 With an argument, equivalent to object.__dict__.
 """
+
+
+
+
+
+
+
+
+
 
 # unicode
 
@@ -315,6 +355,8 @@ month = datetime.timedelta(days=31)
 after_month = now + month
 print(after_month)
 
+# week_of_the_year
+year, week, day = now.isocalendar()
 
 
 
@@ -610,11 +652,12 @@ key.get_contents_to_filename('foo.foo')
 
 # celery
 
+
+# cli
+
 # celery status
-#
-# celery inspect active
-#
 # celery purge
+
 
 from celery import Celery
 
@@ -629,32 +672,30 @@ def hello(name=None):
 
 
 from datetime import datetime
-result = tasks.add.apply_async(args=[1,2], eta=datetime(2014, 6, 12, 0, 0))
-result = tasks.add.apply_async(args=[1,2], countdown=10)
-r = tasks.add.delay()
 
+r = tasks.add.delay()
+r = tasks.add.apply_async(args=[1, 2], eta=datetime(2014, 6, 12, 0, 0))
+r = tasks.add.apply_async(args=[1, 2], countdown=10)
 r = tasks.add.apply_async(args=[2, 3], queues='email')
 
-from celery.task.control import revoke
-revoke(id)
-revoke(id, terminate=True)
 
-from celery.task.control import inspect
+
+# inspect
+
+from celery.task.control import revoke, inspect, discard_all
+
 i = inspect()
 i.scheduled()
 i.active()
 i.registered()
 
+# revoke task by id
+revoke(task_id, terminate=True)
+
+r = add.apply_async(args=[1,2])
+r.revoke()
 
 # task result
-result = my_task.apply_async(args=[1,2])
-result.ready()
-result.state
-
-
-# workers
-# celery -A apps.project.tasks worker -l info
-# ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
 # run worker from script
 from myapp import app
@@ -667,6 +708,8 @@ app.worker_main(argv)
 
 
 
+# config
+CELERYD_LOG_COLOR = False
 
 
 
@@ -967,24 +1010,23 @@ s = "foo!! bar's"
 print(nltk.word_tokenize(s))
 
 
-# In[ ]:
 
 
 
 
-# ## pandas
 
-# In[1]:
 
-# on spot averages
+
+# pandas
 import pandas as pd
 
+
+# on spot averages
 df = pd.DataFrame([['a', 2], ['a', 4], ['b', 5]], columns=['x', 'y'])
 print(df)
 df.groupby('x')['y'].mean()
 
 
-# In[2]:
 
 # plot pie chart
 get_ipython().magic('matplotlib inline')
@@ -996,31 +1038,41 @@ df['y'].plot(kind='pie', title='Population distribution',
              autopct='%1.1f%%')
 
 
-# In[14]:
 
 d1 = pd.read_csv('./exercise/c1.csv')
 d2 = pd.read_csv('./exercise/c2.csv', skiprows=2)
-
-print(d1.columns)
-print(d2.columns)
-print(d2, )
-
-
-# In[30]:
 
 d3 = d2.groupby(['chr', 'pos', 'ref', 'alt']).size()
 print(type(d3))
 print(d3)
 print(d3.columns)
-#d3[d3==d1]
 
 
-# In[48]:
-
-## requests
 
 
-# In[ ]:
+
+
+
+
+# redis
+
+
+# pub/sub pattern
+
+# publisher
+# ./exercise/pub.py
+
+# subscriber
+# ./exercise/sub.py
+
+
+
+
+
+
+
+
+# requests
 
 
 

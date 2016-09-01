@@ -1141,3 +1141,14 @@ sudo mv helmc /usr/local/bin
 
 Install_package vagrant
 ```
+
+
+### celery
+```sh
+celery -A apps.project.tasks worker -l info
+
+ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+
+
+celery inspect active
+```

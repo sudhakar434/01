@@ -197,8 +197,8 @@
 (package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
-(package-refresh-contents)
-(package-initialize)
+;; (package-refresh-contents)
+;; (package-initialize)
 
 ;; dont check signatures
 (setq package-check-signature nil)
@@ -671,7 +671,6 @@
   (show-paren-mode +1))
 
 (use-package helm-chrome)
-(use-package helm-swoop)
 (use-package helm-descbinds)
 (use-package helm-projectile)
 (use-package helm-ag)
@@ -679,6 +678,12 @@
 (use-package helm-github-stars
   :config
   (setq helm-github-stars-username "chillaranand"))
+
+(use-package helm-swoop
+  :config
+  (setq helm-swoop-speed-or-color t)
+  (global-set-key "\C-s" 'helm-swoop))
+
 
 (use-package helm
   :config
@@ -732,17 +737,17 @@
 
 
 ;; swiper for search
-(use-package ivy)
-(use-package swiper-helm
-  :config
-  (ivy-mode 1)
-  ;; make swiper to use helm display
-  (setq swiper-helm-display-function 'helm-default-display-buffer)
-  (setq ivy-use-virtual-buffers t)
-  (global-set-key "\C-s" 'swiper-helm)
-  (global-set-key "\C-r" 'swiper-helm)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key [f8] 'ivy-resume))
+;; (use-package ivy)
+;; (use-package swiper-helm
+;;   :config
+;;   (ivy-mode 1)
+;;   ;; make swiper to use helm display
+;;   (setq swiper-helm-display-function 'helm-default-display-buffer)
+;;   (setq ivy-use-virtual-buffers t)
+;;   (global-set-key "\C-s" 'swiper-helm)
+;;   (global-set-key "\C-r" 'swiper-helm)
+;;   (global-set-key (kbd "C-c C-r") 'ivy-resume)
+;;   (global-set-key [f8] 'ivy-resume))
 
 
 ;; (use-package aggressive-indent
@@ -1330,7 +1335,7 @@ With a prefix argument N, (un)comment that many sexps."
 (defun start-space-to-ctrl ()
   "Active space2cctl."
   (interactive)
-  (async-shell-command "~/.01/ubuntu/bin/space2ctrl.sh"))
+  (call-process-shell-command  "~/.01/ubuntu/bin/space2ctrl.sh" nil 0))
 
 (start-space-to-ctrl)
 
@@ -1455,7 +1460,7 @@ With a prefix argument N, (un)comment that many sexps."
 (add-hook 'focus-out-hook 'save-all)
 
 ;; load do.org
-(find-file "~/Dropbox/do.org")
+;; (find-file "~/Dropbox/do.org")
 
 (message "Successfully loaded config... ")
 
