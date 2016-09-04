@@ -308,6 +308,8 @@ from stdlib_list import stdlib_list
 libraries = stdlib_list("3.5")
 print(libraries[4:10])
 
+# find operating system type
+print(sys.platform)
 
 
 
@@ -421,6 +423,23 @@ list(itertools.product(a, b))
 import logging
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 
+
+
+
+
+
+
+# multiprocessing
+
+
+def foo(name):
+    while True:
+        print(name)
+
+process = multiprocessing.Process(target=foo, kwargs={'name': 'foooooo'})
+process.start()
+
+os.kill(process.pid, signal.SIGTERM)
 
 
 

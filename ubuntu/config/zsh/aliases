@@ -64,7 +64,7 @@ alias es='ember server'
 alias eg='ember generate '
 
 alias em='emacs 2&>1 >/dev/null &'
-alias f='flash '
+# alias f='flash '
 
 alias fk='fuck '
 eval "$(thefuck --alias)"
@@ -108,11 +108,17 @@ alias gsum="git pull upstream master && git push origin master"
 
 alias gpom="git push origin master"
 
+
+
 alias m=mux
-alias ma='mux ak'
+alias ml='mux list'
+
+alias ma='mux avilpage'
+alias mak='mux ak'
+alias mj='mux junction'
 
 alias tk='tmux kill-session -t '
-alias tka='tmux kill-session -t ak'
+
 
 
 

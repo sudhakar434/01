@@ -1,7 +1,7 @@
 # ~/.tmuxinator/junction.yml
 
-name: junction
-root: ~/projects/python/pythonindia/junction/
+name: avilpage
+root: ~/projects/write/avilpage/
 
 # Optional tmux socket
 # socket_name: foo
@@ -26,14 +26,13 @@ tmux_command: byobu
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-# post: tmux -CC attach -t mycroft
+# post:
 
 windows:
-
-  - j:
+  - a:
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
-        - workon junction && dr
-        - workon junction && dsp
-        - workon junction
-        - workon junction
+        - na
+        -
+        -
+        -

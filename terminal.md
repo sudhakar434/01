@@ -1152,3 +1152,11 @@ ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
 celery inspect active
 ```
+
+
+### gsetting
+
+```
+# disable auto-opening nautilus window after auto-mount
+gsettings set org.gnome.desktop.media-handling automount-open false
+```
