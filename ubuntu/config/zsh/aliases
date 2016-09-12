@@ -85,6 +85,7 @@ alias pk='pkill'
 alias ka='killall '
 alias kc='killall chrome'
 alias ke='killall emacs'
+alias kb="pgi byobu | awk '{print $2}' | xargs kill -9 "
 
 alias l='clear && ls'
 
@@ -119,7 +120,8 @@ alias mj='mux junction'
 
 alias tk='tmux kill-session -t '
 
-
+alias kcw='ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9'
+alias cia='celery inspect active'
 
 
 # alias ma=man

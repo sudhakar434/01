@@ -14,3 +14,4 @@
 /ubuntu/config/emacs/places
 .projectile.cache*
 *.cache*
+/ubuntu/config/emacs/.cask/25.1.50.2/bootstrap/archives/gnu/archive-contents

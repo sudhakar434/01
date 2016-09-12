@@ -144,6 +144,7 @@ install_package gtk2-engines-pixbuf
 # mitmproxy
 # install_package libevent-dev
 
+ln -s ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 
 echo "pip and python packages updated"
 
@@ -301,3 +302,7 @@ install_package android-studio maarten-fonville/android-studio
 # install_package atom webupd8team/atom
 # install atom package
 # apm install atom-pair
+
+
+# install cask
+curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python

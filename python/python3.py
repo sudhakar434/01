@@ -1092,6 +1092,27 @@ print(d3.columns)
 
 
 # requests
+import requests
+
+url = 'http://avilpage.com'
+
+r = requests.get(url=url)
+with open('foo.html', 'wb') as fh:
+    fh.write(r.content)
+
+# form data
+data = {'foo': 'bar'}
+r = requests.post(url=url, data=data)
+
+
+# headers
+headers = {'content-type': 'application/json'}
+r = requests.post(url, headers=headers)
+
+
+# cookies
+cookie = {'foo_session': '17ab96bd8ffbe8ca58a78657a918558'}
+r = requests.post('http://wikipedia.org', cookies=cookie)
 
 
 

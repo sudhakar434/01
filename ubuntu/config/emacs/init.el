@@ -392,9 +392,7 @@
 (setq elpy-rpc-timeout nil)
 (setq elpy-rgrep-file-pattern "*.py *.html")
 (setq elpy-rpc-backend "jedi")
-
 ;; (setq elpy-rpc-python-command "python3")
-
 
 (defun elpy-install-requirements ()
   (interactive)
@@ -682,7 +680,8 @@
 (use-package helm-swoop
   :config
   (setq helm-swoop-speed-or-color t)
-  (global-set-key "\C-s" 'helm-swoop))
+  (setq helm-swoop-split-with-multiple-windows t)
+  (global-set-key "\C-s" 'helm-swoop-without-pre-input))
 
 
 (use-package helm

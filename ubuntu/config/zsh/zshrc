@@ -69,6 +69,7 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='emacsclient'
 else
     export EDITOR='emacsclient'
+    export EDITOR='vim '
 fi
 
 # Compilation flags
@@ -144,3 +145,8 @@ workon exp
 export NODEENV_HOME=$HOME/.nodeenvs
 
 export NIKOLA_MONO=true
+
+export PATH="/home/chillaranand/.cask/bin:$PATH"
+
+# secrets
+source ~/Dropbox/tech/env

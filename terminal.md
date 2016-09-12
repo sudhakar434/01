@@ -20,8 +20,10 @@ alias ls='ls -a'
 grep CRON /var/log/syslog
 
 # timings
+
 # every minute
 */1 * * * * echo "job every minute"
+
 # twice a day at 6, 18 hrs
 * 6,18 * * * echo "foo"
 ```
@@ -550,6 +552,7 @@ sudo mount -o remount,rw /media/foo/usb-drive
 
 # bootable usb
 # write to that device
+sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc bs=4M
 sudo dd if=ubuntu-14.04-desktop-amd64.iso of=/dev/sdc
 
 # format usb pendrive
@@ -1073,6 +1076,9 @@ mitmproxy
 ```sh
 adb devices
 adb install test.apk
+
+# restart adb as root
+adb root
 ```
 
 #### root
@@ -1115,6 +1121,17 @@ sudo fastboot flash recovery recovery-twrp.img
 adb sideload UPDATE-SuperSU-v2.46.zip
 ```
 
+#### cyanogenmod
+
+```
+# wipe
+dalvik cache,data, cache,system
+
+# push rom
+adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
+
+
+```
 
 ### nikola
 
@@ -1147,6 +1164,8 @@ Install_package vagrant
 ```sh
 celery -A apps.project.tasks worker -l info
 
+
+# kill all celery workers
 ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
 
 
@@ -1159,4 +1178,13 @@ celery inspect active
 ```
 # disable auto-opening nautilus window after auto-mount
 gsettings set org.gnome.desktop.media-handling automount-open false
+```
+
+
+
+### shell scripting
+
+```sh
+# for
+for i in {1..5}; do echo "Welcome $i times"; done
 ```
