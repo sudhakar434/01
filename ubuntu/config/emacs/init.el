@@ -372,10 +372,15 @@
 ;;   (setq real-auto-save-interval 10))
 
 
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+
 ;; python mode
+
 (use-package pyvenv)
 (use-package highlight-indentation)
-(use-package yasnippet)
 (use-package company)
 
 ;; (use-package elpy)
@@ -397,6 +402,24 @@
 (defun elpy-install-requirements ()
   (interactive)
   (async-shell-command "sudo pip install rope jedi flake8 importmagic autopep8 yapf --upgrade"))
+
+(require 's)
+
+(defun elpy-goto-definition-or-template ()
+  (interactive)
+  (if (inside-string)
+      (elpy-goto-template)
+    (elpy-goto-definition)))
+
+(defun elpy-goto-template ()
+  (interactive)
+  (let ((file-name (thing-at-point 'filename)))
+    (find-file (expand-file-name
+                (dolist (f (projectile-current-project-files))
+                  (if (s-contains? file-name f)
+                      (return f)))
+                (projectile-project-root)))))
+
 
 ;; activate exp
 (pyvenv-workon "exp")

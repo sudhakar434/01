@@ -147,11 +147,12 @@ alias sc='~/.01/ubuntu/bin/space2ctrl.sh'
 alias s=sudo
 alias si='sudo -i'
 alias sp='sudo du -hs *'
-alias sudo='sudo '
 
 alias se='source .env'
 alias sz='source ~/.zshrc'
+
 alias sd='source ~/Dropbox/env'
+alias db='~/.dropbox-dist/dropboxd'
 
 alias sy='rsync -raz --progress'
 
@@ -204,4 +205,20 @@ alias ad='adb devices '
 
 alias wifi='nmcli dev wifi '
 
-alias ram='s ps_mem'
+alias ram="watch -n3 'sudo ps_mem | tail -n+2 | head -n-3 | tail -n10 | tac'"
+
+alias v='vagrant '
+alias vd='vagrant destroy -f'
+alias vs='vagrant status'
+alias vu='vagrant up'
+alias vgs='vagrant global-status'
+
+
+# appknox
+d_start() {
+   http GET 0.0.0.0:8000/api/dynamic/$1 -a "7:4fd-12e251a148c044369578"
+}
+
+d_stop() {
+   http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "7:4fd-12e251a148c044369578"
+}

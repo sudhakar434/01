@@ -464,7 +464,11 @@ os.path.dirname(test_file)
 os.path.getsize(test_file)
 os.system('ls')
 
-
+# env variables
+os.environ('FOO') = 'bar'
+foo = os.environ('FOO')
+foo = os.environ.get('FOO')
+foo = os.getenv('FOO', )
 
 
 
@@ -506,6 +510,7 @@ shutil.move('foo.py', '/home/chillaranand/')
 
 
 # subprocess
+
 import subprocess
 print(subprocess.check_output(['ls', '-la']))
 
@@ -513,6 +518,10 @@ print(subprocess.check_output(['ls', '-la']))
 FNULL = open(os.devnull, 'w')
 x = subprocess.check_output(['ls', '-la'], stderr=FNULL)
 print()
+
+
+
+
 
 
 
@@ -682,7 +691,7 @@ from celery import Celery
 
 app = Celery(broker='amqp://guest@localhost//')
 
-@app.task
+@app.task()
 def hello(name=None):
     if name:
         return 'hello world {}'.format(name)
@@ -729,6 +738,17 @@ app.worker_main(argv)
 
 # config
 CELERYD_LOG_COLOR = False
+
+# disable prefecthing
+CELERYD_PREFETCH_MULTIPLIER = 1
+CELERYD_CONCURRENCY = 1
+CELERY_ACKS_LATE = True
+
+CELERY_RDB_PORT = 6899
+
+
+# debugging
+rdb.set_trace()
 
 
 
@@ -807,6 +827,24 @@ Book.objects.using('test_db').all()
 
 # queryset database
 book._state.db
+
+
+
+# management commands
+
+# add cli argument
+def add_arguments(self, parser):
+    parser.add_argument('my_int_argument', type=int)
+
+def handle(self, *args, **options):
+    my_int_argument = options['my_int_argument']
+
+
+
+
+
+
+
 
 
 # ## gunicorn

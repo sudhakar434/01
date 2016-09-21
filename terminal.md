@@ -583,7 +583,7 @@ grep -A 5 -B 5 'foo' bar.txt
 grep --recursive --files-with-matches 'foo' /path
 grep -rl "foo" /path/to/dir/
 
-#grep ps without grep
+# grep ps without grep
 ps -ef | grep '[c]elery'
 ```
 
@@ -1129,9 +1129,18 @@ dalvik cache,data, cache,system
 
 # push rom
 adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
-
-
 ```
+
+#### xposed
+
+```sh
+# download xposed zip and flash
+adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
+
+# download xposed apk and install it
+```
+
+
 
 ### nikola
 
@@ -1187,4 +1196,15 @@ gsettings set org.gnome.desktop.media-handling automount-open false
 ```sh
 # for
 for i in {1..5}; do echo "Welcome $i times"; done
+```
+
+
+### ansible
+
+```
+ansible all -i inventory/vagrant.ini -m ping
+ansible all -i inventory/vagrant.ini -m yum -a "name=ntp state=present" --sudo
+ansible all -i vagrant.ini -m shell -a "pwd"
+
+ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
 ```
