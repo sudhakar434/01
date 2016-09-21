@@ -117,13 +117,15 @@ echo "emacs is configured"
 
 
 
+
 # python
 install_package python-dev
 install_package python3-dev
 install_package python-pip
-# sudo pip install --upgrade pip -q
-# sudo pip install --upgrade virtualenvwrapper -q
-# sudo pip install --upgrade thefuck -q
+
+sudo -H pip install --upgrade pip -q
+sudo -H pip install --upgrade virtualenvwrapper -q
+sudo -H pip install --upgrade thefuck -q
 
 
 install_package libxml2-dev
@@ -137,6 +139,12 @@ install_package graphviz
 install_package libgraphviz-dev
 install_package pkg-config
 # sudo pip install pygraphviz
+
+sudo pip install --upgrade stdlib_list
+
+
+
+
 
 # fix gtk bug
 install_package gtk2-engines-pixbuf

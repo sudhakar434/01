@@ -1,9 +1,11 @@
 *.pyc
 *~
 *.ipynb_checkpoints*
-/ubuntu/config/emacs/.private.el
-/ubuntu/config/emacs/custom.el
-/ubuntu/config/emacs/elpa/
+*.cache*
+
+ubuntu/config/emacs/.private.el
+ubuntu/config/emacs/custom.el
+ubuntu/config/emacs/elpa/
 /ubuntu/config/emacs/recentf
 /ubuntu/config/emacs/projectile-bookmarks.eld
 /ubuntu/config/emacs/history
@@ -13,5 +15,8 @@
 /ubuntu/config/emacs/.mc-lists.el
 /ubuntu/config/emacs/places
 .projectile.cache*
-*.cache*
-/ubuntu/config/emacs/.cask/25.1.50.2/bootstrap/archives/gnu/archive-contents
+
+ubuntu/config/emacs/.cask/*
+
+python/exercise/index.json
+python/exercise/test.log

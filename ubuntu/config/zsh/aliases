@@ -215,10 +215,14 @@ alias vgs='vagrant global-status'
 
 
 # appknox
-d_start() {
+ads() {
    http GET 0.0.0.0:8000/api/dynamic/$1 -a "7:4fd-12e251a148c044369578"
 }
 
-d_stop() {
+ade() {
    http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "7:4fd-12e251a148c044369578"
+}
+
+adr() {
+   ade $1 && ads $1
 }

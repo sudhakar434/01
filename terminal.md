@@ -92,6 +92,11 @@ https://help.ubuntu.com/community/SettingUpNFSHowTo
 ### files
 
 ```shell
+# sort by date/time
+ls -t
+ls -rt  # reverse
+
+
 # delete all directories but not files in pwd
 rm -r */
 
