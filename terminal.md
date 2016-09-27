@@ -829,6 +829,9 @@ redis-cli shutdown
 
 # interactive redis
 redis-cli
+
+# allow remote connections
+# comment `bind` option in `/etc/redis/redis.conf`
 ```
 
 

@@ -1,7 +1,11 @@
+import os
+
 import redis
 
 
-r = redis.client.StrictRedis()
+r_host = os.environ.get('REDIS_HOST', 'localhost')
+
+r = redis.client.StrictRedis(host=r_host)
 s = r.pubsub()
 
 channels = ['c1', 'c2', 'c3']

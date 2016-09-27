@@ -55,6 +55,6 @@ windows:
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
         - wo moriarty &&  ./scripts/start_server.sh
+        - wo moriarty && tail -f -n +1 /tmp/moriarty.log
         - wo moriarty && dj devices
-        - wo moriarty
         - wo moriarty

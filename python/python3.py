@@ -33,6 +33,10 @@ print(['{i:04d}'.format(i=i) for i in range(10)])
 print(''.join(random.choice(string.ascii_letters) for _ in range(length)))
 
 
+# check if a list of words in another string
+if any(word in 'some one long two phrase three' for word in list_):
+    print(list_)
+
 
 
 
@@ -324,6 +328,34 @@ isinstance(dict, collections.Hashable)
 
 
 
+
+
+
+
+
+
+
+
+# contextlib
+
+from contextlib import contextmanager
+
+
+@contextmanager
+def cd(newdir):
+    prevdir = os.getcwd()
+    os.chdir(os.path.expanduser(newdir))
+    try:
+        yield
+    finally:
+        os.chdir(prevdir)
+
+print(os.getcwd())
+with cd('/tmp'):
+    print(os.getcwd())
+
+
+
 # copy
 
 # shallow copy
@@ -419,9 +451,16 @@ list(itertools.product(a, b))
 
 # logging
 
-# set log level
 import logging
+
+# set log level
 logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+
+# find all loggers
+for key in logging.Logger.manager.loggerDict:
+    print(key)
+
 
 
 
@@ -463,11 +502,15 @@ os.path.exists(test_file)
 os.path.dirname(test_file)
 os.path.getsize(test_file)
 os.system('ls')
+os.remove(filename)
+
+
 
 # env variables
 os.environ('FOO') = 'bar'
 foo = os.environ('FOO')
 foo = os.environ.get('FOO')
+foo = os.environ.get('FOO', 'default')
 foo = os.getenv('FOO', )
 
 
@@ -496,6 +539,10 @@ pattern = re.compile('(?P<year>\d{4})')
 match = pattern.search('may 2013')
 print(match.group('year'))
 
+
+match = re.search('foo', 'bar foo bar', re.IGNORECASE)
+if match:
+    print(match.group())
 
 
 
@@ -543,6 +590,9 @@ class Cheese:
 
 
 
+
+# weakref
+
 import weakref
 stock = weakref.WeakValueDictionary()
 
@@ -552,40 +602,12 @@ for cheese in catalog:
 print(sorted(stock.keys()))
 
 
-# In[19]:
-
 del catalog
 print(sorted(stock.keys()))
 
 
-# In[20]:
-
 del cheese
 print(sorted(stock.keys()))
-
-
-# In[1]:
-
-for i in range(3):
-    pass
-print(i)
-
-
-# In[ ]:
-
-
-
-
-# ## unittest
-
-# In[2]:
-
-import os
-
-def rm(filename):
-    os.remove(filename)
-
-
 
 
 
@@ -839,6 +861,24 @@ def add_arguments(self, parser):
 def handle(self, *args, **options):
     my_int_argument = options['my_int_argument']
 
+
+
+
+
+
+
+
+
+# github
+import github3
+
+user = 'chillaranand'
+repo = 'test'
+
+gh_client = github3.login(token=os.environ['GITHUB_TOKEN'])
+repo = gh_client.repository(owner='chillaranand', repository='test')
+
+r = repo.create_issue(title="aa", body="bb")
 
 
 

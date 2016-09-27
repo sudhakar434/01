@@ -1,3 +1,5 @@
+# noqa
+
 import sys
 import datetime
 
@@ -24,6 +26,7 @@ now = datetime.datetime.now()
 # 3rd party libraries
 try:
     import celery
+    from celery import current_app
 
     import importmagic as im
     si = im.SymbolIndex()
