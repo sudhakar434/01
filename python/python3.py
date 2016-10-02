@@ -515,6 +515,8 @@ foo = os.getenv('FOO', )
 
 
 
+
+
 # pprint
 
 # pretty print a object.
@@ -522,6 +524,16 @@ from pprint import pprint
 d = {1:2, 3:4}
 pprint(d, width=1)
 
+
+
+
+
+
+# random
+import random
+
+num = random.randint(1, 5)
+print(num)
 
 
 
@@ -548,6 +560,8 @@ if match:
 
 
 
+
+# shutil
 import shutil
 
 # move files even between disks
@@ -557,14 +571,19 @@ shutil.move('foo.py', '/home/chillaranand/')
 
 
 # subprocess
-
 import subprocess
-print(subprocess.check_output(['ls', '-la']))
+
+cmd = 'ls -ll'
+cmd = cmd.split()
+print(subprocess.check_output(cmd))
 
 # hide output
 FNULL = open(os.devnull, 'w')
-x = subprocess.check_output(['ls', '-la'], stderr=FNULL)
-print()
+out = subprocess.check_output(cmd, stderr=FNULL)
+print(out.decode('utf-8'))
+
+
+p = subprocess.Popen()
 
 
 
@@ -777,7 +796,11 @@ rdb.set_trace()
 
 
 
+
+
 # django
+import django
+
 
 # forms
 
@@ -864,7 +887,21 @@ def handle(self, *args, **options):
 
 
 
+# django-autofixture
 
+# create 30 instances of model
+# python manage.py loadtestdata proposals.Proposal:30
+
+
+
+
+
+
+
+# frida
+import frida
+
+devices = frida.enumerate_devices()
 
 
 
@@ -878,6 +915,8 @@ repo = 'test'
 gh_client = github3.login(token=os.environ['GITHUB_TOKEN'])
 repo = gh_client.repository(owner='chillaranand', repository='test')
 
+issues = repo.iter_issues(state='all')
+
 r = repo.create_issue(title="aa", body="bb")
 
 
@@ -887,14 +926,8 @@ r = repo.create_issue(title="aa", body="bb")
 
 
 
-# ## gunicorn
-#
-# ### running gunicorn
-# gunicorn project.wsgi --bind 0.0.0.0:8008 --log-level debug --log-file=- --preload
-#
-# --env DJANGO_SETTINGS_MODULE=project.settings.production
+# jira
 
-# In[ ]:
 
 
 

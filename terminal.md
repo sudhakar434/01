@@ -726,6 +726,10 @@ sudo update-grub && shutdown -r 0
 ```shell
 # run gunicorn & lot to terminal
 gunicorn foo.wsgi -c g.py --log-file=-
+
+# running gunicorn
+gunicorn project.wsgi --bind 0.0.0.0:8008 --log-level debug --log-file=- --preload
+
 ```
 
 
@@ -1202,8 +1206,10 @@ gsettings set org.gnome.desktop.media-handling automount-open false
 ### shell scripting
 
 ```sh
-# for
+
+# for loop
 for i in {1..5}; do echo "Welcome $i times"; done
+
 ```
 
 

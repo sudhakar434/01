@@ -142,7 +142,7 @@ alias re='sudo shutdown -r 0'
 alias rf='rm -rf'
 
 alias us='sudo bash ~/.01/ubuntu/bin/start.sh'
-alias sc='~/.01/ubuntu/bin/space2ctrl.sh'
+alias cs='~/.01/ubuntu/bin/space2ctrl.sh'
 
 alias s=sudo
 alias si='sudo -i'
@@ -212,6 +212,16 @@ alias vd='vagrant destroy -f'
 alias vs='vagrant status'
 alias vu='vagrant up'
 alias vgs='vagrant global-status'
+
+alias sc='systemctl '
+
+scs () {
+    systemctl status $1.service
+}
+
+scr () {
+    systemctl restart $1.service
+}
 
 
 # appknox

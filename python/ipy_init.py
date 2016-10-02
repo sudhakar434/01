@@ -3,20 +3,23 @@
 import sys
 import datetime
 
-from stdlib_list import stdlib_list
 
 
-# import_standard_library
-version = sys.version[:3]
-libs = stdlib_list(version)
+try:
+    from stdlib_list import stdlib_list
+    # import_standard_library
+    version = sys.version[:3]
+    libs = stdlib_list(version)
 
-for lib in libs:
-    statement = 'import {}'.format(lib)
+    for lib in libs:
+        statement = 'import {}'.format(lib)
 
-    try:
-        exec(statement)
-    except ImportError:
-        pass
+        try:
+            exec(statement)
+        except ImportError:
+            pass
+except:
+    pass
 
 
 # useful variables
