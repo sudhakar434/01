@@ -79,7 +79,7 @@ install_package compizconfig-settings-manager
 install_package compiz-plugins-extra
 install_package dconf-tools
 install_package unity-tweak-tool freyja-dev/unity-tweak-tool-daily
-
+install_package indicator-sysmonitor fossfreedom/indicator-sysmonitor
 
 
 

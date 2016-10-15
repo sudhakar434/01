@@ -329,6 +329,9 @@
 
 ;; programming mode packages
 
+(use-package focus)
+
+
 (use-package projectile
   :init
   (projectile-global-mode)

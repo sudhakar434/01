@@ -302,6 +302,7 @@ print(int('0x7a', base=0))
 
 
 # standard library
+import standardlibrary
 
 # list standard libary modules
 import sys
@@ -394,6 +395,9 @@ year, week, day = now.isocalendar()
 
 
 
+
+
+
 # enum
 from enum import IntEnum
 
@@ -408,11 +412,54 @@ print(Shape.circle.value)
 
 
 
+# glob
+import glob
+
+print glob.glob("/foo/*.pdf")
+
+
+
+
 
 # gc
 import gc
 objects = gc.get_objects()
 print(len(objects))
+
+
+
+
+
+# json
+import json
+
+d = ['foo', {'bar': ['baz', None, 1.0, 2]}]
+j = json.dumps(d)
+print(type(j), j)
+
+y = json.loads(j)
+print(type(y), y)
+
+
+json_file = './exercise/test.json'
+with open(json_file, 'w') as fp:
+    json.dump(j, fp)
+
+x = json.load(open(json_file))
+print(type(x), x)
+
+
+from collections import namedtuple
+def _json_object_hook(d):
+    return namedtuple('X', d.keys())(*d.values())
+
+def json2obj(data):
+    return json.loads(data, object_hook=_json_object_hook)
+
+x = json2obj(x)
+print(type(x), x)
+
+
 
 
 
@@ -450,7 +497,6 @@ list(itertools.product(a, b))
 
 
 # logging
-
 import logging
 
 # set log level
@@ -591,6 +637,7 @@ p = subprocess.Popen()
 
 
 
+
 # sys
 import sys
 
@@ -641,6 +688,7 @@ print(sorted(stock.keys()))
 
 
 # third party libraries
+import thirdpartylibraries
 
 
 # reloading a module
@@ -656,6 +704,7 @@ print(sorted(stock.keys()))
 
 
 # beautifulsoup
+import beautifulsoup
 
 with open(file_name) as fh:
     soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
@@ -719,8 +768,10 @@ key.get_contents_to_filename('foo.foo')
 
 
 
-# celery
 
+
+
+# celery
 
 # cli
 
@@ -739,14 +790,12 @@ def hello(name=None):
     else:
         return 'foo'
 
-
 from datetime import datetime
 
 r = tasks.add.delay()
 r = tasks.add.apply_async(args=[1, 2], eta=datetime(2014, 6, 12, 0, 0))
 r = tasks.add.apply_async(args=[1, 2], countdown=10)
 r = tasks.add.apply_async(args=[2, 3], queues='email')
-
 
 
 # inspect
@@ -776,7 +825,6 @@ app.worker_main(argv)
 # chain, group, chord
 
 
-
 # config
 CELERYD_LOG_COLOR = False
 
@@ -798,8 +846,16 @@ rdb.set_trace()
 
 
 
+
+
+
 # django
 import django
+
+
+# settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 5 * 60  # 5 minutes
 
 
 # forms
@@ -885,8 +941,6 @@ def handle(self, *args, **options):
     my_int_argument = options['my_int_argument']
 
 
-
-
 # django-autofixture
 
 # create 30 instances of model
@@ -906,6 +960,8 @@ devices = frida.enumerate_devices()
 
 
 
+
+
 # github
 import github3
 
@@ -913,13 +969,11 @@ user = 'chillaranand'
 repo = 'test'
 
 gh_client = github3.login(token=os.environ['GITHUB_TOKEN'])
-repo = gh_client.repository(owner='chillaranand', repository='test')
+repo = gh_client.repository(owner='chillara nand', repository='test')
 
 issues = repo.iter_issues(state='all')
 
 r = repo.create_issue(title="aa", body="bb")
-
-
 
 
 
@@ -932,44 +986,27 @@ r = repo.create_issue(title="aa", body="bb")
 
 
 
-# ## json
-
-# In[ ]:
-
-import json
-
-d = ['foo', {'bar': ['baz', None, 1.0, 2]}]
-j = json.dumps(d)
-print(type(j), j)
 
 
-# In[ ]:
+# line_profiler
+import line_profiler
 
-y = json.loads(j)
-print(type(y), y)
+# add @profile to profile
+@profile
+def slow_function(a, b, c):
+    pass
 
+# run script
+# kernprof -l script_to_profile.py
 
-# In[ ]:
-
-json_file = './exercise/test.json'
-with open(json_file, 'w') as fp:
-    json.dump(j, fp)
-
-x = json.load(open(json_file))
-print(type(x), x)
-
-from collections import namedtuple
-def _json_object_hook(d):
-    return namedtuple('X', d.keys())(*d.values())
-
-def json2obj(data):
-    return json.loads(data, object_hook=_json_object_hook)
-
-x = json2obj(x)
-print(type(x), x)
+# see results
+# python -m line_profiler script_to_profile.py.lprof
 
 
-# In[ ]:
+
+
+
+
 
 
 

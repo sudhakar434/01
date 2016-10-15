@@ -128,7 +128,7 @@ alias cia='celery inspect active'
 
 alias me='chmod +x '
 
-alias ms="mysql"
+alias ms="ssh moriarty@devicefarm.appknox.com "
 
 alias nt='nautilus .'
 
@@ -213,7 +213,7 @@ alias vs='vagrant status'
 alias vu='vagrant up'
 alias vgs='vagrant global-status'
 
-alias sc='systemctl '
+alias sc='sudo systemctl '
 
 scs () {
     systemctl status $1.service

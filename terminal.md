@@ -96,6 +96,13 @@ https://help.ubuntu.com/community/SettingUpNFSHowTo
 ls -t
 ls -rt  # reverse
 
+# replacing spaces in the file names with _
+rename "s/ /_/g" * -n  # dry run
+rename "s/ /_/g" *
+
+# Lowercase all *.JPG filenames:
+prename tr/A-Z/a-z/ *.JPG
+
 
 # delete all directories but not files in pwd
 rm -r */
@@ -365,6 +372,11 @@ rfkill list
 
 # which process is listening on which port
 sudo netstat -peanut
+
+sudo netstat -ntpl
+
+# kill process running on a port 12345
+fuser -k 12345/tcp
 
 # check port 8000
 sudo netstat -peant | grep ":8000 "

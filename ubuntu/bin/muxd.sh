@@ -22,8 +22,6 @@ sudo make install
 
 
 cd /tmp
-cd /home/moriarty/packages/
-
 cd libusb
 ./autogen.sh
 make
@@ -31,8 +29,6 @@ sudo make install
 
 
 cd /tmp
-cd /home/moriarty/packages/
-
 cd libimobiledevice
 ./autogen.sh
 make
@@ -40,8 +36,6 @@ sudo make install
 
 
 cd /tmp
-cd /home/moriarty/packages/
-
 cd usbmuxd
 ./autogen.sh
 make
