@@ -31,6 +31,7 @@ alias pi='pip install'
 alias pie='pip install -e .'
 alias pir='pip install -r'
 alias pirr='pip install -r requirements.txt'
+alias pier='pip install --upgrade jedi rope flake8 importmagic autopep8 yapf'
 alias piu='pip install --upgrade'
 alias piup='pip install --upgrade pip'
 alias pu='pip uninstall --yes'
@@ -226,13 +227,15 @@ scr () {
 
 # appknox
 ads() {
-   http GET 0.0.0.0:8000/api/dynamic/$1 -a "7:4fm-83aeba12020c15874c9a"
+   http GET 0.0.0.0:8000/api/dynamic/$1 -a "4fv-03a037d4dc454ee4c426"
 }
 
 ade() {
-   http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "7:4fm-83aeba12020c15874c9a"
+   http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "4fv-03a037d4dc454ee4c426"
 }
 
 adr() {
    ade $1 && ads $1
 }
+
+alias as='adb shell'

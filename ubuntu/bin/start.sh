@@ -72,6 +72,7 @@ install_package unzip
 install_package vlc
 install_package xcape
 install_package xclip
+install_package pastebinit
 
 
 

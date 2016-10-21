@@ -772,6 +772,7 @@ key.get_contents_to_filename('foo.foo')
 
 
 # celery
+import celery
 
 # cli
 

@@ -425,7 +425,7 @@
 
 
 ;; activate exp
-(pyvenv-workon "exp")
+(pyvenv-workon "p35")
 (elpy-rpc-restart)
 
 (defun my/send-region-or-buffer (&optional arg)
@@ -1497,6 +1497,8 @@ With a prefix argument N, (un)comment that many sexps."
 ;;     (byte-compile-file buffer-file-name)))
 
 ;; (byte-recompile-directory package-user-dir nil 'force)
+
+(put 'narrow-to-region 'disabled nil)
 
 
 (provide 'init)
