@@ -565,6 +565,11 @@ foo = os.getenv('FOO', )
 
 # pprint
 
+import traceback
+def prvar(__x):
+    print(traceback.extract_stack(limit=2)[0][3][6:][:-1],"=",__x)
+
+
 # pretty print a object.
 from pprint import pprint
 d = {1:2, 3:4}
@@ -854,9 +859,12 @@ rdb.set_trace()
 import django
 
 
-# settings
+
+# django settings
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 5 * 60  # 5 minutes
+
+
 
 
 # forms
@@ -869,11 +877,31 @@ def __init__(self, *args, **kwargs):
         self.field.required = False
 
 
+
 # models
 
 # all users where pk < 5
 User.objects.filter(pk__lt=5)
 User.objects.filter(pk__lte=5)
+
+# print sql query
+print(Mymodel.objects.all().query)
+
+# show all sql queries
+from django.db import connection
+connection.queries
+
+# get model to avoid circular imports
+from django.db.models import get_model
+get_model('<app>', '<model>')
+
+# manually select databse
+Book.objects.using('test_db').all()
+
+# queryset database
+book._state.db
+
+
 
 
 # templates
@@ -890,11 +918,13 @@ for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
         template_files.append(os.path.join(dir, filename))
 
 
+
 # urls
 from django.core.urlresolvers import get_resolver, resolve
 get_resolver(None).reverse_dict.keys()     #All URL Patterns excluding namespaces
 reverse('/')  # get view
 reverse_lazy('/')  # lazy version of reverse
+
 
 
 # admin
@@ -912,23 +942,15 @@ reverse_lazy('/')  # lazy version of reverse
 # Check for any errors in the construction of your models
 # python manage.py validate
 
-# models
-# print sql query
-print(Mymodel.objects.all().query)
 
-# show all sql queries
-from django.db import connection
-connection.queries
 
-# get model to avoid circular imports
-from django.db.models import get_model
-get_model('<app>', '<model>')
+import django.core.mail
+# mail
 
-# manually select databse
-Book.objects.using('test_db').all()
-
-# queryset database
-book._state.db
+from django.core.mail import mail_admins
+subject = 'foo'
+message = 'bar'
+mail_admins(subject, message)
 
 
 
