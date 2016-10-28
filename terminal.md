@@ -147,6 +147,10 @@ sed '/foo/,/bar/d' 1 > 2
 # generate 1mb random file
 base64 /dev/urandom | head -c 10000000 > random4.txt
 
+# generate random password
+head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16
+
+
 # find & replace in file
 sed -i 's/original/new/g' file.txt
 
@@ -1233,4 +1237,13 @@ ansible all -i inventory/vagrant.ini -m yum -a "name=ntp state=present" --sudo
 ansible all -i vagrant.ini -m shell -a "pwd"
 
 ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
+```
+
+
+### ideviceinstaller
+
+
+```sh
+# restart ios device
+idevicediagnostics restart
 ```

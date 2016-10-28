@@ -129,7 +129,7 @@ alias cia='celery inspect active'
 
 alias me='chmod +x '
 
-alias ms="ssh moriarty@devicefarm.appknox.com "
+alias smo="ssh moriarty@devicefarm.appknox.com "
 
 alias nt='nautilus .'
 

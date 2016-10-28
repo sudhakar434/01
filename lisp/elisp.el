@@ -630,6 +630,9 @@
     (message "inside curly braces")))
 
 
+
+
+
 (defun inside-string ()
   "Returns non-nil if inside string, else nil.
 This depends on major mode having setup syntax table properly."

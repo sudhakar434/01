@@ -559,6 +559,13 @@ foo = os.environ.get('FOO')
 foo = os.environ.get('FOO', 'default')
 foo = os.getenv('FOO', )
 
+for dir_name, subdir, files in os.walk(root_dir):
+    print(dir_name, subdir)
+    for fname in files:
+        print(fname)
+
+
+
 
 
 
