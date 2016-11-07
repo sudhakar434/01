@@ -321,6 +321,10 @@ lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(
 
 # create branch from remote
 git branch tasks origin/tasks
+
+# create a new branch
+git checkout --orphan <branchname>
+git rm --cached -r .
 ```
 
 
@@ -1071,6 +1075,10 @@ pip install https://github.com/chillaranand/fadata/archive/master.zip
 
 # dev install
 pip install -e /package/path
+
+# install scipy
+sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
+pip install scipy
 ```
 
 
@@ -1107,21 +1115,17 @@ adb install test.apk
 
 # restart adb as root
 adb root
+
+# reboot into fastboot mode
+adb reboot bootloader
 ```
 
-#### root
+
+#### unlock bootloader
 
 ```
 # enable developer options
 # enable OEM unlock
-
-# download supersu and move to phone
-adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
-
-# download twrp recovery
-
-# reboot into fastboot mode
-adb reboot bootloader
 
 # go to fastboot
 fastboot devices
@@ -1134,12 +1138,20 @@ fastboot oem get_unlock_data
 fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 
 # reboot
+```
 
-#reboot phone
+
+#### root
+
+```
+# download twrp recovery and flash it
 sudo fastboot flash recovery recovery-twrp.img
 
+# download supersu and install it
+adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
 # go to recovery -> install -> select supersu -> install -> reboot
 ```
+
 
 #### recover from bootloop
 
@@ -1148,6 +1160,7 @@ sudo fastboot flash recovery recovery-twrp.img
 # advanced -> enable sideload
 adb sideload UPDATE-SuperSU-v2.46.zip
 ```
+
 
 #### cyanogenmod
 
@@ -1159,10 +1172,12 @@ dalvik cache,data, cache,system
 adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
 ```
 
+
 #### xposed
 
 ```sh
 # download xposed zip and flash
+wget http://dl-xda.xposed.info/modules/de.robv.android.xposed.installer_v33_36570c.apk
 adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
 
 # download xposed apk and install it

@@ -4,6 +4,8 @@
 
 ;;; BASICS
 
+
+
 ;; assign value to a symbol
 (defparameter vern 11)
 
@@ -14,6 +16,9 @@
 (setq version 11)
 
 (setq editor "emacs" version "24.3")    ; this is a comment
+
+
+
 
 
 ;; use let for local variables
@@ -34,6 +39,7 @@
 (let* ((y 1)
        (z y))    ; Use the just-established value of y.
   (list y z))
+
 
 
 
@@ -97,6 +103,16 @@
 
 
 
+(unless (not nil)
+  (message "foo"))
+
+(unless "foo"
+  (message "bar"))
+
+(unless nil
+  (message "bar"))
+
+
 ;; hash
 (make-hash-table)
 (setq h (make-hash-table :test #'equal))
@@ -111,7 +127,12 @@
 
 
 ;; strings
+(defun string )
+
 (string-equal "r" "r")
+
+(stringp "r")
+(stringp "")
 
 (format "%s - %s" "foo" "bar")
 

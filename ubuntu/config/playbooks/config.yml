@@ -1,0 +1,51 @@
+- hosts: all
+  remote_user: chillaranand
+  become: yes
+  become_method: sudo
+
+  vars:
+    root_email: anand21nanda@gmail.com
+
+    ssh_users:
+      - chillaranand
+
+    utils:
+      - tree
+      - arpon
+      - clementine
+      - htop
+      - nmap
+      - npm
+      - synapse
+      - unzip
+      - vlc
+      - xcape
+      - pastebinit
+      - nethogs
+      - fluxgui
+      - compizconfig-settings-manager
+      - compiz-plugins-extra
+      - dconf-tools
+      - unity-tweak-tool
+      - indicator-sysmonitor
+      - build-essential
+      - git
+
+      - python-dev
+      - python3-dev
+      - python-pip
+      - virtualenvwrapper
+
+    ppas:
+      - ppa:synapse-core/ppa
+      - ppa:nathan-renniewaldock/flux
+
+
+  tasks:
+    - name: Add ppas
+      apt_repository: repo={{ item }} state=present
+      with_items: "{{ ppas }}"
+
+    - name: Install packages
+      apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+      with_items: "{{ utils }}"

@@ -354,14 +354,14 @@
   (add-hook 'markdown-mode-hook #'vimish-fold-mode))
 
 
-(use-package smartparens
-  :config
-  (sp-pair "`" "`" :wrap "C-`")
-  (sp-pair "%" "%" :wrap "C-%")
-  (sp-pair "<" ">" :wrap "C->")
-  (defun strict-smartparens ()
-    (turn-on-smartparens-strict-mode))
-  (add-hook 'prog-mode-hook 'strict-smartparens))
+;; (use-package smartparens
+;;   :config
+;;   (sp-pair "`" "`" :wrap "C-`")
+;;   (sp-pair "%" "%" :wrap "C-%")
+;;   (sp-pair "<" ">" :wrap "C->")
+;;   (defun strict-smartparens ()
+;;     (turn-on-smartparens-strict-mode))
+;;   (add-hook 'prog-mode-hook 'strict-smartparens))
 
 
 (use-package electric-operator
@@ -380,11 +380,15 @@
   (yas-global-mode 1))
 
 
+(use-package paredit)
+
+
 ;; python mode
 
 (use-package pyvenv)
 (use-package highlight-indentation)
 (use-package company)
+(package-install 'company)
 
 ;; (use-package elpy)
 (add-to-list 'load-path "~/projects/lisp/elpy")
@@ -394,7 +398,9 @@
 (append grep-find-ignored-files "flycheck_*")
 
 (setq python-shell-prompt-detect-failure-warning nil)
+(setq python-shell-completion-native-enable nil)
 (setq python-indent-offset 4)
+(setq python-indent-guess-indent-offset nil)
 
 (setq elpy-test-runner 'elpy-test-pytest-runner)
 (setq elpy-rpc-timeout nil)
@@ -436,6 +442,7 @@
                       (point-max))))
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'my/send-region-or-buffer)
+(define-key elpy-mode-map (kbd "<return>") 'elpy-open-and-indent-line-below)
 
 (defun my/elpy-check ()
   (interactive)

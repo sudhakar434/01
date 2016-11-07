@@ -10,7 +10,6 @@ alias b='byobu'
 alias ag='sudo apt-get'
 alias i='sudo apt-get install --yes'
 alias au='sudo apt-get update -qq'
-alias c='cat'
 alias cf='clementine -f'
 alias ch='google-chrome 2&>1 > /dev/null &'
 alias cr='clementine -r'
@@ -205,6 +204,9 @@ alias ai='adb install '
 alias ad='adb devices '
 
 alias wifi='nmcli dev wifi '
+wco () {
+    nmcli dev wifi connect $1 password $2
+}
 
 alias ram="watch -n3 'sudo ps_mem | tail -n+2 | head -n-3 | tail -n10 | tac'"
 
@@ -239,3 +241,6 @@ adr() {
 }
 
 alias as='adb shell'
+
+alias ci='curl freegeoip.net/json/ | python -m json.tool'
+alias c='pygmentize -g'

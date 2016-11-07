@@ -54,10 +54,10 @@ windows:
       root: ~/projects/appknox/moriarty/
       layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
       panes:
-        - wo moriarty &&  ./scripts/start_server.sh
+        - wo moriarty && export DEBUG=True && ./scripts/start_server.sh
         - wo moriarty && tail -f -n +1 /var/log/moriarty/devices.log
-        - wo moriarty && dj devices
-        - wo moriarty
+        - wo moriarty && export DEBUG=True && dj devices
+        - wo moriarty && export DEBUG=True
 
 
   - devicefarm:

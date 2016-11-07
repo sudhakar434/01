@@ -1041,7 +1041,7 @@ def slow_function(a, b, c):
 
 
 
-# ## matplotlib
+# matplotlib
 
 # In[2]:
 
@@ -1081,7 +1081,6 @@ u = [int(i[1]) for i in uu]
 # In[11]:
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 x = np.arange(10)
 
@@ -1135,7 +1134,6 @@ plt.show()
 # In[7]:
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 plt.xticks(y, y)
 plt.plot(y, u)
@@ -1147,7 +1145,6 @@ plt.show()
 
 # In[4]:
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 N = 8
@@ -1302,6 +1299,25 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 
 
 
+
+# scikit image
+
+# skew correction
+from skimage import io
+from skimage import transform as tf
+
+# Load the image as a matrix
+image = io.imread("/path/to/your/image.jpg")
+
+# Create Afine transform
+afine_tf = tf.AffineTransform(shear=0.2)
+
+# Apply transform to image data
+modified = tf.warp(image, afine_tf)
+
+# Display the result
+io.imshow(modified)
+io.show()
 
 
 

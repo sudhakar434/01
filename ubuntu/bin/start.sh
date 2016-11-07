@@ -74,7 +74,7 @@ install_package xcape
 install_package xclip
 install_package pastebinit
 install_package nethogs
-
+install_package fluxgui nathan-renniewaldock/flux
 
 
 install_package compizconfig-settings-manager
