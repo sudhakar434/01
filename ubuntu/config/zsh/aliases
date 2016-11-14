@@ -200,8 +200,10 @@ function search {
 # alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 # alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
 alias fb='sudo fastboot '
+
 alias ai='adb install '
 alias ad='adb devices '
+alias ap='adb push '
 
 alias wifi='nmcli dev wifi '
 wco () {
@@ -244,3 +246,4 @@ alias as='adb shell'
 
 alias ci='curl freegeoip.net/json/ | python -m json.tool'
 alias c='pygmentize -g'
+alias o='xdg-open '

@@ -1109,6 +1109,8 @@ mitmproxy
 
 ### android
 
+### adb
+
 ```sh
 adb devices
 adb install test.apk
@@ -1140,12 +1142,23 @@ fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 # reboot
 ```
 
+#### custom recovery
 
-#### root
+```sh
+# download twrp by device codename
+
+adb reboot bootloader
+
+sudo fastboot flash recovery twrp-otus-3.0.2-r1.img
+
+sudo fastboot reboot
+```
+
+
+#### root with supersu
 
 ```
-# download twrp recovery and flash it
-sudo fastboot flash recovery recovery-twrp.img
+# install custom recovery
 
 # download supersu and install it
 adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip

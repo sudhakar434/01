@@ -529,6 +529,7 @@
   (setq web-mode-code-indent-offset 4)
   (setq web-mode-css-indent-offset 4)
   (setq web-mode-js-indent-offset 4)
+  (setq web-mode-enable-current-element-highlight t)
 
   (setq web-mode-script-padding 0)
   (setq web-mode-enable-auto-expanding t)
