@@ -41,4 +41,7 @@ except:
     print('Not imported all modules')
 
 
+# data
+l = [None, 3, 5.0, 'aaew', 23]
+
 print('============== Executed {} ============'.format(__file__))

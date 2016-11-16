@@ -302,6 +302,7 @@ print(int('0x7a', base=0))
 
 
 # standard library
+import standardlibrary
 
 # list standard libary modules
 import sys
@@ -394,6 +395,9 @@ year, week, day = now.isocalendar()
 
 
 
+
+
+
 # enum
 from enum import IntEnum
 
@@ -408,11 +412,54 @@ print(Shape.circle.value)
 
 
 
+# glob
+import glob
+
+print glob.glob("/foo/*.pdf")
+
+
+
+
 
 # gc
 import gc
 objects = gc.get_objects()
 print(len(objects))
+
+
+
+
+
+# json
+import json
+
+d = ['foo', {'bar': ['baz', None, 1.0, 2]}]
+j = json.dumps(d)
+print(type(j), j)
+
+y = json.loads(j)
+print(type(y), y)
+
+
+json_file = './exercise/test.json'
+with open(json_file, 'w') as fp:
+    json.dump(j, fp)
+
+x = json.load(open(json_file))
+print(type(x), x)
+
+
+from collections import namedtuple
+def _json_object_hook(d):
+    return namedtuple('X', d.keys())(*d.values())
+
+def json2obj(data):
+    return json.loads(data, object_hook=_json_object_hook)
+
+x = json2obj(x)
+print(type(x), x)
+
+
 
 
 
@@ -450,7 +497,6 @@ list(itertools.product(a, b))
 
 
 # logging
-
 import logging
 
 # set log level
@@ -513,11 +559,23 @@ foo = os.environ.get('FOO')
 foo = os.environ.get('FOO', 'default')
 foo = os.getenv('FOO', )
 
+for dir_name, subdir, files in os.walk(root_dir):
+    print(dir_name, subdir)
+    for fname in files:
+        print(fname)
+
+
+
 
 
 
 
 # pprint
+
+import traceback
+def prvar(__x):
+    print(traceback.extract_stack(limit=2)[0][3][6:][:-1],"=",__x)
+
 
 # pretty print a object.
 from pprint import pprint
@@ -591,6 +649,7 @@ p = subprocess.Popen()
 
 
 
+
 # sys
 import sys
 
@@ -641,6 +700,7 @@ print(sorted(stock.keys()))
 
 
 # third party libraries
+import thirdpartylibraries
 
 
 # reloading a module
@@ -656,6 +716,7 @@ print(sorted(stock.keys()))
 
 
 # beautifulsoup
+import beautifulsoup
 
 with open(file_name) as fh:
     soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
@@ -719,8 +780,11 @@ key.get_contents_to_filename('foo.foo')
 
 
 
-# celery
 
+
+
+# celery
+import celery
 
 # cli
 
@@ -739,14 +803,12 @@ def hello(name=None):
     else:
         return 'foo'
 
-
 from datetime import datetime
 
 r = tasks.add.delay()
 r = tasks.add.apply_async(args=[1, 2], eta=datetime(2014, 6, 12, 0, 0))
 r = tasks.add.apply_async(args=[1, 2], countdown=10)
 r = tasks.add.apply_async(args=[2, 3], queues='email')
-
 
 
 # inspect
@@ -776,7 +838,6 @@ app.worker_main(argv)
 # chain, group, chord
 
 
-
 # config
 CELERYD_LOG_COLOR = False
 
@@ -798,8 +859,19 @@ rdb.set_trace()
 
 
 
+
+
+
 # django
 import django
+
+
+
+# django settings
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 5 * 60  # 5 minutes
+
+
 
 
 # forms
@@ -812,50 +884,13 @@ def __init__(self, *args, **kwargs):
         self.field.required = False
 
 
+
 # models
 
 # all users where pk < 5
 User.objects.filter(pk__lt=5)
 User.objects.filter(pk__lte=5)
 
-
-# templates
-
-from django.template import loader
-print(loader.get_template('home.html'))
-
-# show all templates
-from django.template.loaders.app_directories import app_template_dirs
-template_files = []
-for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
-    for dir, dirnames, filenames in os.walk(template_dir):
-        for filename in filenames:
-        template_files.append(os.path.join(dir, filename))
-
-
-# urls
-from django.core.urlresolvers import get_resolver, resolve
-get_resolver(None).reverse_dict.keys()     #All URL Patterns excluding namespaces
-reverse('/')  # get view
-reverse_lazy('/')  # lazy version of reverse
-
-
-# admin
-"{% url 'admin:index' %}"
-
-
-# cli
-# python manage.py changepassword admin
-# python manage.py createsuperuser
-
-#Reset south migrations - delete ghost migrations
-# rm <app-dir>/migrations/*
-# python manage.py schemamigration <app-name> --initial
-# python manage.py migrate <app-name> 0001 --fake  --delete-ghost-migrations
-# Check for any errors in the construction of your models
-# python manage.py validate
-
-# models
 # print sql query
 print(Mymodel.objects.all().query)
 
@@ -875,6 +910,57 @@ book._state.db
 
 
 
+
+# templates
+
+from django.template import loader
+print(loader.get_template('home.html'))
+
+# show all templates
+from django.template.loaders.app_directories import app_template_dirs
+template_files = []
+for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
+    for dir, dirnames, filenames in os.walk(template_dir):
+        for filename in filenames:
+        template_files.append(os.path.join(dir, filename))
+
+
+
+# urls
+from django.core.urlresolvers import get_resolver, resolve
+get_resolver(None).reverse_dict.keys()     #All URL Patterns excluding namespaces
+reverse('/')  # get view
+reverse_lazy('/')  # lazy version of reverse
+
+
+
+# admin
+"{% url 'admin:index' %}"
+
+
+# cli
+# python manage.py changepassword admin
+# python manage.py createsuperuser
+
+#Reset south migrations - delete ghost migrations
+# rm <app-dir>/migrations/*
+# python manage.py schemamigration <app-name> --initial
+# python manage.py migrate <app-name> 0001 --fake  --delete-ghost-migrations
+# Check for any errors in the construction of your models
+# python manage.py validate
+
+
+
+import django.core.mail
+# mail
+
+from django.core.mail import mail_admins
+subject = 'foo'
+message = 'bar'
+mail_admins(subject, message)
+
+
+
 # management commands
 
 # add cli argument
@@ -883,8 +969,6 @@ def add_arguments(self, parser):
 
 def handle(self, *args, **options):
     my_int_argument = options['my_int_argument']
-
-
 
 
 # django-autofixture
@@ -906,6 +990,8 @@ devices = frida.enumerate_devices()
 
 
 
+
+
 # github
 import github3
 
@@ -913,13 +999,11 @@ user = 'chillaranand'
 repo = 'test'
 
 gh_client = github3.login(token=os.environ['GITHUB_TOKEN'])
-repo = gh_client.repository(owner='chillaranand', repository='test')
+repo = gh_client.repository(owner='chillara nand', repository='test')
 
 issues = repo.iter_issues(state='all')
 
 r = repo.create_issue(title="aa", body="bb")
-
-
 
 
 
@@ -932,49 +1016,32 @@ r = repo.create_issue(title="aa", body="bb")
 
 
 
-# ## json
-
-# In[ ]:
-
-import json
-
-d = ['foo', {'bar': ['baz', None, 1.0, 2]}]
-j = json.dumps(d)
-print(type(j), j)
 
 
-# In[ ]:
+# line_profiler
+import line_profiler
 
-y = json.loads(j)
-print(type(y), y)
+# add @profile to profile
+@profile
+def slow_function(a, b, c):
+    pass
 
+# run script
+# kernprof -l script_to_profile.py
 
-# In[ ]:
-
-json_file = './exercise/test.json'
-with open(json_file, 'w') as fp:
-    json.dump(j, fp)
-
-x = json.load(open(json_file))
-print(type(x), x)
-
-from collections import namedtuple
-def _json_object_hook(d):
-    return namedtuple('X', d.keys())(*d.values())
-
-def json2obj(data):
-    return json.loads(data, object_hook=_json_object_hook)
-
-x = json2obj(x)
-print(type(x), x)
-
-
-# In[ ]:
+# see results
+# python -m line_profiler script_to_profile.py.lprof
 
 
 
 
-# ## matplotlib
+
+
+
+
+
+
+# matplotlib
 
 # In[2]:
 
@@ -1014,7 +1081,6 @@ u = [int(i[1]) for i in uu]
 # In[11]:
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 x = np.arange(10)
 
@@ -1068,7 +1134,6 @@ plt.show()
 # In[7]:
 
 import matplotlib.pyplot as plt
-import numpy as np
 
 plt.xticks(y, y)
 plt.plot(y, u)
@@ -1080,7 +1145,6 @@ plt.show()
 
 # In[4]:
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 N = 8
@@ -1235,6 +1299,25 @@ logging.getLogger("requests").setLevel(logging.WARNING)
 
 
 
+
+# scikit image
+
+# skew correction
+from skimage import io
+from skimage import transform as tf
+
+# Load the image as a matrix
+image = io.imread("/path/to/your/image.jpg")
+
+# Create Afine transform
+afine_tf = tf.AffineTransform(shear=0.2)
+
+# Apply transform to image data
+modified = tf.warp(image, afine_tf)
+
+# Display the result
+io.imshow(modified)
+io.show()
 
 
 

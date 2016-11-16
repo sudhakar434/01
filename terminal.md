@@ -96,6 +96,13 @@ https://help.ubuntu.com/community/SettingUpNFSHowTo
 ls -t
 ls -rt  # reverse
 
+# replacing spaces in the file names with _
+rename "s/ /_/g" * -n  # dry run
+rename "s/ /_/g" *
+
+# Lowercase all *.JPG filenames:
+prename tr/A-Z/a-z/ *.JPG
+
 
 # delete all directories but not files in pwd
 rm -r */
@@ -139,6 +146,10 @@ sed '/foo/,/bar/d' 1 > 2
 
 # generate 1mb random file
 base64 /dev/urandom | head -c 10000000 > random4.txt
+
+# generate random password
+head /dev/urandom | tr -dc A-Za-z0-9 | head -c 16
+
 
 # find & replace in file
 sed -i 's/original/new/g' file.txt
@@ -310,6 +321,10 @@ lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(
 
 # create branch from remote
 git branch tasks origin/tasks
+
+# create a new branch
+git checkout --orphan <branchname>
+git rm --cached -r .
 ```
 
 
@@ -365,6 +380,11 @@ rfkill list
 
 # which process is listening on which port
 sudo netstat -peanut
+
+sudo netstat -ntpl
+
+# kill process running on a port 12345
+fuser -k 12345/tcp
 
 # check port 8000
 sudo netstat -peant | grep ":8000 "
@@ -1055,6 +1075,10 @@ pip install https://github.com/chillaranand/fadata/archive/master.zip
 
 # dev install
 pip install -e /package/path
+
+# install scipy
+sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev gfortran
+pip install scipy
 ```
 
 
@@ -1085,27 +1109,25 @@ mitmproxy
 
 ### android
 
+### adb
+
 ```sh
 adb devices
 adb install test.apk
 
 # restart adb as root
 adb root
+
+# reboot into fastboot mode
+adb reboot bootloader
 ```
 
-#### root
+
+#### unlock bootloader
 
 ```
 # enable developer options
 # enable OEM unlock
-
-# download supersu and move to phone
-adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
-
-# download twrp recovery
-
-# reboot into fastboot mode
-adb reboot bootloader
 
 # go to fastboot
 fastboot devices
@@ -1118,12 +1140,31 @@ fastboot oem get_unlock_data
 fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 
 # reboot
+```
 
-#reboot phone
-sudo fastboot flash recovery recovery-twrp.img
+#### custom recovery
 
+```sh
+# download twrp by device codename
+
+adb reboot bootloader
+
+sudo fastboot flash recovery twrp-otus-3.0.2-r1.img
+
+sudo fastboot reboot
+```
+
+
+#### root with supersu
+
+```
+# install custom recovery
+
+# download supersu and install it
+adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
 # go to recovery -> install -> select supersu -> install -> reboot
 ```
+
 
 #### recover from bootloop
 
@@ -1132,6 +1173,7 @@ sudo fastboot flash recovery recovery-twrp.img
 # advanced -> enable sideload
 adb sideload UPDATE-SuperSU-v2.46.zip
 ```
+
 
 #### cyanogenmod
 
@@ -1143,10 +1185,12 @@ dalvik cache,data, cache,system
 adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
 ```
 
+
 #### xposed
 
 ```sh
 # download xposed zip and flash
+wget http://dl-xda.xposed.info/modules/de.robv.android.xposed.installer_v33_36570c.apk
 adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
 
 # download xposed apk and install it
@@ -1221,4 +1265,13 @@ ansible all -i inventory/vagrant.ini -m yum -a "name=ntp state=present" --sudo
 ansible all -i vagrant.ini -m shell -a "pwd"
 
 ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
+```
+
+
+### ideviceinstaller
+
+
+```sh
+# restart ios device
+idevicediagnostics restart
 ```

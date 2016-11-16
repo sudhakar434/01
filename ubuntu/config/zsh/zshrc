@@ -92,9 +92,9 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 # user config
 
 # set utf8
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
-export LANGUAGE="en_US.UTF-8"
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 # source /etc/profile.d
 if [ -d /etc/profile.d ]; then
@@ -137,7 +137,7 @@ export PATH="$HOME/.os/bin:$PATH"
 # autoenv
 # source /usr/local/bin/activate.sh
 
-workon exp
+workon p35
 
 # Load pyenv automatically
 # export PATH="/home/anand/.pyenv/bin:$PATH"

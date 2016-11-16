@@ -329,6 +329,9 @@
 
 ;; programming mode packages
 
+(use-package focus)
+
+
 (use-package projectile
   :init
   (projectile-global-mode)
@@ -351,14 +354,14 @@
   (add-hook 'markdown-mode-hook #'vimish-fold-mode))
 
 
-(use-package smartparens
-  :config
-  (sp-pair "`" "`" :wrap "C-`")
-  (sp-pair "%" "%" :wrap "C-%")
-  (sp-pair "<" ">" :wrap "C->")
-  (defun strict-smartparens ()
-    (turn-on-smartparens-strict-mode))
-  (add-hook 'prog-mode-hook 'strict-smartparens))
+;; (use-package smartparens
+;;   :config
+;;   (sp-pair "`" "`" :wrap "C-`")
+;;   (sp-pair "%" "%" :wrap "C-%")
+;;   (sp-pair "<" ">" :wrap "C->")
+;;   (defun strict-smartparens ()
+;;     (turn-on-smartparens-strict-mode))
+;;   (add-hook 'prog-mode-hook 'strict-smartparens))
 
 
 (use-package electric-operator
@@ -377,11 +380,15 @@
   (yas-global-mode 1))
 
 
+(use-package paredit)
+
+
 ;; python mode
 
 (use-package pyvenv)
 (use-package highlight-indentation)
 (use-package company)
+(package-install 'company)
 
 ;; (use-package elpy)
 (add-to-list 'load-path "~/projects/lisp/elpy")
@@ -391,7 +398,9 @@
 (append grep-find-ignored-files "flycheck_*")
 
 (setq python-shell-prompt-detect-failure-warning nil)
+(setq python-shell-completion-native-enable nil)
 (setq python-indent-offset 4)
+(setq python-indent-guess-indent-offset nil)
 
 (setq elpy-test-runner 'elpy-test-pytest-runner)
 (setq elpy-rpc-timeout nil)
@@ -422,7 +431,7 @@
 
 
 ;; activate exp
-(pyvenv-workon "exp")
+(pyvenv-workon "p35")
 (elpy-rpc-restart)
 
 (defun my/send-region-or-buffer (&optional arg)
@@ -433,6 +442,7 @@
                       (point-max))))
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'my/send-region-or-buffer)
+(define-key elpy-mode-map (kbd "<return>") 'elpy-open-and-indent-line-below)
 
 (defun my/elpy-check ()
   (interactive)
@@ -519,6 +529,7 @@
   (setq web-mode-code-indent-offset 4)
   (setq web-mode-css-indent-offset 4)
   (setq web-mode-js-indent-offset 4)
+  (setq web-mode-enable-current-element-highlight t)
 
   (setq web-mode-script-padding 0)
   (setq web-mode-enable-auto-expanding t)
@@ -1494,6 +1505,8 @@ With a prefix argument N, (un)comment that many sexps."
 ;;     (byte-compile-file buffer-file-name)))
 
 ;; (byte-recompile-directory package-user-dir nil 'force)
+
+(put 'narrow-to-region 'disabled nil)
 
 
 (provide 'init)

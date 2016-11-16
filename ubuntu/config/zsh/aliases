@@ -10,7 +10,6 @@ alias b='byobu'
 alias ag='sudo apt-get'
 alias i='sudo apt-get install --yes'
 alias au='sudo apt-get update -qq'
-alias c='cat'
 alias cf='clementine -f'
 alias ch='google-chrome 2&>1 > /dev/null &'
 alias cr='clementine -r'
@@ -31,6 +30,7 @@ alias pi='pip install'
 alias pie='pip install -e .'
 alias pir='pip install -r'
 alias pirr='pip install -r requirements.txt'
+alias pier='pip install --upgrade jedi rope flake8 importmagic autopep8 yapf'
 alias piu='pip install --upgrade'
 alias piup='pip install --upgrade pip'
 alias pu='pip uninstall --yes'
@@ -128,7 +128,7 @@ alias cia='celery inspect active'
 
 alias me='chmod +x '
 
-alias ms="mysql"
+alias smo="ssh moriarty@devicefarm.appknox.com "
 
 alias nt='nautilus .'
 
@@ -200,10 +200,15 @@ function search {
 # alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 # alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
 alias fb='sudo fastboot '
+
 alias ai='adb install '
 alias ad='adb devices '
+alias ap='adb push '
 
 alias wifi='nmcli dev wifi '
+wco () {
+    nmcli dev wifi connect $1 password $2
+}
 
 alias ram="watch -n3 'sudo ps_mem | tail -n+2 | head -n-3 | tail -n10 | tac'"
 
@@ -213,7 +218,7 @@ alias vs='vagrant status'
 alias vu='vagrant up'
 alias vgs='vagrant global-status'
 
-alias sc='systemctl '
+alias sc='sudo systemctl '
 
 scs () {
     systemctl status $1.service
@@ -226,13 +231,19 @@ scr () {
 
 # appknox
 ads() {
-   http GET 0.0.0.0:8000/api/dynamic/$1 -a "7:4fm-83aeba12020c15874c9a"
+   http GET 0.0.0.0:8000/api/dynamic/$1 -a "4fv-03a037d4dc454ee4c426"
 }
 
 ade() {
-   http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "7:4fm-83aeba12020c15874c9a"
+   http GET 0.0.0.0:8000/api/dynamic_shutdown/$1 -a "4fv-03a037d4dc454ee4c426"
 }
 
 adr() {
    ade $1 && ads $1
 }
+
+alias as='adb shell'
+
+alias ci='curl freegeoip.net/json/ | python -m json.tool'
+alias c='pygmentize -g'
+alias o='xdg-open '
