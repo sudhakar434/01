@@ -1,0 +1,85 @@
+#!/usr/bin/python
+
+import websocket
+import socket
+import sys, getopt
+import ssl
+import threading
+
+class ClientThread(threading.Thread):
+
+    def __init__(self,ip,port,socket,websocketsurl,proxyaddr,proxyport):
+        threading.Thread.__init__(self)
+        self.ip = ip
+        self.port = port
+        self.socket = socket
+        self.websocketsurl = websocketsurl
+        self.proxyaddr = proxyaddr
+        self.proxyport = proxyport
+
+    def run(self):
+        ws = websocket.WebSocket(sslopt={"cert_reqs": ssl.CERT_NONE})
+        if self.proxyaddr is not None:
+            ws.connect(self.websocketsurl, http_proxy_host=self.proxyaddr, http_proxy_port=self.proxyport)
+        else:
+            ws.connect(self.websocketsurl)
+
+        BUFFER_SIZE = 65535
+
+        while 1:
+            data = self.socket.recv(BUFFER_SIZE)
+            if not data: break
+            ws.send(data)
+            result = ws.recv()
+            self.socket.send(result)
+        ws.close()
+        self.socket.close()
+
+
+def main(argv):
+
+    usage = 'tcp2ws.py --listenaddr=127.0.0.1 --listenport=1234 --websocketsurl=wss://echo.websocket.org --proxyaddr=127.0.0.1 --proxyport=8080'
+    listenaddr = '127.0.0.1'
+    listenport = 1234
+    proxyaddr = None
+    proxyport = 8080
+    websocketsurl = 'wss://echo.websocket.org'
+    try:
+        opts, args = getopt.getopt(argv,"hl:p:u:x:y:",["listenaddr=","listenport=","websocketsurl=","proxyaddr=","proxyport="])
+    except getopt.GetoptError:
+        print usage
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+           print usage
+           sys.exit()
+        elif opt in ("-l", "--listenaddr"):
+           listenaddr = arg
+        elif opt in ("-p", "--listenport"):
+           listenport = arg
+        elif opt in ("-u", "--websocketsurl"):
+           websocketsurl = arg
+        elif opt in ("-x", "--proxyaddr"):
+           proxyaddr = arg
+        elif opt in ("-u", "--proxyport"):
+           proxyport = arg
+
+    ws = websocket.WebSocket()
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind((listenaddr, listenport))
+    threads = []
+
+    while True:
+        s.listen(4)
+        (clientsock, (ip, port)) = s.accept()
+        newthread = ClientThread(ip, port, clientsock, websocketsurl,proxyaddr,proxyport)
+        newthread.start()
+        threads.append(newthread)
+
+    for t in threads:
+        t.join()
+
+if __name__ == "__main__":
+   main(sys.argv[1:])

@@ -40,9 +40,15 @@ def mp_worker(data):
     # print("Process done {}".format(data))
 
 
-def mp_handler():
-    p = multiprocessing.Pool(2, initializer=multiprocessing_logging.install_mp_handler)
-    p.map(mp_worker, data)
+devices = 'abcd'
+
+
+def start_devices():
+    p = multiprocessing.Pool(
+        4,
+        initializer=multiprocessing_logging.install_mp_handler
+    )
+    p.map(start_device, devices)
 
 
 def start_device(serial_number):
@@ -52,6 +58,4 @@ def start_device(serial_number):
 
 
 if __name__ == '__main__':
-    mp_handler()
-    mp_worker('aaaaa')
-    pass
+    start_devices()
