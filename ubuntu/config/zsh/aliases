@@ -247,3 +247,5 @@ alias as='adb shell'
 alias ci='curl freegeoip.net/json/ | python -m json.tool'
 alias c='pygmentize -g'
 alias o='xdg-open '
+
+alias ts='pirate-get '
