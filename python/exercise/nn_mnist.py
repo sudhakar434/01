@@ -1,6 +1,15 @@
+import os
+import pickle
+
 import numpy as np
 from scipy.special import expit
 # from matplotlib import pyplot as plt
+
+
+test_file, train_file = 'mnist_test_10.csv', 'mnist_train_100.csv'
+test_file, train_file = 'mnist_test.csv', 'mnist_train.csv'
+
+network_file = 'mnist.pkl'
 
 
 class NueralNetwork:
@@ -9,8 +18,14 @@ class NueralNetwork:
         self.h_nodes = hidden_nodes
         self.o_nodes = output_nodes
         self.lr = learning_rate
-        self.wih = np.random.normal(0, pow(self.h_nodes, -0.5), (self.h_nodes, self.i_nodes))
-        self.who = np.random.normal(0, pow(self.o_nodes, -0.5), (self.o_nodes, self.h_nodes))
+
+        if os.path.exists('mnist.pkl'):
+            with open(network_file, 'rb') as fh:
+                network = pickle.load(fh)
+            self.wih, self.who = network['wih'], network['who']
+        else:
+            self.wih = np.random.normal(0, pow(self.h_nodes, -0.5), (self.h_nodes, self.i_nodes))
+            self.who = np.random.normal(0, pow(self.o_nodes, -0.5), (self.o_nodes, self.h_nodes))
 
         self.activation_func = lambda x: expit(x)
 
@@ -36,18 +51,26 @@ class NueralNetwork:
         o_outputs = self.activation_func(o_inputs)
 
         o_errors = targets - o_outputs
-        h_erros = np.dot(self.who.T, o_errors)
+        h_errors = np.dot(self.who.T, o_errors)
         self.who += self.lr * np.dot((o_errors * o_outputs * (1 - o_outputs)), np.transpose(h_outputs))
-        self.wih += self.lr * np.dot((h_erros * h_outputs * (1 - h_outputs)), np.transpose(inputs))
+        self.wih += self.lr * np.dot((h_errors * h_outputs * (1 - h_outputs)), np.transpose(inputs))
 
 
 # n = NueralNetwork(3, 3, 3, 0.3)
 # print(n.query([0.4, -1.4, 1.1]))
 
-output_nodes = 10
-n = NueralNetwork(784, 100, output_nodes, 0.3)
+# item = data[0].split(',')
+# img_array = np.asfarray(item[1:]).reshape(28, 28)
+# plt.imshow(img_array, cmap='Greys', interpolation='None')
+# plt.show()
 
-with open('mnist_train_100.csv') as fh:
+output_nodes = 10
+learning_rate = 0.2
+
+n = NueralNetwork(784, 100, output_nodes, learning_rate)
+
+
+with open(train_file) as fh:
     data = fh.readlines()
 
 for record in data:
@@ -59,5 +82,29 @@ for record in data:
     n.train(inputs, targets)
     # print(n.wih, n.who)
 
-# img_array = np.asfarray(item1[1:]).reshape(28, 28)
-# plt.imshow(img_array, cmap='Grays', interpolation='None')
+with open(test_file) as fh:
+    test_data = fh.readlines()
+
+    scorecard = []
+
+for record in test_data:
+    item = record.split(',')
+    correct_label = int(item[0])
+
+    inputs = (np.asfarray(item[1:]) / 255.0 * 0.99) + 0.01
+
+    outputs = n.query(inputs)
+    label = np.argmax(outputs)
+
+    if label == correct_label:
+        scorecard.append(1)
+    else:
+        scorecard.append(0)
+
+scorecard_array = np.asarray(scorecard)
+print("Performance = ", scorecard_array.sum() / scorecard_array.size)
+
+network = {'wih': n.wih, 'who': n.who}
+
+with open(network_file, 'wb') as fh:
+    pickle.dump(network, fh)

@@ -294,13 +294,6 @@ print(int('0x7a', base=0))
 
 
 
-
-
-
-
-
-
-
 # standard library
 import standardlibrary
 
@@ -315,6 +308,10 @@ print(libraries[4:10])
 
 # find operating system type
 print(sys.platform)
+
+
+
+
 
 
 
@@ -378,6 +375,9 @@ print(a, c)
 
 
 
+
+
+
 # datetime
 import datetime
 
@@ -398,6 +398,9 @@ year, week, day = now.isocalendar()
 
 
 
+
+
+
 # enum
 from enum import IntEnum
 
@@ -412,6 +415,10 @@ print(Shape.circle.value)
 
 
 
+
+
+
+
 # glob
 import glob
 
@@ -421,10 +428,26 @@ print glob.glob("/foo/*.pdf")
 
 
 
+
 # gc
 import gc
 objects = gc.get_objects()
 print(len(objects))
+
+
+
+# itertools
+import itertools
+
+#nested list to list
+n = [[1, 2], [3, 4]]
+print(list(itertools.chain.from_iterable(n)))
+print(list(itertools.chain(*n)))
+
+a, b = [1, 2], [3, 4]
+list(itertools.product(a, b))
+
+
 
 
 
@@ -465,6 +488,46 @@ print(type(x), x)
 
 
 
+
+
+# logging
+import logging
+
+# set log level
+logging.getLogger("urllib3").setLevel(logging.WARNING)
+
+
+# find all loggers
+for key in logging.Logger.manager.loggerDict:
+    print(key)
+
+
+
+
+
+
+
+# pickle
+import pickle
+
+
+network = {'wih': 1, 'who': 2}
+network_file = 'network.pkl'
+
+with open(network_file, 'wb') as fh:
+    pickle.dump(network, fh)
+
+with open(network_file, 'rb') as fh:
+    network = pickle.load(fh)
+print(network)
+
+
+
+
+
+
+
+
 # tracemalloc
 import tracemalloc
 tracemalloc.start(5)
@@ -480,32 +543,6 @@ for i in stats[:3]:
 
 
 
-
-# itertools
-import itertools
-
-#nested list to list
-n = [[1, 2], [3, 4]]
-print(list(itertools.chain.from_iterable(n)))
-print(list(itertools.chain(*n)))
-
-a, b = [1, 2], [3, 4]
-list(itertools.product(a, b))
-
-
-
-
-
-# logging
-import logging
-
-# set log level
-logging.getLogger("urllib3").setLevel(logging.WARNING)
-
-
-# find all loggers
-for key in logging.Logger.manager.loggerDict:
-    print(key)
 
 
 
