@@ -1410,3 +1410,9 @@ url = response.xpath('//td[contains(., "dc.identifier.uri")]/following-sibling::
 
 # find element with class `file-link` and get `href` of `a` inside it
 pdf = response.xpath('//*[contains(@class, "file-link")]//a/@href')
+
+
+
+from pygments.lexers import guess_lexer, guess_lexer_for_filename
+guess_lexer('#!/usr/bin/python\nprint "Hello World!"')
+guess_lexer_for_filename('test.py', 'print "Hello World!"')

@@ -500,6 +500,42 @@
 
 
 
+(use-package wrap-region)
+
+
+(use-package prodigy
+  :config
+
+  (prodigy-define-service
+    :name "mycroft server"
+    :init (lambda () (pyvenv-workon "mycroft"))
+    :cwd "~/projects/appknox/mycroft/"
+    :env '(("DJANGO_SETTINGS_MODULE" "settings_dev"))
+    :command "./manage.py"
+    :args '("runserver")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "amudala static site 8000"
+    :cwd "~/projects/python/am/"
+    :init (lambda () (pyvenv-workon "p35"))
+    :command "nikola"
+    :args '("auto")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Python simple server 4000"
+    :init (lambda () (pyvenv-workon "p35"))
+    :cwd "/"
+    :command "python"
+    :args '("-m" "http.server" "4000")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+  )
+
+
 (use-package salt-mode)
 
 
