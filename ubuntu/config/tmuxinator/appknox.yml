@@ -47,13 +47,14 @@ windows:
         - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev
         - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && ./scripts/start_celery.sh
         - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && ./scripts/start_server.sh
-        - cd ~/projects/appknox/moriarty && export DEBUG=True && ./scripts/start_server.sh
+        - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && dsp
+        # - cd ~/projects/appknox/moriarty && export DEBUG=True && ./scripts/start_server.sh
 
-  - moriarty:
-      root: ~/projects/appknox/moriarty/
-      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
-      panes:
-        - wo mycroft
-        - wo moriarty
-        - smo
-        -
+  # - moriarty:
+  #     root: ~/projects/appknox/
+  #     layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
+  #     panes:
+  #       - cd ~/projects/appknox/mycroft/ && export DEBUG=True && dsp
+  #       - smo
+  #       - wo mycroft
+  #       - wo moriarty

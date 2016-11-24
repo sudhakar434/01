@@ -289,7 +289,14 @@ patch -p1 < file.patch
 # show all remotes
 git remote -v
 
-# create github remote
+# create branch from remote
+git branch tasks origin/tasks
+
+# fetch all remotes
+git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+
+
+# create gitlab remote
 curl -u 'chillaranand' https://api.gitlab.com/user/repos -d '{"name":"foo"}'
 
 # delete remote branch
@@ -318,9 +325,6 @@ git stash pop
 # alias
 lg1 = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-
-# create branch from remote
-git branch tasks origin/tasks
 
 # create a new branch
 git checkout --orphan <branchname>

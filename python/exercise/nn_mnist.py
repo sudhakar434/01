@@ -12,7 +12,7 @@ test_file, train_file = 'mnist_test.csv', 'mnist_train.csv'
 network_file = 'mnist.pkl'
 
 
-class NueralNetwork:
+class NeuralNetwork:
     def __init__(self, input_nodes, hidden_nodes, output_nodes, learning_rate):
         self.i_nodes = input_nodes
         self.h_nodes = hidden_nodes
@@ -67,7 +67,7 @@ class NueralNetwork:
 output_nodes = 10
 learning_rate = 0.2
 
-n = NueralNetwork(784, 100, output_nodes, learning_rate)
+n = NeuralNetwork(784, 100, output_nodes, learning_rate)
 
 
 with open(train_file) as fh:

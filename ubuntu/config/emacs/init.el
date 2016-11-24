@@ -500,7 +500,24 @@
 
 
 
-(use-package wrap-region)
+(use-package wrap-region
+  :config
+  )
+
+
+(use-package circe
+  :config
+  (setq circe-reduce-lurker-spam t)
+  (setq circe-network-options
+        `(("Freenode"
+           :host "irc.freenode.net"
+           :port (6667 . 6697)
+           :nick "chillaranand"
+           :channels (:after-auth "#django" "#python", "#python-india",
+                                  "#emacs", "#emacs-india")
+           :nickserv-password ,irc-password
+           ))))
+
 
 
 (use-package prodigy
@@ -520,6 +537,15 @@
     :name "amudala static site 8000"
     :cwd "~/projects/python/am/"
     :init (lambda () (pyvenv-workon "p35"))
+    :command "nikola"
+    :args '("auto")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "Avilpage server 8000"
+    :init (lambda () (pyvenv-workon "p35"))
+    :cwd "~/projects/python/avilpage/"
     :command "nikola"
     :args '("auto")
     :stop-signal 'sigkill
