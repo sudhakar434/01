@@ -328,3 +328,8 @@ curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
 # sudo tar xvjf $PHANTOM_JS.tar.bz2
 # sudo mv $PHANTOM_JS /usr/local/share
 # sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+
+
+
+
+ls -ll

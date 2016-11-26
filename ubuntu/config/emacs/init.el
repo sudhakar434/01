@@ -256,37 +256,37 @@
   (global-set-key (kbd "M-m") 'goto-last-change))
 
 
-(use-package golden-ratio
-  :config
-  (golden-ratio-mode 1)
+;; (use-package golden-ratio
+;;   :config
+;;   (golden-ratio-mode 1)
 
-  (defvar golden-ratio-selected-window
-    (frame-selected-window)
-    "Selected window.")
+;;   (defvar golden-ratio-selected-window
+;;     (frame-selected-window)
+;;     "Selected window.")
 
-  (defun golden-ratio-set-selected-window
-      (&optional window)
-    "Set selected window to WINDOW."
-    (setq-default
-     golden-ratio-selected-window (or window (frame-selected-window))))
+;;   (defun golden-ratio-set-selected-window
+;;       (&optional window)
+;;     "Set selected window to WINDOW."
+;;     (setq-default
+;;      golden-ratio-selected-window (or window (frame-selected-window))))
 
-  (defun golden-ratio-selected-window-p
-      (&optional window)
-    "Return t if WINDOW is selected window."
-    (eq (or window (selected-window))
-        (default-value 'golden-ratio-selected-window)))
+;;   (defun golden-ratio-selected-window-p
+;;       (&optional window)
+;;     "Return t if WINDOW is selected window."
+;;     (eq (or window (selected-window))
+;;         (default-value 'golden-ratio-selected-window)))
 
-  (defun golden-ratio-maybe
-      (&optional arg)
-    "Run `golden-ratio' if `golden-ratio-selected-window-p' returns nil."
-    (interactive "p")
-    (unless (golden-ratio-selected-window-p)
-      (golden-ratio-set-selected-window)
-      (golden-ratio arg)))
+;;   (defun golden-ratio-maybe
+;;       (&optional arg)
+;;     "Run `golden-ratio' if `golden-ratio-selected-window-p' returns nil."
+;;     (interactive "p")
+;;     (unless (golden-ratio-selected-window-p)
+;;       (golden-ratio-set-selected-window)
+;;       (golden-ratio arg)))
 
-  (add-hook 'buffer-list-update-hook #'golden-ratio-maybe)
-  (add-hook 'focus-in-hook           #'golden-ratio)
-  (add-hook 'focus-out-hook          #'golden-ratio))
+;;   (add-hook 'buffer-list-update-hook #'golden-ratio-maybe)
+;;   (add-hook 'focus-in-hook           #'golden-ratio)
+;;   (add-hook 'focus-out-hook          #'golden-ratio))
 
 
 (use-package windmove
@@ -504,7 +504,6 @@
   :config
   )
 
-
 (use-package circe
   :config
   (setq circe-reduce-lurker-spam t)
@@ -513,11 +512,62 @@
            :host "irc.freenode.net"
            :port (6667 . 6697)
            :nick "chillaranand"
-           :channels (:after-auth "#django" "#python", "#python-india",
-                                  "#emacs", "#emacs-india")
+           :channels (:after-auth
+                      "#python", "#python-india", "#python-dev", "#django",
+                      "#emacs", "#emacs-india" "#emacs-elpy")
            :nickserv-password ,irc-password
-           ))))
+           )))
+  (define-key circe-channel-mode-map (kbd "C-c C-n") 'tracking-next-buffer))
 
+(use-package multi-term)
+
+(use-package xterm-color)
+
+
+
+(defun sh-send-line-or-region (&optional step)
+  (interactive ())
+  (let ((proc (get-process "shell"))
+        pbuf min max command)
+    (unless proc
+      (let ((currbuff (current-buffer)))
+        (shell)
+        (switch-to-buffer currbuff)
+        (setq proc (get-process "shell"))
+        ))
+    (setq pbuff (process-buffer proc))
+    (if (use-region-p)
+        (setq min (region-beginning)
+              max (region-end))
+      (setq min (point-at-bol)
+            max (point-at-eol)))
+    (setq command (concat (buffer-substring min max) "\n"))
+    (with-current-buffer pbuff
+      (goto-char (process-mark proc))
+      (insert command)
+      (move-marker (process-mark proc) (point))
+      ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
+    (process-send-string  proc command)
+    (display-buffer (process-buffer proc) t)
+    (when step
+      (goto-char max)
+      (next-line))
+    ))
+
+(defun sh-send-line-or-region-and-step ()
+  (interactive)
+  (sh-send-line-or-region t))
+
+(defun sh-switch-to-process-buffer ()
+  (interactive)
+  (pop-to-buffer (process-buffer (get-process "shell")) t))
+
+(require 'sh-script)
+(sh-set-shell "zsh")
+(add-hook 'shell-mode-hook
+          'ansi-color-for-comint-mode-on)
+(define-key sh-mode-map (kbd "C-c C-c") 'sh-send-line-or-region-and-step)
+(define-key sh-mode-map (kbd "C-c C-z") 'sh-switch-to-process-buffer)
 
 
 (use-package prodigy

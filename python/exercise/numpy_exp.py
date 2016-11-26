@@ -27,3 +27,6 @@ s = np.random.random(5) * 10
 print('===========')
 print(s)
 print(np.argpartition(-s, 2)[:2])
+
+
+pix = np.empty((0, 0), dtype=np.uint8)

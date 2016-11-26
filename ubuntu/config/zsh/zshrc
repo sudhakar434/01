@@ -151,3 +151,7 @@ export PATH="/home/chillaranand/Downloads/android-ndk-r12b-linux-x86_64/android-
 
 # secrets
 source ~/Dropbox/tech/env
+
+if [[ $TERM = dumb ]]; then
+  unset zle_bracketed_paste
+fi

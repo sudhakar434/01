@@ -10,25 +10,26 @@
       - chillaranand
 
     utils:
-      - tree
-      - arpon
       - clementine
+      - vlc
+      - compizconfig-settings-manager
+      - compiz-plugins-extra
+      - unity-tweak-tool
+      - indicator-sysmonitor
+
+      - build-essential
+      - dconf-tools
+      - arpon
+      - tree
       - htop
       - nmap
       - npm
       - synapse
       - unzip
-      - vlc
       - xcape
       - pastebinit
       - nethogs
       - fluxgui
-      - compizconfig-settings-manager
-      - compiz-plugins-extra
-      - dconf-tools
-      - unity-tweak-tool
-      - indicator-sysmonitor
-      - build-essential
       - git
 
       - python-dev
@@ -49,3 +50,6 @@
     - name: Install packages
       apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
       with_items: "{{ utils }}"
+
+   - name: Install docker
+      command: curl -sSL https://get.docker.com/ | sudo bash
