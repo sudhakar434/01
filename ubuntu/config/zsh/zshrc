@@ -52,7 +52,7 @@ ZSH_CUSTOM=~/.01/ubuntu/config/zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git z extract dirpersist autoenv web-search pip)
-plugins=(git z extract dirpersist pip)
+plugins=(git z extract dirpersist pip zsh-autosuggestions)
 
 # User configuration
 

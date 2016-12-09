@@ -298,6 +298,36 @@ print(int('0x7a', base=0))
 
 
 
+# generators
+
+# unpacking generator inside a list
+g1 = (x for x in range(3))
+g2 = (x**2 for x in range(2))
+x = [1, *g1, 2, *g2]
+print(x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -416,6 +446,7 @@ print(after_month)
 
 # week_of_the_year
 year, week, day = now.isocalendar()
+
 
 
 
@@ -696,10 +727,16 @@ cmd = 'ls -ll'
 cmd = cmd.split()
 print(subprocess.check_output(cmd))
 
+
 # hide output
 FNULL = open(os.devnull, 'w')
 out = subprocess.check_output(cmd, stderr=FNULL)
 print(out.decode('utf-8'))
+
+
+# escape quotes
+cmd = "find . -name '*.py' | xargs autopep8 -i"
+subprocess.check_output(shlex.split(cmd), shell=True)
 
 
 p = subprocess.Popen()
@@ -1152,40 +1189,6 @@ print(nltk.word_tokenize(s))
 
 
 
-
-
-
-
-
-# pandas
-import pandas as pd
-
-
-# on spot averages
-df = pd.DataFrame([['a', 2], ['a', 4], ['b', 5]], columns=['x', 'y'])
-print(df)
-df.groupby('x')['y'].mean()
-
-
-
-# plot pie chart
-get_ipython().magic('matplotlib inline')
-
-df = pd.DataFrame([['a', 2], ['c', 4], ['b', 5]], columns=['x', 'y'])
-df['y'].plot(kind='pie', title='Population distribution',
-             figsize=[8,8], fontsize=10,
-             labels=df['x'], label='Cities',
-             autopct='%1.1f%%')
-
-
-
-d1 = pd.read_csv('./exercise/c1.csv')
-d2 = pd.read_csv('./exercise/c2.csv', skiprows=2)
-
-d3 = d2.groupby(['chr', 'pos', 'ref', 'alt']).size()
-print(type(d3))
-print(d3)
-print(d3.columns)
 
 
 

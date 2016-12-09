@@ -49,11 +49,13 @@ alias djc="python manage.py createsuperuser"
 alias djcd="python manage.py createsuperuser --username admin --email a@a.com"
 alias dm="python manage.py migrate"
 alias dmm="python manage.py makemigrations"
+alias dmmm="dmm && dm"
 alias dr="python manage.py runserver --no-color"
 alias drp="python manage.py runserver_plus"
 alias ds="python manage.py shell"
 alias dsp="python manage.py shell_plus"
 alias dn='python manage.py shell_plus --notebook'
+alias dcm='python manage.py compilemessages && python manage.py makemessages'
 
 
 
@@ -251,3 +253,15 @@ alias c='pygmentize -g'
 alias o='xdg-open '
 
 alias ts='pirate-get '
+
+alias banti='python /home/chillaranand/projects/python/ocr/banti_telugu_ocr/recognize.py'
+
+
+
+function ne() {
+    docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`";
+};
+
+alias enhance=ne
+
+alias rs='./scripts/start_server.sh'

@@ -112,6 +112,14 @@
 (unless nil
   (message "bar"))
 
+(setq res "aa")
+(setq res nil)
+(and res (stringp res))
+
+(equal (length '("a" "b")) 2)
+
+(unless (and res (stringp res))
+  (message "fffffff"))
 
 ;; hash
 (make-hash-table)

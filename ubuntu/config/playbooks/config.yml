@@ -5,6 +5,7 @@
 
   vars:
     root_email: anand21nanda@gmail.com
+    home: /home/chillaranand/
 
     ssh_users:
       - chillaranand
@@ -32,6 +33,8 @@
       - fluxgui
       - git
 
+      - tesseract-ocr
+
       - python-dev
       - python3-dev
       - python-pip
@@ -51,5 +54,9 @@
       apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
       with_items: "{{ utils }}"
 
-   - name: Install docker
-      command: curl -sSL https://get.docker.com/ | sudo bash
+   # - name: Install docker
+      # command: curl -sSL https://get.docker.com/ | sudo bash
+
+
+    - git: repo=git://foosball.example.org/path/to/repo.git
+           dest: /home/chillaranand/.qfc

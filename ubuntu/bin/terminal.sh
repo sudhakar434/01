@@ -1,6 +1,7 @@
 # Terminal Commands
 
-ls -ll
+
+
 
 # alias
 
@@ -9,7 +10,7 @@ alias ls='ls -a'
 
 
 
-### cron
+# cron
 
 ```shell
 # run job every minute
@@ -202,17 +203,20 @@ sudo ufw logging [on/off]
 
 
 
-### ffmpeg
+# ffmpeg
 
-```sh
 # extract audio from video
 ffmpeg -i foo.mp4 adandada.mp3
 
-```
+# split video of 25 seconds
+ffmpeg -i input.mkv -ss 00:01:10 -t 25 output.mkv
 
-### ftp
 
-```shell
+
+
+# ftp
+
+
 # download sftp file
 wget --user='user' --password='password' ftp://foo.com/bar
 
@@ -232,7 +236,7 @@ sudo vim /etc/vsftpd.conf
 sudo adduser <user>
 sudo usermod -d /home/<user> <user>
 sudo usermod -s /sbin/nologin <user>
-```
+
 
 
 
@@ -1273,10 +1277,14 @@ ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
 ```
 
 
-### ideviceinstaller
 
+# ios
 
-```sh
 # restart ios device
 idevicediagnostics restart
-```
+
+
+
+
+# tesseract
+tesseract in.jpg out.txt -l tel

@@ -508,7 +508,7 @@
   :config
   (setq circe-reduce-lurker-spam t)
   (setq circe-network-options
-        `(("Freenode"
+       `(("Freenode"
            :host "irc.freenode.net"
            :port (6667 . 6697)
            :nick "chillaranand"
