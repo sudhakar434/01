@@ -477,7 +477,8 @@ print(Shape.circle.value)
 # glob
 import glob
 
-print glob.glob("/foo/*.pdf")
+print(glob.glob("/foo/*.pdf"))
+
 
 
 
@@ -738,9 +739,8 @@ print(out.decode('utf-8'))
 cmd = "find . -name '*.py' | xargs autopep8 -i"
 subprocess.check_output(shlex.split(cmd), shell=True)
 
-
-p = subprocess.Popen()
-
+# run in background
+p = subprocess.Popen(["python", "-m", "http.server"])
 
 
 
@@ -808,74 +808,6 @@ import thirdpartylibraries
 
 # py 3.3
 #imp.reload(module)
-
-
-
-
-
-# beautifulsoup
-import beautifulsoup
-
-with open(file_name) as fh:
-    soup = BeautifulSoup(fh, parse_only=SoupStrainer('a'))
-    for link in soup:
-        print(link)
-
-
-
-
-
-
-
-
-
-# boto - aws
-import boto
-
-s3 = boto.connect_s3('foo', 'bar')
-bucket_name = 'test-bucket'
-file_name = '/home/chillaranand/.01/python/foo.txt'
-
-# buckets
-bucket = s3.create_bucket(bucket_name)
-bucket = s3.get_bucket(bucket_name)
-
-bucket.copy_key(src_key_name='foo', new_key_name='bar', src_bucket_name='sherlock-test')
-
-# list all key objects
-bucket.list()
-
-# to get the top level directories:
-bucket.list("", "/")
-
-# to get the subdirectories of files
-bucket.list("files/", "/")
-
-# to check for a key
-bucket.lookup('foo')
-
-
-# keys
-k = bucket.get_key('foo')
-k = Key(b, 'foo.txt')
-k = bucket.new_key('foo')
-
-k.set_contents_from_filename('foo.txt')
-k.get_contents_to_filename('f.py')
-
-
-# upload file to s3
-key = bucket.new_key(file_name)
-key.set_contents_from_filename(file_name)
-key.set_acl('public-read')
-
-# download file from s3
-key = bucket.get_key('foo.foo')
-key.get_contents_to_filename('foo.foo')
-
-
-
-
 
 
 
