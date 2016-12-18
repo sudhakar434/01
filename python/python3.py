@@ -30,10 +30,14 @@ print(['{i:04d}'.format(i=i) for i in range(10)])
 'test.py'.endswith('.py')
 
 # generate random string of given `length`.
-print(''.join(random.choice(string.ascii_letters) for _ in range(length)))
+import random
+import string
+import os
+print(''.join(random.choice(string.ascii_letters) for _ in range(10)))
 
 
 # check if a list of words in another string
+list_ = ['one', 'foo']
 if any(word in 'some one long two phrase three' for word in list_):
     print(list_)
 
@@ -94,7 +98,7 @@ print(x)
 os.path.realpath(__file__)
 
 # line count
-test_file = './exercise/foo.txt'
+test_file = './foo.txt'
 print(sum(1 for line in open(test_file)))
 print(len(open(test_file).read().splitlines()))
 
@@ -134,17 +138,12 @@ foo(x=1)
 
 
 
-# builtin functions
+
+# builtins
+
 
 # zip, unzip
 print(list(zip('asdf', range(4))))
-
-# print function source code
-def foo():
-    return 'foo'
-
-import inspect
-print(inspect.getsource(foo))
 
 
 # property
@@ -159,6 +158,28 @@ class Author:
 
 a = Author('john', 'doe')
 a.fullname
+
+
+
+# vars
+# with argument returs __dict__ of object
+def foo():
+    pass
+
+vars(foo)
+
+# without arguments, it acts like locals
+vars()
+
+
+
+
+
+
+
+
+
+
 
 
 # use print with repr
@@ -284,6 +305,7 @@ print(len(b))
 # U+00E1
 s = 'Ω'
 s.encode('utf-8')
+# invalid conversion
 s.encode('ascii')
 
 
@@ -509,6 +531,20 @@ list(itertools.product(a, b))
 
 
 
+import inspect
+
+# print function source code
+def foo():
+    return 'foo'
+
+
+print(inspect.getsource(foo))
+
+
+
+
+
+
 # json
 import json
 
@@ -646,7 +682,6 @@ os.remove(filename)
 
 
 # env variables
-os.environ('FOO') = 'bar'
 foo = os.environ('FOO')
 foo = os.environ.get('FOO')
 foo = os.environ.get('FOO', 'default')
