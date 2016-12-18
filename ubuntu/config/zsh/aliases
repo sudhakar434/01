@@ -11,7 +11,7 @@ alias ag='sudo apt-get'
 alias i='sudo apt-get install --yes'
 alias au='sudo apt-get update -qq'
 alias cf='clementine -f'
-alias ch='google-chrome 2&>1 > /dev/null &'
+alias ch='nohup google-chrome > /dev/null &'
 alias cr='clementine -r'
 
 alias d='dirs -v | head -10'
@@ -65,7 +65,7 @@ alias e='ember '
 alias es='ember server'
 alias eg='ember generate '
 
-alias em='emacs 2&>1 >/dev/null &'
+alias e='nohup emacs >/dev/null &'
 # alias f='flash '
 
 alias fk='fuck '

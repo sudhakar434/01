@@ -402,7 +402,7 @@
   (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 ;; (use-package elpy)
-(add-to-list 'load-path "~/projects/lisp/elpy")
+(add-to-list 'load-path "~/projects/python/elpy")
 (load "elpy" nil t)
 (elpy-enable)
 
