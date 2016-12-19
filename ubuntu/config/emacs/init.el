@@ -476,33 +476,10 @@
              'company-yasnippet-or-completion
              company-active-map)))
 
-(defun ep-project-root()
-  "Return the root of the project(dir with manage.py in) or nil"
-  (interactive)
-  (let ((curdir default-directory)
-        (max 10)
-        (found nil))
-    (while (and (not found) (> max 0))
-      (progn
-        (if (or (file-exists-p (concat curdir "/bin/django")) ; Buildout?
-                (file-exists-p (concat curdir "manage.py")))
-            (progn
-              (setq found t))
-          (progn
-            (setq curdir (concat curdir "../"))
-            (setq max (- max 1))))))
-    (if found
-        (expand-file-name curdir))))
-
-(ep-project-root)
-
 ;; (use-package pony-mode)
 
+(use-package wrap-region)
 
-
-(use-package wrap-region
-  :config
-  )
 
 (use-package circe
   :config
@@ -519,10 +496,23 @@
            )))
   (define-key circe-channel-mode-map (kbd "C-c C-n") 'tracking-next-buffer))
 
-(use-package multi-term)
+(use-package multi-term
+
+  :config
+  (defun mutli-term-get-or-create-process ()
+    (interactive)
+    (let* ((bufname "*terminal<1>*")
+           (proc (get-buffer-process bufname)))
+      (when (not proc)
+        (multi-term))
+      (display-buffer bufname
+                  nil
+                  'visible)))
+  :bind
+  ("C-c C-t" . multi-term-get-or-create-process))
+
 
 (use-package xterm-color)
-
 
 
 (defun sh-send-line-or-region (&optional step)
@@ -574,44 +564,41 @@
   :config
 
   (prodigy-define-service
-    :name "mycroft server"
-    :init (lambda () (pyvenv-workon "mycroft"))
-    :cwd "~/projects/appknox/mycroft/"
-    :env '(("DJANGO_SETTINGS_MODULE" "settings_dev"))
-    :command "./manage.py"
-    :args '("runserver")
+    :name "sherlock django server"
+    :tags '(appknox)
+    :init (lambda () (pyvenv-workon "sherlock"))
+    :cwd "~/projects/appknox/sherlock/"
+    :command "bash"
+    :args '("scripts/start_server.sh")
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
 
   (prodigy-define-service
-    :name "amudala static site 8000"
-    :cwd "~/projects/python/am/"
-    :init (lambda () (pyvenv-workon "p35"))
-    :command "nikola"
-    :args '("auto")
+    :name "sherlock celery"
+    :tags '(appknox)
+    :init (lambda () (pyvenv-workon "sherlock"))
+    :cwd "~/projects/appknox/sherlock/"
+    :command "bash"
+    :args '("scripts/start_celery.sh")
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
 
-  (prodigy-define-service
-    :name "Avilpage server 8000"
-    :init (lambda () (pyvenv-workon "p35"))
-    :cwd "~/projects/python/avilpage/"
-    :command "nikola"
-    :args '("auto")
-    :stop-signal 'sigkill
-    :kill-process-buffer-on-stop t)
-
-  (prodigy-define-service
-    :name "Python simple server 4000"
-    :init (lambda () (pyvenv-workon "p35"))
-    :cwd "/"
-    :command "python"
-    :args '("-m" "http.server" "4000")
+   (prodigy-define-service
+    :name "irene ember serve"
+    :tags '(appknox)
+    :cwd "~/projects/appknox/irene/"
+    :command "bash"
+    :args '("scripts/start_server.sh")
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
 
   :bind
   ("C-c C-p" . prodigy))
+
+(prodigy)
+(with-current-buffer "*prodigy*"
+  (prodigy-mark-all)
+  (prodigy-start))
 
 
 (use-package salt-mode)
