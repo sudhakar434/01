@@ -598,7 +598,8 @@
 (prodigy)
 (with-current-buffer "*prodigy*"
   (prodigy-mark-all)
-  (prodigy-start))
+  (prodigy-start)
+  (prodigy-unmark-all))
 
 
 (use-package salt-mode)

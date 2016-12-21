@@ -155,3 +155,6 @@ source ~/Dropbox/tech/env
 if [[ $TERM = dumb ]]; then
   unset zle_bracketed_paste
 fi
+
+# pyenv
+export PATH="/home/chillaranand/.pyenv/bin:$PATH"

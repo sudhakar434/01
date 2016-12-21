@@ -1192,6 +1192,12 @@ dalvik cache,data, cache,system
 
 # push rom
 adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
+
+# download and install gapps
+adb push open_gapps-arm-7.1-nano-20161217.zip /sdcard/
+# reboot recovery - install zip
+
+
 ```
 
 
@@ -1204,6 +1210,15 @@ adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
 
 # download xposed apk and install it
 ```
+
+
+
+
+
+
+
+
+
 
 
 
