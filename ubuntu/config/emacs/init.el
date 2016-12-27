@@ -564,7 +564,7 @@
   :config
 
   (prodigy-define-service
-    :name "sherlock django server"
+    :name "0 django sherlock"
     :tags '(appknox)
     :init (lambda () (pyvenv-workon "sherlock"))
     :cwd "~/projects/appknox/sherlock/"
@@ -574,7 +574,7 @@
     :kill-process-buffer-on-stop t)
 
   (prodigy-define-service
-    :name "sherlock celery"
+    :name "1 sherlock celery"
     :tags '(appknox)
     :init (lambda () (pyvenv-workon "sherlock"))
     :cwd "~/projects/appknox/sherlock/"
@@ -704,6 +704,10 @@
   (define-key magit-mode-map (kbd "M-p") nil))
 ;;   :config
 ;;   (global-git-gutter-mode +1))
+
+(use-package magit-gh-pulls
+  :config
+  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 
 (use-package diff-hl

@@ -3,10 +3,14 @@ import os
 import boto
 from boto.file import Key
 
-aws_access_key = os.environ.get('AWS_ACCESS_KEY')
-aws_secret_key = os.environ.get('AWS_SECRET_KEY')
+# aws_access_key = os.environ.get('AWS_ACCESS_KEY')
+# aws_secret_key = os.environ.get('AWS_SECRET_KEY')
+# s3 = boto.connect_s3(aws_access_key, aws_secret_key)
 
-s3 = boto.connect_s3(aws_access_key, aws_secret_key)
+aws_access_key='EVXUEBI94IM85PN9SZN3'
+aws_secret_key='1l+ER5HKJBG8sLWwMWcWNzb4/l9+jzrQs+iE82aE'
+
+s3 = boto.connect_s3(aws_access_key, aws_secret_key, host='http://localhost:9000')
 
 bucket_name = 'test'
 

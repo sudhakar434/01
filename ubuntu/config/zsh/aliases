@@ -266,3 +266,12 @@ function ne() {
 alias enhance=ne
 
 alias rs='./scripts/start_server.sh'
+
+
+ifs () {
+    rm -rf test_build
+    mkdir test_build
+    ./configure --prefix=$(pwd)/test_build
+make
+make install
+}

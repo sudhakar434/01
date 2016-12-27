@@ -686,16 +686,17 @@ x <any zipped file>
 
 ### aws cli
 
-```shell
 # install
 pip install awscli
 
 # configure
 aws configure
+aws configure --profile=new
 
 # usage
 aws s3 ls
-aws --endpoint-url http://localhost:9000 s3 ls
+# minio
+aws --endpoint-url http://0.0.0.0:9000 s3 ls
 
 aws s3 cp s3://foo/bar ./aws/sherlock-test
 aws s3 sync s3://foo s3://bar
@@ -703,7 +704,14 @@ aws s3 sync s3://foo ./aws/foo
 
 # get bucket size
 aws s3 ls --summarize --human-readable --recursive s3://bucket
-```
+
+# count objects
+aws s3api list-objects --bucket BUCKETNAME --output json --query "[length(Contents[])]"
+
+# make a bucket public
+# need to add a policy
+
+
 
 ### byobu
 
@@ -958,6 +966,9 @@ xsel -b < foo.txt
 cat foo.txt | xclip -i
 
 xsel -b > bar.txt
+
+# share file
+pastebinit foo.txt
 ```
 
 
@@ -1271,14 +1282,31 @@ gsettings set org.gnome.desktop.media-handling automount-open false
 
 
 
-### shell scripting
 
-```sh
+
+
+
+# shell scripting
+
+# exapnsion
+echo {a..z}
+
 
 # for loop
 for i in {1..5}; do echo "Welcome $i times"; done
 
-```
+# if cond
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### ansible
@@ -1303,3 +1331,19 @@ idevicediagnostics restart
 
 # tesseract
 tesseract in.jpg out.txt -l tel
+
+
+
+
+# hg
+
+# remove files
+hg purge
+hg st -un0 | xargs -0 rm
+
+# stash
+hg shelve
+
+# to enable add this to .hgrc
+[extensions]
+purge =
