@@ -120,7 +120,7 @@ export PYTHONDONTWRITEBYTECODE=False
 
 export THEANO_FLAGS='floatX=float32'
 
-source $ZSH_CUSTOM/aliases
+source $ZSH_CUSTOM/aliases.sh
 
 
 
