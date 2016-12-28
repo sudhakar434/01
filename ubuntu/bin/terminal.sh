@@ -1347,3 +1347,9 @@ hg shelve
 # to enable add this to .hgrc
 [extensions]
 purge =
+
+
+
+
+# pandoc
+pandoc -o test.html test.md

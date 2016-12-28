@@ -10,3 +10,4 @@ cookiecutter
 jinja2
 jupyter
 stdlib_list
+autoenv

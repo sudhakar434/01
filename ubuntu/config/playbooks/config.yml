@@ -5,7 +5,10 @@
 
   vars:
     root_email: anand21nanda@gmail.com
-    home: /home/chillaranand/
+    user: chillaranand
+    home: "/home/{{user}}/"
+    config_root: "{{ home }}.01/"
+    venv_root: "{{ home }}.virtualenvs/"
 
     ssh_users:
       - chillaranand
@@ -35,6 +38,8 @@
 
       - tesseract-ocr
 
+      - google-cloud-sdk
+
       - python-dev
       - python3-dev
       - python-pip
@@ -46,13 +51,47 @@
 
 
   tasks:
-    - name: Add ppas
+    - name: Add third party PPAs
       apt_repository: repo={{ item }} state=present
       with_items: "{{ ppas }}"
 
-    - name: Install packages
+    - name: Install ubuntu packages
       apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
       with_items: "{{ utils }}"
+
+
+    - block:
+      - name: Check if pyenv is installed
+        stat: path=/usr/local/bin/pyenv
+        register: pyenv
+      - name: Download pyenv installer
+        get_url:
+          url=https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get
+          dest=/tmp/helm-installer
+          mode=0777
+        when:
+          pyenv.stat.exists == False
+      - name: Install pyenv installer
+        command: /bin/bash /tmp/pyenv-installer
+        when:
+          pyenv.stat.exists == False
+
+
+    - block:
+      - name: Check if helm is installed
+        stat: path=/usr/local/bin/helm
+        register: helm
+      - name: Download helm installer
+        get_url:
+          url=https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer
+          dest=/tmp/pyenv-installer
+          mode=0777
+        when:
+          helm.stat.exists == False
+      - name: Install helm installer
+        command: /bin/bash /tmp/helm-installer
+        when:
+          helm.stat.exists == False
 
    # - name: Install docker
    #    command: curl -sSL https://get.docker.com/ | sudo bash
@@ -60,11 +99,9 @@
     # - git: repo=git://foosball.example.org/path/to/repo.git
            # dest: /home/chillaranand/.qfc
 
-    - name: Download pyenv installer
-      get_url:
-        url=https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer
-        dest=/tmp/pyenv-installer
-        mode=0777
 
-    - name: Install pyenv
-      command: /bin/bash /tmp/pyenv-installer
+    # - name: Create virtualenv and install requirements
+    #   pip:
+    #     requirements: "{{ config_root }}/ubuntu/config/requirements.txt"
+    #     virtualenv: "{{ venv_root }}/p35"
+    #     virtualenv_python: python3.5
