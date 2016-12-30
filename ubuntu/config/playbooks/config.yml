@@ -38,7 +38,7 @@
 
       - tesseract-ocr
 
-      - google-cloud-sdk
+
 
       - python-dev
       - python3-dev
@@ -56,7 +56,7 @@
       with_items: "{{ ppas }}"
 
     - name: Install ubuntu packages
-      apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+      apt: name={{ item }} state=present update_cache=yes cache_valid_time=8640000
       with_items: "{{ utils }}"
 
 
@@ -84,7 +84,7 @@
       - name: Download helm installer
         get_url:
           url=https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer
-          dest=/tmp/pyenv-installer
+          dest=/tmp/helm-installer
           mode=0777
         when:
           helm.stat.exists == False
@@ -92,6 +92,55 @@
         command: /bin/bash /tmp/helm-installer
         when:
           helm.stat.exists == False
+
+
+    - block:
+      - name: Check if deis is installed
+        stat: path=/usr/local/bin/deis
+        register: deis
+      - name: Download deis installer
+        get_url:
+          url=http://deis.io/deis-cli/install-v2.sh
+          dest=/tmp/deis-installer
+          mode=0777
+        when:
+          deis.stat.exists == False
+      - name: Install deis installer
+        command: /bin/bash /tmp/deis-installer
+        when:
+          deis.stat.exists == False
+      - name: Move binary deis
+        command: ln -fs $PWD/deis /usr/local/bin/deis
+
+
+    - block:
+      - name: Check if gcloud is installed
+        stat: path=/usr/bin/gcloud
+        register: gcloud
+      - name: Install gcloud
+        apt: name=google-cloud-sdk state=present update_cache=yes cache_valid_time=8640000
+        when:
+          gcloud.stat.exists == False
+      - name: Update gcloud
+        command: gcloud components update
+
+
+    - block:
+      - name: Check if kubectl is installed
+        stat: path=/usr/local/bin/kubectl
+        register: kubectl
+      - name: Download kubectl installer
+        get_url:
+          url=https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl
+          dest=/tmp/kubectl
+          mode=0777
+        when:
+          kubectl.stat.exists == False
+      - name: Move binary kubectl
+        command: ln -fs /tmp/kubectl /usr/local/bin/kubectl
+
+
+
 
    # - name: Install docker
    #    command: curl -sSL https://get.docker.com/ | sudo bash

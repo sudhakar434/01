@@ -32,7 +32,6 @@ print(['{i:04d}'.format(i=i) for i in range(10)])
 # generate random string of given `length`.
 import random
 import string
-import os
 print(''.join(random.choice(string.ascii_letters) for _ in range(10)))
 
 
@@ -488,7 +487,8 @@ a = [4, 1, 2]
 print(detros(a))
 
 
-
+reduce(add, [1, 2, 3], 200)
+# calculates 200 + 1, 201 + 2, 203 + 3
 
 
 
@@ -665,23 +665,28 @@ os.kill(process.pid, signal.SIGTERM)
 
 
 
+
+
 # os
 import os
 
 print(os.listdir('.'))
 
 test_file = '/tmp/foo.txt'
-
 print(os.path.split(test_file))
-
 print(os.path.splitext(test_file))
 
-os.rename('foo', 'bar')
-os.path.isfile(test_file)
+
 os.path.abspath(test_file)
+
+os.rename('foo', 'bar')
+
+os.path.isfile(test_file)
+
 os.path.exists(test_file)
 os.path.dirname(test_file)
 os.path.getsize(test_file)
+
 os.system('ls')
 os.remove(filename)
 
@@ -700,7 +705,7 @@ for dir_name, subdir, files in os.walk(root_dir):
 
 
 
-
+os.mkdir
 
 
 

@@ -143,8 +143,9 @@ alias nn='nikola new_post'
 alias re='sudo shutdown -r 0'
 alias rf='rm -rf'
 
-alias us='sudo bash ~/.01/ubuntu/bin/start.sh'
+
 alias us='cd ~/.01/ubuntu/config/playbooks/ && sudo ansible-playbook config.yml -i localhost, --connection local'
+
 
 alias cs='~/.01/ubuntu/bin/space2ctrl.sh'
 

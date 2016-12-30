@@ -24,15 +24,20 @@ except:
 
 # useful variables
 now = datetime.datetime.now()
-from collections import Counter
+
+
+# stdlib imports
+from collections import *
+from functools import *
+
 
 # 3rd party libraries
 try:
     import celery
     from celery import current_app
 
-    import importmagic as im
-    si = im.SymbolIndex()
+    # import importmagic as im
+    # si = im.SymbolIndex()
 
     import numpy as np
     import pandas as pd
@@ -43,5 +48,16 @@ except:
 
 # data
 l = [None, 3, 5.0, 'aaew', 23]
+d = {1: 2, "a": "b", }
+
+
+def f(*args, **kwargs):
+    print('sample function with {}, {}'.format(args, kwargs))
+
+
+def add(x, y):
+    print('calculatin {} + {}'.format(x, y))
+    return x + y
+
 
 print('============== Executed {} ============'.format(__file__))

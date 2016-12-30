@@ -496,6 +496,12 @@
            )))
   (define-key circe-channel-mode-map (kbd "C-c C-n") 'tracking-next-buffer))
 
+
+(use-package bash-completion
+  :config
+  (bash-completion-setup))
+
+
 (use-package multi-term
 
   :config
@@ -517,13 +523,14 @@
 
 (defun sh-send-line-or-region (&optional step)
   (interactive ())
-  (let ((proc (get-process "shell"))
+  (setq process-name "*terminal<1>*")
+  (let ((proc (get-process process-name))
         pbuf min max command)
     (unless proc
       (let ((currbuff (current-buffer)))
         (shell)
         (switch-to-buffer currbuff)
-        (setq proc (get-process "shell"))
+        (setq proc (get-process process-name))
         ))
     (setq pbuff (process-buffer proc))
     (if (use-region-p)
@@ -595,11 +602,13 @@
   :bind
   ("C-c C-p" . prodigy))
 
-(prodigy)
-(with-current-buffer "*prodigy*"
-  (prodigy-mark-all)
-  (prodigy-start)
-  (prodigy-unmark-all))
+(defun prodigy-begin ()
+  (interactive)
+  (prodigy)
+  (with-current-buffer "*prodigy*"
+    (prodigy-mark-all)
+    (prodigy-start)
+    (prodigy-unmark-all)))
 
 
 (use-package salt-mode)

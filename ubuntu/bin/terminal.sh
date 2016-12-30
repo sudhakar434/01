@@ -3,6 +3,7 @@
 
 
 
+
 # alias
 
 alias  # show all alias
@@ -10,9 +11,10 @@ alias ls='ls -a'
 
 
 
+
+
 # cron
 
-```shell
 # run job every minute
 */1 * * * * foo
 
@@ -26,12 +28,20 @@ grep CRON /var/log/syslog
 
 # twice a day at 6, 18 hrs
 * 6,18 * * * echo "foo"
-```
+
+
+
+
+
+
+
+
+
 
 
 ### xargs
 
-```sh
+
 ls | xargs ls
 
 # on mac
@@ -39,7 +49,16 @@ ls | xargs -I {} ls {}
 
 # ignore empty
 ls | xargs -I {} cat {} -r
-```
+
+
+
+
+
+
+
+
+
+
 
 
 ### disks
@@ -1353,3 +1372,58 @@ purge =
 
 # pandoc
 pandoc -o test.html test.md
+
+
+
+
+
+
+
+
+
+
+
+
+# images
+
+# stack images horizontally
+convert +append *.png out.png
+
+# stack images vertically
+convert -append *.png out.png
+
+# format conversion
+convert foo.png foo.jpg
+
+
+
+
+
+
+
+
+
+
+
+# google cloud platform - gcloud
+gcloud projects list
+
+gcloud config set project avilpage-staging
+
+gcloud config set compute/zone us-central1-b
+
+gcloud auth application-default login
+
+
+
+
+
+
+
+# kubectl
+kubectl cluster-info
+
+
+
+
+# deis
