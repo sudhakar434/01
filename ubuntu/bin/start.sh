@@ -1,6 +1,17 @@
 #! /bin/sh
 
-install_package()
+
+package_exists()
+{
+   package=$1
+   if dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null;
+    then
+        return 0
+   fi
+}
+
+
+install_package ()
 {
     package=$1
     ppa=$2
@@ -14,43 +25,53 @@ install_package()
            sudo bash -c "add-apt-repository --yes ppa:$ppa > /tmp/foo"
        fi
        sudo bash -c "apt-fast -qq --yes install $package > /tmp/foo"
-       echo "$package is installed"
     fi
 }
 
+
+relink ()
+{
+    source=$1
+    destination=$2
+    rm $destination
+    ln -s $source $destination
+}
+
+
 echo "Setting up your system. Please wait..."
 
-if [ ! -f /usr/sbin/apt-fast ]; then
-    echo "Installing apt-fast..."
+
+if ! package_exists "apt-fast"; then
     install_package apt-fast saiarcot895/myppa
     sudo dpkg-reconfigure apt-fast  # configure
 fi
 
 
-install_package git
-git config --global user.name 'chillaranand'
-git config --global user.email 'anand21nanda@gmail.com'
-echo "git is configured"
+if ! package_exists "git"; then
+    git config --global user.name 'chillaranand'
+    git config --global user.email 'anand21nanda@gmail.com'
+    echo "git is configured"
+fi
 
 
-install_package zsh
+
 if [ ! -d ~/.oh-my-zsh/ ]; then
+    install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
     chsh -s /usr/bin/zsh $(whoami)
+    relink ~/.01/ubuntu/config/zsh/zshrc.sh ~/.zshrc
+    echo "zsh is configured"
 fi
-rm ~/.zshrc
-ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
-echo "zsh is configured"
 
 
-# config
-rm -rf ~/.config/autostart && ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 # shell
 install_package byobu byobu/ppa
+
 install_package tmuxinator
 rm -rf ~/.tmuxinator
 ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
+
 
 
 # salt setup
@@ -60,13 +81,14 @@ ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 
 # install utils
 install_package arpon
-# install_package banshee banshee-team/ppa
 install_package clementine
 install_package clipit
 install_package htop
 install_package nmap
 install_package npm
-install_package synapse synapse-core/ppa
+install_package compizconfig-settings-manager
+install_package compiz-plugins-extra
+install_package dconf-tools
 install_package tree
 install_package unzip
 install_package vlc
@@ -74,12 +96,10 @@ install_package xcape
 install_package xclip
 install_package pastebinit
 install_package nethogs
+
+
 install_package fluxgui nathan-renniewaldock/flux
-
-
-install_package compizconfig-settings-manager
-install_package compiz-plugins-extra
-install_package dconf-tools
+install_package synapse synapse-core/ppa
 install_package unity-tweak-tool freyja-dev/unity-tweak-tool-daily
 install_package indicator-sysmonitor fossfreedom/indicator-sysmonitor
 
@@ -91,7 +111,6 @@ if [ ! -f ~/.dropbox-dist/dropboxd ]; then
     ~/.dropbox-dist/dropboxd
     echo "dropbox is installed"
 fi
-echo "dropbox is already installed"
 
 
 # chrome
@@ -101,7 +120,6 @@ if [ ! -f /usr/bin/google-chrome ]; then
     install_package google-chrome-stable
     echo "chrome is installed"
 fi
-echo "chrome is already installed"
 
 
 # install emacs
@@ -109,14 +127,11 @@ if [ ! -f /usr/bin/emacs ]; then
     sudo add-apt-repository --yes ppa:ubuntu-elisp/ppa
     sudo apt-fast -qq --yes install emacs-snapshot emacs-snapshot-el
     git clone https://github.com/chillaranand/.emacs.d.git
-fi
-if [ ! -d ~/.emacs.d ]; then
-    ln -s ~/.01/ubuntu/config/emacs ~/.emacs.d
-fi
-touch ~/.emacs.d/custom.el
-touch ~/.emacs.d/.private.el
-echo "emacs is configured"
 
+    ln -s ~/.01/ubuntu/config/emacs ~/.emacs.d
+    touch ~/.emacs.d/custom.el
+    ln -s ~/Dropbox/tech/private.el ~/.emacs.d/.private.el
+fi
 
 
 
@@ -125,9 +140,7 @@ install_package python-dev
 install_package python3-dev
 install_package python-pip
 
-sudo -H pip install --upgrade pip -q
-sudo -H pip install --upgrade virtualenvwrapper -q
-sudo -H pip install --upgrade thefuck -q
+# sudo -H pip install --upgrade pip virtualenvwrapper thefuck stdlib_list -q
 
 
 install_package libxml2-dev
@@ -142,34 +155,37 @@ install_package libgraphviz-dev
 install_package pkg-config
 # sudo pip install pygraphviz
 
-sudo pip install --upgrade stdlib_list
-
-
-
-
 
 # fix gtk bug
 install_package gtk2-engines-pixbuf
 
+
+install_package libevent-dev
 # mitmproxy
-# install_package libevent-dev
 
-ln -s ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
 
-echo "pip and python packages updated"
+relink ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
+relink ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 
 # npm packages
 
 
+crontab -u chillaranand ~/.01/ubuntu/config/cron_jobs.sh
+
+# config
 
 
+# android studio
 
-# crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.sh
+install_package android-studio maarten-fonville/android-studio
 
+# install_package ubuntu-make
+# umake android
 
-
-
+if ! package_exists 'cask'; then
+    curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+fi
 
 
 
@@ -256,14 +272,6 @@ echo "pip and python packages updated"
 # install_package libimobiledevice-dev pmcenery/ppa
 
 
-# android studio
-
-install_package android-studio maarten-fonville/android-studio
-
-# install_package ubuntu-make
-# umake android
-
-
 
 # install java
 # sudo add-apt-repository ppa:webupd8team/java
@@ -314,8 +322,8 @@ install_package android-studio maarten-fonville/android-studio
 # apm install atom-pair
 
 
-# install cask
-curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+
+
 
 
 # phantomjs
@@ -329,7 +337,4 @@ curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
 # sudo mv $PHANTOM_JS /usr/local/share
 # sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 
-
-
-
-ls -ll
+echo "Your system is configured. Enjoy :-)"

@@ -150,7 +150,7 @@ export PATH="/home/chillaranand/.cask/bin:$PATH"
 export PATH="/home/chillaranand/Downloads/android-ndk-r12b-linux-x86_64/android-ndk-r12b:$PATH"
 
 # secrets
-source ~/Dropbox/tech/env
+source ~/Dropbox/tech/env.sh
 
 if [[ $TERM = dumb ]]; then
   unset zle_bracketed_paste

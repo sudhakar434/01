@@ -23,6 +23,8 @@ alias pgi='ps -ef | grep -i'
 # python aliases
 alias py='python'
 alias ipy='ipython'
+alias py2='python2'
+alias ipy2='ipython2'
 
 alias da='deactivate '
 alias pf='pip freeze | sort'
@@ -145,6 +147,7 @@ alias rf='rm -rf'
 
 
 alias us='cd ~/.01/ubuntu/config/playbooks/ && sudo ansible-playbook config.yml -i localhost, --connection local'
+alias us='sudo ~/.01/ubuntu/bin/start.sh'
 
 
 alias cs='~/.01/ubuntu/bin/space2ctrl.sh'
@@ -278,3 +281,5 @@ mycroft () {
     workon mycroft
 }
 alias my=mycroft
+
+alias fl=flash

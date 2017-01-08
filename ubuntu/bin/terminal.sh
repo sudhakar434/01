@@ -1267,17 +1267,6 @@ nikola serve
 ```
 
 
-### deis
-
-```
-sudo mv deis /usr/local/bin
-
-curl -sSL https://get.helm.sh | bash
-sudo mv helmc /usr/local/bin
-
-Install_package vagrant
-```
-
 
 ### celery
 ```sh
@@ -1396,6 +1385,11 @@ convert -append *.png out.png
 convert foo.png foo.jpg
 
 
+# pdf to png
+convert -density 300 input.pdf -quality 90 prefix
+
+pdftoppm -rx 300 -ry 300 -png a.pdf prefix
+
 
 
 
@@ -1424,6 +1418,12 @@ gcloud auth application-default login
 kubectl cluster-info
 
 
+
+
+# minikube
+minikube version
+
+minikube start
 
 
 # deis

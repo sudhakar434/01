@@ -38,8 +38,6 @@
 
       - tesseract-ocr
 
-
-
       - python-dev
       - python3-dev
       - python-pip
@@ -93,24 +91,56 @@
         when:
           helm.stat.exists == False
 
-
     - block:
-      - name: Check if deis is installed
-        stat: path=/usr/local/bin/deis
-        register: deis
-      - name: Download deis installer
+      - name: Check if kubectl installed
+        stat: path=/usr/local/bin/kubectl
+        register: binary
+      - name: Download installer
         get_url:
-          url=http://deis.io/deis-cli/install-v2.sh
-          dest=/tmp/deis-installer
+          url=https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl
+          dest=/tmp/binary
           mode=0777
         when:
-          deis.stat.exists == False
-      - name: Install deis installer
-        command: /bin/bash /tmp/deis-installer
+          binary.stat.exists == False
+      - name: Install
+        command: mv /tmp/binary /usr/local/bin/kubectl
         when:
-          deis.stat.exists == False
-      - name: Move binary deis
-        command: ln -fs $PWD/deis /usr/local/bin/deis
+          binary.stat.exists == False
+
+    - block:
+      - name: Check if minikube installed
+        stat: path=/usr/local/bin/minikube
+        register: binary
+      - name: Download installer
+        get_url:
+          url=https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer
+          dest=/tmp/binary
+          mode=0777
+        when:
+          binary.stat.exists == False
+      - name: Install
+        command: mv /tmp/binary /usr/local/bin/minikube
+        when:
+          binary.stat.exists == False
+
+
+    # - block:
+    #   - name: Check if deis is installed
+    #     stat: path=/usr/local/bin/deis
+    #     register: deis
+    #   - name: Download deis installer
+    #     get_url:
+    #       url=http://deis.io/deis-cli/install-v2.sh
+    #       dest=/tmp/deis-installer
+    #       mode=0777
+    #     when:
+    #       deis.stat.exists == False
+    #   - name: Install deis installer
+    #     command: /bin/bash /tmp/deis-installer
+    #     when:
+    #       deis.stat.exists == False
+    #   - name: Move binary deis
+    #     command: mv deis /usr/local/bin/deis
 
 
     - block:
@@ -125,20 +155,38 @@
         command: gcloud components update
 
 
-    - block:
-      - name: Check if kubectl is installed
-        stat: path=/usr/local/bin/kubectl
-        register: kubectl
-      - name: Download kubectl installer
-        get_url:
-          url=https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl
-          dest=/tmp/kubectl
-          mode=0777
-        when:
-          kubectl.stat.exists == False
-      - name: Move binary kubectl
-        command: ln -fs /tmp/kubectl /usr/local/bin/kubectl
+    # - block:
 
+    #   - name: Check if kubectl is installed
+    #     stat: path='/usr/local/bin/{{ item.name }}'
+
+    #     register: binary
+    #     with_items:
+    #       - { name: 'kubectl', url: 'https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl' }
+
+    #   - name: Download kubectl installer
+    #     get_url:
+    #       url='{{ item.url }}'
+    #       dest='/tmp/{{ item.url }}'
+    #       mode=0777
+    #     when:
+    #       binary.stat.exists == False
+    #     with_items:
+    #       - {name: 'kubectl', url: 'https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl'}
+
+    #   - name: Move binary
+    #     command: 'mv /tmp/{{ item.name }} /usr/local/bin/{{ item.name }}'
+    #     with_items:
+    #       - {name: 'kubectl', url: 'https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/linux/amd64/kubectl'}
+
+
+    # - name: Create symlinks for files
+    #   file:
+    #     src: '{{ item.src }}'
+    #     dest: '{{ item.dest }}'
+    #     state: link
+    #   with_items:
+    #     - { src: '~/.01/ubuntu/config/zsh/zshrc.sh', dest: '~/.zshrc' }
 
 
 

@@ -3,6 +3,7 @@ import django
 
 
 
+
 # django settings
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_COOKIE_AGE = 5 * 60  # 5 minutes
@@ -24,6 +25,8 @@ def __init__(self, *args, **kwargs):
 
     for field in self.fields:
         self.field.required = False
+
+
 
 
 
@@ -60,6 +63,26 @@ book._state.db
 
 
 
+
+
+
+
+
+
+
+
+# views
+
+# custom 404 - add this to views.py
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+
+def handler404(request):
+    response = render_to_response('404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
 
 
 

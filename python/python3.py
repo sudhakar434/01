@@ -332,6 +332,10 @@ def foo(**kwargs):
     test_func(**kwargs)
     print(kwargs)
 
+
+def kw_only(**options): print(options)
+
+
 foo(x=1)
 
 

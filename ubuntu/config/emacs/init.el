@@ -369,11 +369,10 @@
   (add-hook 'python-mode-hook #'electric-operator-mode))
 
 
-;; (use-package real-auto-save
-;;   :config
-;;   (add-hook 'prog-mode-hook 'real-auto-save-mode)
-;;   (setq real-auto-save-interval 10))
-
+(use-package real-auto-save
+  :config
+  (add-hook 'prog-mode-hook 'real-auto-save-mode)
+  (setq real-auto-save-interval 1))
 
 (use-package yasnippet
   :config
@@ -417,7 +416,9 @@
 (setq elpy-rpc-timeout nil)
 (setq elpy-rgrep-file-pattern "*.py *.html")
 (setq elpy-rpc-backend "jedi")
-;; (setq elpy-rpc-python-command "python3")
+;; (setq elpy-rpc-python-command "python3.5")
+(setq elpy-rpc-python-command "python3")
+;; (elpy-use-ipython)
 
 (defun elpy-install-requirements ()
   (interactive)
@@ -590,12 +591,21 @@
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
 
-   (prodigy-define-service
+  (prodigy-define-service
     :name "irene ember serve"
     :tags '(appknox)
     :cwd "~/projects/appknox/irene/"
     :command "bash"
     :args '("scripts/start_server.sh")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "avilpage serve"
+    :tags '(appknox)
+    :cwd "~/projects/python/avilpage/"
+    :command "nikola"
+    :args '("auto")
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t)
 
