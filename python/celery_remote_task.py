@@ -12,6 +12,3 @@ print(app.broker_connection())
 @app.task
 def add(x, y):
     return x + y
-
-
-add.delay(1, 2)

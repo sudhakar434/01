@@ -17,4 +17,9 @@ fi
 
 package_exists apt-fastoo
 
+if ! pgrep 'minio'; then
+    echo 'minio not running'
+fi
+
+
 echo "Done"

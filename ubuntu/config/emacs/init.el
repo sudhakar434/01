@@ -372,7 +372,7 @@
 (use-package real-auto-save
   :config
   (add-hook 'prog-mode-hook 'real-auto-save-mode)
-  (setq real-auto-save-interval 1))
+  (setq real-auto-save-interval 10))
 
 (use-package yasnippet
   :config
@@ -574,7 +574,6 @@
   (prodigy-define-service
     :name "0 django sherlock"
     :tags '(appknox)
-    :init (lambda () (pyvenv-workon "sherlock"))
     :cwd "~/projects/appknox/sherlock/"
     :command "bash"
     :args '("scripts/start_server.sh")
@@ -602,7 +601,6 @@
 
   (prodigy-define-service
     :name "avilpage serve"
-    :tags '(appknox)
     :cwd "~/projects/python/avilpage/"
     :command "nikola"
     :args '("auto")
@@ -610,7 +608,7 @@
     :kill-process-buffer-on-stop t)
 
   :bind
-  ("C-c C-p" . prodigy))
+  ("C-x C-p" . prodigy))
 
 (defun prodigy-begin ()
   (interactive)

@@ -774,6 +774,8 @@ shutil.move('foo.py', '/home/chillaranand/')
 # subprocess
 import subprocess
 
+
+# run a command
 cmd = 'ls -ll'
 cmd = cmd.split()
 print(subprocess.check_output(cmd))
@@ -789,8 +791,19 @@ print(out.decode('utf-8'))
 cmd = "find . -name '*.py' | xargs autopep8 -i"
 subprocess.check_output(shlex.split(cmd), shell=True)
 
+
 # run in background
 p = subprocess.Popen(["python", "-m", "http.server"])
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -36,7 +36,7 @@ c.InteractiveShellApp.exec_files = [os.path.join(home, '.01/python/ipython_init.
 
 # lines of code to run at IPython startup.
 # c.InteractiveShellApp.exec_lines = []
-c.InteractiveShellApp.exec_lines = ['%autoreload 2']
+c.InteractiveShellApp.exec_lines = ['%autoreload 2', '%autocall	1']
 
 
 # A list of dotted module names of IPython extensions to load.

@@ -1,3 +1,20 @@
+function search {
+    grep -irl \
+        --exclude=\*.{pyc,swp,un~,png,jpg} \
+        --exclude-dir=".git" \
+        --exclude-dir="node_modules" \
+        --exclude-dir="bower_components" \
+        --exclude-dir="dist" \
+        --exclude-dir="tmp" \
+        --exclude-dir=".sass_cache" \
+        --exclude-dir="Appknox" \
+        --exclude-dir="build" \
+        --exclude-dir="uploads" \
+        --color "$*" .
+}
+
+
+
 alias a=alias
 alias al='alias | le'
 
@@ -7,9 +24,9 @@ alias js='cd ~/sandbox'
 
 
 alias b='byobu'
-alias ag='sudo apt-get'
-alias i='sudo apt-get install --yes'
-alias au='sudo apt-get update -qq'
+alias af='sudo apt-fast'
+alias i='sudo apt-fast install --yes'
+alias au='sudo apt-fast update -qq'
 alias cf='clementine -f'
 alias ch='nohup google-chrome > /dev/null &'
 alias cr='clementine -r'
@@ -28,6 +45,7 @@ alias ipy2='ipython2'
 
 alias da='deactivate '
 alias pf='pip freeze | sort'
+alias pfl='pip freeze | sort | less'
 alias pi='pip install'
 alias pie='pip install -e .'
 alias pir='pip install -r'
@@ -74,7 +92,9 @@ alias fk='fuck '
 eval "$(thefuck --alias)"
 
 
-alias h='history'
+alias hs='history'
+alias h='http '
+alias hs='http --session=tmp/session.json '
 # alias hg='history | grep'
 alias hgi='history | grep -i'
 alias ht='htop'
@@ -102,7 +122,7 @@ alias lg="git lg1"
 
 alias gi="git init"
 alias gcl="git clone"
-alias gn="git clone"
+alias cl="git clone"
 
 alias glu="git pull upstream"
 alias glum="git pull upstream master"
@@ -185,21 +205,6 @@ alias aks='appknox --username f --password f --host 127.0.0.1:8000 --no-secure s
 alias ct='crontab '
 
 
-function search {
-    grep -irl \
-        --exclude=\*.{pyc,swp,un~,png,jpg} \
-        --exclude-dir=".git" \
-        --exclude-dir="node_modules" \
-        --exclude-dir="bower_components" \
-        --exclude-dir="dist" \
-        --exclude-dir="tmp" \
-        --exclude-dir=".sass_cache" \
-        --exclude-dir="Appknox" \
-        --exclude-dir="build" \
-        --exclude-dir="uploads" \
-        --color "$*" .
-}
-
 
 # adb
 # alias ad='python /home/chillaranand/projects/appknox/python-adb/adb.zip '
@@ -207,11 +212,17 @@ function search {
 # alias ad1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 # alias a1='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940Z1AS'
 # alias a2='python /home/chillaranand/projects/appknox/python-adb/adb.zip -s T00940ZT2K'
-alias fb='sudo fastboot '
+
 
 alias ai='adb install '
 alias ad='adb devices '
-alias ap='adb push '
+alias ap='adb push -p '
+
+alias fb='sudo fastboot '
+alias fd='sudo fastboot devices'
+
+
+
 
 alias wifi='nmcli dev wifi '
 wco () {
@@ -279,7 +290,19 @@ mycroft () {
     cd /home/chillaranand/projects/appknox/mycroft/
     deactivate
     workon mycroft
+    eval $(./scripts/env_converter.py)
 }
 alias my=mycroft
 
+
+sherlock () {
+    cd /home/chillaranand/projects/appknox/sherlock/
+    deactivate
+    workon sherlock
+    eval $(./scripts/env_converter.py)
+}
+
+
 alias fl=flash
+
+alias tv=tvol

@@ -120,12 +120,50 @@ for template_dir in (settings.TEMPLATE_DIRS + app_template_dirs):
         template_files.append(os.path.join(dir, filename))
 
 
+# django>1.9
+from django.conf import settings
+from django.template.loaders.app_directories import get_app_template_dirs
+import os
+
+template_dir_list = []
+for each in get_app_template_dirs('templates'):
+    if settings.ROOT_DIR in each:
+        template_dir_list.append(each)
+
+
+template_list = []
+for each in (template_dir_list + settings.TEMPLATES[0]['DIRS']):
+    for dir, dirnames, filenames in os.walk(each):
+        for filename in filenames:
+            template_list.append(os.path.join(each, filename))
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # urls
 from django.core.urlresolvers import get_resolver, resolve
 get_resolver(None).reverse_dict.keys()     #All URL Patterns excluding namespaces
 reverse('/')  # get view
 reverse_lazy('/')  # lazy version of reverse
+
+
+# redirect
+(r'^one/$', redirect_to, {'url': '/another/'}),
+(r'^one/$', RedirectView.as_view(url='/another/')),
+
+
+
+
 
 
 
@@ -214,3 +252,17 @@ def handle(self, *args, **options):
 # templates
 
 # db
+
+
+
+from django.utils import autoreload
+
+def do_something(*args, **kwargs):
+    # management command logic
+
+
+class Command(BaseCommand):
+
+    def handle(self, *args, **options):
+        self.stdout('This command auto reloads. No need to restart...')
+        autoreload.main(do_something, args=None, kwargs=None)

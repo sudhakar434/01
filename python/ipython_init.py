@@ -29,6 +29,9 @@ now = datetime.datetime.now()
 # stdlib imports
 from collections import *
 from functools import *
+from unicodedata import *
+from pprint import pprint
+pp = pprint
 
 
 # 3rd party libraries
@@ -49,6 +52,8 @@ except:
 # data
 l = [None, 3, 5.0, 'aaew', 23]
 d = {1: 2, "a": "b", }
+gamma = ''
+beta = 'β'
 
 
 def f(*args, **kwargs):
@@ -58,6 +63,11 @@ def f(*args, **kwargs):
 def add(x, y):
     print('calculatin {} + {}'.format(x, y))
     return x + y
+
+
+def codepoint(x):
+    return 'U+%04x' % ord(x)
+
 
 
 print('============== Executed {} ============'.format(__file__))

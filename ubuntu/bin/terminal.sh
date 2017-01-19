@@ -61,9 +61,9 @@ ls | xargs -I {} cat {} -r
 
 
 
-### disks
 
-```shell
+# disks
+
 # list block devices
 lsblk
 
@@ -86,7 +86,7 @@ sudo fdisk /dev/sd*
 sudo mkfs -t ext4 /dev/sdb1
 sudo mount /dev/sd* </some/path/>
 
-https://help.ubuntu.com/community/InstallingANewHardDrive
+# https://help.ubuntu.com/community/InstallingANewHardDrive
 
 
 # mount ntfs external hdd
@@ -95,7 +95,7 @@ sudo ntfsfix /dev/sdXX
 
 
 # nfs
-# install package
+# nfs install package
 sudo apt-get install nfs-kernel-server nfs-common
 # mount
 sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
@@ -104,8 +104,14 @@ sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
 ssh user@ip
 cat /etc/version
 
-https://help.ubuntu.com/community/SettingUpNFSHowTo
-```
+# https://help.ubuntu.com/community/SettingUpNFSHowTo
+
+
+
+
+
+
+
 
 
 ### files
@@ -202,9 +208,8 @@ fs.inotify.max_user_watches=16384
 
 
 
-### firewall
+# firewall
 
-```shell
 # show firewall status
 sudo ufw status verbose
 
@@ -218,7 +223,11 @@ sudo ufw deny <port no>
 sudo ufw delete <port no>
 
 sudo ufw logging [on/off]
-```
+
+
+
+
+
 
 
 
@@ -227,8 +236,20 @@ sudo ufw logging [on/off]
 # extract audio from video
 ffmpeg -i foo.mp4 adandada.mp3
 
+# convert one format to another
+ffmpeg -i foo.wembm adandada.mp3
+
 # split video of 25 seconds
 ffmpeg -i input.mkv -ss 00:01:10 -t 25 output.mkv
+
+
+
+
+
+
+
+
+
 
 
 
@@ -259,9 +280,11 @@ sudo usermod -s /sbin/nologin <user>
 
 
 
-### git
 
-```shell
+
+
+# git
+
 # update git
 sudo apt-add-repository ppa:git-core/ppa
 sudo apt-get update
@@ -351,7 +374,12 @@ lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(
 # create a new branch
 git checkout --orphan <branchname>
 git rm --cached -r .
-```
+
+
+
+
+
+
 
 
 
@@ -447,9 +475,11 @@ nmcli con up id 'wifi1'
 
 
 
-#### packages
+# packages
 
-```shell
+# show info of packages
+apt-cache show indicator-kdeconnect
+
 # upgrade a single package
 sudo apt-get install --only-upgrade <package name>
 
@@ -457,13 +487,28 @@ sudo apt-get install --only-upgrade <package name>
 sudo apt-cache policy <package name>
 sudo apt-cache show <package name> | grep Version
 sudo apt-cache madison <package name>
-```
+
+# remove ppa
+sudo add-apt-repository --remove ppa:whatever/ppa
 
 
 
-#### process
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+# processes
+
+
 # run a job in background
 emacs &
 
@@ -498,7 +543,8 @@ kill -SIGKILL <PID
 pkill emacs
 
 # kill process by some identifier
-ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+ps -ef | grep 'celery' | awk '{print $2}' | xargs kill -9
+pgrep celery | xargs kill -9
 
 # show all kill signals
 kill -l
@@ -506,9 +552,21 @@ kill -l
 
 # run this command with lowest priority
 nice -n 19 command
-```
 
-#### security
+
+
+
+
+
+
+
+
+
+
+
+
+
+# security
 
 ```shell
 # enable automatic security updates
@@ -837,9 +895,24 @@ notedown python.md > python.ipynb
 ```
 
 
-### rabbitmq
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# rabbitmq
+
+
 sudo apt-get install rabbitmq-server
 
 # rabbitmqctl
@@ -866,10 +939,15 @@ rabbitmqctl stop_app
 rabbitmqctl reset    # Be sure you really want to do this!
 rabbitmqctl start_app
 
+
 # rabbitmq-plugins
 sudo rabbitmq-plugins list
 sudo rabbitmq-plugins enable rabbitmq_management
-```
+
+
+
+
+
 
 
 
@@ -991,15 +1069,25 @@ pastebinit foo.txt
 ```
 
 
-### REST
 
-```sh
+
+
+
+
+
+# REST
+
 # curl post with form data
 curl -d "username=chillaranand&password=foo" http://192.168.0.152:8000/api/token/new.json
 
 # httpie post with form data
 http POST 0.0.0.0:8000/api/token/new.json username=f password=f -f
-```
+
+
+
+
+
+
 
 
 
@@ -1146,11 +1234,20 @@ mitmproxy
 ```
 
 
-### android
 
-### adb
 
-```sh
+
+
+
+
+
+
+# android
+
+
+
+# adb
+
 adb devices
 adb install test.apk
 
@@ -1159,12 +1256,17 @@ adb root
 
 # reboot into fastboot mode
 adb reboot bootloader
-```
+
+# in adb shell
+mount -o rw,remount,rw /system
+mount system RO: mount -o ro,remount,ro /system
 
 
-#### unlock bootloader
 
-```
+
+
+# unlock bootloader
+
 # enable developer options
 # enable OEM unlock
 
@@ -1179,44 +1281,50 @@ fastboot oem get_unlock_data
 fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 
 # reboot
-```
 
-#### custom recovery
 
-```sh
+
+
+
+
+# custom recovery
+
 # download twrp by device codename
-
 adb reboot bootloader
-
 sudo fastboot flash recovery twrp-otus-3.0.2-r1.img
-
 sudo fastboot reboot
-```
 
 
-#### root with supersu
 
-```
+
+# root with supersu
+
 # install custom recovery
 
 # download supersu and install it
 adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
 # go to recovery -> install -> select supersu -> install -> reboot
-```
 
 
-#### recover from bootloop
 
-```sh
+
+
+# recover from bootloop
+
 # boot to recovery mode
 # advanced -> enable sideload
 adb sideload UPDATE-SuperSU-v2.46.zip
-```
 
 
-#### cyanogenmod
 
-```
+
+
+
+
+
+# cyanogenmod
+
+
 # wipe
 dalvik cache,data, cache,system
 
@@ -1228,18 +1336,25 @@ adb push open_gapps-arm-7.1-nano-20161217.zip /sdcard/
 # reboot recovery - install zip
 
 
-```
 
 
-#### xposed
+# factory reset with fastboot
+fastboot erase system
+fastboot erase userdata
+fastboot erase cache
 
-```sh
+
+
+
+# xposed
+
+
 # download xposed zip and flash
 wget http://dl-xda.xposed.info/modules/de.robv.android.xposed.installer_v33_36570c.apk
 adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
 
 # download xposed apk and install it
-```
+
 
 
 
@@ -1427,3 +1542,17 @@ minikube start
 
 
 # deis
+
+
+
+
+
+
+
+
+
+
+# watchdog
+
+# restart celery workers
+watchmedo shell-command --patterns="*.py;*.html" --recursive --command='pgrep celery | xargs kill -9 && celery worker -A t'

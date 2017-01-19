@@ -38,7 +38,7 @@ relink ()
 }
 
 
-echo "Setting up your system. Please wait..."
+echo "\n\tSetting up your system. Please wait..."
 
 
 if ! package_exists "apt-fast"; then
@@ -54,7 +54,6 @@ if ! package_exists "git"; then
 fi
 
 
-
 if [ ! -d ~/.oh-my-zsh/ ]; then
     install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
@@ -63,23 +62,15 @@ if [ ! -d ~/.oh-my-zsh/ ]; then
     echo "zsh is configured"
 fi
 
-
-
-# shell
 install_package byobu byobu/ppa
 
-install_package tmuxinator
-rm -rf ~/.tmuxinator
-ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
+# install_package tmuxinator
+# rm -rf ~/.tmuxinator
+# ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 
 
 
-# salt setup
-# python salt/start/setup.py
-
-
-
-# install utils
+# utilities
 install_package arpon
 install_package clementine
 install_package clipit
@@ -136,6 +127,9 @@ fi
 
 
 # python
+relink ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
+relink ~/.01/ubuntu/config/autostart/ ~/.config/autostart
+
 install_package python-dev
 install_package python3-dev
 install_package python-pip
@@ -164,8 +158,6 @@ install_package libevent-dev
 # mitmproxy
 
 
-relink ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
-relink ~/.01/ubuntu/config/autostart/ ~/.config/autostart
 
 
 # npm packages
@@ -177,8 +169,7 @@ crontab -u chillaranand ~/.01/ubuntu/config/cron_jobs.sh
 
 
 # android studio
-
-install_package android-studio maarten-fonville/android-studio
+# install_package android-studio maarten-fonville/android-studio
 
 # install_package ubuntu-make
 # umake android
@@ -188,7 +179,16 @@ if ! package_exists 'cask'; then
 fi
 
 
+if [ ! -f /usr/local/bin/docker-compose ]; then
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+fi
 
+
+install_package kdeconnect
+
+# install_package indicator-kdeconnect vikoadi/ppa
+install_package indicator-kdeconnect varlesh-l/indicator-kdeconnect
 
 
 
@@ -228,15 +228,8 @@ fi
 
 
 
-# other packages
+install_package arp-scan
 
-# install_package arp-scan
-
-# tuxcut
-# install_package dsniff
-# install_package arptables
-# install_package wondershaper
-# install_package python-qt4
 
 # ulogme
 # sudo apt-get install xdotool wmctrl
@@ -290,7 +283,6 @@ fi
 # configure locales
 # sudo dpkg-reconfigure locales
 
-# install_package calibre
 
 
 
@@ -314,16 +306,10 @@ fi
 # install_package gstreamer0.10-pulseaudio
 
 
-
-
 # install atom
 # install_package atom webupd8team/atom
 # install atom package
 # apm install atom-pair
-
-
-
-
 
 
 # phantomjs
@@ -337,4 +323,7 @@ fi
 # sudo mv $PHANTOM_JS /usr/local/share
 # sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
 
-echo "Your system is configured. Enjoy :-)"
+
+
+
+echo "\tYour system is configured. Enjoy :-) \n"
