@@ -308,3 +308,5 @@ sherlock () {
 alias fl=flash
 
 alias tv=tvol
+
+alias rc='sudo rabbitmqctl '

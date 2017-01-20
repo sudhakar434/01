@@ -2,15 +2,9 @@ import sys
 import re
 
 
-old_file = 'super_old.py'
-new_file = 'super_new.py'
-
 old_file = new_file = sys.argv[1]
 
 old_data = open(old_file).read()
-if not old_data:
-    sys.exit()
-
 blocks = old_data.split('\n\n\n')
 
 
@@ -29,9 +23,9 @@ def replace_super(block):
 
     new_block = ''
     for line in block:
-        if 'super' in line and cls_name in line:
+        if 'super' in line and '(' + cls_name in line:
             new_line = line.replace(cls_name, '')
-            new_line = re.sub(', .*?\\)', ')', new_line)
+            new_line = re.sub(', .*?\\).', ').', new_line)
 
             print(cls_name, line, new_line, sep='\n')
             print('----------------------')

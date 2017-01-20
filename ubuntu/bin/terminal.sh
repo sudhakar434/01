@@ -1434,15 +1434,21 @@ for i in {1..5}; do echo "Welcome $i times"; done
 
 
 
-### ansible
 
-```
+
+
+# ansible
+
 ansible all -i inventory/vagrant.ini -m ping
+
 ansible all -i inventory/vagrant.ini -m yum -a "name=ntp state=present" --sudo
+
 ansible all -i vagrant.ini -m shell -a "pwd"
 
 ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
-```
+
+
+ansible-playbook playbook.yml -i inventory.ini --user=username --extra-vars "ansible_sudo_pass=yourPassword"
 
 
 
@@ -1516,6 +1522,7 @@ pdftoppm -rx 300 -ry 300 -png a.pdf prefix
 
 
 
+
 # google cloud platform - gcloud
 gcloud projects list
 
@@ -1524,6 +1531,10 @@ gcloud config set project avilpage-staging
 gcloud config set compute/zone us-central1-b
 
 gcloud auth application-default login
+
+# ssh into instance
+gcloud compute ssh "server-foo"
+
 
 # open a port
 gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
