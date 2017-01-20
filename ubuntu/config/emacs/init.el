@@ -354,19 +354,6 @@
   (add-hook 'markdown-mode-hook #'vimish-fold-mode))
 
 
-;; (use-package smartparens
-;;   :config
-;;   (sp-pair "`" "`" :wrap "C-`")
-;;   (sp-pair "%" "%" :wrap "C-%")
-;;   (sp-pair "<" ">" :wrap "C->")
-;;   (defun strict-smartparens ()
-;;     (turn-on-smartparens-strict-mode))
-;;   (add-hook 'prog-mode-hook 'strict-smartparens))
-
-
-(use-package electric-operator
-  :config
-  (add-hook 'python-mode-hook #'electric-operator-mode))
 
 
 (use-package real-auto-save
@@ -379,7 +366,22 @@
   (yas-global-mode 1))
 
 
-(use-package paredit)
+;; (use-package paredit)
+
+(use-package smartparens
+  :config
+  (sp-pair "`" "`" :wrap "C-`")
+  (sp-pair "%" "%" :wrap "C-%")
+  (sp-pair "<" ">" :wrap "C->")
+  (defun strict-smartparens ()
+    (turn-on-smartparens-strict-mode))
+  (add-hook 'prog-mode-hook 'strict-smartparens))
+
+(use-package electric-operator
+  :config
+  (add-hook 'python-mode-hook #'electric-operator-mode))
+
+
 
 
 ;; python mode
@@ -1107,13 +1109,16 @@
 
 ;; slides
 ;; (load-file "~/.emacs.d/vendor/htmlize.el")
+
 (use-package htmlize)
+
 
 (use-package org
   :config
   (setq org-agenda-span 30)
   (setq org-todo-keywords
-        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  (define-key org-mode-map (kbd "C-c C-c") #'org-reveal-export-to-html-and-browse))
 
 
 (use-package ox-reveal

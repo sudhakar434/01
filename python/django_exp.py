@@ -42,7 +42,8 @@ from django.db import models
 User.objects.filter(pk__lt=5)
 User.objects.filter(pk__lte=6)
 
-# print sql query
+
+# print raw sql query
 print(Mymodel.objects.all().query)
 
 

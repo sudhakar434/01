@@ -42,8 +42,6 @@ grep CRON /var/log/syslog
 ### xargs
 
 
-ls | xargs ls
-
 # on mac
 ls | xargs -I {} ls {}
 
@@ -911,13 +909,17 @@ notedown python.md > python.ipynb
 
 
 # rabbitmq
-
-
 sudo apt-get install rabbitmq-server
+
 
 # rabbitmqctl
 sudo rabbitmqctl list_users
+
 sudo rabbitmqctl add_user <user> <pass>
+
+# delete guest user
+sudo rabbitmqctl add_user <user> <pass>
+
 
 sudo rabbitmqctl list_vhosts
 sudo rabbitmqctl add_vhost <my_host>
@@ -1522,6 +1524,9 @@ gcloud config set project avilpage-staging
 gcloud config set compute/zone us-central1-b
 
 gcloud auth application-default login
+
+# open a port
+gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
 
 
 

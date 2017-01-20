@@ -131,7 +131,9 @@ alias gpp="git pull && git push"
 alias gsum="git pull upstream master && git push origin master"
 
 
+alias gcom="git checkout master"
 alias gpom="git push origin master"
+alias glum="git pull upstream master"
 
 
 
