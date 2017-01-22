@@ -13,14 +13,13 @@ function search {
         --color "$*" .
 }
 
-
-
 alias a=alias
 alias al='alias | le'
 
 alias j=z
 alias jd='cd ~/Downloads/'
 alias js='cd ~/sandbox'
+alias jv='cd ~/Videos/'
 
 
 alias b='byobu'
@@ -132,8 +131,14 @@ alias gsum="git pull upstream master && git push origin master"
 
 
 alias gcom="git checkout master"
+alias gcod="git checkout develop"
+
 alias gpom="git push origin master"
+alias gpom="git push origin develop"
+
 alias glum="git pull upstream master"
+alias glod="git pull origin develop"
+
 
 
 
@@ -195,16 +200,29 @@ alias yd='youtube-dl '
 
 alias lh='http://127.0.0.1:8000'
 
+
+
+# appknox cli
 alias akh='appknox --help'
+
 alias ak='appknox --username f --password f --host 127.0.0.1:8000 --no-secure'
+
+alias aks='ak submit_url "https://play.google.com/store/apps/details?id=com.wFinalZen"'
+
 alias akn='appknox --username g --password g --host 127.0.0.1:8000 --no-secure'
-alias aknu='appknox --username g --password g --host 127.0.0.1:8000 --no-secure upload test.apk'
-alias aku='appknox --username f --password f --host 127.0.0.1:8000 --no-secure upload test.apk'
-alias akp=appknox --username f --password f --host 127.0.0.1:8000 --no-secure payment '{"number": "4242424242424242", "exp_month": 12, "exp_year": 2016, "cvc": "123"}'
-alias aks='appknox --username f --password f --host 127.0.0.1:8000 --no-secure submit_url "https://play.google.com/store/apps/details?id=com.wFinalZen"'
+
+alias akp='appknox --username $AK_USER --password $AK_PASS '
+alias akpv='appknox --username $AK_USER --password $AK_PASS validate '
+alias akpu='appknox --username $AK_USER --password $AK_PASS upload ~/Downloads/apps/test_zen_stories.apk '
+
+
+
+
 
 
 alias ct='crontab '
+
+
 
 
 
@@ -219,6 +237,9 @@ alias ct='crontab '
 alias ai='adb install '
 alias ad='adb devices '
 alias ap='adb push -p '
+alias arr='adb reboot recovery '
+alias arb='adb reboot bootloader '
+
 
 alias fb='sudo fastboot '
 alias fd='sudo fastboot devices'
@@ -310,3 +331,9 @@ alias fl=flash
 alias tv=tvol
 
 alias rc='sudo rabbitmqctl '
+
+
+alias rnm='sudo systemctl restart NetworkManager'
+
+alias sub='subliminal download -s -l en '
+alias subs='subliminal download -s -l en '

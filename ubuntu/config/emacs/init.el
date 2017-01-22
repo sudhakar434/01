@@ -457,12 +457,6 @@
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'my/send-region-or-buffer)
 (define-key elpy-mode-map (kbd "<return>") 'elpy-open-and-indent-line-below)
-
-(defun my/elpy-check ()
-  (interactive)
-  (elpy-check))
-
-(define-key elpy-mode-map (kbd "C-c C-v") 'my/elpy-check)
 (define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
 
 (defun company-yasnippet-or-completion ()
@@ -493,7 +487,7 @@
            :port (6667 . 6697)
            :nick "chillaranand"
            :channels (:after-auth
-                      "#python", "#python-india", "#python-dev", "#django",
+                      "#python", "#python-india", "#python-dev", "#django", "#django-dev"
                       "#emacs", "#emacs-india" "#emacs-elpy")
            :nickserv-password ,irc-password
            )))
@@ -1491,12 +1485,10 @@ With a prefix argument N, (un)comment that many sexps."
     (package-menu-execute 'no-query)))
 
 
-(defun start-space-to-ctrl ()
+(defun space-to-ctrl-activate ()
   "Active space2cctl."
   (interactive)
   (call-process-shell-command  "~/.01/ubuntu/bin/space2ctrl.sh" nil 0))
-
-(start-space-to-ctrl)
 
 
 (defun tidy-current-buffer ()
@@ -1510,6 +1502,7 @@ With a prefix argument N, (un)comment that many sexps."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; key bindings
+
 
 (bind-keys*
  ("<f12>" . menu-bar-mode)
@@ -1525,6 +1518,9 @@ With a prefix argument N, (un)comment that many sexps."
  ("C-x C-b" . switch-to-previous-buffer)
  ("C-x C-d" . duplicate-current-line-or-region)
  ;; ("C-x C-h" . mark-whole-buffer)
+ ("C-x C-g" . space-to-ctrl-activate)
+
+
  ("C-x C-i" . delete-other-windows)
  ("C-x C-k" . kill-this-buffer)
  ("C-x C-m" . helm-M-x)
