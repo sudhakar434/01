@@ -457,12 +457,6 @@
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'my/send-region-or-buffer)
 (define-key elpy-mode-map (kbd "<return>") 'elpy-open-and-indent-line-below)
-
-(defun my/elpy-check ()
-  (interactive)
-  (elpy-check))
-
-(define-key elpy-mode-map (kbd "C-c C-v") 'my/elpy-check)
 (define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
 
 (defun company-yasnippet-or-completion ()
@@ -493,7 +487,7 @@
            :port (6667 . 6697)
            :nick "chillaranand"
            :channels (:after-auth
-                      "#python", "#python-india", "#python-dev", "#django",
+                      "#python", "#python-india", "#python-dev", "#django", "#django-dev"
                       "#emacs", "#emacs-india" "#emacs-elpy")
            :nickserv-password ,irc-password
            )))
