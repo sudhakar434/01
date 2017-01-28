@@ -10,7 +10,7 @@ root: ~/projects/appknox/
 # pre: sudo /etc/rc.d/mysqld start
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-pre_window: source ~/.zshrc
+pre_window:
 
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
@@ -26,35 +26,14 @@ tmux_command: byobu
 # attach: false
 
 # Runs after everything. Use it to attach to tmux with custom options etc.
-post: tmux -CC attach -t moriarty
+post:
 
 windows:
-
   - irene:
-      root: ~/projects/appknox/irene/
-      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
-      panes:
-        - deactivate && . ~/.nodeenvs/irene/bin/activate && ember serve
-        - l
-        - l
-        - l
-
-
-  - mycroft:
-      root: ~/projects/appknox/mycroft/
-      layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
-      panes:
-        - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev
-        - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && ./scripts/start_celery.sh
-        - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && ./scripts/start_server.sh
-        - wo mycroft && export DJANGO_SETTINGS_MODULE=settings_dev && dsp
-        # - cd ~/projects/appknox/moriarty && export DEBUG=True && ./scripts/start_server.sh
-
-  # - moriarty:
-  #     root: ~/projects/appknox/
-  #     layout: dbdc,149x42,0,0{74x42,0,0[74x21,0,0,25,74x20,0,22,33],74x42,75,0[74x21,75,0,31,74x20,75,22,32]}
-  #     panes:
-  #       - cd ~/projects/appknox/mycroft/ && export DEBUG=True && dsp
-  #       - smo
-  #       - wo mycroft
-  #       - wo moriarty
+      - j irene && deactivate && . ~/.nodeenvs/irene/bin/activate && ember serve
+  - mycroft-celery:
+      - j mycroft && ./scripts/start_celery.sh
+  - mycroft-server:
+      - j mycroft && ./scripts/start_server.sh
+  - mycroft-shell:
+      - wo mycroft && dsp

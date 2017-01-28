@@ -54,6 +54,7 @@ l = [None, 3, 5.0, 'aaew', 23]
 d = {1: 2, "a": "b", }
 gamma = ''
 beta = 'β'
+lh = 'http://0.0.0.0:8000'
 
 
 def f(*args, **kwargs):
@@ -66,8 +67,28 @@ def add(x, y):
 
 
 def codepoint(x):
-    return 'U+%04x' % ord(x)
+    cp = 'U+%04x' % ord(x)
+    return cp.upper()
 
+
+def hb(number):
+    return bin(int('0x{}'.format(number), 0))
+
+
+def hd(number):
+    return int('0x{}'.format(number), 0)
+
+
+def dh(number):
+    return int('0x{}'.format(number), 0)
+
+
+def bd(number):
+    return int('0x{}'.format(number), 0)
+
+
+def ch(number):
+    return chr(int('0x{}'.format(number), 0))
 
 
 print('============== Executed {} ============'.format(__file__))

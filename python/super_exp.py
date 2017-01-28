@@ -34,6 +34,9 @@ def replace_super(block):
     x = 'super({}, self)'.format(cls_name)
     y = 'super({}, cls)'.format(cls_name)
 
+    x = 'super({}, self)'.format(cls_name)
+    y = 'super({}, cls)'.format(cls_name)
+
     new_block = ''
     for line in block:
         if x in line:

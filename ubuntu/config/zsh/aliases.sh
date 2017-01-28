@@ -20,6 +20,7 @@ alias j=z
 alias jd='cd ~/Downloads/'
 alias js='cd ~/sandbox'
 alias jv='cd ~/Videos/'
+alias j1='j 01'
 
 
 alias b='byobu'
@@ -106,7 +107,6 @@ alias jobs='jobs -l'
 alias k='kill -9'
 alias pk='pkill'
 alias ka='killall '
-alias kc='killall chrome'
 alias ke='killall emacs'
 alias kb="pgi byobu | awk '{print $2}' | xargs kill -9 "
 
@@ -138,6 +138,7 @@ alias gpom="git push origin develop"
 
 alias glum="git pull upstream master"
 alias glod="git pull origin develop"
+alias glom="git pull origin master"
 
 
 
@@ -260,7 +261,7 @@ alias vs='vagrant status'
 alias vu='vagrant up'
 alias vgs='vagrant global-status'
 
-alias sc='sudo systemctl '
+
 
 scs () {
     systemctl status $1.service
@@ -330,10 +331,35 @@ alias fl=flash
 
 alias tv=tvol
 
-alias rc='sudo rabbitmqctl '
+
 
 
 alias rnm='sudo systemctl restart NetworkManager'
 
 alias sub='subliminal download -s -l en '
 alias subs='subliminal download -s -l en '
+
+alias di='sudo dpkg -i '
+
+
+vagrant_kube () {
+    export KUBERNETES_PROVIDER=vagrant
+    export KUBERNETES_MASTER_MEMORY=1536
+    export KUBERNETES_NODE_MEMORY=4096
+}
+
+pyclean () {
+        find . -type f -name "*.py[co]" -delete
+        find . -type d -name "__pycache__" -delete
+}
+
+
+alias sc='sudo systemctl '
+alias rc='sudo rabbitmqctl '
+alias kc='kubectl '
+
+alias kcp='google-chrome http://127.0.0.1:8001/ui/ && kubectl proxy'
+
+alias ae='aws ec2'
+alias aed='aws ec2 describe-instances'
+alias aedi='aed | grep InstanceId'

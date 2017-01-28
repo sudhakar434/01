@@ -836,4 +836,14 @@ json.dump(config, sys.stdout)
 
 
 (make-button 1 50 'action (lambda(x) (find-file "~/test.py")))
+
+
+;; org mode
+[[;; ./book.jpg]]
+[[./book.jpg]]
+[[./book.jpg]]
+[[./book.jpg]]
+
+
+
 ;;; elisp.el ends here

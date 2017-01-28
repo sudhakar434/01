@@ -43,6 +43,8 @@
       - python-pip
       - virtualenvwrapper
 
+      - virtualbox
+
     ppas:
       - ppa:synapse-core/ppa
       - ppa:nathan-renniewaldock/flux

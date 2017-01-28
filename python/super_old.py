@@ -3,19 +3,22 @@ class Foo:
         super(Foo, self).__init__()
 
     def test_allows_checks_relying_on_other_modeladmins(self):
-        class MyBookAdmin():
+        class Test():
             def check(self, **kwargs):
-                errors = super(MyBookAdmin, self).check(**kwargs)
-                return errors
+                errors = super(Test, self).check(**kwargs)
 
+    class Test():
+        def check(self, **kwargs):
+            errors = super(MyBookAdmin, cls).check(**kwargs)
 
+@test
 class Fooo:
     def __init__(self):
         super(Fooo, self).__init__(
             'a', 'b')
 
 
-
+# some comment
 class A:
     pass
 

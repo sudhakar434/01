@@ -8,5 +8,6 @@
 
 
 # protect from netcut
-@reboot sudo arpon -o -D
-@reboot sudo usbmuxd -v --user usbmux --udev
+# @reboot sudo arpon -o -D
+# @reboot sudo usbmuxd -v --user usbmux --udev
+@reboot ~/.01/ubuntu/bin/space2ctrl.sh

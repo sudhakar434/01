@@ -108,6 +108,8 @@ linum-mode
 
 ### packages
 
+
+
 #### org mode
 
 ```cl
@@ -128,6 +130,11 @@ M-x org-reload
 
 # sort
 org-sort
+
+
+# embed images
+[[./book.jpg]]
+
 ```
 
 

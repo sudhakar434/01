@@ -89,6 +89,10 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 
 
+
+
+
+
 # user config
 
 # set utf8
@@ -106,10 +110,21 @@ if [ -d /etc/profile.d ]; then
   unset i
 fi
 
+
+
 # source virtualenv wrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
+
+workon p35
+
+# autoenv
+source /usr/local/bin/activate.sh
+
+# Load pyenv automatically
+# export PATH="/home/anand/.pyenv/bin:$PATH"
+
 
 
 
@@ -134,13 +149,6 @@ export PATH="$HOME/.cask/bin:$PATH"
 export PATH="$HOME/.os/bin:$PATH"
 
 
-# autoenv
-# source /usr/local/bin/activate.sh
-
-workon p35
-
-# Load pyenv automatically
-# export PATH="/home/anand/.pyenv/bin:$PATH"
 
 export NODEENV_HOME=$HOME/.nodeenvs
 
@@ -148,6 +156,8 @@ export NIKOLA_MONO=true
 
 export PATH="/home/chillaranand/.cask/bin:$PATH"
 export PATH="/home/chillaranand/Downloads/android-ndk-r12b-linux-x86_64/android-ndk-r12b:$PATH"
+
+
 
 # secrets
 source ~/Dropbox/tech/env.sh
@@ -158,3 +168,20 @@ fi
 
 # pyenv
 export PATH="/home/chillaranand/.pyenv/bin:$PATH"
+
+
+# vagrant
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+
+# remove duplicate history
+# setopt EXTENDED_HISTORY
+# setopt HIST_EXPIRE_DUPS_FIRST
+# setopt HIST_IGNORE_DUPS
+# setopt HIST_IGNORE_ALL_DUPS
+# setopt HIST_IGNORE_SPACE
+# setopt HIST_FIND_NO_DUPS
+# setopt HIST_SAVE_NO_DUPS
+
+
+export AWS_DEFAULT_PROFILE=appknox

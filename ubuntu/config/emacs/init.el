@@ -1321,21 +1321,21 @@ Repeated invocations toggle between the two most recently open buffers."
   (delete-indentation 1))
 
 
-(defun launch-separate-emacs-under-x ()
-  (interactive)
-  (call-process "sh" nil nil nil "-c" "emacs &"))
+   (defun launch-separate-emacs-under-x ()
+     (interactive)
+     (call-process "sh" nil nil nil "-c" "emacs &"))
 
 
-(defun restart-emacs ()
-  (interactive)
-  ;; We need the new emacs to be spawned after all kill-emacs-hooks
-  ;; have been processed and there is nothing interesting left
-  (add-hook 'kill-emacs-hook
-            (if (display-graphic-p)
-                #'launch-separate-emacs-under-x
-              #'launch-separate-emacs-in-terminal)
-            t)
-  (kill-emacs))
+   (defun restart-emacs ()
+     (interactive)
+     ;; We need the new emacs to be spawned after all kill-emacs-hooks
+     ;; have been processed and there is nothing interesting left
+     (add-hook 'kill-emacs-hook
+               (if (display-graphic-p)
+                   #'launch-separate-emacs-under-x
+                 #'launch-separate-emacs-in-terminal)
+               t)
+     (kill-emacs))
 
 
 (defun get-positions-of-line-or-region ()
@@ -1567,6 +1567,17 @@ With a prefix argument N, (un)comment that many sexps."
 (setq projectile-completion-system 'helm)
 (helm-descbinds-mode)
 (helm-mode 1)
+
+
+
+(use-package engine-mode
+  :config
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d"))
+
+
+
 
 
 ;; enable Helm version of Projectile with replacment commands

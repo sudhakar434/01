@@ -759,7 +759,21 @@ x <any zipped file>
 ## third party packages
 
 
-### aws cli
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# aws cli
 
 # install
 pip install awscli
@@ -768,8 +782,11 @@ pip install awscli
 aws configure
 aws configure --profile=new
 
-# usage
+
+
+# s3
 aws s3 ls
+
 # minio
 aws --endpoint-url http://0.0.0.0:9000 s3 ls
 
@@ -785,6 +802,13 @@ aws s3api list-objects --bucket BUCKETNAME --output json --query "[length(Conten
 
 # make a bucket public
 # need to add a policy
+
+
+
+#ec2
+aws ec2 run-instances --image-id ami-e13739f6 --count 1 --instance-type t2.nano
+
+
 
 
 
@@ -807,13 +831,19 @@ S + Arrows - To move along splits
 
 
 
-###  docker
 
-```shell
+
+
+
+#  docker
+docker () {}
+
 docker images
 docker ps
 docker ps -a
-docker ps -aq # list only container ids
+
+# list only container ids
+docker ps -aq
 docker commit <name>
 docker start <id>
 docker stop <id>
@@ -829,7 +859,7 @@ docker pull
 sudoedit /etc/default/grub
 GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
 sudo update-grub && shutdown -r 0
-```
+
 
 ### gunicorn
 
@@ -1115,14 +1145,17 @@ heroku config:set DEBUG_COLLECTSTATIC=1
 
 
 
-### screenkey
+# screen recorder
+kazam
 
-```sh
+
+# screenkey
+
 # screenkey shows the keys pressed while screencasting
 sudo apt-get install screenkey
 
 # need to stop it from system-monitor
-```
+
 
 
 
@@ -1434,10 +1467,18 @@ for i in {1..5}; do echo "Welcome $i times"; done
 
 
 
+# vagrant
+
+vagrant init
+
+vagrant up
+
+
 
 
 
 # ansible
+ansible() {}
 
 ansible all -i inventory/vagrant.ini -m ping
 
@@ -1449,6 +1490,10 @@ ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
 
 
 ansible-playbook playbook.yml -i inventory.ini --user=username --extra-vars "ansible_sudo_pass=yourPassword"
+
+
+
+
 
 
 
@@ -1523,6 +1568,8 @@ pdftoppm -rx 300 -ry 300 -png a.pdf prefix
 
 
 
+
+
 # google cloud platform - gcloud
 gcloud projects list
 
@@ -1539,8 +1586,8 @@ gcloud compute ssh "server-foo"
 # open a port
 gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
 
-
-
+# fetch data and generate kubectl entry
+gcloud container clusters get-credentials "cluster-foo"
 
 
 
@@ -1548,6 +1595,8 @@ gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=
 # kubectl
 kubectl cluster-info
 
+kubectl --namespace=deis get pods
+kubectl get pods --all-namespaces
 
 
 
