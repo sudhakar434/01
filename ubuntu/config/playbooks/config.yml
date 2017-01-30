@@ -51,9 +51,11 @@
 
 
   tasks:
+
     - name: Add third party PPAs
       apt_repository: repo={{ item }} state=present
       with_items: "{{ ppas }}"
+
 
     - name: Install ubuntu packages
       apt: name={{ item }} state=present update_cache=yes cache_valid_time=8640000
@@ -75,6 +77,13 @@
         command: /bin/bash /tmp/pyenv-installer
         when:
           pyenv.stat.exists == False
+
+
+    - name: Create virtualenv and install requirements
+      pip:
+        requirements: "{{ config_root }}/ubuntu/config/requirements.txt"
+        virtualenv: "{{ venv_root }}/p35"
+        virtualenv_python: python3.5
 
 
     - block:
@@ -125,6 +134,17 @@
         when:
           binary.stat.exists == False
 
+    - block:
+      - name: Check if gcloud is installed
+        stat: path=/usr/bin/gcloud
+        register: gcloud
+      - name: Install gcloud
+        apt: name=google-cloud-sdk state=present update_cache=yes cache_valid_time=8640000
+        when:
+          gcloud.stat.exists == False
+      # - name: Update gcloud
+      #   command: gcloud components update
+
 
     # - block:
     #   - name: Check if deis is installed
@@ -143,18 +163,6 @@
     #       deis.stat.exists == False
     #   - name: Move binary deis
     #     command: mv deis /usr/local/bin/deis
-
-
-    - block:
-      - name: Check if gcloud is installed
-        stat: path=/usr/bin/gcloud
-        register: gcloud
-      - name: Install gcloud
-        apt: name=google-cloud-sdk state=present update_cache=yes cache_valid_time=8640000
-        when:
-          gcloud.stat.exists == False
-      - name: Update gcloud
-        command: gcloud components update
 
 
     # - block:
@@ -197,10 +205,3 @@
 
     # - git: repo=git://foosball.example.org/path/to/repo.git
            # dest: /home/chillaranand/.qfc
-
-
-    # - name: Create virtualenv and install requirements
-    #   pip:
-    #     requirements: "{{ config_root }}/ubuntu/config/requirements.txt"
-    #     virtualenv: "{{ venv_root }}/p35"
-    #     virtualenv_python: python3.5

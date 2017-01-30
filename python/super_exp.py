@@ -29,11 +29,6 @@ def replace_super(block):
     replaced = False
     cont = False
 
-    find = 'super({}, self)'.format(cls_name)
-
-    x = 'super({}, self)'.format(cls_name)
-    y = 'super({}, cls)'.format(cls_name)
-
     x = 'super({}, self)'.format(cls_name)
     y = 'super({}, cls)'.format(cls_name)
 

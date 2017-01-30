@@ -11,3 +11,9 @@ jinja2
 jupyter
 stdlib_list
 autoenv
+pandas
+numpy
+awscli
+httpie
+Sphinx
+celery

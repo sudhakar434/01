@@ -886,6 +886,12 @@
   (bind-key "C-c C-o" 'helm-buffer-switch-other-window))
 
 
+(use-package helm-flx
+  :config
+  (helm-flx-mode +1)
+  (setq helm-flx-for-helm-find-files t ;; t by default
+        helm-flx-for-helm-locate t))
+
 ;; swiper for search
 ;; (use-package ivy)
 ;; (use-package swiper-helm

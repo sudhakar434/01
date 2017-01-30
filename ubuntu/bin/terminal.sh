@@ -790,6 +790,12 @@ aws s3 ls
 # minio
 aws --endpoint-url http://0.0.0.0:9000 s3 ls
 
+aws s3 mb s3://bucket-name
+aws s3 rb s3://bucket-name
+# delete non-empty bucket
+aws s3 rb s3://bucket-name --force
+
+
 aws s3 cp s3://foo/bar ./aws/sherlock-test
 aws s3 sync s3://foo s3://bar
 aws s3 sync s3://foo ./aws/foo
@@ -1571,39 +1577,66 @@ pdftoppm -rx 300 -ry 300 -png a.pdf prefix
 
 
 # google cloud platform - gcloud
+
+# auth
+gcloud auth application-default login
+
 gcloud projects list
+
 
 gcloud config set project avilpage-staging
 
-gcloud config set compute/zone us-central1-b
-
-gcloud auth application-default login
-
-# ssh into instance
-gcloud compute ssh "server-foo"
+gcloud config set compute/zone us-central1-a
 
 
-# open a port
-gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
+gcloud container clusters list
 
 # fetch data and generate kubectl entry
 gcloud container clusters get-credentials "cluster-foo"
 
 
+gcloud compute addresses list
+
+
+gcloud compute instances list
+
+# ssh into instance
+gcloud compute ssh "server-foo"
+
+# open a port
+gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
+
+
+
+
+
 
 
 # kubectl
+
+# show merged kubeconfig settings - all clusters
+kubectl config view
+
+# set cluster
+kubectl config use-context local
+kubectl config use-context staging
+
+
+# get cluster info
 kubectl cluster-info
-
-kubectl --namespace=deis get pods
+kubectl get nodes
 kubectl get pods --all-namespaces
+kubectl get pods --namespace=deis
 
 
 
-# minikube
+# minikube - setup kubernetes locally
 minikube version
 
 minikube start
+
+
+
 
 
 # deis
