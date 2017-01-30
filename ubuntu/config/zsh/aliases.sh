@@ -128,7 +128,7 @@ alias glum="git pull upstream master"
 
 alias gpp="git pull && git push"
 alias gsum="git pull upstream master && git push origin master"
-
+alias gp="git push --set-upstream"
 
 alias gcom="git checkout master"
 alias gcod="git checkout develop"

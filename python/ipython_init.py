@@ -22,11 +22,7 @@ except:
     pass
 
 
-# useful variables
-now = datetime.datetime.now()
-
-
-# stdlib imports
+# stdlib extra imports
 from collections import *
 from functools import *
 from unicodedata import *
@@ -34,19 +30,18 @@ from pprint import pprint
 pp = pprint
 
 
+
 # 3rd party libraries
-try:
-    import celery
-    from celery import current_app
+import celery
+from celery import chain, current_app, group
 
-    # import importmagic as im
-    # si = im.SymbolIndex()
+import numpy as np
+import pandas as pd
 
-    import numpy as np
-    import pandas as pd
 
-except:
-    print('Not imported all modules')
+
+# useful variables
+now = datetime.datetime.now()
 
 
 # data
@@ -56,6 +51,8 @@ gamma = ''
 beta = 'β'
 lh = 'http://0.0.0.0:8000'
 
+
+# utilities
 
 def f(*args, **kwargs):
     print('sample function with {}, {}'.format(args, kwargs))
@@ -89,6 +86,7 @@ def bd(number):
 
 def ch(number):
     return chr(int('0x{}'.format(number), 0))
+
 
 
 print('============== Executed {} ============'.format(__file__))
