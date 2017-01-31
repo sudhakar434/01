@@ -1476,8 +1476,24 @@ for i in {1..5}; do echo "Welcome $i times"; done
 # vagrant
 
 vagrant init
+vagrant init ubuntu/xenial64
+vagrant init debian/jessie64
 
 vagrant up
+vagrant up --provider=Virtualbox
+
+vagrant ssh
+
+vagrant reload
+
+vagrant destroy
+vagrant status
+vagrant halt
+
+vagrant global-status
+
+
+
 
 
 
