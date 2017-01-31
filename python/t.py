@@ -1,6 +1,4 @@
-import os
-
-from celery import Celery
+from celery import Celery, group, chord
 
 
 app = Celery(broker='amqp://guest@localhost//', backend='amqp://')
