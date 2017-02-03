@@ -31,6 +31,9 @@ ls | xargs -I {} ls {}
 
 # ignore empty
 ls | xargs -I {} cat {} -r
+
+# adb command to install all apks from folder
+ls | xargs -I {} adb install {}
 ```
 
 
