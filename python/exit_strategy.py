@@ -1,28 +1,25 @@
 from math import ceil, floor
 
 
-def probability(n, m=None, p=None):
-    if not m:
+def probability(n, m=None):
+    if m is None:
         m = sum(range(1, n + 1)) / n - 1
     if floor(float(m)) == 0:
         return 0
-    if not p:
-        p = 1.0
 
     if n % 2 == 0:
-        v1 = sum(range(ceil(m), n)) / (n - floor(m))
+        v1 = sum(range(int(ceil(m)), n + 1)) / (n - floor(m)) - (sum(range(1, n + 1)) / n - m - 1)
         p1 = (n - floor(m)) / n
     else:
-        v1 = sum(range(ceil(m), n)) / (n - floor(m) + 1)
+        v1 = sum(range(int(ceil(m)), n + 1)) / (n - floor(m) + 1) - (sum(range(1, n + 1)) / n - m - 1)
         p1 = (n - floor(m) + 1) / n
 
-    v2 = sum(range(1, floor(m))) / floor(m)
-    val = p*((p1*v1) + (1 - p1)*v2)
+    val = ((p1 * v1) + (1 - p1) * probability(n, m - 1))
 
-    print(n, m, p, val, sep='\t')
+    print(n, m, val)
 
-    return val / 1.0 + probability(n, m - 1, 1 - p1)
+    return val
 
 
-print(probability(5))
+print(probability(50))
 # print(probability(6))
