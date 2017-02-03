@@ -3,6 +3,7 @@
 
 #### Key bindings
 
+
 ```cl
 emacs -nd  # start emacs in terminal
 emacs -q   # start emacs without init file
@@ -10,7 +11,7 @@ emacs -q   # start emacs without init file
 
 ;; set global key binding
 (global-set-key (kbd "C-x C-t") 'sh-send-line-or-region)
-
+```
 
 # control
 
@@ -95,12 +96,19 @@ emacs -q   # start emacs without init file
 
 # functions
 
-    browse-url  # open url
+```
+# open url
+browse-url
+
+# show line numbers
+linum-mode
 ```
 
 
 
 ### packages
+
+
 
 #### org mode
 
@@ -122,6 +130,11 @@ M-x org-reload
 
 # sort
 org-sort
+
+
+# embed images
+[[./book.jpg]]
+
 ```
 
 

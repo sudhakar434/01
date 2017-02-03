@@ -24,7 +24,9 @@
 (setq package-user-dir (expand-file-name "elpa" root-dir))
 (setq package-vendor-dir (expand-file-name "vendor" root-dir))
 (setq recent-files-dir (expand-file-name "recentf" root-dir))
-(load-file (expand-file-name ".private.el" root-dir))
+
+;; load secret variables
+(load-file "~/Dropbox/tech/private.el")
 
 ;; Always load newest byte code
 ;; (setq load-prefer-newer t)
@@ -150,7 +152,12 @@
 (run-at-time nil (* 5 60) 'recentf-save-list)
 (run-with-idle-timer 5  nil 'recentf-cleanup)
 
-;; Automatically save and restore sessions
+
+;; save cursor positions
+(save-place-mode 1)
+
+
+;;Automatically save and restore sessions
 ;; (require 'desktop)
 ;; (setq desktop-dirname             "~/.emacs.d/desktop/"
 ;;       desktop-base-file-name      "emacs.desktop"
@@ -190,8 +197,8 @@
 (package-initialize)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
-(package-refresh-contents)
-(package-initialize)
+;; (package-refresh-contents)
+;; (package-initialize)
 
 ;; dont check signatures
 (setq package-check-signature nil)
@@ -249,37 +256,37 @@
   (global-set-key (kbd "M-m") 'goto-last-change))
 
 
-(use-package golden-ratio
-  :config
-  (golden-ratio-mode 1)
+;; (use-package golden-ratio
+;;   :config
+;;   (golden-ratio-mode 1)
 
-  (defvar golden-ratio-selected-window
-    (frame-selected-window)
-    "Selected window.")
+;;   (defvar golden-ratio-selected-window
+;;     (frame-selected-window)
+;;     "Selected window.")
 
-  (defun golden-ratio-set-selected-window
-      (&optional window)
-    "Set selected window to WINDOW."
-    (setq-default
-     golden-ratio-selected-window (or window (frame-selected-window))))
+;;   (defun golden-ratio-set-selected-window
+;;       (&optional window)
+;;     "Set selected window to WINDOW."
+;;     (setq-default
+;;      golden-ratio-selected-window (or window (frame-selected-window))))
 
-  (defun golden-ratio-selected-window-p
-      (&optional window)
-    "Return t if WINDOW is selected window."
-    (eq (or window (selected-window))
-        (default-value 'golden-ratio-selected-window)))
+;;   (defun golden-ratio-selected-window-p
+;;       (&optional window)
+;;     "Return t if WINDOW is selected window."
+;;     (eq (or window (selected-window))
+;;         (default-value 'golden-ratio-selected-window)))
 
-  (defun golden-ratio-maybe
-      (&optional arg)
-    "Run `golden-ratio' if `golden-ratio-selected-window-p' returns nil."
-    (interactive "p")
-    (unless (golden-ratio-selected-window-p)
-      (golden-ratio-set-selected-window)
-      (golden-ratio arg)))
+;;   (defun golden-ratio-maybe
+;;       (&optional arg)
+;;     "Run `golden-ratio' if `golden-ratio-selected-window-p' returns nil."
+;;     (interactive "p")
+;;     (unless (golden-ratio-selected-window-p)
+;;       (golden-ratio-set-selected-window)
+;;       (golden-ratio arg)))
 
-  (add-hook 'buffer-list-update-hook #'golden-ratio-maybe)
-  (add-hook 'focus-in-hook           #'golden-ratio)
-  (add-hook 'focus-out-hook          #'golden-ratio))
+;;   (add-hook 'buffer-list-update-hook #'golden-ratio-maybe)
+;;   (add-hook 'focus-in-hook           #'golden-ratio)
+;;   (add-hook 'focus-out-hook          #'golden-ratio))
 
 
 (use-package windmove
@@ -296,7 +303,15 @@
 ;;   :config
 ;;   (global-set-key [f8] 'neotree-toggle))
 
-(use-package dired-subtree)
+(use-package dired-subtree
+  :config
+  (define-key dired-mode-map "i" 'dired-subtree-insert)
+  (define-key dired-mode-map ";" 'dired-subtree-remove))
+
+
+(use-package direx
+  :config
+  (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory))
 
 
 ;; (use-package dirtree
@@ -313,6 +328,9 @@
 
 
 ;; programming mode packages
+
+(use-package focus)
+
 
 (use-package projectile
   :init
@@ -336,6 +354,20 @@
   (add-hook 'markdown-mode-hook #'vimish-fold-mode))
 
 
+
+
+(use-package real-auto-save
+  :config
+  (add-hook 'prog-mode-hook 'real-auto-save-mode)
+  (setq real-auto-save-interval 10))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+
+;; (use-package paredit)
+
 (use-package smartparens
   :config
   (sp-pair "`" "`" :wrap "C-`")
@@ -345,43 +377,75 @@
     (turn-on-smartparens-strict-mode))
   (add-hook 'prog-mode-hook 'strict-smartparens))
 
-
 (use-package electric-operator
   :config
   (add-hook 'python-mode-hook #'electric-operator-mode))
 
 
-;; (use-package real-auto-save
-;;   :config
-;;   (add-hook 'prog-mode-hook 'real-auto-save-mode)
-;;   (setq real-auto-save-interval 10))
 
 
 ;; python mode
+
 (use-package pyvenv)
 (use-package highlight-indentation)
-(use-package yasnippet)
-(use-package company)
+(use-package company
+  :config
+  (global-company-mode 1)
+
+  (setq company-idle-delay 0)
+  (setq company-tooltip-limit 5)
+  (setq company-minimum-prefix-length 1)
+  (setq company-tooltip-flip-when-above t)
+
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 ;; (use-package elpy)
-(add-to-list 'load-path "~/projects/lisp/elpy")
+(add-to-list 'load-path "~/projects/python/elpy")
 (load "elpy" nil t)
 (elpy-enable)
+
+(append grep-find-ignored-files "flycheck_*")
+
+(setq python-shell-prompt-detect-failure-warning nil)
+(setq python-shell-completion-native-enable nil)
 (setq python-indent-offset 4)
+(setq python-indent-guess-indent-offset nil)
+
 (setq elpy-test-runner 'elpy-test-pytest-runner)
 (setq elpy-rpc-timeout nil)
 (setq elpy-rgrep-file-pattern "*.py *.html")
-
-;; (setq elpy-rpc-python-command "python3")
-(append grep-find-ignored-files "flycheck_*")
-(setq python-shell-prompt-detect-failure-warning nil)
+(setq elpy-rpc-backend "jedi")
+;; (setq elpy-rpc-python-command "python3.5")
+(setq elpy-rpc-python-command "python3")
+;; (elpy-use-ipython)
 
 (defun elpy-install-requirements ()
   (interactive)
   (async-shell-command "sudo pip install rope jedi flake8 importmagic autopep8 yapf --upgrade"))
 
+(require 's)
+
+(defun elpy-goto-definition-or-template ()
+  (interactive)
+  (if (inside-string)
+      (elpy-goto-template)
+    (elpy-goto-definition)))
+
+(defun elpy-goto-template ()
+  (interactive)
+  (let ((file-name (thing-at-point 'filename)))
+    (find-file (expand-file-name
+                (dolist (f (projectile-current-project-files))
+                  (if (s-contains? file-name f)
+                      (return f)))
+                (projectile-project-root)))))
+
+
 ;; activate exp
-(pyvenv-workon "exp")
+(pyvenv-workon "p35")
 (elpy-rpc-restart)
 
 (defun my/send-region-or-buffer (&optional arg)
@@ -392,12 +456,7 @@
                       (point-max))))
 
 (define-key elpy-mode-map (kbd "C-c C-c") 'my/send-region-or-buffer)
-
-(defun my/elpy-check ()
-  (interactive)
-  (elpy-check))
-
-(define-key elpy-mode-map (kbd "C-c C-v") 'my/elpy-check)
+(define-key elpy-mode-map (kbd "<return>") 'elpy-open-and-indent-line-below)
 (define-key elpy-mode-map (kbd "M-,") 'pop-tag-mark)
 
 (defun company-yasnippet-or-completion ()
@@ -414,28 +473,146 @@
              'company-yasnippet-or-completion
              company-active-map)))
 
-(defun ep-project-root()
-  "Return the root of the project(dir with manage.py in) or nil"
-  (interactive)
-  (let ((curdir default-directory)
-        (max 10)
-        (found nil))
-    (while (and (not found) (> max 0))
-      (progn
-        (if (or (file-exists-p (concat curdir "/bin/django")) ; Buildout?
-                (file-exists-p (concat curdir "manage.py")))
-            (progn
-              (setq found t))
-          (progn
-            (setq curdir (concat curdir "../"))
-            (setq max (- max 1))))))
-    (if found
-        (expand-file-name curdir))))
-
-(ep-project-root)
-
 ;; (use-package pony-mode)
 
+(use-package wrap-region)
+
+
+(use-package circe
+  :config
+  (setq circe-reduce-lurker-spam t)
+  (setq circe-network-options
+       `(("Freenode"
+           :host "irc.freenode.net"
+           :port (6667 . 6697)
+           :nick "chillaranand"
+           :channels (:after-auth
+                      "#python", "#python-india", "#python-dev", "#django", "#django-dev"
+                      "#emacs", "#emacs-india" "#emacs-elpy")
+           :nickserv-password ,irc-password
+           )))
+  (define-key circe-channel-mode-map (kbd "C-c C-n") 'tracking-next-buffer))
+
+
+(use-package bash-completion
+  :config
+  (bash-completion-setup))
+
+
+(use-package multi-term
+
+  :config
+  (defun mutli-term-get-or-create-process ()
+    (interactive)
+    (let* ((bufname "*terminal<1>*")
+           (proc (get-buffer-process bufname)))
+      (when (not proc)
+        (multi-term))
+      (display-buffer bufname
+                  nil
+                  'visible)))
+  :bind
+  ("C-c C-t" . multi-term-get-or-create-process))
+
+
+(use-package xterm-color)
+
+
+(defun sh-send-line-or-region (&optional step)
+  (interactive ())
+  (setq process-name "*terminal<1>*")
+  (let ((proc (get-process process-name))
+        pbuf min max command)
+    (unless proc
+      (let ((currbuff (current-buffer)))
+        (shell)
+        (switch-to-buffer currbuff)
+        (setq proc (get-process process-name))
+        ))
+    (setq pbuff (process-buffer proc))
+    (if (use-region-p)
+        (setq min (region-beginning)
+              max (region-end))
+      (setq min (point-at-bol)
+            max (point-at-eol)))
+    (setq command (concat (buffer-substring min max) "\n"))
+    (with-current-buffer pbuff
+      (goto-char (process-mark proc))
+      (insert command)
+      (move-marker (process-mark proc) (point))
+      ) ;;pop-to-buffer does not work with save-current-buffer -- bug?
+    (process-send-string  proc command)
+    (display-buffer (process-buffer proc) t)
+    (when step
+      (goto-char max)
+      (next-line))
+    ))
+
+(defun sh-send-line-or-region-and-step ()
+  (interactive)
+  (sh-send-line-or-region t))
+
+(defun sh-switch-to-process-buffer ()
+  (interactive)
+  (pop-to-buffer (process-buffer (get-process "shell")) t))
+
+(require 'sh-script)
+(sh-set-shell "zsh")
+(add-hook 'shell-mode-hook
+          'ansi-color-for-comint-mode-on)
+(define-key sh-mode-map (kbd "C-c C-c") 'sh-send-line-or-region-and-step)
+(define-key sh-mode-map (kbd "C-c C-z") 'sh-switch-to-process-buffer)
+
+
+(use-package prodigy
+  :config
+
+  (prodigy-define-service
+    :name "0 django sherlock"
+    :tags '(appknox)
+    :cwd "~/projects/appknox/sherlock/"
+    :command "bash"
+    :args '("scripts/start_server.sh")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "1 sherlock celery"
+    :tags '(appknox)
+    :init (lambda () (pyvenv-workon "sherlock"))
+    :cwd "~/projects/appknox/sherlock/"
+    :command "bash"
+    :args '("scripts/start_celery.sh")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "irene ember serve"
+    :tags '(appknox)
+    :cwd "~/projects/appknox/irene/"
+    :command "bash"
+    :args '("scripts/start_server.sh")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  (prodigy-define-service
+    :name "avilpage serve"
+    :cwd "~/projects/python/avilpage/"
+    :command "nikola"
+    :args '("auto")
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t)
+
+  :bind
+  ("C-x C-p" . prodigy))
+
+(defun prodigy-begin ()
+  (interactive)
+  (prodigy)
+  (with-current-buffer "*prodigy*"
+    (prodigy-mark-all)
+    (prodigy-start)
+    (prodigy-unmark-all)))
 
 
 (use-package salt-mode)
@@ -449,19 +626,6 @@
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this))
 
 
-(use-package company
-  :config
-  (global-company-mode 1)
-
-  (setq company-idle-delay 0)
-  (setq company-tooltip-limit 5)
-  (setq company-minimum-prefix-length 1)
-  (setq company-tooltip-flip-when-above t)
-
-  (define-key company-active-map (kbd "M-n") nil)
-  (define-key company-active-map (kbd "M-p") nil)
-  (define-key company-active-map (kbd "C-n") #'company-select-next)
-  (define-key company-active-map (kbd "C-p") #'company-select-previous))
 
 
 (use-package header2)
@@ -478,6 +642,7 @@
   (setq web-mode-code-indent-offset 4)
   (setq web-mode-css-indent-offset 4)
   (setq web-mode-js-indent-offset 4)
+  (setq web-mode-enable-current-element-highlight t)
 
   (setq web-mode-script-padding 0)
   (setq web-mode-enable-auto-expanding t)
@@ -552,6 +717,10 @@
   (define-key magit-mode-map (kbd "M-p") nil))
 ;;   :config
 ;;   (global-git-gutter-mode +1))
+
+(use-package magit-gh-pulls
+  :config
+  (add-hook 'magit-mode-hook 'turn-on-magit-gh-pulls))
 
 
 (use-package diff-hl
@@ -651,7 +820,6 @@
   (show-paren-mode +1))
 
 (use-package helm-chrome)
-(use-package helm-swoop)
 (use-package helm-descbinds)
 (use-package helm-projectile)
 (use-package helm-ag)
@@ -659,6 +827,13 @@
 (use-package helm-github-stars
   :config
   (setq helm-github-stars-username "chillaranand"))
+
+(use-package helm-swoop
+  :config
+  (setq helm-swoop-speed-or-color t)
+  (setq helm-swoop-split-with-multiple-windows t)
+  (global-set-key "\C-s" 'helm-swoop-without-pre-input))
+
 
 (use-package helm
   :config
@@ -711,18 +886,24 @@
   (bind-key "C-c C-o" 'helm-buffer-switch-other-window))
 
 
-;; swiper for search
-(use-package ivy)
-(use-package swiper-helm
+(use-package helm-flx
   :config
-  (ivy-mode 1)
-  ;; make swiper to use helm display
-  (setq swiper-helm-display-function 'helm-default-display-buffer)
-  (setq ivy-use-virtual-buffers t)
-  (global-set-key "\C-s" 'swiper-helm)
-  (global-set-key "\C-r" 'swiper-helm)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key [f8] 'ivy-resume))
+  (helm-flx-mode +1)
+  (setq helm-flx-for-helm-find-files t ;; t by default
+        helm-flx-for-helm-locate t))
+
+;; swiper for search
+;; (use-package ivy)
+;; (use-package swiper-helm
+;;   :config
+;;   (ivy-mode 1)
+;;   ;; make swiper to use helm display
+;;   (setq swiper-helm-display-function 'helm-default-display-buffer)
+;;   (setq ivy-use-virtual-buffers t)
+;;   (global-set-key "\C-s" 'swiper-helm)
+;;   (global-set-key "\C-r" 'swiper-helm)
+;;   (global-set-key (kbd "C-c C-r") 'ivy-resume)
+;;   (global-set-key [f8] 'ivy-resume))
 
 
 ;; (use-package aggressive-indent
@@ -928,13 +1109,16 @@
 
 ;; slides
 ;; (load-file "~/.emacs.d/vendor/htmlize.el")
+
 (use-package htmlize)
+
 
 (use-package org
   :config
   (setq org-agenda-span 30)
   (setq org-todo-keywords
-        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE"))))
+        '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  (define-key org-mode-map (kbd "C-c C-c") #'org-reveal-export-to-html-and-browse))
 
 
 (use-package ox-reveal
@@ -1143,21 +1327,21 @@ Repeated invocations toggle between the two most recently open buffers."
   (delete-indentation 1))
 
 
-(defun launch-separate-emacs-under-x ()
-  (interactive)
-  (call-process "sh" nil nil nil "-c" "emacs &"))
+   (defun launch-separate-emacs-under-x ()
+     (interactive)
+     (call-process "sh" nil nil nil "-c" "emacs &"))
 
 
-(defun restart-emacs ()
-  (interactive)
-  ;; We need the new emacs to be spawned after all kill-emacs-hooks
-  ;; have been processed and there is nothing interesting left
-  (add-hook 'kill-emacs-hook
-            (if (display-graphic-p)
-                #'launch-separate-emacs-under-x
-              #'launch-separate-emacs-in-terminal)
-            t)
-  (kill-emacs))
+   (defun restart-emacs ()
+     (interactive)
+     ;; We need the new emacs to be spawned after all kill-emacs-hooks
+     ;; have been processed and there is nothing interesting left
+     (add-hook 'kill-emacs-hook
+               (if (display-graphic-p)
+                   #'launch-separate-emacs-under-x
+                 #'launch-separate-emacs-in-terminal)
+               t)
+     (kill-emacs))
 
 
 (defun get-positions-of-line-or-region ()
@@ -1307,18 +1491,24 @@ With a prefix argument N, (un)comment that many sexps."
     (package-menu-execute 'no-query)))
 
 
-(defun start-space-to-ctrl ()
+(defun space-to-ctrl-activate ()
   "Active space2cctl."
   (interactive)
-  (async-shell-command "~/.01/ubuntu/bin/space2ctrl.sh"))
+  (call-process-shell-command  "~/.01/ubuntu/bin/space2ctrl.sh" nil 0))
 
-(start-space-to-ctrl)
 
+(defun tidy-current-buffer ()
+  "Tidy html"
+  (interactive)
+  (async-shell-command
+   (format "tidy -i -m -w 160 -ashtml -utf8 %s"
+           (buffer-file-name (current-buffer)))))
 
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; key bindings
+
 
 (bind-keys*
  ("<f12>" . menu-bar-mode)
@@ -1334,6 +1524,9 @@ With a prefix argument N, (un)comment that many sexps."
  ("C-x C-b" . switch-to-previous-buffer)
  ("C-x C-d" . duplicate-current-line-or-region)
  ;; ("C-x C-h" . mark-whole-buffer)
+ ("C-x C-g" . space-to-ctrl-activate)
+
+
  ("C-x C-i" . delete-other-windows)
  ("C-x C-k" . kill-this-buffer)
  ("C-x C-m" . helm-M-x)
@@ -1382,6 +1575,17 @@ With a prefix argument N, (un)comment that many sexps."
 (helm-mode 1)
 
 
+
+(use-package engine-mode
+  :config
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d"))
+
+
+
+
+
 ;; enable Helm version of Projectile with replacment commands
 (helm-projectile-on)
 
@@ -1428,7 +1632,7 @@ With a prefix argument N, (un)comment that many sexps."
 (add-hook 'focus-out-hook 'save-all)
 
 ;; load do.org
-(find-file "~/Dropbox/do.org")
+;; (find-file "~/Dropbox/do.org")
 
 (message "Successfully loaded config... ")
 
@@ -1440,6 +1644,9 @@ With a prefix argument N, (un)comment that many sexps."
 ;;     (byte-compile-file buffer-file-name)))
 
 ;; (byte-recompile-directory package-user-dir nil 'force)
+
+(put 'narrow-to-region 'disabled nil)
+
 
 (provide 'init)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

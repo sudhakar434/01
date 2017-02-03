@@ -1,18 +1,20 @@
-## Terminal Commands
+# Terminal Commands
 
 
-### alias
 
-```
+
+
+# alias
+
 alias  # show all alias
 alias ls='ls -a'
-```
 
 
 
-### cron
 
-```shell
+
+# cron
+
 # run job every minute
 */1 * * * * foo
 
@@ -26,13 +28,19 @@ grep CRON /var/log/syslog
 
 # twice a day at 6, 18 hrs
 * 6,18 * * * echo "foo"
-```
+
+
+
+
+
+
+
+
+
 
 
 ### xargs
 
-```sh
-ls | xargs ls
 
 # on mac
 ls | xargs -I {} ls {}
@@ -40,14 +48,20 @@ ls | xargs -I {} ls {}
 # ignore empty
 ls | xargs -I {} cat {} -r
 
-# adb command to install all apks from folder
-ls | xargs -I {} adb install {}
-```
 
 
-### disks
 
-```shell
+
+
+
+
+
+
+
+
+
+# disks
+
 # list block devices
 lsblk
 
@@ -70,7 +84,7 @@ sudo fdisk /dev/sd*
 sudo mkfs -t ext4 /dev/sdb1
 sudo mount /dev/sd* </some/path/>
 
-https://help.ubuntu.com/community/InstallingANewHardDrive
+# https://help.ubuntu.com/community/InstallingANewHardDrive
 
 
 # mount ntfs external hdd
@@ -79,7 +93,7 @@ sudo ntfsfix /dev/sdXX
 
 
 # nfs
-# install package
+# nfs install package
 sudo apt-get install nfs-kernel-server nfs-common
 # mount
 sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
@@ -88,8 +102,14 @@ sudo mount -o soft,intr,rsize=8192,wsize=8192 <ip>:/nfs /path/to/mount
 ssh user@ip
 cat /etc/version
 
-https://help.ubuntu.com/community/SettingUpNFSHowTo
-```
+# https://help.ubuntu.com/community/SettingUpNFSHowTo
+
+
+
+
+
+
+
 
 
 ### files
@@ -186,9 +206,8 @@ fs.inotify.max_user_watches=16384
 
 
 
-### firewall
+# firewall
 
-```shell
 # show firewall status
 sudo ufw status verbose
 
@@ -202,21 +221,40 @@ sudo ufw deny <port no>
 sudo ufw delete <port no>
 
 sudo ufw logging [on/off]
-```
 
 
 
-### ffmpeg
 
-```sh
+
+
+
+
+# ffmpeg
+
 # extract audio from video
 ffmpeg -i foo.mp4 adandada.mp3
 
-```
+# convert one format to another
+ffmpeg -i foo.wembm adandada.mp3
 
-### ftp
+# split video of 25 seconds
+ffmpeg -i input.mkv -ss 00:01:10 -t 25 output.mkv
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+# ftp
+
+
 # download sftp file
 wget --user='user' --password='password' ftp://foo.com/bar
 
@@ -236,13 +274,15 @@ sudo vim /etc/vsftpd.conf
 sudo adduser <user>
 sudo usermod -d /home/<user> <user>
 sudo usermod -s /sbin/nologin <user>
-```
 
 
 
-### git
 
-```shell
+
+
+
+# git
+
 # update git
 sudo apt-add-repository ppa:git-core/ppa
 sudo apt-get update
@@ -332,7 +372,12 @@ lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(
 # create a new branch
 git checkout --orphan <branchname>
 git rm --cached -r .
-```
+
+
+
+
+
+
 
 
 
@@ -428,9 +473,11 @@ nmcli con up id 'wifi1'
 
 
 
-#### packages
+# packages
 
-```shell
+# show info of packages
+apt-cache show indicator-kdeconnect
+
 # upgrade a single package
 sudo apt-get install --only-upgrade <package name>
 
@@ -438,13 +485,28 @@ sudo apt-get install --only-upgrade <package name>
 sudo apt-cache policy <package name>
 sudo apt-cache show <package name> | grep Version
 sudo apt-cache madison <package name>
-```
+
+# remove ppa
+sudo add-apt-repository --remove ppa:whatever/ppa
 
 
 
-#### process
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+# processes
+
+
 # run a job in background
 emacs &
 
@@ -479,7 +541,8 @@ kill -SIGKILL <PID
 pkill emacs
 
 # kill process by some identifier
-ps -ef | grep 'celery worker' | awk '{print $2}' | xargs kill -9
+ps -ef | grep 'celery' | awk '{print $2}' | xargs kill -9
+pgrep celery | xargs kill -9
 
 # show all kill signals
 kill -l
@@ -487,9 +550,21 @@ kill -l
 
 # run this command with lowest priority
 nice -n 19 command
-```
 
-#### security
+
+
+
+
+
+
+
+
+
+
+
+
+
+# security
 
 ```shell
 # enable automatic security updates
@@ -684,18 +759,42 @@ x <any zipped file>
 ## third party packages
 
 
-### aws cli
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+# aws cli
+
 # install
 pip install awscli
 
 # configure
 aws configure
+aws configure --profile=new
 
-# usage
+
+
+# s3
 aws s3 ls
-aws --endpoint-url http://localhost:9000 s3 ls
+
+# minio
+aws --endpoint-url http://0.0.0.0:9000 s3 ls
+
+aws s3 mb s3://bucket-name
+aws s3 rb s3://bucket-name
+# delete non-empty bucket
+aws s3 rb s3://bucket-name --force
+
 
 aws s3 cp s3://foo/bar ./aws/sherlock-test
 aws s3 sync s3://foo s3://bar
@@ -703,7 +802,21 @@ aws s3 sync s3://foo ./aws/foo
 
 # get bucket size
 aws s3 ls --summarize --human-readable --recursive s3://bucket
-```
+
+# count objects
+aws s3api list-objects --bucket BUCKETNAME --output json --query "[length(Contents[])]"
+
+# make a bucket public
+# need to add a policy
+
+
+
+#ec2
+aws ec2 run-instances --image-id ami-e13739f6 --count 1 --instance-type t2.nano
+
+
+
+
 
 ### byobu
 
@@ -724,13 +837,19 @@ S + Arrows - To move along splits
 
 
 
-###  docker
 
-```shell
+
+
+
+#  docker
+docker () {}
+
 docker images
 docker ps
 docker ps -a
-docker ps -aq # list only container ids
+
+# list only container ids
+docker ps -aq
 docker commit <name>
 docker start <id>
 docker stop <id>
@@ -746,7 +865,7 @@ docker pull
 sudoedit /etc/default/grub
 GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
 sudo update-grub && shutdown -r 0
-```
+
 
 ### gunicorn
 
@@ -810,14 +929,33 @@ notedown python.md > python.ipynb
 ```
 
 
-### rabbitmq
 
-```shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# rabbitmq
 sudo apt-get install rabbitmq-server
+
 
 # rabbitmqctl
 sudo rabbitmqctl list_users
+
 sudo rabbitmqctl add_user <user> <pass>
+
+# delete guest user
+sudo rabbitmqctl add_user <user> <pass>
+
 
 sudo rabbitmqctl list_vhosts
 sudo rabbitmqctl add_vhost <my_host>
@@ -839,10 +977,15 @@ rabbitmqctl stop_app
 rabbitmqctl reset    # Be sure you really want to do this!
 rabbitmqctl start_app
 
+
 # rabbitmq-plugins
 sudo rabbitmq-plugins list
 sudo rabbitmq-plugins enable rabbitmq_management
-```
+
+
+
+
+
 
 
 
@@ -954,20 +1097,35 @@ xbacklight -set 10
 
 ```sh
 # copy between files & clipboard
-xsel --clipboard < new-clipboard-contents.txt
-xsel --clipboard > current-clipboard-contents.txt
+xsel -b < foo.txt
+cat foo.txt | xclip -i
+
+xsel -b > bar.txt
+
+# share file
+pastebinit foo.txt
 ```
 
 
-### REST
 
-```sh
+
+
+
+
+
+# REST
+
 # curl post with form data
 curl -d "username=chillaranand&password=foo" http://192.168.0.152:8000/api/token/new.json
 
 # httpie post with form data
 http POST 0.0.0.0:8000/api/token/new.json username=f password=f -f
-```
+
+
+
+
+
+
 
 
 
@@ -993,14 +1151,17 @@ heroku config:set DEBUG_COLLECTSTATIC=1
 
 
 
-### screenkey
+# screen recorder
+kazam
 
-```sh
+
+# screenkey
+
 # screenkey shows the keys pressed while screencasting
 sudo apt-get install screenkey
 
 # need to stop it from system-monitor
-```
+
 
 
 
@@ -1114,11 +1275,20 @@ mitmproxy
 ```
 
 
-### android
 
-### adb
 
-```sh
+
+
+
+
+
+
+# android
+
+
+
+# adb
+
 adb devices
 adb install test.apk
 
@@ -1127,12 +1297,17 @@ adb root
 
 # reboot into fastboot mode
 adb reboot bootloader
-```
+
+# in adb shell
+mount -o rw,remount,rw /system
+mount system RO: mount -o ro,remount,ro /system
 
 
-#### unlock bootloader
 
-```
+
+
+# unlock bootloader
+
 # enable developer options
 # enable OEM unlock
 
@@ -1147,61 +1322,89 @@ fastboot oem get_unlock_data
 fastboot oem unlock D2Z6X73ZVAG4X2FSHMNQ
 
 # reboot
-```
 
-#### custom recovery
 
-```sh
+
+
+
+
+# custom recovery
+
 # download twrp by device codename
-
 adb reboot bootloader
-
 sudo fastboot flash recovery twrp-otus-3.0.2-r1.img
-
 sudo fastboot reboot
-```
 
 
-#### root with supersu
 
-```
+
+# root with supersu
+
 # install custom recovery
 
 # download supersu and install it
 adb push UPDATE-SuperSU-v2.02.zip /sdcard/UPDATE-SuperSU-v2.02.zip
 # go to recovery -> install -> select supersu -> install -> reboot
-```
 
 
-#### recover from bootloop
 
-```sh
+
+
+# recover from bootloop
+
 # boot to recovery mode
 # advanced -> enable sideload
 adb sideload UPDATE-SuperSU-v2.46.zip
-```
 
 
-#### cyanogenmod
 
-```
+
+
+
+
+
+# cyanogenmod
+
+
 # wipe
 dalvik cache,data, cache,system
 
 # push rom
 adb push -p cm-14.0-20160910-UNOFFICIAL-athene.zip /sdcard/
-```
+
+# download and install gapps
+adb push open_gapps-arm-7.1-nano-20161217.zip /sdcard/
+# reboot recovery - install zip
 
 
-#### xposed
 
-```sh
+
+# factory reset with fastboot
+fastboot erase system
+fastboot erase userdata
+fastboot erase cache
+
+
+
+
+# xposed
+
+
 # download xposed zip and flash
 wget http://dl-xda.xposed.info/modules/de.robv.android.xposed.installer_v33_36570c.apk
 adb sideload de.robv.android.xposed.installer_v32_de4f0d.apk
 
 # download xposed apk and install it
-```
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1219,17 +1422,6 @@ nikola auto
 nikola serve
 ```
 
-
-### deis
-
-```
-sudo mv deis /usr/local/bin
-
-curl -sSL https://get.helm.sh | bash
-sudo mv helmc /usr/local/bin
-
-Install_package vagrant
-```
 
 
 ### celery
@@ -1254,31 +1446,227 @@ gsettings set org.gnome.desktop.media-handling automount-open false
 
 
 
-### shell scripting
 
-```sh
+
+
+
+# shell scripting
+
+# exapnsion
+echo {a..z}
+
 
 # for loop
 for i in {1..5}; do echo "Welcome $i times"; done
 
-```
+# if cond
 
 
-### ansible
 
-```
+
+
+
+
+
+
+
+
+
+
+# vagrant
+
+vagrant init
+vagrant init ubuntu/xenial64
+vagrant init debian/jessie64
+
+vagrant up
+vagrant up --provider=Virtualbox
+
+vagrant ssh
+
+vagrant reload
+
+vagrant destroy
+vagrant status
+vagrant halt
+
+vagrant global-status
+
+
+
+
+
+
+
+
+# ansible
+ansible() {}
+
 ansible all -i inventory/vagrant.ini -m ping
+
 ansible all -i inventory/vagrant.ini -m yum -a "name=ntp state=present" --sudo
+
 ansible all -i vagrant.ini -m shell -a "pwd"
 
 ansible-playbook -i inventory/vagrant.ini ntpd-init.yml
-```
 
 
-### ideviceinstaller
+ansible-playbook playbook.yml -i inventory.ini --user=username --extra-vars "ansible_sudo_pass=yourPassword"
 
 
-```sh
+
+
+
+
+
+# ios
+
 # restart ios device
 idevicediagnostics restart
-```
+
+
+
+
+# tesseract
+tesseract in.jpg out.txt -l tel
+
+
+
+
+# hg
+
+# remove files
+hg purge
+hg st -un0 | xargs -0 rm
+
+# stash
+hg shelve
+
+# to enable add this to .hgrc
+[extensions]
+purge =
+
+
+
+
+# pandoc
+pandoc -o test.html test.md
+
+
+
+
+
+
+
+
+
+
+
+
+# images
+
+# stack images horizontally
+convert +append *.png out.png
+
+# stack images vertically
+convert -append *.png out.png
+
+# format conversion
+convert foo.png foo.jpg
+
+
+# pdf to png
+convert -density 300 input.pdf -quality 90 prefix
+
+pdftoppm -rx 300 -ry 300 -png a.pdf prefix
+
+
+
+
+
+
+
+
+
+
+
+
+
+# google cloud platform - gcloud
+
+# auth
+gcloud auth application-default login
+
+gcloud projects list
+
+
+gcloud config set project avilpage-staging
+
+gcloud config set compute/zone us-central1-a
+
+
+gcloud container clusters list
+
+# fetch data and generate kubectl entry
+gcloud container clusters get-credentials "cluster-foo"
+
+
+gcloud compute addresses list
+
+
+gcloud compute instances list
+
+# ssh into instance
+gcloud compute ssh "server-foo"
+
+# open a port
+gcloud compute firewall-rules create <rule-name> --allow tcp:9090 --source-tags=<list-of-your-instances-names> --source-ranges=0.0.0.0/0 --description="<your-description-here>"
+
+
+
+
+
+
+
+# kubectl
+
+# show merged kubeconfig settings - all clusters
+kubectl config view
+
+# set cluster
+kubectl config use-context local
+kubectl config use-context staging
+
+
+# get cluster info
+kubectl cluster-info
+kubectl get nodes
+kubectl get pods --all-namespaces
+kubectl get pods --namespace=deis
+
+
+
+# minikube - setup kubernetes locally
+minikube version
+
+minikube start
+
+
+
+
+
+# deis
+
+
+
+
+
+
+
+
+
+
+# watchdog
+
+# restart celery workers
+watchmedo shell-command --patterns="*.py;*.html" --recursive --command='pgrep celery | xargs kill -9 && celery worker -A t'

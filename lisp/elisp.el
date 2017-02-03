@@ -1,10 +1,10 @@
 ;;; elisp --- simple elisp
-;;; Commentary:
 
-;;; code:
 
 
 ;;; BASICS
+
+
 
 ;; assign value to a symbol
 (defparameter vern 11)
@@ -16,6 +16,9 @@
 (setq version 11)
 
 (setq editor "emacs" version "24.3")    ; this is a comment
+
+
+
 
 
 ;; use let for local variables
@@ -38,8 +41,7 @@
   (list y z))
 
 
-(list-buffers)
-(list-processes)
+
 
 
 
@@ -100,6 +102,25 @@
 (or t nil)
 
 
+
+(unless (not nil)
+  (message "foo"))
+
+(unless "foo"
+  (message "bar"))
+
+(unless nil
+  (message "bar"))
+
+(setq res "aa")
+(setq res nil)
+(and res (stringp res))
+
+(equal (length '("a" "b")) 2)
+
+(unless (and res (stringp res))
+  (message "fffffff"))
+
 ;; hash
 (make-hash-table)
 (setq h (make-hash-table :test #'equal))
@@ -108,6 +129,23 @@
 (puthash "p" "q" h)
 (dolist (k (hash-table-keys h))
   (message k))
+
+
+
+
+
+;; strings
+(defun string )
+
+(string-equal "r" "r")
+
+(stringp "r")
+(stringp "")
+
+(format "%s - %s" "foo" "bar")
+
+
+
 
 
 ;; testing
@@ -289,6 +327,9 @@
 
 (eq "r" "r")
 
+
+
+;; strings
 (string-equal "r" "r")
 
 (replace-regexp-in-string "\n$" "" "a \n b \n")
@@ -580,7 +621,7 @@
 (nth 3 '(1 2 3 4 5))
 
 
-(defun point-in-string-or-comment ()
+(defun point-inside-string-or-comment ()
   "This is it."
   (interactive)
   (let ((ppss (syntax-ppss)))
@@ -588,15 +629,57 @@
         (car (setq ppss (cdr ppss)))
         (nth 3 ppss))))
 
+(defun foo ()
+  (interactive)
+  (or (> (nth 0 (syntax-ppss)) 0)
+      (nth 3 (syntax-ppss))))
 
 (elpy-doc--symbol-at-point)
 
+(defun goto-template ()
+  (interactive)
+  (save-excursion
+    (let ((beg (+ (search-backward-regexp "['\"]") 1))
+          (end nil)
+          (file nil))
+      (forward-char)
+      (search-forward-regexp "['\"]")
+      (setq end (- (point) 1))
+      (kill-ring-save beg end)
+      (setq file (current-kill 0))
+      (find-file (expand-file-name
+                  (dolist (f (projectile-current-project-files))
+                    (if (s-contains? file f)
+                        (return f)))
+                  (projectile-project-root))))))
 
 (defun test-inside-curly-braces ()
   (interactive)
-  (when (and (looking-back "'\\(.*?\\)") (looking-at "\\(.*?\\)'"))
+  (when (and (looking-back "\"") (looking-at  "\""))
     (message "inside curly braces")))
 
+
+
+
+
+(defun inside-string ()
+  "Returns non-nil if inside string, else nil.
+This depends on major mode having setup syntax table properly."
+  (interactive)
+  (nth 3 (syntax-ppss)))
+
+
+(defun get-thing-at-point ()
+  (interactive)
+  (message (thing-at-point 'filename)))
+
+(defun inside-string? ()
+  "Returns non-nil if inside string, else nil.
+This depends on major mode having setup syntax table properly."
+  (interactive)
+  (let ((result (nth 3 (syntax-ppss))))
+    (message "%s" result)
+    result))
 
 (defun beginning-of-string ()
   "Moves to the beginning of a syntactic string"
@@ -753,4 +836,14 @@ json.dump(config, sys.stdout)
 
 
 (make-button 1 50 'action (lambda(x) (find-file "~/test.py")))
+
+
+;; org mode
+[[;; ./book.jpg]]
+[[./book.jpg]]
+[[./book.jpg]]
+[[./book.jpg]]
+
+
+
 ;;; elisp.el ends here

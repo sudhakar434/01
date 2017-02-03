@@ -1,3 +1,4 @@
+ipdb
 mitmproxy
 grip
 pytest
@@ -9,3 +10,11 @@ flake8
 cookiecutter
 jinja2
 jupyter
+stdlib_list
+autoenv
+pandas
+numpy
+awscli
+httpie
+Sphinx
+celery

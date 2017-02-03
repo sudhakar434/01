@@ -1,10 +1,10 @@
 [Desktop Entry]
-Name=Dropbox
-GenericName=File Synchronizer
-Comment=Sync your files across computers and to the web
-Exec=dropbox start -i
-Terminal=false
 Type=Application
-Icon=dropbox
-Categories=Network;FileTransfer;
-StartupNotify=false
+Exec=/usr/local/bin/dropboxd
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_IN]=dropboxd
+Name=Dropbox
+Comment[en_IN]=start dropbox
+Comment=start dropbox

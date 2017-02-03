@@ -1,6 +1,17 @@
 #! /bin/sh
 
-install_package()
+
+package_exists()
+{
+   package=$1
+   if dpkg --get-selections | grep -q "^$package[[:space:]]*install$" >/dev/null;
+    then
+        return 0
+   fi
+}
+
+
+install_package ()
 {
     package=$1
     ppa=$2
@@ -14,69 +25,74 @@ install_package()
            sudo bash -c "add-apt-repository --yes ppa:$ppa > /tmp/foo"
        fi
        sudo bash -c "apt-fast -qq --yes install $package > /tmp/foo"
-       echo "$package is installed"
     fi
 }
 
-echo "Setting up your system. Please wait..."
 
-if [ ! -f /usr/sbin/apt-fast ]; then
-    echo "Installing apt-fast..."
+relink ()
+{
+    source=$1
+    destination=$2
+    rm $destination
+    ln -s $source $destination
+}
+
+
+echo "\n\tSetting up your system. Please wait..."
+
+
+if ! package_exists "apt-fast"; then
     install_package apt-fast saiarcot895/myppa
     sudo dpkg-reconfigure apt-fast  # configure
 fi
 
 
-install_package git
-git config --global user.name 'chillaranand'
-git config --global user.email 'anand21nanda@gmail.com'
-echo "git is configured"
+if ! package_exists "git"; then
+    git config --global user.name 'chillaranand'
+    git config --global user.email 'anand21nanda@gmail.com'
+    echo "git is configured"
+fi
 
 
-install_package zsh
 if [ ! -d ~/.oh-my-zsh/ ]; then
+    install_package zsh
     git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh
     chsh -s /usr/bin/zsh $(whoami)
+    relink ~/.01/ubuntu/config/zsh/zshrc.sh ~/.zshrc
+    echo "zsh is configured"
 fi
-rm ~/.zshrc
-ln -s ~/.01/ubuntu/config/zsh/zshrc ~/.zshrc
-echo "zsh is configured"
 
-
-# config
-rm -rf ~/.config/autostart && ln -s ~/.01/ubuntu/config/autostart/ ~/.config/autostart
-
-# shell
 install_package byobu byobu/ppa
-install_package tmuxinator
-rm -rf ~/.tmuxinator
-ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
+
+# install_package tmuxinator
+# rm -rf ~/.tmuxinator
+# ln -s ~/.01/ubuntu/config/tmuxinator ~/.tmuxinator
 
 
 
-
-# salt setup
-# python salt/start/setup.py
-
-# install utils
-install_package unzip
-install_package tree
-install_package xcape
-install_package htop
-install_package vlc
-install_package synapse synapse-core/ppa
-# rm ~/.config/synapse/config.json
-# ln -s ~/projects/ubuntu/os/config/synapse/config.json config.json
-install_package clipit
+# utilities
 install_package arpon
 install_package clementine
-# install_package banshee banshee-team/ppa
-
+install_package clipit
+install_package htop
+install_package nmap
+install_package npm
 install_package compizconfig-settings-manager
 install_package compiz-plugins-extra
 install_package dconf-tools
-install_package unity-tweak-tool freyja-dev/unity-tweak-tool-daily
+install_package tree
+install_package unzip
+install_package vlc
+install_package xcape
+install_package xclip
+install_package pastebinit
+install_package nethogs
 
+
+install_package fluxgui nathan-renniewaldock/flux
+install_package synapse synapse-core/ppa
+install_package unity-tweak-tool freyja-dev/unity-tweak-tool-daily
+install_package indicator-sysmonitor fossfreedom/indicator-sysmonitor
 
 
 
@@ -86,7 +102,6 @@ if [ ! -f ~/.dropbox-dist/dropboxd ]; then
     ~/.dropbox-dist/dropboxd
     echo "dropbox is installed"
 fi
-echo "dropbox is already installed"
 
 
 # chrome
@@ -96,7 +111,6 @@ if [ ! -f /usr/bin/google-chrome ]; then
     install_package google-chrome-stable
     echo "chrome is installed"
 fi
-echo "chrome is already installed"
 
 
 # install emacs
@@ -104,23 +118,23 @@ if [ ! -f /usr/bin/emacs ]; then
     sudo add-apt-repository --yes ppa:ubuntu-elisp/ppa
     sudo apt-fast -qq --yes install emacs-snapshot emacs-snapshot-el
     git clone https://github.com/chillaranand/.emacs.d.git
-fi
-if [ ! -d ~/.emacs.d ]; then
+
     ln -s ~/.01/ubuntu/config/emacs ~/.emacs.d
+    touch ~/.emacs.d/custom.el
+    ln -s ~/Dropbox/tech/private.el ~/.emacs.d/.private.el
 fi
-touch ~/.emacs.d/custom.el
-touch ~/.emacs.d/.private.el
-echo "emacs is configured"
 
 
 
 # python
+relink ~/.01/python/ipython_config.py ~/.ipython/profile_default/ipython_config.py
+relink ~/.01/ubuntu/config/autostart/ ~/.config/autostart
+
 install_package python-dev
 install_package python3-dev
 install_package python-pip
-# sudo pip install --upgrade pip -q
-# sudo pip install --upgrade virtualenvwrapper -q
-# sudo pip install --upgrade thefuck -q
+
+# sudo -H pip install --upgrade pip virtualenvwrapper thefuck stdlib_list -q
 
 
 install_package libxml2-dev
@@ -130,26 +144,51 @@ install_package libxslt1-dev
 install_package libffi-dev
 # sudo pip install cairocffi
 
+install_package graphviz
+install_package libgraphviz-dev
+install_package pkg-config
+# sudo pip install pygraphviz
+
+
 # fix gtk bug
 install_package gtk2-engines-pixbuf
 
+
+install_package libevent-dev
 # mitmproxy
-# install_package libevent-dev
-
-
-echo "pip and python packages updated"
 
 
 
 
-# crontab -u chillaranand < ~/.01/ubuntu/config/cron_jobs.sh
+# npm packages
 
 
+crontab -u chillaranand ~/.01/ubuntu/config/cron_jobs.sh
+
+# config
 
 
+# android studio
+# install_package android-studio maarten-fonville/android-studio
+
+# install_package ubuntu-make
+# umake android
+
+if ! package_exists 'cask'; then
+    curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
+fi
 
 
+if [ ! -f /usr/local/bin/docker-compose ]; then
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+fi
 
+
+install_package kdeconnect
+
+# install_package indicator-kdeconnect vikoadi/ppa
+install_package indicator-kdeconnect varlesh-l/indicator-kdeconnect
 
 
 
@@ -189,15 +228,8 @@ echo "pip and python packages updated"
 
 
 
-# other packages
+install_package arp-scan
 
-# install_package arp-scan
-
-# tuxcut
-# install_package dsniff
-# install_package arptables
-# install_package wondershaper
-# install_package python-qt4
 
 # ulogme
 # sudo apt-get install xdotool wmctrl
@@ -233,16 +265,6 @@ echo "pip and python packages updated"
 # install_package libimobiledevice-dev pmcenery/ppa
 
 
-# android studio
-
-# sudo apt-add-repository ppa:maarten-fonville/android-studio
-# sudo apt-get update
-# sudo apt-get install android-studio
-
-# install_package ubuntu-make
-# umake android
-
-
 
 # install java
 # sudo add-apt-repository ppa:webupd8team/java
@@ -261,7 +283,6 @@ echo "pip and python packages updated"
 # configure locales
 # sudo dpkg-reconfigure locales
 
-# install_package calibre
 
 
 
@@ -285,9 +306,24 @@ echo "pip and python packages updated"
 # install_package gstreamer0.10-pulseaudio
 
 
-
-
 # install atom
 # install_package atom webupd8team/atom
 # install atom package
 # apm install atom-pair
+
+
+# phantomjs
+# sudo apt-get install -y build-essential chrpath libssl-dev libxft-dev
+# sudo apt-get install -y libfreetype6 libfreetype6-dev
+# sudo apt-get install -y libfontconfig1 libfontconfig1-dev
+# cd ~
+# export PHANTOM_JS="phantomjs-1.9.8-linux-x86_64"
+# wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+# sudo tar xvjf $PHANTOM_JS.tar.bz2
+# sudo mv $PHANTOM_JS /usr/local/share
+# sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+
+
+
+
+echo "\tYour system is configured. Enjoy :-) \n"

@@ -1,70 +1,76 @@
-## js
+// js
+
+const x = 1;
 
 
-```js
-# list the properties of a JavaScript object
+
+// list the properties of a JavaScript object
 var keys = Object.keys(myObject);
 
 
-# determine the class of an object
+// determine the class of an object
 Object.prototype.toString.call(myObject);
 
 
-# JavaScript has function scope; functions get their own scope but other blocks do not.
+// JavaScript has function scope;
+// functions get their own scope but other blocks do not.
 if (true){
     var i = 5;
 }
-i; # = 5 - not undefined as you'd expect in a block-scoped language
+i;
+// not undefined as you'd expect in a block-scoped language
 
 
-# closures
-# the inner function has access to all the outer function's variables, even after the outer function exits
-```
+// closures
+// the inner function has access to all the outer function's variables, even after the outer function exits
 
 
 
-## jQuery
 
 
-#### selectors
 
-```js
+
+
+
+
+
+
+
+
+
+
+// jQuery
+
+
+// selectors
 $('#category option[value="blog_list?category=TECH"]').prop('selected', true);
-```
 
 
+// Disable button
 
-#### Disable button
-
-```js
 $("input[value='vcf']").click(writeData);
 function writeData() {
-jQuery("input[value=vcf]").attr('disabled',true);
+    jQuery("input[value=vcf]").attr('disabled',true);
 }
 
 // disable by default
 $('select item').disabled = true;
 
-# change vs click
-```
 
-#### find element type
 
-```js
+// change vs click
 $('#target').is('input')
 
 $('#target').get(0).tagName.toLowerCase()
-```
 
 
-# set select to an option
+// set select to an option
 $('#category option[value="blog_list?category=TECH"]').prop('selected', true);
 
 
 
-#### jquery autocomplete plugin
+// jquery autocomplete plugin
 
-```js
 var tissues = [
     {"label": "taaaa 1"},
     {"label": "tbbbb 2"},
@@ -88,19 +94,24 @@ $('input#id_tissue').autocomplete({
         response(startsWith.concat(contains));
     }
 });
-```
 
 
 
-## bootstrap
 
-```js
-# make navbar link active
+
+
+
+
+
+
+
+
+// bootstrap
+
+// make navbar link active
 $(document).ready(function() {
     $('a[href="' + this.location.pathname + '"]').parent().addClass('active');
 });
-```
-
 
 
 
